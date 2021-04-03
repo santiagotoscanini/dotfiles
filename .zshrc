@@ -1,6 +1,9 @@
 # Load aliases
 source ~/.alias
 
+
+
+
 # Custom Reverse Search
 _reverse_search() {
     # fc (fix command) lists the last commands
@@ -18,3 +21,20 @@ _reverse_search() {
 zle -N _reverse_search
 # Bind the keymap to control + r
 bindkey '^r' _reverse_search
+
+
+# TODO: migrate to powerlevel10k
+ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_MODE="nerdfont-complete"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_gopher_icon dir vcs)
+
+# To select an icon use https://char-map.herokuapp.com/
+# To type UNICODE use ctrl + shift + U (Linux)
+POWERLEVEL9K_CUSTOM_GOPHER_ICON="echo ﳑ"
+# ANSI Colors
+POWERLEVEL9K_CUSTOM_GOPHER_ICON_BACKGROUND=237
+POWERLEVEL9K_CUSTOM_GOPHER_ICON_FOREGROUND=014
+
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_SHORTEN_STRATEGY=truncate_folders
