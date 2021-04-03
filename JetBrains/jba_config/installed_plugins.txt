@@ -1,0 +1,6 @@
+com.chesterccw.excelreader
+com.chrisrm.idea.MaterialThemeUI
+com.mallowigi
+mobi.hsz.idea.gitignore
+com.intellij.swagger
+ru.meanmail.plugin.requirements

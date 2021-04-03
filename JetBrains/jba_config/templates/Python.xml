@@ -1,0 +1,9 @@
+<templateSet group="Python">
+  <template name="init" value="def __init__(self$params$):&#10;    $body$" description="Constructor" toReformat="false" toShortenFQNames="true">
+    <variable name="params" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="body" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+</templateSet>
