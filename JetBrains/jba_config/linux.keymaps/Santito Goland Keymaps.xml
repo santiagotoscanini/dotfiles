@@ -1,0 +1,59 @@
+<keymap version="1" name="Santito Goland Keymaps" parent="Default for GNOME">
+  <action id="ActivateVersionControlToolWindow">
+    <keyboard-shortcut first-keystroke="shift alt g" />
+  </action>
+  <action id="CloseContent">
+    <keyboard-shortcut first-keystroke="ctrl f4" />
+    <keyboard-shortcut first-keystroke="ctrl w" />
+  </action>
+  <action id="Debug">
+    <keyboard-shortcut first-keystroke="alt d" />
+  </action>
+  <action id="EditorAddCaretPerSelectedLine" />
+  <action id="EditorSelectWord" />
+  <action id="Git.Branches">
+    <keyboard-shortcut first-keystroke="shift alt b" />
+  </action>
+  <action id="Github.Create.Pull.Request">
+    <keyboard-shortcut first-keystroke="shift alt p" />
+  </action>
+  <action id="GotoTest">
+    <keyboard-shortcut first-keystroke="shift alt t" />
+  </action>
+  <action id="RecentFiles">
+    <keyboard-shortcut first-keystroke="alt e" />
+  </action>
+  <action id="RecentLocations">
+    <keyboard-shortcut first-keystroke="shift alt e" />
+  </action>
+  <action id="ReopenClosedTab">
+    <keyboard-shortcut first-keystroke="shift ctrl t" />
+  </action>
+  <action id="Run">
+    <keyboard-shortcut first-keystroke="alt r" />
+  </action>
+  <action id="SelectInProjectView">
+    <keyboard-shortcut first-keystroke="shift alt s" />
+  </action>
+  <action id="ServiceView.ShowServices" />
+  <action id="ShowSettings">
+    <keyboard-shortcut first-keystroke="alt comma" />
+  </action>
+  <action id="SmartSelect" />
+  <action id="SplitHorizontally">
+    <keyboard-shortcut first-keystroke="ctrl alt down" />
+  </action>
+  <action id="SplitVertically">
+    <keyboard-shortcut first-keystroke="ctrl alt right" />
+  </action>
+  <action id="SwitcherIterateItems" />
+  <action id="ViewNavigationBar">
+    <keyboard-shortcut first-keystroke="alt n" />
+  </action>
+  <action id="ViewStatusBar">
+    <keyboard-shortcut first-keystroke="alt s" />
+  </action>
+  <action id="VimPluginToggle">
+    <keyboard-shortcut first-keystroke="alt v" />
+  </action>
+</keymap>
