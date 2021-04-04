@@ -2,8 +2,6 @@
 source ~/.alias
 
 
-
-
 # Custom Reverse Search
 _reverse_search() {
     # fc (fix command) lists the last commands
