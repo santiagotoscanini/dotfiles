@@ -1,6 +1,0 @@
-com.chrisrm.idea.MaterialThemeUI
-com.mallowigi
-mobi.hsz.idea.gitignore
-ru.meanmail.plugin.requirements
-IdeaVIM
-ro.florinpatan.gopher

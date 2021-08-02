@@ -5,8 +5,12 @@
 - Postman
 - Brave
 - Notion
-- Todoist
 - Focus To-Do
+- Logi Options+
+- Grammarly
+- Spotify
+- Docker UI (MacOS)
+- Sublime (For large files)
 
 ## SDKs
 - Flutter
