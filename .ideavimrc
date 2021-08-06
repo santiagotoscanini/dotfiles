@@ -1,10 +1,14 @@
+set relativenumber
+
 set scrolloff=8
-set nohlsearch
+set hlsearch
 
 let mapleader = " "
 
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+
+nnoremap <esc> :noh<return><esc>
 
 " NerdTree
 " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
