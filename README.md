@@ -1,16 +1,15 @@
 # Configuration of all my applications and files.
 
 ## Software that I use:
-- JetBrains Toolbox (DataGrip, GoLand, PyCharm, etc)
+- JetBrains Toolbox (DataGrip)
 - Postman
 - Brave
 - Notion
-- Focus To-Do
+- Todoist
 - Logi Options+
 - Grammarly
 - Spotify
 - Docker UI (MacOS)
-- Sublime (For large files)
 
 ## SDKs
 - Flutter
