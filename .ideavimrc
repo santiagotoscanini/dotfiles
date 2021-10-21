@@ -1,49 +1,9 @@
-set relativenumber
+source ./vimrc
 
-set scrolloff=8
-set hlsearch
-
-let mapleader = " "
-
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-
-nnoremap <esc> :noh<return><esc>
-
-" NerdTree
-" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
-set NERDTree
-nmap <leader>nt :NERDTree<CR>
-let g:NERDTreeMapActivateNode='l'
-let g:NERDTreeMapJumpParent='h'
-" g      = Open selected file, but leave cursor in the NERDTree.
-" t      = Open selected node/bookmark in a new tab.
-" T      = Same as 't' but keep the focus on the current tab.
-" i      = Open selected file in a split window.
-" g      = Same as i, but leave the cursor on the NERDTree.
-" s      = Open selected file in a new vsplit.
-" g      = Same as s, but leave the cursor on the NERDTree.
-" O      = Recursively open the selected directory.
-" x      = Close the current nodes parent.
-" X      = Recursively close all children of the current node.
-" P      = Jump to the root node.
-" K      = Jump up inside directories at the current tree depth.
-" J      = Jump down inside directories at the current tree depth.
-" <C-J>  = Jump down to next sibling of the current directory.
-" <C-K>  = Jump up to previous sibling of the current directory.
-" r      = Recursively refresh the current directory.
-" R      = Recursively refresh the current root.
-" m      = Display the NERDTree menu.
-" q      = Close the NERDTree window.
-" A      = Zoom (maximize/minimize) the NERDTree window.
-
-" EasyMotion
-" https://github.com/AlexPl292/IdeaVim-EasyMotion.
-" https://github.com/easymotion/vim-easymotion/blob/master/doc/easymotion.txt
-set easymotion
-nmap <ll>s <plug>(easymotion-s2)
-
-" IDEA Settings
 set idearefactormode=keep
 set ideajoin
-set ideastatusicon=gray
+set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
+set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
+set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
+set ideawrite=all               " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or " ESLint on save.
+set clipboard=ideaput
