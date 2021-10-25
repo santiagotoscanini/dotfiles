@@ -1,4 +1,4 @@
-source ./vimrc
+source ~/.config/nvim/init.vim
 
 set idearefactormode=keep
 set ideajoin
