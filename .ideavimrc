@@ -1,9 +1,0 @@
-source ~/.config/nvim/init.vim
-
-set idearefactormode=keep
-set ideajoin
-set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
-set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
-set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
-set ideawrite=all               " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or " ESLint on save.
-set clipboard=ideaput
