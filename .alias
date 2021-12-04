@@ -1,8 +1,0 @@
-alias cdevp="cd /Users/stoscanini/dev"
-alias cdevn="cd /Users/stoscanini/node"
-alias cdevg="cd /Users/stoscanini/go"
-
-# MongoDB
-alias mongod='brew services run mongodb-community'
-alias mongod-status='brew services list'
-alias mongod-stop='brew services stop mongodb-community'
