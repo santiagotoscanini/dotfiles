@@ -1,0 +1,78 @@
+alias cdp="cd /Users/stoscanini/dev/python"
+alias vi="nvim"
+
+# ZSH
+# take (git, url, mkdir)
+
+# Docker
+function _docker_build_and_push_image(){
+    docker build . -t $1 && docker push $1
+}
+
+alias dbp='_docker_build_and_push_image $1'
+alias dbash = 'docker exec -it $1 /bin/bash'
+
+####### Fury ########
+
+alias fcv="fury create-version" 
+function commit_push_version() {
+  git commit -am $1;
+  git push;
+
+  fcv $2;
+}
+alias fccv='commit_push_version;'
+alias ft="fury test"
+alias fb="fury bash" 
+alias fr="fury run"
+alias flv="fury list-versions"
+function _furylogs() {
+    fury command logs --scope $1 -f;
+}
+alias fl='_furylogs'
+
+###### TMUX ##########
+
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
+
+function _fzf_select_tmuxinator_project() { # https://github.com/camspiers/tmuxinator-fzf-start
+    SELECTED_PROJECTS=$(tmuxinator list -n |
+        tail -n +2 |
+        fzf --prompt="Project: " -m -1 -q "$1")
+
+    if [ -n "$SELECTED_PROJECTS" ]; then
+        # Set the IFS to \n to iterate over \n delimited projects
+        IFS=$'\n'
+
+        # Start each project without attaching
+        for PROJECT in $SELECTED_PROJECTS; do
+            tmuxinator start "$PROJECT" --no-attach # force disable attaching
+        done
+
+        # If inside tmux then select session to switch, otherwise just attach
+        if [ -n "$TMUX" ]; then
+            SESSION=$(tmux list-sessions -F "#S" | fzf --prompt="Session: ")
+            if [ -n "$SESSION" ]; then
+                tmux switch-client -t "$SESSION"
+            fi
+        else
+            tmux attach-session
+        fi
+    fi
+}
+zle -N _fzf_select_tmuxinator_project
+bindkey '^P' _fzf_select_tmuxinator_project
+
+alias txn='tmuxinator new'
+
+# Copy a project (old, new)
+alias txcp='tmuxinator copy'
+
+# Close current project
+alias txs='tmuxinator stop $(tmux display-message -p '#S')'
+
