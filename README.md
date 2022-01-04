@@ -1,26 +1,26 @@
 # Configuration of all my applications and files.
 
 ## Applications that I use:
-- Adobe XD
 - Brave
 - Notion
-- Todoist
-- Logi Options+
-- Grammarly
 - Spotify
+- WhatsApp
 
 ## Specific for development:
 - Postman
-- K8s
-- Docker
 - AWS CLI
 - SDKMAN!
-- Docker UI (MacOS)
+- Sublime Text (For large text objects)
 
 ### SDKs to install:
 - Flutter
+    - Android
 - Node.js
 - Go
 - Java
 - Python
-- Android (for Flutter)
+
+### Utils for MacOS
+- Flow (Pomodoro)
+- Hidden Bar
+- Docker Desktop

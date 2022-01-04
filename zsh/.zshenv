@@ -1,7 +1,7 @@
-# GO
+# go
 export GO111MODULE=on
 
-# Fury
+# Python
 export PATH="$HOME/Library/Python/3.8/bin:$PATH"
 
 # Flutter
@@ -14,13 +14,12 @@ export PATH=$ANDROID_HOME/emulator/:$PATH
 export PATH=$ANDROID_HOME/platform-tools/:$PATH
 export PATH=$ANDROID_HOME/sdk/tools:$PATH
 
-# brew & exa
+# Para brew y exa
 export PATH="/usr/local/bin:$PATH"
 
-# zsh
 export ZSH=~/.oh-my-zsh
 
-# vim
+# Vim
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
 else
