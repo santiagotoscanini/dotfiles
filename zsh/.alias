@@ -8,6 +8,8 @@ alias cdg="cd ~/dev/go"
 alias vi="nvim"
 alias vim="nvim"
 
+alias chvim="nvim ~/.config/nvim/lua.vim"
+
 # Don't need this line if using Linux
 alias docker_start="open --hide --background -a Docker"
 
@@ -17,14 +19,6 @@ function _docker_build_and_push_image(){
 }
 alias dbp='_docker_build_and_push_image $1'
 alias dbash='docker exec -it $1 /bin/bash'
-
-# tmux
-alias ta='tmux attach -t'
-alias tad='tmux attach -d -t'
-alias ts='tmux new-session -s'
-alias tl='tmux list-sessions'
-alias tksv='tmux kill-server'
-alias tkss='tmux kill-session -t'
 
 # tmuxinator
 alias txn='tmuxinator new'
