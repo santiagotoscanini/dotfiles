@@ -1,9 +1,0 @@
-[user]
-	name = Santiago Toscanini
-	email = toscaninisantiago@gmail.com
-[alias]
-	arbolito = log --all --graph --decorate --oneline
-[url "git@github.com:"]
-	insteadOf = https://github.com/
-[pull]
-	rebase = false
