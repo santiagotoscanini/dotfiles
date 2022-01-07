@@ -7,10 +7,9 @@
 - WhatsApp
 
 ### Specific for development:
-- Postman
-- AWS CLI
-- SDKMAN!
-- Sublime Text (For large text objects)
+- Insomnia
+- JetBrains Toolbox
+    - DataGrip
 
 ### Specific for MacOS
 - Flow (Pomodoro)
