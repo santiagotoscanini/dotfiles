@@ -32,10 +32,16 @@ Some concepts: **\[1\]**
 
 ---
 
+Popular ZSH Frameworks:
+
+- [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
+- [Prezto](https://github.com/sorin-ionescu/prezto)
+- [Zim](https://github.com/zimfw/zimfw)
+
+---
+
 Cites:
 
-\[1\]: [What is the difference between interactive shells, login shells, non-login shell and their use cases?](https://unix.stackexchange.com/questions/50665/what-is-the-difference-between-interactive-shells-login-shells-non-login-shell)
-
-\[2\]: [What should/shouldn't go in .zshenv, .zshrc, .zlogin, .zprofile, .zlogout?](https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout)
-
-\[3\]: [ZSH: .zprofile, .zshrc, .zlogin - What goes where?](https://apple.stackexchange.com/questions/388622/zsh-zprofile-zshrc-zlogin-what-goes-where)
+1. [What is the difference between interactive shells, login shells, non-login shell and their use cases?](https://unix.stackexchange.com/a/50667)
+2. [What should/shouldn't go in .zshenv, .zshrc, .zlogin, .zprofile, .zlogout?](https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout#comment494583_71258)
+3. [ZSH: .zprofile, .zshrc, .zlogin - What goes where?](https://apple.stackexchange.com/a/388623)

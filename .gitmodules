@@ -1,0 +1,3 @@
+[submodule "onehalf"]
+    path = iterm2/onehalf
+    url = git@github.com:sonph/onehalf.git
