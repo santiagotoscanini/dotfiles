@@ -1,5 +1,4 @@
-" https://github.com/wbthomason/packer.nvim
-" TODO(santiagotoscanini): move to packer
+" TODO(santiagotoscanini): move to packer, https://github.com/wbthomason/packer.nvim
 
 call plug#begin('~/.vim/plugged')
     " TODO(santiagotoscanini): Remove on version 0.6.2 of neovim: https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
@@ -46,17 +45,17 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'karb94/neoscroll.nvim'                        " Smooth scrolling
 
-    " TODO(santiagotoscanini): check telescope
+    " TODO(santiagotoscanini): Check telescope
     Plug 'junegunn/fzf', {'do': { -> fzf#install() } }  " FZF Binary
     Plug 'junegunn/fzf.vim'                             " FZF for VIM
     Plug 'stsewd/fzf-checkout.vim'                      " FZF for checkout branches.
 
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }  " Go support (Improve syntax highlight, and build, run commands)
-
 call plug#end()
 
-" Automatically install missing plugins on startup
-autocmd VimEnter *
-            \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-            \|   PlugInstal --sync | q
-            \| endif
+augroup install_plugins
+    autocmd VimEnter plugins.vim
+      \  if !empty(filter(copy(g:plugs), '!isdirectory(v:val.dir)'))
+      \|   PlugInstall | q
+      \| endif
+augroup end
