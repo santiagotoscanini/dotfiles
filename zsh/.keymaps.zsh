@@ -25,7 +25,9 @@ function _fzf_select_tmuxinator_project() {
     fi
 }
 
-# TODO(santiagotoscanini): this doesn't work
+# FIXME(santiagotoscanini): this doesn't work
 bindkey -ar "^P"
+# zle (Zsh Line Editor) is the readkey engine for reading and processing the key events.
+# With -N we create a new keymap
 zle -N _fzf_select_tmuxinator_project
 bindkey '^P' _fzf_select_tmuxinator_project

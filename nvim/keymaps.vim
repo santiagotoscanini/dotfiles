@@ -68,6 +68,7 @@ nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> ccp <cmd>%y+<CR>
 nnoremap <silent> dA <cmd>%d<CR>
 
+" FIXME(santiagotoscanini): This doesn't work
 function Newscratch()
     execute 'tabnew '
     setlocal buftype=nofile
