@@ -5,16 +5,22 @@ fi
 
 pushd $DOTFILES_DIR
 
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-    mkdir -p $XDG_CONFIG_HOME/$folder
-    stow -D $folder         		     # First delete the packages.
-    stow -t $XDG_CONFIG_HOME/$folder $folder # Then stow it again.
+echo --- PERSONAL DOTFILES ---
 
-    echo $folder 'stowed'
+for package in $(echo $STOW_PACKAGES | sed "s/,/ /g")
+do
+    mkdir -p $XDG_CONFIG_HOME/$package
+    echo ------ $package -------
+
+    stow -D -t $XDG_CONFIG_HOME/$package $package # First delete the packages.
+    echo 'Unstowed'
+
+    stow -t $XDG_CONFIG_HOME/$package $package    # Then stow it again.
+    echo 'Stowed'
 done
 
 pushd work-dotfiles
+echo --- WORK DOTFILES ------
 zsh install.zsh
 popd
 
