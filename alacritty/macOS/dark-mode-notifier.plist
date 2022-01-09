@@ -4,7 +4,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>io.arslan.dark-mode-notifier</string>
+    <string>io.stoscanini.dark-mode-notifier</string>
 
     <key>KeepAlive</key>
     <true/>
