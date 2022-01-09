@@ -21,7 +21,7 @@ To stow the files, we run `zsh install.zsh`.
 
 - [x] Make it XDG Compatible.
 - [x] Make an `install.zsh` script.
-- [ ] Add IdeaVim dotfiles.
+- [x] Add IdeaVim dotfiles.
 - [ ] Add QMK dotfiles.
 - [ ] Make a script to install all the dependencies (`stow`, `oh-my-zsh`, etc.).
 - [ ] Separate all from my user.

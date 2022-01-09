@@ -7,7 +7,7 @@ addToPath() {
     fi
 }
 
-export STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh"
+export STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh,ideavim"
 export XDG_CONFIG_HOME=$HOME/.config
 export DOTFILES_DIR=$HOME/dev/.tooling/dotfiles
 export ZSH=~/.oh-my-zsh

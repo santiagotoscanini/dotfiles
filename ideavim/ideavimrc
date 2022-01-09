@@ -1,0 +1,134 @@
+let mapleader=' '
+map <C-c> <Esc>
+
+set timeout=200
+set relativenumber
+set scrolloff=8
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>x :x<CR>
+
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
+nnoremap <esc> :noh<return><esc>
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+
+" similar to LSP
+nnoremap [g :action GotoNextError<CR>
+nnoremap ]g :action GotoPreviousError<CR>
+nnoremap <leader>gi :action GotoImplementation<CR>
+nnoremap <leader>rnn :action RenameElement<CR>
+nnoremap <leader>gr :action FindUsages<CR>
+nnoremap <leader>rnf :action RenameFile<CR>
+nnoremap gt :action GotoTest<CR>
+
+nnoremap <leader>rff :action ShowReformatFileDialog<CR>
+nnoremap <Leader>= :action ReformatCode<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <leader>cc :action CodeCleanup<CR>
+
+nnoremap <leader>ref :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>xm :action ExtractMethod<CR>
+
+nnoremap <leader>sw :action ActivateServicesToolWindow<CR>
+
+" similar to FZF
+nnoremap <leader><leader> :action GotoFile<CR>
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <leader>rg :action FindInPath<CR>
+nnoremap <c-r> :action RecentFiles<CR>
+nnoremap <leader>l :action RecentLocations<CR>
+nnoremap <leader>sf :action Scratch.ShowFilesPopup<CR>
+
+" similar to Fugitive
+nnoremap <leader>gc :action ActivateCommitToolWindow<CR>
+nnoremap <leader>gp :action Vcs.Push<CR>
+nnoremap <leader>ggi :action Git.Ignore.File<CR>
+nnoremap <leader>gcc :action Git.ChangesView.Conflicts<CR>
+nnoremap <leader>gf :action Git.ChangesView.AcceptYours<CR>
+nnoremap <leader>gj :action Git.ChangesView.AcceptTheirs<CR>
+nnoremap <leader>gm :action Git.Menu<CR>
+nnoremap <leader>gb :action Git.Branches<CR>
+nnoremap <leader>gpr :action Github.Create.Pull.Request<CR>
+nnoremap <leader>gl :action ActivateVersionControlToolWindow<CR>
+
+nnoremap <leader>todo :action ActivateTODOToolWindow<CR>
+
+" Open and reload .ideavimrc
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \rv :action IdeaVim.ReloadVimRc.reload<CR>
+
+" ZenMode
+nnoremap <c-z> :action ToggleZenMode<CR>
+
+" TODO(santiagotoscanini): shortcuts to split and move between terminals like tmux, it has to be configured from IDE settings.
+" Terminal
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+" EasyMotion plugin emulation
+set easymotion
+map <leader>ss <Plug>(easymotion-s2)
+
+" Similar to windows
+nnoremap <c-> :action SplitVertically<CR>
+nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c-=> :action Unsplit<CR>
+nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
+nnoremap <Leader>en :action EditSourceInNewWindow<CR>
+nnoremap <Leader>n :action NextWindow<CR>
+nnoremap <Leader>q :action CloseContent<CR>
+nnoremap <Leader>qa :action CloseAllEditors<CR>
+
+" TODO(santiagotoscanini): debug configuration, toggle breakpoints, etc.
+map <Leader>rp <Esc>:action ChooseRunConfiguration<CR>
+map <Leader>rr <Esc>:action Run<CR>
+nnoremap ,r :action ContextRun<CR>
+nnoremap ,c :action RunClass<CR>
+" you can reach the ActivateDebugConfiguration by holding SHIFT when using ActivateRunConfiguration defined above.
+nnoremap ,t :action ActivateRunToolWindow<CR>
+nnoremap ,u :action Rerun<CR>
+nnoremap ,f :action RerunFailedTests<CR>
+
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,d :action ContextDebug<CR>
+nnoremap ,n :action ActivateDebugToolWindow<CR>
+
+" Move between methods
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+
+nnoremap <c-p> :action JumpToLastWindow<CR>
+nnoremap <c-x> :action HideAllWindows<CR>
+
+" TODO multicursors doesnt work well
+set multiple-cursors
+set idearefactormode=keep
+set ideajoin
+set surround
+set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
+set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
+set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
+set ideawrite=all               " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or " ESLint on save.
+set clipboard=ideaput
