@@ -27,9 +27,11 @@ alias txs="tmuxinator stop $(tmux display-message -p '#S')" # Close current proj
 commitDotfiles() {
     pushd $DOTFILES_DIR
     pushd work-dotfiles
+    echo 'jaja' $(pwd)
     git add .
     git commit -m "[Automatically]: Update work-dotfiles."
     git push origin master
+    echo 'pushed'
     popd
     git add .
     git commit -m "[Automatically]: Update public dotfiles."
