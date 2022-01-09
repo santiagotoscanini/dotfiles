@@ -7,6 +7,7 @@ addToPath() {
     fi
 }
 
+export STOW_FOLDERS="alacritty,git,nvim,tmux,tmuxinator,zsh"
 export DOTENV_REPO=$HOME/dev/.tooling/dotfiles
 export ZSH=~/.oh-my-zsh
 export GO111MODULE=on

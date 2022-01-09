@@ -1,5 +1,5 @@
 # Only Relevant Configs for Current Company
-source ~/alias.work.zsh
+source $ZDOTDIR/alias.work.zsh
 
 # change directory
 alias cdev="cd ~/dev"
