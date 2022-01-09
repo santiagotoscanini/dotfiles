@@ -1,5 +1,5 @@
 # This goes in `.zshenv` because it's called from a non-interactive process.
-source .alacritty-theme.zsh
+source $ZDOTDIR/alacritty-theme.zsh
 
 addToPath() {
     if [[ "$PATH" != *"$1"* ]]; then

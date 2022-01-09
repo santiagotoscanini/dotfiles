@@ -1,4 +1,4 @@
-source .path.zsh
-source .aliases.zsh
-source .oh-my.zsh
-source .keymaps.zsh
+source $ZDOTDIR/path.zsh
+source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/oh-my.zsh
+source $ZDOTDIR/keymaps.zsh
