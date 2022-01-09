@@ -5,6 +5,7 @@ source $ZDOTDIR/alias.work.zsh
 alias cdev="cd ~/dev"
 alias cdp="cd ~/dev/python"
 alias cdg="cd ~/dev/go"
+alias cdot="cd $DOTFILES_DIR"
 
 # vim
 alias vi="nvim"
