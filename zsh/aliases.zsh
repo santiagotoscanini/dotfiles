@@ -23,3 +23,16 @@ alias docker_start="open --hide --background -a Docker"     # Don't need this li
 alias txn='tmuxinator new'                                  # Create a new project
 alias txcp='tmuxinator copy'                                # Copy a project (old, new)
 alias txs="tmuxinator stop $(tmux display-message -p '#S')" # Close current project
+
+commitDotFiles() {
+    pushd $DOTFILES_DIR
+    pushd work-dotfiles
+    git add .
+    git commit -m "[Automatically]: Update work-dotfiles."
+    git push origin master
+    popd
+    git add .
+    git commit -m "[Automatically]: Update public dotfiles."
+    git push origin master
+    popd
+}
