@@ -24,7 +24,7 @@ alias txn='tmuxinator new'                                  # Create a new proje
 alias txcp='tmuxinator copy'                                # Copy a project (old, new)
 alias txs="tmuxinator stop $(tmux display-message -p '#S')" # Close current project
 
-commitDotFiles() {
+commitDotfiles() {
     pushd $DOTFILES_DIR
     pushd work-dotfiles
     git add .
