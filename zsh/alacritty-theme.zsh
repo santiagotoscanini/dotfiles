@@ -1,5 +1,5 @@
 function _change_alacritty_theme() {
-    sed -i '' "s/^colors:\ \*.*$/colors:\ \*$1/" $(realpath ~/.config/alacritty/color.yml)
+    sed -i '' "s/^colors:\ \*.*$/colors:\ \*$1/" $(realpath $XDG_CONFIG_HOME/alacritty/color.yml)
 }
 
 function _auto_switch_alacritty_theme() {

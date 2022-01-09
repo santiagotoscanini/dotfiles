@@ -9,7 +9,7 @@ alias cdg="cd ~/dev/go"
 # vim
 alias vi="nvim"
 alias vim="nvim"
-alias chvim="nvim ~/.config/nvim/lua.vim"
+alias chvim="nvim $XDG_CONFIG_HOME/nvim/lua.vim"
 
 # docker
 function _docker_build_and_push_image(){
