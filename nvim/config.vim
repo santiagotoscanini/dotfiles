@@ -31,7 +31,7 @@ filetype plugin indent on          " Enables `ftplugin` folder detection
 
 " Syntax highlight
 " work related files (probably only relevant on current company), it's a custom extension
-au BufRead,BufNewFile *.work setfiletype csh
+au BufRead,BufNewFile *.work.zsh setfiletype csh
 " .flake8 files (Python)
 au BufRead,BufNewFile .flake8 setfiletype dosini
 
