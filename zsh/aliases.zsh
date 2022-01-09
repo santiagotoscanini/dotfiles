@@ -30,11 +30,11 @@ commitDotfiles() {
     echo 'jaja' $(pwd)
     git add .
     git commit -m "[Automatically]: Update work-dotfiles."
-    git push origin master
+    git push origin main
     echo 'pushed'
     popd
     git add .
     git commit -m "[Automatically]: Update public dotfiles."
-    git push origin master
+    git push origin main
     popd
 }
