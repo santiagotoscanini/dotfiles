@@ -67,8 +67,8 @@ nnoremap <leader>gl :action ActivateVersionControlToolWindow<CR>
 
 nnoremap <leader>todo :action ActivateTODOToolWindow<CR>
 
-" Open and reload .ideavimrc
-nnoremap \e :e ~/.ideavimrc<CR>
+" Open and reload `ideavimrc`
+nnoremap \e :e ~/.config/ideavim/ideavimrc<CR>
 nnoremap \rv :action IdeaVim.ReloadVimRc.reload<CR>
 
 " ZenMode
