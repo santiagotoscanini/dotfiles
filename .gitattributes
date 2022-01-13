@@ -1,0 +1,15 @@
+# Script files should always be LF terminated, https://stackoverflow.com/a/1552775/12145499
+
+*.sh                            text        eol=lf
+
+# BASH
+*.bash                          text        eol=lf
+.bashrc                         text        eol=lf
+
+# ZSH
+*.zsh                           text        eol=lf
+.zshrc                          text        eol=lf
+.zshenv                         text        eol=lf
+.zprofile                       text        eol=lf
+.zlogin                         text        eol=lf
+.zlogout                        text        eol=lf
