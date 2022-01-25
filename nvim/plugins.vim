@@ -4,6 +4,8 @@ call plug#begin('~/.vim/plugged')
     " TODO(santiagotoscanini): Remove on version 0.6.2 of neovim: https://www.reddit.com/r/neovim/comments/rvwsl3/introducing_filetypelua_and_a_call_for_help/
     Plug 'nathom/filetype.nvim'                         " fast file type assignment
 
+    Plug 'TovarishFin/vim-solidity'                     " Filetype for solidity files
+
     Plug 'nvim-lua/plenary.nvim'                        " Util functions for Lua
     Plug 'lewis6991/gitsigns.nvim'                      " Git info
 

@@ -22,7 +22,14 @@ set clipboard^=unnamed,unnamedplus   " Copy between OS Clipboard and VIM Clipboa
 set number                         " Show numbers
 set numberwidth=1                  " Width of numbers
 set signcolumn=number              " if apply, display symbols instead of numbers
-set relativenumber                 " Relative numbers in line
+
+" Switch between relative number and normal number if on insert mode or not.
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
 
 set colorcolumn=120                " line that shows the length of code
 set cmdheight=2                    " Size of CMD bar at the bottom
