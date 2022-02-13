@@ -4,6 +4,8 @@ set nowrap                         " No wrap lines (lines longer than the width 
 set scrolloff=10                   " Start to move up or down when we are 8 cells away
 " let $FZF_DEFAULT_OPTS='--reverse'  " Reverse order of FZF
 
+set nofixendofline                 " Prevent new empty lines at eof
+
 set tabstop=4                      " Width of the tab character
 set shiftwidth=4                   " Identation to use with identation commands
 set expandtab                      " Forces spaces to be used in place of tab characters
@@ -30,6 +32,7 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
 
+set mouse=n
 
 set colorcolumn=120                " line that shows the length of code
 set cmdheight=2                    " Size of CMD bar at the bottom
