@@ -1,48 +1,69 @@
-set incsearch                      " Incremental highlight while searching
-
-set nowrap                         " No wrap lines (lines longer than the width of the window will wrap and display on the next line)
-set scrolloff=10                   " Start to move up or down when we are 8 cells away
-" let $FZF_DEFAULT_OPTS='--reverse'  " Reverse order of FZF
-
-set nofixendofline                 " Prevent new empty lines at eof
-
+" Identation
 set tabstop=4                      " Width of the tab character
 set shiftwidth=4                   " Identation to use with identation commands
 set expandtab                      " Forces spaces to be used in place of tab characters
 set smartindent                    " Smart indent for braces, etc
 
-set hidden                         " Hidden files instead of closing it, so avoid saving message when moving buffers.
+" Buffers and undofiles
+set hidden                         " Hidden files instead of closing it, so avoid saving message when moving between buffers
 set noswapfile                     " Don't use swapfiles for buffers
-set undofile                       " Use undofiles, this means that we can use Undo and Redo in files even when we save, close and open again
+set undofile                       " Use undofiles, so we can use Undo and Redo in files even when we save, close and open again
 set undodir=~/.vim/undodir         " Set the path for the undofiles
 
-" set showmatch                      " When inserting a brace, put the closing one and jump to it
-set noshowmode                     " Don't need to show the mode (Insert, Replace, Visual) because status line already do that
-
-set clipboard^=unnamed,unnamedplus   " Copy between OS Clipboard and VIM Clipboard
-
+" Left column
 set number                         " Show numbers
 set numberwidth=1                  " Width of numbers
 set signcolumn=number              " if apply, display symbols instead of numbers
 
-" Switch between relative number and normal number if on insert mode or not.
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
-
-set mouse=n
-
-set colorcolumn=120                " line that shows the length of code
+" Status bar
+set noshowmode                     " Don't need to show the mode (Insert, Replace, Visual) because status line already do that
 set cmdheight=2                    " Size of CMD bar at the bottom
 
-filetype plugin indent on          " Enables `ftplugin` folder detection
+" Extra
+set nowrap                         " No wrap lines (lines longer than the width of the window will wrap and display on the next line)
+set scrolloff=10                   " Start to move up or down when we are 8 cells away
+set showmatch                      " When inserting a brace, put the closing one and jump to it
+set clipboard^=unnamed,unnamedplus " Copy between OS Clipboard and VIM Clipboard
+set colorcolumn=120                " vertical line, to maintain the length of the code
+set mouse=n                        " Mouse usage in vim
 
-" Syntax highlight
-" work related files (probably only relevant on current company), it's a custom extension
-au BufRead,BufNewFile *.work.zsh setfiletype csh
-" .flake8 files (Python)
-au BufRead,BufNewFile .flake8 setfiletype dosini
 
-au BufWritePost <buffer> lua require('lint').try_lint()
+augroup AuToggleLineNumber
+    autocmd!
+    " When exiting insert mode, or opening a file in general, we set relative numbers
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    " When enter insert mode, we avoid relative numbers
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
+
+
+augroup AuTrailingSpacesAndLines
+	autocmd!
+	autocmd BufWritePre * let current_pos = getpos(".")
+    " Find all \s (spaces) at the end of line, and deletes them
+	autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
+    " Find all \n (new line) at the end of file, and deletes them
+	autocmd BufWritePre * silent! undojoin | %s/\n\+\%$//e
+	autocmd BufWritePre * call setpos(".", current_pos)
+	autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
+augroup END
+
+
+augroup AuFileTypes
+    autocmd!
+    " work related files (probably only relevant on current company), it's a custom extension
+    autocmd BufRead,BufNewFile *.work.zsh set filetype csh
+    autocmd BufRead,BufNewFile .flake8    set filetype dosini
+augroup END
+
+
+augroup AuRunLinting
+    autocmd!
+    autocmd BufEnter, BufNew, InsertLeave, TextChanged, VimEnter <buffer> lua require('lint').try_lint()
+augroup END
+
+
+augroup AuHighlightYank
+    autocmd!
+    autocmd TextYankPost * lua vim.highlight.on_yank{higroup="IncSearch", timeout=250, on_visual=true}
+augroup END

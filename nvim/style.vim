@@ -7,6 +7,9 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
+set guifont="JetBrainsMono Nerd Font"
+" set guifont="JetBrainsMono Nerd Font"
+
 function! SetBackgroundMode(...)
     if systemlist('defaults read -g AppleInterfaceStyle')[0] ==? 'dark'
         let s:new_bg = 'dark'
