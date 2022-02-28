@@ -1,8 +1,10 @@
-# https://github.com/camspiers/tmuxinator-fzf-start
 function _fzf_select_tmuxinator_project() {
-    SELECTED_PROJECTS=$(tmuxinator list -n |
-        tail -n +2
-        fzf --prompt="Project: " -m -1 -q "$1")
+    # Shamelessly stolen from https://github.com/camspiers/tmuxinator-fzf-start
+    SELECTED_PROJECTS=$(
+        tmuxinator list -n |
+        tail -n +2 |
+        fzf --prompt="Project: " -m -1 -q "$1"
+    )
 
     if [ -n "$SELECTED_PROJECTS" ]; then
         # Iterate over \n delimited projects
@@ -24,10 +26,24 @@ function _fzf_select_tmuxinator_project() {
         fi
     fi
 }
-
 # FIXME(santiagotoscanini): this doesn't work
+
 bindkey -ar "^P"
 # zle (Zsh Line Editor) is the readkey engine for reading and processing the key events.
 # With -N we create a new keymap
 zle -N _fzf_select_tmuxinator_project
 bindkey '^P' _fzf_select_tmuxinator_project
+
+
+commitDotfiles() {
+    pushd $DOTFILES_DIR
+    cd work-dotfiles
+    git add .
+    git commit -m "[Automatically]: Update work-dotfiles."
+    git push origin main
+    cd ..
+    git add .
+    git commit -m "[Automatically]: Update public dotfiles."
+    git push origin main
+    popd
+}

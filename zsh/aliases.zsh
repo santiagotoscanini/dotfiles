@@ -8,9 +8,12 @@ alias cdg="cd ~/dev/go"
 alias cdot="cd $DOTFILES_DIR"
 
 # vim
+if [ -n "$NVIM_LISTEN_ADDRESS" ] ; then
+    alias nvim="nvr --remote-tab"
+fi
 alias vi="nvim"
 alias vim="nvim"
-alias chvim="nvim $XDG_CONFIG_HOME/nvim/lua.vim"
+alias chvim="nvim $XDG_CONFIG_HOME/nvim/init.lua"
 
 # docker
 function _docker_build_and_push_image(){
@@ -21,19 +24,6 @@ alias dbash='docker exec -it $1 /bin/bash'                  # Run bash inside a 
 alias docker_start="open --hide --background -a Docker"     # Don't need this line if using Linux
 
 # tmuxinator
-alias txn='tmuxinator new'                                  # Create a new project
-alias txcp='tmuxinator copy'                                # Copy a project (old, new)
-alias txs="tmuxinator stop $(tmux display-message -p '#S')" # Close current project
-
-commitDotfiles() {
-    pushd $DOTFILES_DIR
-    cd work-dotfiles
-    git add .
-    git commit -m "[Automatically]: Update work-dotfiles."
-    git push origin main
-    cd ..
-    git add .
-    git commit -m "[Automatically]: Update public dotfiles."
-    git push origin main
-    popd
-}
+# alias txn='tmuxinator new'                                  # Create a new project
+# alias txcp='tmuxinator copy'                                # Copy a project (old, new)
+# alias txs="tmuxinator stop $(tmux display-message -p '#S')" # Close current project

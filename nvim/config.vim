@@ -27,6 +27,17 @@ set clipboard^=unnamed,unnamedplus " Copy between OS Clipboard and VIM Clipboard
 set colorcolumn=120                " vertical line, to maintain the length of the code
 set mouse=n                        " Mouse usage in vim
 
+" Search
+set ignorecase                     " Case insensitive searches
+set smartcase                      " Case sensitive only if pattern contains at least one uppercase char.
+
+let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+
+
+augroup AuDeleteBufferGitEditor
+    autocmd FileType gitcommit, gitrebase, gitconfig set bufhidden=delete
+augroup END
+
 
 augroup AuToggleLineNumber
     autocmd!

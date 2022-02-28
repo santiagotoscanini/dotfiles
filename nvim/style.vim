@@ -1,14 +1,11 @@
-" let g:fzf_layout = {'window': {'width': 0.8, 'height': 0.8}}  " Style of FZF window
+" Number of colors the terminal support, iTerm2 supports 256
+set t_Co=256
 
-set t_Co=256                       " Number of colors the terminal support, iTerm2 supports 256
 if exists('+termguicolors')
-  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+    let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
 endif
-
-set guifont="JetBrainsMono Nerd Font"
-" set guifont="JetBrainsMono Nerd Font"
 
 function! SetBackgroundMode(...)
     if systemlist('defaults read -g AppleInterfaceStyle')[0] ==? 'dark'

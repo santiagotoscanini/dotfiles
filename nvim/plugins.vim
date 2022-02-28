@@ -58,4 +58,6 @@ call plug#begin('~/.vim/plugged')
     " Language specific support
     " Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'} " Go support (Improve syntax highlight, and build, run commands)
     " Plug 'TovarishFin/vim-solidity'                    " Filetype for solidity files
+    Plug 'dart-lang/dart-vim-plugin'
+    Plug 'thosakwe/vim-flutter'
 call plug#end()

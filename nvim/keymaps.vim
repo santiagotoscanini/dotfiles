@@ -1,7 +1,14 @@
 let mapleader = ' '
 
 inoremap jj <Esc>
-tnoremap jj <C-\><C-n>
+
+" Now we can go to normal mode in terminal with esc and with jj
+tnoremap <Esc> <C-\><C-n>
+tnoremap jj    <C-\><C-n>
+" To send escape key to the terminal, we use ctrl-v esc
+tnoremap <C-v><Esc> <Esc>
+
+cnoremap <expr> %% getcmdtype() == '.' ? expand('%:h').'/' : '%%'
 
 " Vimux
 " Zoom the tmux runner pane
@@ -28,11 +35,6 @@ nnoremap <esc> :noh<return><esc>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>x :x<CR>
-
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
 
 " ## Tabs
 " Go to tab by number
