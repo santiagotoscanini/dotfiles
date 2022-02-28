@@ -31,11 +31,11 @@ commitDotfiles() {
     pushd $DOTFILES_DIR
         pushd work-dotfiles
         git add .
-        git commit -m "[Automatically]: Update work-dotfiles." || echo "No changes to commit on work dotfiles."
+        git commit -m "[Automatically]: Update work-dotfiles."
         git push origin main
         popd
     git add .
-    git commit -m "[Automatically]: Update dotfiles." || echo "No changes to commit on dotfiles."
+    git commit -m "[Automatically]: Update dotfiles."
     git push origin main
     popd
 }
