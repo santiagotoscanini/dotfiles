@@ -1,6 +1,3 @@
-# This goes in `.zshenv` because it's called from a non-interactive process.
-source $ZDOTDIR/alacritty-theme.zsh
-
 addToPath() {
     if [[ "$PATH" != *"$1"* ]]; then
         export PATH=$PATH:$1

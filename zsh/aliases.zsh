@@ -1,13 +1,16 @@
 # Only Relevant Configs for Current Company
 source $ZDOTDIR/alias.work.zsh
 
-# change directory
+# Toggle dark mode on macOS
+alias lights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
+
+# Commonly used directories
 alias cdev="cd ~/dev"
 alias cdp="cd ~/dev/python"
 alias cdg="cd ~/dev/go"
 alias cdot="cd $DOTFILES_DIR"
 
-# vim
+# neovim
 if [ -n "$NVIM_LISTEN_ADDRESS" ] ; then
     alias nvim="nvr --remote-tab"
 fi
@@ -23,7 +26,17 @@ alias dbp='_docker_build_and_push_image $1'                 # Build and push ima
 alias dbash='docker exec -it $1 /bin/bash'                  # Run bash inside a container
 alias docker_start="open --hide --background -a Docker"     # Don't need this line if using Linux
 
-# tmuxinator
-# alias txn='tmuxinator new'                                  # Create a new project
-# alias txcp='tmuxinator copy'                                # Copy a project (old, new)
-# alias txs="tmuxinator stop $(tmux display-message -p '#S')" # Close current project
+# Commit dotfiles
+commitDotfiles() {
+    pushd $DOTFILES_DIR
+        pushd work-dotfiles
+        git add .
+        git commit -m "[Automatically]: Update work-dotfiles." || echo "No changes to commit on work dotfiles."
+        git push origin main
+        popd
+    git add .
+    git commit -m "[Automatically]: Update dotfiles." || echo "No changes to commit on dotfiles."
+    git push origin main
+    popd
+}
+alias cdf=commitDotfiles

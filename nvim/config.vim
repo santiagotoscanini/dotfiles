@@ -39,9 +39,10 @@ augroup AuDeleteBufferGitEditor
 augroup END
 
 
-augroup AuNoNumberInTerminal
+augroup AuNoNumberAndInsertInTerminal
     autocmd!
     autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermOpen * startinsert
 augroup END
 
 
