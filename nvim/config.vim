@@ -69,8 +69,6 @@ augroup END
 
 augroup AuFileTypes
     autocmd!
-    " work related files (probably only relevant on current company), it's a custom extension
-    autocmd BufRead,BufNewFile *.work.zsh set filetype csh
     autocmd BufRead,BufNewFile .flake8    set filetype dosini
 augroup END
 
