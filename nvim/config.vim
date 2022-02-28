@@ -33,13 +33,19 @@ set smartcase                      " Case sensitive only if pattern contains at 
 
 let $GIT_EDITOR = 'nvr -cc split --remote-wait'
 
-
 augroup AuDeleteBufferGitEditor
-    autocmd FileType gitcommit, gitrebase, gitconfig set bufhidden=delete
+    autocmd!
+    autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 augroup END
 
 
-augroup AuToggleLineNumber
+augroup AuNoNumberInTerminal
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
+
+
+augroup AuToggleRelativeNumber
     autocmd!
     " When exiting insert mode, or opening a file in general, we set relative numbers
     autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
@@ -70,7 +76,7 @@ augroup END
 
 augroup AuRunLinting
     autocmd!
-    autocmd BufEnter, BufNew, InsertLeave, TextChanged, VimEnter <buffer> lua require('lint').try_lint()
+    autocmd BufEnter,BufNew,InsertLeave,TextChanged,VimEnter <buffer> lua require('lint').try_lint()
 augroup END
 
 
