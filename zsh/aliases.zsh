@@ -25,18 +25,3 @@ function _docker_build_and_push_image(){
 alias dbp='_docker_build_and_push_image $1'                 # Build and push image by a tag
 alias dbash='docker exec -it $1 /bin/bash'                  # Run bash inside a container
 alias docker_start="open --hide --background -a Docker"     # Don't need this line if using Linux
-
-# Commit dotfiles
-commitDotfiles() {
-    pushd $DOTFILES_DIR
-        pushd work-dotfiles
-        git add .
-        git commit -m "[Automatically]: Update work-dotfiles."
-        git push origin main
-        popd
-    git add .
-    git commit -m "[Automatically]: Update dotfiles."
-    git push origin main
-    popd
-}
-alias cdf=commitDotfiles

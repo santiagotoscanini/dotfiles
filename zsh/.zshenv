@@ -11,3 +11,16 @@ export ZSH=~/.oh-my-zsh
 export GO111MODULE=on
 export ANDROID_HOME=$HOME/android-sdk
 export EDITOR='nvim'
+
+commitDotfiles() {
+    pushd $DOTFILES_DIR
+    pushd work-dotfiles
+    git add .
+    git commit -m "[Automatically]: Update work-dotfiles."
+    git push origin main
+    popd
+    git add .
+    git commit -m "[Automatically]: Update dotfiles."
+    git push origin main
+    popd
+}
