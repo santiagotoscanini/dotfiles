@@ -59,7 +59,7 @@
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
     # Commit dotfiles
-    df = "!source ~/.config/zsh/.zshenv && commitDotfiles"
+    dotfiles = "!source ~/.config/zsh/.zshenv && commitDotfiles"
 
 	# List contributors with number of commits.
 	contributors = shortlog --summary --numbered
