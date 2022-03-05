@@ -9,7 +9,7 @@ commitDotfiles() {
     pushd work-dotfiles
     git add .
     git commit -m "[Automatically]: Update work-dotfiles."
-    git push origin main
+    git push
     popd
     git add .
     git commit -m "[Automatically]: Update dotfiles."

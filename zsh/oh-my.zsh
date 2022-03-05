@@ -12,12 +12,15 @@ ZSH_THEME="typewritten/typewritten"
 
 # Aliases and utitlies for tmux.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
-plugins+=(tmux)
 
-ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session (if doesn't exist one).
-ZSH_TMUX_AUTOSTART_ONCE=true                    # Only if tmux hasn't been started previously.
-ZSH_TMUX_AUTOQUIT=true                          # Automatically closes terminal once tmux exits.
-ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf # Source a different tmux config
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+    plugins+=(tmux)
+
+    ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session (if doesn't exist one).
+    ZSH_TMUX_AUTOSTART_ONCE=true                    # Only if tmux hasn't been started previously.
+    ZSH_TMUX_AUTOQUIT=true                          # Automatically closes terminal once tmux exits.
+    ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf # Source a different tmux config
+fi
 
 # -------------- DOTENV -----
 

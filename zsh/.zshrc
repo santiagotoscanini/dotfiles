@@ -1,8 +1,10 @@
-source $ZDOTDIR/alacritty-theme.zsh
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/oh-my.zsh
-source $ZDOTDIR/keymaps.zsh
+
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+    source $ZDOTDIR/alacritty-theme.zsh
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

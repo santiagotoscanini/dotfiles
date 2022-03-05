@@ -9,5 +9,4 @@ function autoSwitchAlacrittyTheme() {
         _change_alacritty_theme one_half_light
     fi
 }
-
 autoSwitchAlacrittyTheme

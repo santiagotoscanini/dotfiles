@@ -2,7 +2,8 @@
 source $ZDOTDIR/alias.work.zsh
 
 # Toggle dark mode on macOS
-alias lights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
+alias osLights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
+alias termLights='_change_alacritty_theme'
 
 # Commonly used directories
 alias cdev="cd ~/dev"

@@ -1,17 +1,22 @@
 vim.cmd 'source $XDG_CONFIG_HOME/nvim/plugins.vim'
 
--- TODO(santiagotoscanini): When plugins are migrated to packer
--- this initializations could go inside plugins.lua
-require('nvim-autopairs').setup()
-require('gitsigns').setup()
-require('nvim-tree').setup()
-require('lsp-and-snippets')
-require('lsp-lint')
-require('comments')
-require('treesitter')
-require('smooth-scrolling')
+if (not vim.g.vscode) then
+    -- In VSCode, Insert mode is handled by itself
+    require('nvim-autopairs').setup()
+    require('lsp')
+    require('linter')
+    require('snippets')
 
-vim.cmd 'source $XDG_CONFIG_HOME/nvim/style.vim'
-require('feline').setup() -- Needs to be below style.vim call
+    -- And UI
+    vim.cmd 'source $XDG_CONFIG_HOME/nvim/style.vim'
+    require('nvim-tree').setup()
+    require('gitsigns').setup()
+    require('feline').setup() -- Needs to be below style.vim call
+    require('smooth-scrolling')
+    require('treesitter')
+end
+
+require('comments')
+
 vim.cmd 'source $XDG_CONFIG_HOME/nvim/config.vim'
 vim.cmd 'source $XDG_CONFIG_HOME/nvim/keymaps.vim'

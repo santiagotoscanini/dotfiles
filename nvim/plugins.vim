@@ -1,63 +1,67 @@
-" TODO(santiagotoscanini): move to packer
-
 call plug#begin('~/.vim/plugged')
-    " All of the above should be migrated on nvim 0.7.0
-    " because it will have native support, https://neovim.io/roadmap
-    Plug 'nathom/filetype.nvim'
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " #################################################
+    " To check if is in IdeaVim use `if has('ide)`
+    if !exists('g:vscode')
+        " Insert mode in VSCode is handled by itself, so this plugins aren't necessaries.
+        Plug 'windwp/nvim-autopairs'                      " Auto close brackets
+        Plug 'L3MON4D3/LuaSnip'                           " Snippet manager
+        Plug 'rafamadriz/friendly-snippets'               " Add some pre-configured snippets
 
-    " General utilities for multiple plugins
-    Plug 'kyazdani42/nvim-web-devicons'                 " Icons
-    Plug 'nvim-lua/plenary.nvim'                        " Util functions for Lua
-    Plug 'lewis6991/gitsigns.nvim'                      " Git info
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'neovim/nvim-lspconfig'                      " Neovim LSP
-    Plug 'glepnir/dashboard-nvim'
+        " Also LSP is used by VSCode
+        Plug 'neovim/nvim-lspconfig'                      " Neovim LSP
+        Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
+        Plug 'hrsh7th/cmp-nvim-lsp'                       " Completitions for LSP, Auto-import, moving between snippets, etc.
+        Plug 'hrsh7th/cmp-buffer'                         " Completes words from the current buffer
+        Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
+        Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
+        Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip
+        Plug 'onsails/lspkind-nvim'                       " vscode-like pictograms
+        Plug 'mfussenegger/nvim-lint'                     " Neovim Linter
+
+        " And UI...
+        Plug 'joshdick/onedark.vim'                       " Dark theme
+        Plug 'projekt0n/github-nvim-theme'                " Light theme
+        Plug 'famiu/feline.nvim'                          " Status bar
+        Plug 'kyazdani42/nvim-tree.lua'                   " File tree
+        Plug 'karb94/neoscroll.nvim'                      " Smooth scrolling
+        Plug 'nvim-telescope/telescope.nvim'
+        Plug 'lewis6991/gitsigns.nvim'                    " Git info
+        Plug 'glepnir/dashboard-nvim'
+        Plug 'lukas-reineke/indent-blankline.nvim'        " Blank ident lines
+        Plug 'kyazdani42/nvim-web-devicons'               " Icons
+        " TODO(santiagotoscanini): remove in neovim 0.7.0
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+        " And git
+        Plug 'tpope/vim-fugitive'                         " Git tool
+
+        " And language specific support
+        Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'}   " Go support (Improve syntax highlight, and build, run commands)
+        Plug 'TovarishFin/vim-solidity'                   " Filetype for solidity files
+        Plug 'dart-lang/dart-vim-plugin'
+        Plug 'thosakwe/vim-flutter'
+
+        " Only load these plugins if running inside tmux session
+        if exists('$TMUX')
+            Plug 'christoomey/vim-tmux-navigator'             " Navigate Between Windows with ctrl + hjlk
+            Plug 'preservim/vimux'                            " https://raw.githubusercontent.com/preservim/vimux/master/doc/vimux.txt
+        endif
+
+        Plug 'easymotion/vim-easymotion'
+    else
+        Plug 'asvetliakov/vim-easymotion', { 'as': 'vsc-easymotion' }
+    endif
+
+    Plug 'nvim-lua/plenary.nvim'                      " Util functions for Lua
+
+    " TODO(santiagotoscanini): remove in neovim 0.7.0
+    Plug 'nathom/filetype.nvim'
 
     " ae targets the entire content of the current buffer.
     " ie is similar to ae, but ie does not include leading and trailing empty lines.
-    " Plug 'kana/vim-textobj-entire'
-    " Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-entire'
+    Plug 'kana/vim-textobj-user'
 
-    Plug 'lukas-reineke/indent-blankline.nvim'        " Blank ident lines
-    Plug 'windwp/nvim-autopairs'                      " Auto close brackets
-
-    Plug 'L3MON4D3/LuaSnip'                           " Snippet manager
-    Plug 'rafamadriz/friendly-snippets'               " Add some pre-configured snippets
-
-    Plug 'mfussenegger/nvim-lint'                     " Neovim Linter
-    Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
-    Plug 'hrsh7th/cmp-nvim-lsp'                       " Completitions for LSP, Auto-import, moving between snippets, etc.
-    Plug 'hrsh7th/cmp-buffer'                         " Completes words from the current buffer
-    Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
-    Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
-    Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip
-    Plug 'onsails/lspkind-nvim'                       " vscode-like pictograms
-
-    Plug 'joshdick/onedark.vim'                       " Dark theme
-    Plug 'projekt0n/github-nvim-theme'                " Light theme
-
-    Plug 'famiu/feline.nvim'                          " Status bar
-    Plug 'easymotion/vim-easymotion'                  " Move inside a File
-    Plug 'christoomey/vim-tmux-navigator'             " Navigate Between Windows with ctrl + hjlk
-    Plug 'preservim/vimux'                            " https://raw.githubusercontent.com/preservim/vimux/master/doc/vimux.txt
-
-    Plug 'kyazdani42/nvim-tree.lua'                  " File tree
-
+    Plug 'unblevable/quick-scope'                      " Show occurencies for 'f' and 't'
     Plug 'numToStr/Comment.nvim'                       " Commenter
-    Plug 'karb94/neoscroll.nvim'                       " Smooth scrolling
     Plug 'tpope/vim-surround'                          " Change surrounding
-
-    " Plug 'tpope/vim-fugitive'                          " Git tool
-
-    " Plug 'junegunn/fzf', {'do': { -> fzf#install( } }  " FZF Binary
-    " Plug 'junegunn/fzf.vim'                            " FZF for VIM
-    " Plug 'stsewd/fzf-checkout.vim'                     " FZF for checkout branches.
-
-    " Language specific support
-    " Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'} " Go support (Improve syntax highlight, and build, run commands)
-    " Plug 'TovarishFin/vim-solidity'                    " Filetype for solidity files
-    Plug 'dart-lang/dart-vim-plugin'
-    Plug 'thosakwe/vim-flutter'
 call plug#end()
