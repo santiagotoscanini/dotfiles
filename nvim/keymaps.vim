@@ -40,6 +40,11 @@ if !exists('g:vscode')
     noremap <leader>9 9gt
     noremap <leader>0 :tablast<cr>
 
+
+    " Move between left and right tabs
+    nnoremap H gT
+    nnoremap L gt
+
     " Switch between tabs
     " au TabLeave * let g:lasttab = tabpagenr() " Save the tab number
     " Go to that tab
@@ -74,12 +79,29 @@ if !exists('g:vscode')
     endfunction
     nnoremap <leader><leader>save :call SaveScratchFile()<CR>
 
+    function! s:manageEditorSize(...)
+        let count = a:1
+        let to = a:2
+        for i in range(1, count ? count : 1)
+            call VSCodeNotify(to ==# 'increase' ? 'workbench.action.increaseViewSize' : 'workbench.action.decreaseViewSize')
+        endfor
+    endfunction
+    " Sample keybindings. Note these override default keybindings mentioned above.
+    nnoremap <C-w>> <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
+    xnoremap <C-w>> <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
+    nnoremap <C-w>+ <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
+    xnoremap <C-w>+ <Cmd>call <SID>manageEditorSize(v:count, 'increase')<CR>
+    nnoremap <C-w>< <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
+    xnoremap <C-w>< <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
+    nnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
+    xnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
+
     nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
     nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
     nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
     nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
     nnoremap <silent> K  <cmd>lua vim.lsp.buf.hover()<CR>
-    nnoremap <silent> rn <cmd>lua vim.lsp.buf.rename(vim.fn.input('New name: '))<CR>
+    nnoremap <leader> rn <cmd>lua vim.lsp.buf.rename(vim.fn.input('New name: '))<CR>
     nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
     nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
     nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
@@ -88,16 +110,30 @@ if !exists('g:vscode')
     nnoremap <leader>q :q!<CR>
     nnoremap <leader>x :x<CR>
 else
+    nnoremap <silent> gd         <cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>
+    nnoremap <silent> gdr        <cmd>call VSCodeNotify('editor.action.revealDefinitionAside')<CR>
+    nnoremap <silent> gD         <cmd>call VSCodeNotify('editor.action.revealDeclaration')<CR>
+    nnoremap <silent> gr         <cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>
+    nnoremap <silent> K          <cmd>call VSCodeNotify('editor.action.showHover')<CR>
+    nnoremap <silent> <space>rn  <cmd>call VSCodeNotify('editor.action.rename')<CR>
+
+    " TODO(santiagotoscanini): move to prev and next error.
+
+    nnoremap <silent> <C-j> <cmd>call VSCodeNotify('workbench.action.navigateDown')<CR>
+    xnoremap <silent> <C-j> <cmd>call VSCodeNotify('workbench.action.navigateDown')<CR>
+    nnoremap <silent> <C-k> <cmd>call VSCodeNotify('workbench.action.navigateUp')<CR>
+    xnoremap <silent> <C-k> <cmd>call VSCodeNotify('workbench.action.navigateUp')<CR>
+    nnoremap <silent> <C-h> <cmd>call VSCodeNotify('workbench.action.navigateLeft')<CR>
+    xnoremap <silent> <C-h> <cmd>call VSCodeNotify('workbench.action.navigateLeft')<CR>
+    nnoremap <silent> <C-l> <cmd>call VSCodeNotify('workbench.action.navigateRight')<CR>
+    xnoremap <silent> <C-l> <cmd>call VSCodeNotify('workbench.action.navigateRight')<CR>
+
     nnoremap <leader>w :Write<CR>
-    nnoremap <leader>q :Quit<CR>
-    nnoremap <leader>x :Exit<CR>
+    nnoremap <leader>q :Quit!<CR>
+    nnoremap <leader>x :Wq<CR>
 endif
 
-nnoremap <leader>sa <Plug>(easymotion-s2)
+nnoremap <leader>sa <Plug>(vsc-easymotion-s2)
 
 " To stop highlights when stop searching
 nnoremap <esc> :noh<return><esc>
-
-" Move between left and right tabs
-nnoremap H gT
-nnoremap L gt
