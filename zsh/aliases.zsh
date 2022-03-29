@@ -18,6 +18,7 @@ fi
 alias vi="nvim"
 alias vim="nvim"
 alias chvim="nvim $XDG_CONFIG_HOME/nvim/init.lua"
+alias cleanvim="nvim -u NONE"
 
 # Docker
 function _docker_build_and_push_image(){
