@@ -21,7 +21,7 @@ pushd qmk
     keymap_root=keyboards/crkbd/keymaps/santi_km
 
     mkdir -p $QMK_DIR/$keymap_root
-    echo ------ QMK Firmware ------
+    echo ------ qmk ------
 
     stow -D -t $QMK_DIR/$keymap_root santi_km
     echo 'Unstowed'
@@ -32,6 +32,7 @@ popd
 
 
 pushd work-dotfiles
+echo
 echo --- WORK DOTFILES ------
 zsh install.zsh
 popd

@@ -23,7 +23,7 @@ To stow the files, we run `zsh install.zsh`.
 - [x] Make an `install.zsh` script.
 - [x] Add IdeaVim dotfiles.
 - [x] Add QMK config files.
-- [ ] Create script to add qmk keymaps to firmware directory (using stow).
+- [x] Create script to add qmk keymaps to firmware directory (using stow).
 - [ ] Make a script to install all the dependencies (`stow`, `oh-my-zsh`, etc.).
 - [ ] Separate all from my user.
 - [ ] Make it available to Windows and Linux.
