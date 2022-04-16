@@ -1,8 +1,5 @@
 Compile firmware using:
 
-
 ```bash
-qmk compile -kb crkbd -km santi_km
+qmkc
 ```
-
-Or add those configs to defaults
