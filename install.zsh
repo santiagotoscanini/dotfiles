@@ -1,7 +1,4 @@
-if [[ ! -v DOTFILES_DIR || ! -v STOW_FOLDERS || ! -v XDG_CONFIG_HOME ]]; then
-    export DOTFILES_DIR=$HOME/dev/.tooling/dotfiles
-    source $DOTFILES_DIR/zsh/.zshenv
-fi
+source zsh/.zshenv
 
 pushd $DOTFILES_DIR
 
@@ -18,6 +15,21 @@ do
     stow -t $XDG_CONFIG_HOME/$package $package    # Then stow it again.
     echo 'Stowed'
 done
+
+# QMK Files go inside QMK Firmware directory, not XDG Compatible
+pushd qmk
+    keymap_root=keyboards/crkbd/keymaps/santi_km
+
+    mkdir -p $QMK_DIR/$keymap_root
+    echo ------ QMK Firmware ------
+
+    stow -D -t $QMK_DIR/$keymap_root santi_km
+    echo 'Unstowed'
+
+    stow -t $QMK_DIR/$keymap_root santi_km
+    echo 'Stowed'
+popd
+
 
 pushd work-dotfiles
 echo --- WORK DOTFILES ------

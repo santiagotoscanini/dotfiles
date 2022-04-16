@@ -20,6 +20,17 @@ alias vim="nvim"
 alias chvim="nvim $XDG_CONFIG_HOME/nvim/init.lua"
 alias cleanvim="nvim -u NONE"
 
+# QMK
+function _compile_my_keymap(){
+    current_keyboard=crkbd
+    current_keymap=santi_km
+    file_name="$current_keyboard"_rev1_"$current_keymap".hex
+
+    qmk compile -kb $current_keyboard -km $current_keymap
+    cp $QMK_DIR/$file_name $DOTFILES_DIR/qmk/$current_keymap/$file_name
+}
+alias qmkc='_compile_my_keymap'
+
 # Docker
 function _docker_build_and_push_image(){
     docker build . -t $1 && docker push $1
