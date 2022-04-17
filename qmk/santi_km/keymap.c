@@ -32,7 +32,7 @@ enum {
   TD_SLASH,
   TD_CAPLOCK,
   TD_ALT,
-  TD_JJ,
+  // TD_JJ,
 };
 qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SEMICOLON] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, LSFT(KC_SCLN)),
@@ -40,17 +40,18 @@ qk_tap_dance_action_t tap_dance_actions[] = {
   [TD_SLASH] =     ACTION_TAP_DANCE_DOUBLE(KC_SLSH, LSFT(KC_SLSH)),
   [TD_CAPLOCK] =   ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
   [TD_ALT] =       ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_LALT),
-  [TD_JJ] =        ACTION_TAP_DANCE_DOUBLE(KC_J,    KC_ESC),
+  // [TD_JJ] =        ACTION_TAP_DANCE_DOUBLE(KC_J,    KC_ESC),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
-         KC_TAB,         KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                 KC_Y,    KC_U,      KC_I,    KC_O,    KC_P,             KC_BSPC,
+         KC_TAB,         KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                 KC_Y,    KC_U, KC_I,    KC_O,    KC_P,             KC_BSPC,
       //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-         KC_LCTL,        KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                 KC_H,    TD(TD_JJ), KC_K,    KC_L,    TD(TD_SEMICOLON), TD(TD_QUOTES),
+         KC_LCTL,        KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                 KC_H,    KC_J, KC_K,    KC_L,    TD(TD_SEMICOLON), TD(TD_QUOTES),
+      // KC_LCTL,        KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                 KC_H,    TD(TD_JJ), KC_K,    KC_L,    TD(TD_SEMICOLON), TD(TD_QUOTES),
       //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-         TD(TD_CAPLOCK), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                 KC_N,    KC_M,      KC_COMM, KC_DOT,  TD(TD_SLASH),     KC_ESC,
+         TD(TD_CAPLOCK), KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,                 KC_N,    KC_M, KC_COMM, KC_DOT,  TD(TD_SLASH),     KC_ESC,
       //---------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                              KC_LGUI, LOWER, KC_SPC,           KC_ENT, RAISE, TD(TD_ALT)
                                             //|------------------------|  |----------------------------|
