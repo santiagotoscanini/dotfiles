@@ -319,20 +319,20 @@ void rgb_matrix_indicators_user(void) {
   switch (biton32(layer_state)) {
       case _RAISE:
         for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 255, 0, 0);
+          rgb_matrix_set_color(i, 229, 23, 23);
         }
         break;
 
       case _LOWER:
         for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 0, 0, 255);
+          rgb_matrix_set_color(i, 50, 82, 223);
         }
         break;
 
       default:
         if (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) {
           for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-            rgb_matrix_set_color(i, 0, 255, 0);
+              rgb_matrix_set_color(i, 50, 223, 79);
           }
         }
         break;
