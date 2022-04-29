@@ -75,6 +75,7 @@ cmp.setup.cmdline(':', {
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp.tsserver.setup{ capabilities = capabilities }
+nvim_lsp.solc.setup{ capabilities = capabilities }
 nvim_lsp.gopls.setup{ capabilities = capabilities }
 nvim_lsp.pyright.setup{ capabilities = capabilities }
 nvim_lsp.dartls.setup{ capabilities = capabilities }

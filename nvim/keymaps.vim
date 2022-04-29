@@ -71,6 +71,8 @@ if !exists('g:vscode')
     endfunction
     nnoremap <leader><leader>sf :call NewTabScratchFile()<CR>
 
+    nnoremap <leader>e :NvimTreeToggle<cr>
+
     function SaveScratchFile()
         let save_path = input('Insert path to save file: ')
         if save_path !=# ''
