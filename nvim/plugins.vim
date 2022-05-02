@@ -8,14 +8,18 @@ call plug#begin('~/.vim/plugged')
 
         " Also LSP is used by VSCode
         Plug 'neovim/nvim-lspconfig'                      " Neovim LSP
-        Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
-        Plug 'hrsh7th/cmp-nvim-lsp'                       " Completitions for LSP, Auto-import, moving between snippets, etc.
-        Plug 'hrsh7th/cmp-buffer'                         " Completes words from the current buffer
-        Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
-        Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
-        Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip
         Plug 'onsails/lspkind-nvim'                       " vscode-like pictograms
         Plug 'mfussenegger/nvim-lint'                     " Neovim Linter
+        " Autocomplete
+        Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
+        Plug 'hrsh7th/cmp-nvim-lsp'                       " Completitions for LSP, Auto-import, moving between snippets, etc.
+        Plug 'hrsh7th/cmp-nvim-lua'                       " Completes Lua neovim API
+        Plug 'hrsh7th/cmp-buffer'                         " Completes words from the current buffer
+        Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
+        Plug 'hrsh7th/cmp-nvim-lua'                       " Completes for filesystem paths
+        Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
+        Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip
+
 
         " And UI...
         Plug 'joshdick/onedark.vim'                       " Dark theme
@@ -23,16 +27,18 @@ call plug#begin('~/.vim/plugged')
         Plug 'famiu/feline.nvim'                          " Status bar
         Plug 'kyazdani42/nvim-tree.lua'                   " File tree
         Plug 'karb94/neoscroll.nvim'                      " Smooth scrolling
-        Plug 'nvim-telescope/telescope.nvim'
         Plug 'lewis6991/gitsigns.nvim'                    " Git info
         Plug 'glepnir/dashboard-nvim'
         Plug 'lukas-reineke/indent-blankline.nvim'        " Blank ident lines
         Plug 'kyazdani42/nvim-web-devicons'               " Icons
+
+        Plug 'nvim-telescope/telescope.nvim'
+
         " TODO(santiagotoscanini): remove in neovim 0.7.0
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
         " And git
-        Plug 'tpope/vim-fugitive'                         " Git tool
+        " Plug 'tpope/vim-fugitive'                         " Git tool
 
         " And language specific support
         Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'}   " Go support (Improve syntax highlight, and build, run commands)
@@ -44,6 +50,8 @@ call plug#begin('~/.vim/plugged')
         if exists('$TMUX')
             Plug 'christoomey/vim-tmux-navigator'             " Navigate Between Windows with ctrl + hjlk
             Plug 'preservim/vimux'                            " https://raw.githubusercontent.com/preservim/vimux/master/doc/vimux.txt
+            Plug 'benmills/vimux-golang'
+            " Plug 'https://github.com/tyewang/vimux-jest-test'
         endif
 
         Plug 'easymotion/vim-easymotion'
@@ -52,9 +60,6 @@ call plug#begin('~/.vim/plugged')
     endif
 
     Plug 'nvim-lua/plenary.nvim'                      " Util functions for Lua
-
-    " TODO(santiagotoscanini): remove in neovim 0.7.0
-    Plug 'nathom/filetype.nvim'
 
     " ae targets the entire content of the current buffer.
     " ie is similar to ae, but ie does not include leading and trailing empty lines.

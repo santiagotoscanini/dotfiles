@@ -1,12 +1,4 @@
 vim.g.completeopt= { "menu" ,"menuone", "noselect", "noinsert" }
-
-local cmp = require("cmp")
-
-local lspkind = require("lspkind")
-lspkind.init()
-
-local nvim_lsp = require('lspconfig')
-
 vim.opt.list = true
 vim.opt.listchars:append("space:⋅")
 
@@ -16,20 +8,37 @@ require("indent_blankline").setup {
     show_current_context_start = true,
 }
 
+local lspkind = require("lspkind")
+lspkind.init()
+
+local cmp = require("cmp")
+
 cmp.setup({
     mapping = {
         ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
         ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
         ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
         ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-        }),
+        ['<C-e>'] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end,
+        ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end,
     },
     -- the order of your sources matter (by default). That gives them priority
     sources = cmp.config.sources({
+        { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "luasnip" },
@@ -45,9 +54,9 @@ cmp.setup({
             with_text = true,
             menu = {
                 nvim_lsp = "[LSP]",
-                buffer = "[Buffer]",
                 path = "[Path]",
                 luasnip = "[Snippet]",
+                buffer = "[Buffer]",
             },
         },
     },
@@ -72,6 +81,7 @@ cmp.setup.cmdline(':', {
 })
 
 
+local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp.tsserver.setup{ capabilities = capabilities }

@@ -18,10 +18,19 @@ if !exists('g:vscode')
         map <Leader>vl :VimuxRunLastCommand<CR>
         " Prompt for a command to run
         map <Leader>vp :VimuxPromptCommand<CR>
+
+        " Golang
+        map <Leader>ra :GolangTestCurrentPackage<CR>
+        map <Leader>grct :wa<CR> :GolangTestFocused<CR>
     endif
 
+    " Find
+    nnoremap <leader>f  <cmd>Telescope find_files<cr>
+    nnoremap <c-t>      <cmd>Telescope live_grep <cr>
+
+
     " Git
-    " nnoremap <leader>gc :GBranches<CR>
+    nnoremap <leader>gc <cmd>Telescope git_branches<cr>
     " nnoremap <leader>gj :diffget //3<CR>
     " nnoremap <leader>gf :diffget //2<CR>
 
@@ -98,11 +107,14 @@ if !exists('g:vscode')
     nnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
     xnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
 
-    nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+    " nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+    nnoremap <silent> gr <cmd>Telescope lsp_definitions<cr>
+    " nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+    nnoremap <silent> gr <cmd>Telescope lsp_implementations<cr>
+    " nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
     nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-    nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-    nnoremap <silent> K  <cmd>lua vim.lsp.buf.hover()<CR>
+    nnoremap <silent> H  <cmd>lua vim.lsp.buf.hover()<CR>
     nnoremap <leader> rn <cmd>lua vim.lsp.buf.rename(vim.fn.input('New name: '))<CR>
     nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
     nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
