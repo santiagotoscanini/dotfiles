@@ -8,6 +8,10 @@ require("indent_blankline").setup {
     show_current_context_start = true,
 }
 
+-- Copilot
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
 local lspkind = require("lspkind")
 lspkind.init()
 

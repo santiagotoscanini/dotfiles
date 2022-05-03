@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
         Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip
 
+        Plug 'github/copilot.vim'                         " GitHub Copilot
 
         " And UI...
         Plug 'joshdick/onedark.vim'                       " Dark theme
