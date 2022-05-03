@@ -107,6 +107,10 @@ if !exists('g:vscode')
     nnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
     xnoremap <C-w>- <Cmd>call <SID>manageEditorSize(v:count, 'decrease')<CR>
 
+    " Copilot
+    let g:copilot_no_tab_map = v:true
+    imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+
     " nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
     nnoremap <silent> gr <cmd>Telescope lsp_definitions<cr>
     " nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
