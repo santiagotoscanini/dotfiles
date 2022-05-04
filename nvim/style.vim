@@ -11,7 +11,7 @@ colorscheme tokyonight
 function! SetBackgroundMode(...)
     if systemlist('defaults read -g AppleInterfaceStyle')[0] ==? 'dark'
         let s:new_bg = 'dark'
-        let g:tokyonight_style = "night"
+        let g:tokyonight_style = "storm"
     else
         let s:new_bg = 'light'
         let g:tokyonight_style = "day"

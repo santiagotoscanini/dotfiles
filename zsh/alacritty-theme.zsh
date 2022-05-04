@@ -4,9 +4,9 @@ function _change_alacritty_theme() {
 
 function autoSwitchAlacrittyTheme() {
     if  defaults read -g AppleInterfaceStyle > /dev/null 2>&1 = 'dark' ; then
-        _change_alacritty_theme one_half_dark
+        _change_alacritty_theme tokyonight_night
     else
-        _change_alacritty_theme one_half_light
+        _change_alacritty_theme tokyonight_day
     fi
 }
 autoSwitchAlacrittyTheme
