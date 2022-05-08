@@ -10,9 +10,13 @@ call plug#begin('~/.vim/plugged')
         " TODO(santiagotoscanini): remove when neovim has full integration (0.7.0?)
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+        " Fix this two:
+        Plug 'folke/trouble.nvim'                         " LSP errors
+        Plug 'lukas-reineke/lsp-format.nvim'              " LSP Formatter wrapper
+
         " Also LSP is used by VSCode
-        Plug 'neovim/nvim-lspconfig'                      " Neovim LSP
-        Plug 'mfussenegger/nvim-lint'                     " Neovim Linter
+        Plug 'neovim/nvim-lspconfig'                      " LSP
+        Plug 'mfussenegger/nvim-lint'                     " Linter
         " Autocomplete
         Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
         Plug 'hrsh7th/cmp-nvim-lua'                       " Completes Lua neovim API

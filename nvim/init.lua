@@ -10,6 +10,7 @@ if (not vim.g.vscode) then
     -- And UI
     vim.cmd 'source $XDG_CONFIG_HOME/nvim/style.vim'
     require('nvim-tree').setup()
+    require('trouble').setup()
     require('gitsigns').setup()
     require('feline').setup() -- Needs to be below style.vim call
     require('smooth-scrolling')
