@@ -24,6 +24,30 @@ To stow the files, we run `zsh install.zsh`.
 - [x] Add IdeaVim dotfiles.
 - [x] Add QMK config files.
 - [x] Create script to add qmk keymaps to firmware directory (using stow).
-- [ ] Make a script to install all the dependencies (`stow`, `oh-my-zsh`, etc.).
+- [ ] Make a script to install all the CLI dependencies (`stow`, `oh-my-zsh` (copying themes and plugins to folders), `qmk-firmware`, `poetry`, `sdkman` (`flutter`, `android-sdk`, `go`, `dart`, `python`), `docker`, `neovim`, `tmux`, `tldr`, `solc` etc.).
+- [ ] Make a script to install all the software:
+  * MacOS
+    - [ ] [AltTab](https://alt-tab-macos.netlify.app)
+    - [ ] [Stats](https://github.com/exelban/stats)
+    - [ ] [HiddenBar](https://github.com/dwarvesf/hidden)
+    - [ ] [Raycast](https://www.raycast.com)
+  * Development
+    - [ ] Ganache
+    - [ ] Postman / Insomnia
+    - [ ] DataGrip
+    - [ ] VSCode
+    - [ ] Alacritty
+  * Communication
+    - [ ] Slack / Teams / WhatsApp / Zoom
+  * Devices
+    - [ ] QMK Toolbox
+    - [ ] Logi Options+
+    - [ ] calibre
+    - [ ] Ledger Live
+  * General
+    - [ ] Notion / Obsidian
+    - [ ] TickTick
+    - [ ] Brave / Chrome
+    - [ ] Spotify
 - [ ] Separate all from my user.
 - [ ] Make it available to Windows and Linux.
