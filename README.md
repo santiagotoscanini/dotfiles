@@ -24,7 +24,7 @@ To stow the files, we run `zsh install.zsh`.
 - [x] Add IdeaVim dotfiles.
 - [x] Add QMK config files.
 - [x] Create script to add qmk keymaps to firmware directory (using stow).
-- [ ] Make a script to install all the CLI dependencies (`stow`, `oh-my-zsh` (copying themes and plugins to folders), `qmk-firmware`, `poetry`, `sdkman` (`flutter`, `android-sdk`, `go`, `dart`, `python`), `docker`, `neovim`, `tmux`, `tldr`, `solc` etc.).
+- [ ] Make a script to install all the CLI dependencies (`stow`, `oh-my-zsh` (copying themes and plugins to folders), `qmk-firmware`, `poetry`, `sdkman` (`flutter`, `android-sdk`, `go`, `dart`, `python`), `docker`, `neovim`, `tmux`, `tldr`, `solc`, `git`, `gh`, etc.).
 - [ ] Make a script to install all the software:
   * MacOS
     - [ ] [AltTab](https://alt-tab-macos.netlify.app)
