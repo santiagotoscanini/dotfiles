@@ -13,7 +13,7 @@ In the case of zsh, we need to set the `ZDOTDIR` environment variable. [More Inf
 
 ---
 
-To stow the files, we run `./install.zsh`.
+To stow the files, we run `./df_install.zsh`.
 
 ---
 
