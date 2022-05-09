@@ -18,7 +18,7 @@ commitDotfiles() {
 }
 
 export QMK_DIR=$HOME/qmk_firmware
-export STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh,ideavim"
+export STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh,ideavim,gh"
 export XDG_CONFIG_HOME=$HOME/.config
 export DOTFILES_DIR=$HOME/dev/.tooling/dotfiles
 export ZSH=~/.oh-my-zsh

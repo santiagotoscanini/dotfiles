@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 source zsh/.zshenv
 
 pushd $DOTFILES_DIR
