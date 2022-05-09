@@ -20,7 +20,7 @@ To stow the files, we run `./df_install.zsh`.
 ### TODO
 
 - [x] Make it XDG Compatible.
-- [x] Make an `install.zsh` script.
+- [x] Make an `df_install.zsh` script to stow/unstow config files.
 - [x] Add IdeaVim dotfiles.
 - [x] Add QMK config files.
 - [x] Create script to add qmk keymaps to firmware directory (using stow).
@@ -38,7 +38,7 @@ To stow the files, we run `./df_install.zsh`.
     - [ ] VSCode
     - [ ] Alacritty
   * Communication
-    - [ ] Slack / Teams / WhatsApp / Zoom
+    - [ ] Slack / Teams / WhatsApp / Zoom / Beeper
   * Devices
     - [ ] QMK Toolbox
     - [ ] Logi Options+
@@ -49,5 +49,4 @@ To stow the files, we run `./df_install.zsh`.
     - [ ] TickTick
     - [ ] Brave / Chrome
     - [ ] Spotify
-- [ ] Separate all from my user.
 - [ ] Make it available to Windows and Linux.
