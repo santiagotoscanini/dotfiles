@@ -31,6 +31,7 @@ To stow the files, we run `./df_install.zsh`.
     - [ ] [Stats](https://github.com/exelban/stats)
     - [ ] [HiddenBar](https://github.com/dwarvesf/hidden)
     - [ ] [Raycast](https://www.raycast.com)
+    - [ ] [Clocker](https://apps.apple.com/us/app/clocker/id1056643111)
   * Development
     - [ ] Ganache
     - [ ] Postman / Insomnia
