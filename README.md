@@ -50,4 +50,5 @@ To stow the files, we run `./df_install.zsh`.
     - [ ] TickTick
     - [ ] Brave / Chrome
     - [ ] Spotify
+- [ ] Make a script for OS Configurations.
 - [ ] Make it available to Windows and Linux.
