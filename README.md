@@ -32,6 +32,7 @@ To stow the files, we run `./df_install.zsh`.
     - [ ] [HiddenBar](https://github.com/dwarvesf/hidden)
     - [ ] [Raycast](https://www.raycast.com)
     - [ ] [Clocker](https://apps.apple.com/us/app/clocker/id1056643111)
+    - [ ] [Amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704)
   * Development
     - [ ] Ganache
     - [ ] Postman / Insomnia
