@@ -38,7 +38,7 @@ To stow the files, we run `./df_install.zsh`.
     - [ ] Postman / Insomnia
     - [ ] DataGrip
     - [ ] VSCode
-    - [ ] Alacritty
+    - [ ] Alacritty (with fonts)
   * Communication
     - [ ] Slack / Teams / WhatsApp / Zoom / Beeper
   * Devices
