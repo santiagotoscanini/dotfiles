@@ -1,8 +1,8 @@
 # ----- THEME ---------------
 
 # Minimal zsh prompt
-# It's a custom plugin so it needs to be installed in $ZSH_CUSTOM/themes
-# https://github.com/reobin/typewritten.git
+# It's a custom plugin so it needs to be installed with:
+# git clone https://github.com/reobin/typewritten $ZSH_CUSTOM/themes/typewritten
 ZSH_THEME="typewritten/typewritten"
 
 
@@ -36,8 +36,8 @@ ZSH_DOTENV_PROMPT=true       # Ask for confirmation.
 # -------------- VI MODE ----
 
 # Vi mode for ZSH
-# It's a custom plugin so it needs to be installed in $ZSH_CUSTOM/plugins
-# https://github.com/jeffreytse/zsh-vi-mode
+# It's a custom plugin so it needs to be installed with:
+# git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
 plugins+=(zsh-vi-mode)
 
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jj
