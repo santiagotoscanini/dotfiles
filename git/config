@@ -1,7 +1,7 @@
 [user]
     name = Santiago Toscanini
     email = toscaninisantiago@gmail.com
-[includeIf "gitdir:~/dev/work"]
+[includeIf "gitdir:~/dev/work/"]
     path = "~/.config/git/gitconfig-work"
 [color "diff"]
     meta = yellow bold
