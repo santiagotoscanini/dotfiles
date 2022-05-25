@@ -7,9 +7,10 @@ alias termLights='_change_alacritty_theme'
 
 # Commonly used directories
 alias cdev="cd ~/dev"
-alias cdp="cd ~/dev/python"
-alias cdg="cd ~/dev/go"
+alias cdevw="cd ~/dev/work"
+alias cdevp="cd ~/dev/personal"
 alias cdot="cd $DOTFILES_DIR"
+alias cdconf="cd $XDG_CONFIG_HOME"
 
 # neovim
 if [ -n "$NVIM_LISTEN_ADDRESS" ] ; then
