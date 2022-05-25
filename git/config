@@ -1,6 +1,7 @@
-[user]
-	name = Santiago Toscanini
-	email = toscaninisantiago@gmail.com
+[includeIf "gitdir:~/dev/work"]
+  path = $XDG_CONFIG_HOME/git/gitconfig-work
+[includeIf "gitdir:~/dev/personal"]
+  path = $XDG_CONFIG_HOME/git/gitconfig-personal
 [color "diff"]
 	meta = yellow bold
 	frag = magenta bold # line info
