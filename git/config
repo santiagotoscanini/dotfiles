@@ -1,6 +1,7 @@
 [user]
     name = Santiago Toscanini
     email = toscaninisantiago@gmail.com
+    signingKey = 3E907FAC5742EF2B
 [includeIf "gitdir:~/dev/work/"]
     path = "~/.config/git/gitconfig-work"
 [color "diff"]
@@ -80,3 +81,7 @@
 [help]
     # Automatically correct and execute mistyped commands.
     autocorrect = 1
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true

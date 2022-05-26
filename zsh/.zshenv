@@ -1,19 +1,20 @@
 addToPath() {
+    # only add in case it isn't already added
     if [[ "$PATH" != *"$1"* ]]; then
-        export PATH=$PATH:$1
+        export PATH=$1:$PATH
     fi
 }
 
 commitDotfiles() {
     pushd $DOTFILES_DIR
-    pushd work-dotfiles
-    git add .
-    git commit -m "[Automatically]: Update work-dotfiles."
-    git push
-    popd
-    git add .
-    git commit -m "[Automatically]: Update dotfiles."
-    git push origin main
+        pushd work-dotfiles
+            git add .
+            git commit -m "[Automatically]: Update work-dotfiles."
+            git push
+        popd
+        git add .
+        git commit -m "[Automatically]: Update dotfiles."
+        git push origin main
     popd
 }
 

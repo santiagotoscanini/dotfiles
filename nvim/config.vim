@@ -49,9 +49,9 @@ if !exists('g:vscode')
 
     augroup AuFileTypes
         autocmd!
-        autocmd BufRead,BufNewFile .flake8        setf dosini
-        autocmd BufRead,BufNewFile gitconfig-work setf gitconfig
-        autocmd BufRead,BufNewFile */ssh/config   setf sshconfig
+        autocmd BufRead,BufNewFile .flake8                     setf dosini
+        autocmd BufRead,BufNewFile */git/config,gitconfig-work setf gitconfig
+        autocmd BufRead,BufNewFile */ssh/config                setf sshconfig
     augroup END
 
     augroup AuRunLinting
