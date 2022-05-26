@@ -24,5 +24,6 @@ To stow the files, we run `./df_install.zsh`.
 - [x] Add IdeaVim dotfiles.
 - [x] Add QMK config files.
 - [x] Create script to add qmk keymaps to firmware directory (using stow).
+- [ ] Sign commits using SSH instead of GPG when macOS's SSH support signing arbitrary data.
 - [ ] Make a script for OS Configurations.
 - [ ] Make it available to Windows and Linux.
