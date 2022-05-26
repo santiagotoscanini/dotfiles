@@ -1,8 +1,6 @@
 " Number of colors the terminal support, iTerm2 supports 256
 set t_Co=256
 
-au BufNewFile,BufRead config,gitconfig-* setf gitconfig
-
 if exists('+termguicolors')
     let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
