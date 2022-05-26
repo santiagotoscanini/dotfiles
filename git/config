@@ -26,7 +26,9 @@
     # `git di $number` shows the diff between the state `$number` revisions ago and the current state.
 
     # Pull in remote changes for the current repository and all its submodules.
-    p = pull --recurse-submodulesdi = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+    p = pull --recurse-submodules
+
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
     # Clone a repository including all submodules.
     c = clone --recursive
