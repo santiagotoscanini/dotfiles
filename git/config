@@ -76,8 +76,6 @@
     insteadOf = https://github.com/
 [pull]
     rebase = false
-[diff]
-    tool = nvimdiff
 [init]
     defaultBranch = main
 [help]
@@ -87,3 +85,11 @@
     gpgsign = true
 [tag]
     gpgsign = true
+[core]
+	excludesfile = /Users/stoscanini/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
