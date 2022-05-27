@@ -20,6 +20,7 @@ aliases:
     rmlabel: issue edit --remove-label
 
     br-pr: "!gh pr create --base=main --title=\"[BR-$1] $2($3): ${@:4}\" --fill"
+    br-release: "! git go main; gh pr create --base=prod --title=\"[$(date +%Y.%m.%d)-$1] release: ${@:2}\" --fill;"
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.
