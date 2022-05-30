@@ -9,10 +9,15 @@ if (not vim.g.vscode) then
 
     -- And UI
     vim.cmd 'source $XDG_CONFIG_HOME/nvim/style.vim'
-    require('nvim-tree').setup()
+    require('nvim-tree').setup({view = {relativenumber = true, signcolumn = "no"}})
     require('trouble').setup()
     require('gitsigns').setup()
-    require('feline').setup() -- Needs to be below style.vim call
+
+    require('feline').setup()
+    vim.opt.winbar='%f'
+    -- TODO(santiagotoscanini): configure the winbar using feline to show the full path
+    -- require('feline').winbar.setup() -- Needs to be below style.vim call
+
     require('smooth-scrolling')
     require('treesitter')
 end

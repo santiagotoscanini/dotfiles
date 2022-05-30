@@ -47,6 +47,11 @@ if !exists('g:vscode')
         autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
     augroup END
 
+    augroup AuNvimTree
+        autocmd!
+        autocmd FileType NvimTree setlocal relativenumber
+    augroup END
+
     augroup AuFileTypes
         autocmd!
         autocmd BufRead,BufNewFile .flake8                     setf dosini
