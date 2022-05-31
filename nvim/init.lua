@@ -13,10 +13,8 @@ if (not vim.g.vscode) then
     require('trouble').setup()
     require('gitsigns').setup()
 
-    require('feline').setup()
-    vim.opt.winbar='%f'
-    -- TODO(santiagotoscanini): configure the winbar using feline to show the full path
-    -- require('feline').winbar.setup() -- Needs to be below style.vim call
+    -- Needs to be below style.vim call
+    require('feline-config')
 
     require('smooth-scrolling')
     require('treesitter')
