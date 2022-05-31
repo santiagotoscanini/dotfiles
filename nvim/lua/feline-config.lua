@@ -28,7 +28,7 @@ require('feline').winbar.setup {
         inactive = {
             {
                 {
-                    provider = '%f',
+                    provider = 'file_info',
                     hl = {
                         fg = 'white',
                         bg = 'NONE',
