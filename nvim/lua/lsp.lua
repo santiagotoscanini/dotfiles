@@ -90,7 +90,9 @@ nvim_lsp.dartls.setup{ capabilities = capabilities }
 nvim_lsp.tsserver.setup{ capabilities = capabilities }
 nvim_lsp.solc.setup{ capabilities = capabilities }
 nvim_lsp.gopls.setup{ capabilities = capabilities }
+
 -- TODO(santiagotoscanini): make buffers aware of current virtual env (pyenv, poetry, venv, conda, etc)
+--⋅https://github.com/younger-1/nvim/blob/one/lua/young/lang/python.lua
 nvim_lsp.pyright.setup {
     capabilities = capabilities,
     on_attach = require "lsp-format".on_attach
