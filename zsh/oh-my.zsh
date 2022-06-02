@@ -8,6 +8,15 @@ ZSH_THEME="typewritten/typewritten"
 
 # ----- PLUGINS -------------
 
+# -------------- history-substring-search -------
+
+# Search history for a substring
+
+plugins+=(history-substring-search)
+
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
 # -------------- TMUX -------
 
 # Aliases and utitlies for tmux.

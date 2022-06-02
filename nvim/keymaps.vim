@@ -31,6 +31,7 @@ if !exists('g:vscode')
 
     " Git
     nnoremap <leader>gc <cmd>Telescope git_branches<cr>
+    nnoremap <leader>gb <cmd>Gitsigns blame_line<cr>
     " nnoremap <leader>gj :diffget //3<CR>
     " nnoremap <leader>gf :diffget //2<CR>
 
