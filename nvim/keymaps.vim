@@ -113,9 +113,9 @@ if !exists('g:vscode')
     imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 
     " nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <silent> gr <cmd>Telescope lsp_definitions<cr>
+    nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
     " nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <silent> gr <cmd>Telescope lsp_implementations<cr>
+    nnoremap <silent> gi <cmd>Telescope lsp_implementations<cr>
     " nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
     nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
     nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>

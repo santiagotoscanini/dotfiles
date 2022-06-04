@@ -59,9 +59,8 @@ if !exists('g:vscode')
         autocmd BufRead,BufNewFile */ssh/config                setf sshconfig
     augroup END
 
-    augroup AuRunLinting
-        autocmd!
-        autocmd BufEnter,BufNew,InsertLeave,TextChanged,VimEnter <buffer> lua require('lint').try_lint()
+    augroup AuRunFormatting
+        autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
     augroup END
 
     augroup AuTrailingSpacesAndLines

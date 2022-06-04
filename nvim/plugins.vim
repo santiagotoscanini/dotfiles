@@ -16,7 +16,6 @@ call plug#begin('~/.vim/plugged')
 
         " Also LSP is used by VSCode
         Plug 'neovim/nvim-lspconfig'                      " LSP
-        Plug 'mfussenegger/nvim-lint'                     " Linter
         " Autocomplete
         Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
         Plug 'hrsh7th/cmp-nvim-lua'                       " Completes Lua neovim API
@@ -25,6 +24,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
         Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
         Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip (snippets)
+        Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
 
         " Copilot comes with VSCode
         Plug 'github/copilot.vim'                         " GitHub Copilot
