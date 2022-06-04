@@ -1,1 +1,1 @@
-require('go-to-file')
+require("go-to-file")
