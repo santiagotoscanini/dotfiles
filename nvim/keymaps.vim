@@ -32,8 +32,6 @@ nnoremap <leader>gb <cmd>Gitsigns blame_line<cr>
 " nnoremap <leader>gj :diffget //3<CR>
 " nnoremap <leader>gf :diffget //2<CR>
 
-nnoremap <leader>nvt :NvimTreeToggle<CR>
-
 " ## Tabs
 " Go to tab by number
 noremap <leader>1 1gt
@@ -47,7 +45,6 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<cr>
 
-
 " Move between left and right tabs
 nnoremap H gT
 nnoremap L gt
@@ -57,6 +54,7 @@ nnoremap L gt
 " Go to that tab
 " nnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
 " vnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
+
 
 function! RenameCurrentFile()
     let old_name = expand('%')
