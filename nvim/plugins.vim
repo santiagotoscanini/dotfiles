@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+    Plug 'nvim-lua/plenary.nvim'                      " Util functions for Lua
     Plug 'windwp/nvim-autopairs'                      " Auto close brackets
     Plug 'L3MON4D3/LuaSnip'                           " Snippet manager
     Plug 'rafamadriz/friendly-snippets'               " Add some pre-configured snippets
@@ -35,9 +36,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'                " Icons
 
     Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'}   " Go support (Improve syntax highlight, and build, run commands)
+    Plug 'TovarishFin/vim-solidity'                   " Filetype for solidity files
+
+    " Flutter
     Plug 'thosakwe/vim-flutter'                       " Flutter suport (flutter run, flutter test, flutter pub get, etc)
     Plug 'dart-lang/dart-vim-plugin'                  " Filetype for dart files
-    Plug 'TovarishFin/vim-solidity'                   " Filetype for solidity files
+    Plug 'norcalli/nvim-colorizer.lua'                " Colorize RGB/HEX/HSL/HSV colors
 
     " Only load these plugins if running inside tmux session
     if exists('$TMUX')
@@ -48,14 +52,12 @@ call plug#begin('~/.vim/plugged')
         " Plug 'https://github.com/tyewang/vimux-jest-test'
     endif
 
-    Plug 'easymotion/vim-easymotion'                  " Jump to a position
-    Plug 'nvim-lua/plenary.nvim'                      " Util functions for Lua
-
     " ae targets the entire content of the current buffer.
     " ie is similar to ae, but ie does not include leading and trailing empty lines.
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-user'
 
+    Plug 'easymotion/vim-easymotion'                  " Jump to a position
     Plug 'unblevable/quick-scope'                      " Show occurencies for 'f' and 't'
     Plug 'numToStr/Comment.nvim'                       " Commenter
     Plug 'tpope/vim-surround'                          " Change surrounding
