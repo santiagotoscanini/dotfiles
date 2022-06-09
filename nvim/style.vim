@@ -7,14 +7,15 @@ if exists('+termguicolors')
     set termguicolors
 endif
 
-colorscheme tokyonight
 function! SetBackgroundMode(...)
     if systemlist('defaults read -g AppleInterfaceStyle')[0] ==? 'dark'
+        colorscheme tokyonight
         let s:new_bg = 'dark'
         let g:tokyonight_style = 'storm'
     else
+        colorscheme material
         let s:new_bg = 'light'
-        let g:tokyonight_style = 'day'
+        let g:material_style = 'lighter'
     endif
 
     if &background !=? s:new_bg

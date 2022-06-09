@@ -27,6 +27,7 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'onsails/lspkind-nvim'                        " vscode-like pictograms for LSP
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " Theme
+    Plug 'marko-cerovac/material.nvim'                 " Theme
     Plug 'famiu/feline.nvim'                           " Status bar
     Plug 'kyazdani42/nvim-tree.lua'                    " File tree
     Plug 'karb94/neoscroll.nvim'                       " Smooth scrolling

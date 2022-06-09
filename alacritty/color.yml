@@ -1,5 +1,5 @@
 schemes:
-  tokyonight_day: &tokyonight_day
+  material_ligther: &material_lighter
     primary:
       background: '0xe1e2e7'
       foreground: '0x3760bf'
@@ -61,4 +61,4 @@ schemes:
       - { index: 16, color: '0xff9e64' }
       - { index: 17, color: '0xdb4b4b' }
 
-colors: *tokyonight_day
+colors: *material_lighter
