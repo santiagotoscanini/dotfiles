@@ -1,7 +1,7 @@
 schemes:
   material_ligther: &material_lighter
     primary:
-      background: '0xe1e2e7'
+      background: '0xfafafa'
       foreground: '0x3760bf'
 
     # Normal colors
