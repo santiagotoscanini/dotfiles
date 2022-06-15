@@ -24,5 +24,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 export DOTFILES_DIR=$HOME/dev/personal/dotfiles
 export ZSH=~/.oh-my-zsh
 export GO111MODULE=on
-export ANDROID_HOME=$HOME/android-sdk
 export EDITOR='nvim'
+
+# For Flutter development
+export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+export ANDROID_HOME=$HOME/android-sdk
