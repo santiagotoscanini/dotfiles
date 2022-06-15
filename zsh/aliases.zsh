@@ -18,8 +18,13 @@ if [ -n "$NVIM_LISTEN_ADDRESS" ] ; then
 fi
 alias vi="nvim"
 alias vim="nvim"
-alias chvim="nvim $XDG_CONFIG_HOME/nvim/init.lua"
 alias cleanvim="nvim -u NONE"
+
+# change dotfiles
+alias chvim="nvim $XDG_CONFIG_HOME/nvim"
+alias chzsh="nvim $XDG_CONFIG_HOME/zsh"
+alias chgit="nvim $XDG_CONFIG_HOME/git/config"
+alias chgh="nvim $XDG_CONFIG_HOME/gh/config.yml"
 
 # QMK
 function _compile_my_keymap(){
