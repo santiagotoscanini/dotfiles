@@ -29,3 +29,4 @@ export EDITOR='nvim'
 # For Flutter development
 export CHROME_EXECUTABLE="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export ANDROID_HOME=$HOME/android-sdk
+export JAVA_HOME="/opt/homebrew/Cellar/openjdk/18.0.1.1/libexec/openjdk.jdk/Contents/Home"
