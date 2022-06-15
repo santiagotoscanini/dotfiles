@@ -14,6 +14,12 @@ require("smooth-scrolling")
 require("treesitter")
 require("comments")
 
+-- FIXME(santiagotoscanini): This is not working.
+require("colorizer").setup({
+	dart = {
+		RRGGBBAA = true,
+	},
+})
 -- https://github.com/smjonas/inc-rename.nvim
 
 vim.cmd("source $XDG_CONFIG_HOME/nvim/config.vim")
