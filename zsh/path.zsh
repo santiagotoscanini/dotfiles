@@ -1,6 +1,7 @@
 addToPath /opt/homebrew/bin                                     # Homebrew
 addToPath ~/.poetry/bin                                         # Poetry (Python)
 addToPath ~/.cargo/bin                                          # Cargo (Rust)
+addToPath /Library/Frameworks/Python.framework/Versions/3.9/bin # Python 3.9
 
 # Android
 addToPath $ANDROID_HOME/cmdline-tools/cmdline-tools/bin         # sdkmanager (Android SDK)
