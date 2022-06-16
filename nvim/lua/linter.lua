@@ -13,14 +13,14 @@ require("null-ls").setup({
 		diagnostics.flake8.with({ diagnostics_postprocess = make_linter_warnings }),
 		formatting.black,
 		formatting.isort,
+		-- JSON
+		formatting.jq,
 		-- JS/TS
 		diagnostics.eslint,
 		formatting.eslint,
 		formatting.prettier.with({ -- And also HTML/CSS/YAML/MARKDOWN/JSON. Could even support Solidity with the use of extensions.
 			extra_filetypes = { "solidity" },
 		}),
-		-- JSON
-		formatting.jq,
 		-- ZSH
 		diagnostics.zsh,
 		-- Lua
