@@ -19,10 +19,21 @@ aliases:
     claim: issue edit --add-assignee @me
     rmlabel: issue edit --remove-label
 
+    br-pr-help: "! echo \"gh br-pr\" 'command arguments:\n
+                - jira-issue (only number)\n
+                - change-type (feat, fix, docs, style, refactor, perf, test, chore)\n
+                - change-location (component)\n
+                - change-description (multi word description)'"
     br-pr: "!gh pr create --base=main --title=\"[BR-$1] $2($3): ${@:4}\" --fill"
-    br-pr-help: "! echo 'gh br-pr <jira-issue (only number)>  <change-type (feat, fix, docs, style, refactor, perf, test, chore)> <change-location (component)> <change-description>'"
-    br-release: "! pr_name=\"[$(date +%Y.%m.%d)-$1] release: ${@:2}\"; echo $pr_name | pbcopy; pbpaste; "
-    br-release-help: "! echo 'gh pr-release <release-number (autoincremental within the same day)> <release-description>'"
+
+    br-release-help: "! echo \"gh pr-release\" 'command arguments:\n
+                    - release-number (autoincremental within the same day) \n
+                    - release-description (multi word description)'"
+    br-release: "! pr_name=\"[$(date +%Y.%m.%d)-$1] release: ${@:2}\";
+                 git checkout main;
+                 git pull;
+                 gh pr create --base=prod --title=${pr_name} --fill;
+                 echo \"creating release to prod with name ${pr_name}\""
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 # What web browser gh should use when opening URLs. If blank, will refer to environment.

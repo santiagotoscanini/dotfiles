@@ -67,6 +67,7 @@
 
     # Commit dotfiles
     dotfiles = "!source ~/.config/zsh/.zshenv && commitDotfiles"
+    df = dotfiles
 
     # List contributors with number of commits.
     contributors = shortlog --summary --numbered

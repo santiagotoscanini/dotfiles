@@ -12,6 +12,9 @@ alias cdevp="cd ~/dev/personal"
 alias cdot="cd $DOTFILES_DIR"
 alias cdconf="cd $XDG_CONFIG_HOME"
 
+# Terminal
+alias bclean="clear && printf '\e[3J'"
+
 # neovim
 if [ -n "$NVIM_LISTEN_ADDRESS" ] ; then
     alias nvim="nvr --remote-tab"

@@ -4,6 +4,8 @@ set shiftwidth=4                   " Identation to use with identation commands
 set expandtab                      " Forces spaces to be used in place of tab characters
 set smartindent                    " Smart indent for braces, etc
 
+set noendofline                    " No end of line character
+
 " Buffers and undofiles
 set hidden                         " Hidden files instead of closing it, so avoid saving message when moving between buffers
 set noswapfile                     " Don't use swapfiles for buffers
@@ -14,6 +16,7 @@ set undodir=~/.vim/undodir         " Set the path for the undofiles
 set number                         " Show numbers
 set numberwidth=1                  " Width of numbers
 set signcolumn=number              " if apply, display symbols instead of numbers
+lua vim.wo.fillchars='eob: '       -- Hide ~ for empty lines (side bar)
 
 " Status bar
 set noshowmode                     " Don't need to show the mode (Insert, Replace, Visual) because status line already do that
@@ -60,17 +63,6 @@ augroup END
 
 augroup AuRunFormatting
     autocmd BufWritePre * lua vim.lsp.buf.format()
-augroup END
-
-augroup AuTrailingSpacesAndLines
-    autocmd!
-    autocmd BufWritePre * let current_pos = getpos(".")
-    " Find all \s (spaces) at the end of line, and deletes them
-    autocmd BufWritePre * silent! undojoin | %s/\s\+$//e
-    " Find all \n (new line) at the end of file, and deletes them
-    autocmd BufWritePre * silent! undojoin | %s/\n\+\%$//e
-    autocmd BufWritePre * call setpos(".", current_pos)
-    autocmd BufWritePre,FileWritePre * silent! call mkdir(expand('<afile>:p:h'), 'p')
 augroup END
 
 set clipboard=unnamedplus " Copy between OS Clipboard and VIM Clipboard, Unnamed is vim copy register and + is OS reg.
