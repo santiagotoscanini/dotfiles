@@ -26,7 +26,7 @@ set cmdheight=2                    " Size of CMD bar at the bottom
 set nowrap                         " No wrap lines (lines longer than the width of the window will wrap and display on the next line)
 set scrolloff=10                   " Start to move up or down when we are 8 cells away
 set showmatch                      " When inserting a brace, put the closing one and jump to it
-set colorcolumn=120                " vertical line, to maintain the length of the code
+" set colorcolumn=120                " vertical line, to maintain the length of the code
 set mouse=n                        " Mouse usage in vim
 
 let $GIT_EDITOR = 'nvr -cc split --remote-wait'
