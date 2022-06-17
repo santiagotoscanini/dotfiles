@@ -7,19 +7,19 @@ if exists('+termguicolors')
     set termguicolors
 endif
 
+colorscheme material
 function! SetBackgroundMode(...)
+    " https://github.com/marko-cerovac/material.nvim
+    " There are 5 styles to choose from:
+    " -oceanic
+    " -deep ocean
+    " -palenight
+    " -darker
+    " -lighter
     if systemlist('defaults read -g AppleInterfaceStyle')[0] ==? 'dark'
-        colorscheme tokyonight
-        let s:new_bg = 'dark'
-        let g:tokyonight_style = 'storm'
+        lua require('material.functions').change_style('palenight')
     else
-        colorscheme material
-        let s:new_bg = 'light'
-        let g:material_style = 'lighter'
-    endif
-
-    if &background !=? s:new_bg
-        let &background = s:new_bg
+        lua require('material.functions').change_style('lighter')
     endif
 endfunction
 
