@@ -6,7 +6,13 @@ require("linter")
 require("snippets")
 
 vim.cmd("source $XDG_CONFIG_HOME/nvim/style.vim")
-require("nvim-tree").setup({ view = { relativenumber = true, signcolumn = "no" } })
+require("nvim-tree").setup({
+	view = {
+		relativenumber = true,
+		signcolumn = "no",
+		width = 40,
+	},
+})
 require("trouble").setup()
 require("gitsigns").setup()
 require("feline-config")
