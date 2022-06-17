@@ -87,7 +87,7 @@ endfunction
 nnoremap <leader><leader>sf :call NewTabScratchFile()<CR>
 
 nnoremap <leader>e :NvimTreeToggle<cr>
-nnoremap <leader>sf :NvimTreeFindFileToggle<cr>
+nnoremap <leader>sf :NvimTreeFindFile<cr>
 
 function SaveScratchFile()
     let save_path = input('Insert path to save file: ')
