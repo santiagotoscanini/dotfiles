@@ -5,19 +5,6 @@ addToPath() {
     fi
 }
 
-commitDotfiles() {
-    pushd $DOTFILES_DIR
-        pushd work-dotfiles
-            git add .
-            git commit -m "[Automatically]: Update work-dotfiles."
-            git push
-        popd
-        git add .
-        git commit -m "[Automatically]: Update dotfiles."
-        git push origin main
-    popd
-}
-
 export QMK_DIR=$HOME/qmk_firmware
 export STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh,ideavim,gh"
 export XDG_CONFIG_HOME=$HOME/.config

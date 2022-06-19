@@ -1,5 +1,5 @@
 # Only Relevant Configs for Current Company
-# source $ZDOTDIR/alias.work.zsh
+source $ZDOTDIR/alias.work.zsh
 
 # Toggle dark mode on macOS
 alias osLights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
@@ -10,15 +10,12 @@ alias cdev="cd ~/dev"
 alias cdevw="cd ~/dev/work"
 alias cdevp="cd ~/dev/personal"
 alias cdot="cd $DOTFILES_DIR"
-alias cdconf="cd $XDG_CONFIG_HOME"
+alias cdxdg="cd $XDG_CONFIG_HOME"
 
 # Terminal
 alias bclean="clear && printf '\e[3J'"
 
 # neovim
-if [ -n "$NVIM_LISTEN_ADDRESS" ] ; then
-    alias nvim="nvr --remote-tab"
-fi
 alias vi="nvim"
 alias vim="nvim"
 alias cleanvim="nvim -u NONE"
@@ -44,6 +41,6 @@ alias qmkc='_compile_my_keymap'
 function _docker_build_and_push_image(){
     docker build . -t $1 && docker push $1
 }
-alias dbp='_docker_build_and_push_image $1'                 # Build and push image by a tag
-alias dbash='docker exec -it $1 /bin/bash'                  # Run bash inside a container
-alias docker_start="open --hide --background -a Docker"     # Don't need this line if using Linux
+alias dkbp='_docker_build_and_push_image $1'        # Build and push image by a tag
+alias dkbash='docker exec -it $1 /bin/bash'         # Run bash inside a container
+alias dkstart="open --hide --background -a Docker"  # Only for macOS

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source zsh/.zshenv
+STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh,ideavim,gh"
 
 pushd $DOTFILES_DIR
     echo --- PERSONAL DOTFILES ---
@@ -35,8 +35,7 @@ pushd $DOTFILES_DIR
     popd
 
 
-    # QMK Files go inside QMK Firmware directory
-    # These also aren't XDG Compatible :(
+    # QMK Files go inside QMK Firmware directory (aren't XDG Compatible).
     pushd qmk
         keymap_root=keyboards/crkbd/keymaps/santi_km
 
@@ -50,11 +49,11 @@ pushd $DOTFILES_DIR
         echo 'Stowed'
     popd
 
-
+    # Work dotfiles
     pushd work-dotfiles
         echo
         echo
         echo --- WORK DOTFILES ------
-        zsh install.zsh
+        ./install.zsh
     popd
 popd

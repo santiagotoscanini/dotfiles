@@ -9,19 +9,17 @@ ZSH_THEME="typewritten/typewritten"
 # ----- PLUGINS -------------
 
 # -------------- history-substring-search -------
-
 # Search history for a substring
-
 plugins+=(history-substring-search)
 
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
 # -------------- TMUX -------
-
 # Aliases and utitlies for tmux.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
 
+# Avoid auto-starting tmux in VSCode
 if [[ "$TERM_PROGRAM" != "vscode" ]]; then
     plugins+=(tmux)
 
@@ -32,7 +30,6 @@ if [[ "$TERM_PROGRAM" != "vscode" ]]; then
 fi
 
 # -------------- DOTENV -----
-
 # Automatically load your project ENV variables from .env file when you cd into project root directory.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
 plugins+=(dotenv)
@@ -43,7 +40,6 @@ ZSH_DOTENV_PROMPT=true       # Ask for confirmation.
 # ZSH_DOTENV_DISALLOWED_LIST=/path/to/dotenv/disallowed/list
 
 # -------------- VI MODE ----
-
 # Vi mode for ZSH
 # It's a custom plugin so it needs to be installed with:
 # git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
