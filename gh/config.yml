@@ -14,11 +14,7 @@ aliases:
     claim: issue edit --add-assignee @me
     rmlabel: issue edit --remove-label
 
-    br-pr-help: "! echo \"gh br-pr\" 'command arguments:\n
-                - jira-issue (only number)\n
-                - change-type (feat, fix, docs, style, refactor, perf, test, chore)\n
-                - change-location (component)\n
-                - change-description (multi word description)'"
+    br-pr-help: "! brPullRequestHelp"
     br-pr: "!gh pr create --base=main --title=\"[BR-$1] $2($3): ${@:4}\" --fill"
 
     br-release-help: "! echo \"gh pr-release\" 'command arguments:\n
