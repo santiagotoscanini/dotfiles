@@ -14,17 +14,12 @@ aliases:
     claim: issue edit --add-assignee @me
     rmlabel: issue edit --remove-label
 
-    br-pr-help: "! brPullRequestHelp"
-    br-pr: "!gh pr create --base=main --title=\"[BR-$1] $2($3): ${@:4}\" --fill"
+    # TODO(santiagotoscanini): Create --help flags
+    br-pr:           "! source $XDG_CONFIG_HOME/zsh/git-alias.work.zsh && brPullRequest"
+    br-pr-help:      "! source $XDG_CONFIG_HOME/zsh/git-alias.work.zsh && brPullRequestHelp"
+    br-release:      "! source $XDG_CONFIG_HOME/zsh/git-alias.work.zsh && brRelease"
+    br-release-help: "! source $XDG_CONFIG_HOME/zsh/git-alias.work.zsh && brReleaseHelp"
 
-    br-release-help: "! echo \"gh pr-release\" 'command arguments:\n
-                    - release-number (autoincremental within the same day) \n
-                    - release-description (multi word description)'"
-    br-release: "! pr_name=\"[$(date +%Y.%m.%d)-$1] release: ${@:2}\";
-                 git checkout main;
-                 git pull;
-                 gh pr create --base=prod --title=${pr_name} --fill;
-                 echo \"creating release to prod with name ${pr_name}\""
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:
 browser:
