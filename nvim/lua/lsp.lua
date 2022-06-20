@@ -85,7 +85,7 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 nvim_lsp.dartls.setup({ capabilities = capabilities })
 nvim_lsp.tsserver.setup({ capabilities = capabilities })
-nvim_lsp.solc.setup({ capabilities = capabilities })
+-- nvim_lsp.solc.setup({ capabilities = capabilities })
 nvim_lsp.gopls.setup({ capabilities = capabilities })
 nvim_lsp.vimls.setup({})
 
