@@ -110,7 +110,7 @@ nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> H  <cmd>lua vim.lsp.buf.hover()<CR>
 " nnoremap <leader> rn <cmd>lua vim.lsp.buf.rename(vim.fn.input('New name: '))<CR>
-nnoremap <silent> nm <cmd> lua require('renamer').rename()<cr>
+nnoremap <leader>, <cmd> lua require('renamer').rename()<cr>
 nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
