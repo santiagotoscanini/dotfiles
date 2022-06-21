@@ -19,6 +19,7 @@ require("feline-config")
 require("smooth-scrolling")
 require("treesitter")
 require("comments")
+require("renamer").setup()
 
 -- FIXME(santiagotoscanini): This is not working.
 require("colorizer").setup({

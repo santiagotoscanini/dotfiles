@@ -22,6 +22,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
     Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip (snippets)
     Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
+    Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
     Plug 'github/copilot.vim'                         " GitHub Copilot
 
