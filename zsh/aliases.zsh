@@ -12,6 +12,10 @@ alias cdevp="cd ~/dev/personal"
 alias cdot="cd $DOTFILES_DIR"
 alias cdxdg="cd $XDG_CONFIG_HOME"
 
+# Network
+alias internal_ip="ipconfig getifaddr en0" # WiFi
+alias external_ip="curl -s icanhazip.com"
+
 # Terminal
 alias bclean="clear && printf '\e[3J'"
 
