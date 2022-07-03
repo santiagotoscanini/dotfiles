@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'folke/trouble.nvim'                         " LSP errors
     Plug 'lukas-reineke/lsp-format.nvim'              " LSP Formatter wrapper
 
+    " LSP
     Plug 'neovim/nvim-lspconfig'                      " LSP
     " Autocomplete
     Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
@@ -23,6 +24,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip (snippets)
     Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
     Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
+
+    " Debugger
+    Plug 'mfussenegger/nvim-dap'                  " Debugger
+    " Plug 'leoluz/nvim-dap-go'                     " Debugger for Go
+    Plug 'rcarriaga/nvim-dap-ui'                   " Debugger UI
 
     Plug 'github/copilot.vim'                         " GitHub Copilot
 

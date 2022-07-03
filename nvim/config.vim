@@ -15,30 +15,37 @@ set undodir=~/.vim/undodir         " Set the path for the undofiles
 " Left column
 set number                         " Show numbers
 set numberwidth=1                  " Width of numbers
-set signcolumn=number              " if apply, display symbols instead of numbers
-lua vim.wo.fillchars='eob: '       -- Hide ~ for empty lines (side bar)
+set signcolumn=auto                " Display simbols on left of number
+set fillchars=eob:\                " Hide ~ for lines after the end of the file
 
 " Status bar
-set noshowmode                     " Don't need to show the mode (Insert, Replace, Visual) because status line already do that
-set cmdheight=2                    " Size of CMD bar at the bottom
+set noshowmode                     " Don't need to show the mode (Insert, Replace, Visual) because status line already do that.
+set cmdheight=2                    " Size of CMD bar at the bottom, 2 lines.
+
+set clipboard=unnamedplus          " Copy between OS Clipboard and VIM Clipboard, Unnamed is vim copy register and + is OS reg.
+
+" Search
+set ignorecase                     " Case insensitive searches
+set smartcase                      " Case sensitive only if pattern contains at least one uppercase char.
 
 " Extra
 set nowrap                         " No wrap lines (lines longer than the width of the window will wrap and display on the next line)
-set scrolloff=10                   " Start to move up or down when we are 8 cells away
+set scrolloff=10                   " Start to move up or down when we are some cells away
 set showmatch                      " When inserting a brace, put the closing one and jump to it
-" set colorcolumn=120                " vertical line, to maintain the length of the code
+set colorcolumn=140                " vertical line, to maintain the length of the code
 set mouse=n                        " Mouse usage in vim
 
-let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+" Terminal
+" let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+" augroup AuNoNumberAndInsertInTerminal
+"     autocmd!
+"     autocmd TermOpen * setlocal nonumber norelativenumber
+"     autocmd TermOpen * startinsert
+" augroup END
+
 augroup AuDeleteBufferGitEditor
     autocmd!
     autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
-augroup END
-
-augroup AuNoNumberAndInsertInTerminal
-    autocmd!
-    autocmd TermOpen * setlocal nonumber norelativenumber
-    autocmd TermOpen * startinsert
 augroup END
 
 augroup AuToggleRelativeNumber
@@ -47,11 +54,6 @@ augroup AuToggleRelativeNumber
     autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
     " When enter insert mode, we avoid relative numbers
     autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
-
-augroup AuNvimTree
-    autocmd!
-    autocmd FileType NvimTree setlocal relativenumber
 augroup END
 
 augroup AuFileTypes
@@ -64,12 +66,6 @@ augroup END
 augroup AuRunFormatting
     autocmd BufWritePre * lua vim.lsp.buf.format()
 augroup END
-
-set clipboard=unnamedplus " Copy between OS Clipboard and VIM Clipboard, Unnamed is vim copy register and + is OS reg.
-
-" Search
-set ignorecase                     " Case insensitive searches
-set smartcase                      " Case sensitive only if pattern contains at least one uppercase char.
 
 augroup AuHighlightYank
     autocmd!

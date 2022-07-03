@@ -1,5 +1,6 @@
--- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
+-- TODO(santiagotoscanini): Check if neovim comes with TreeSitter installed
 require("nvim-treesitter.configs").setup({
+	-- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 	ensure_installed = {
 		"c",
 		"lua",

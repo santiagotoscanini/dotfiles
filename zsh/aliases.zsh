@@ -16,6 +16,19 @@ alias cdxdg="cd $XDG_CONFIG_HOME"
 alias internal_ip="ipconfig getifaddr en0" # WiFi
 alias external_ip="curl -s icanhazip.com"
 
+# Browser
+function _search_on_google() {
+    search="" # Clean up search string
+    for term in $@; do
+        search="$search%20$term"
+    done
+    open "http://www.google.com/search?q=$search"
+}
+function _search_google_clipboard() {
+    _search_on_google $(pbpaste)
+}
+alias googlecp="_search_google_clipboard"
+
 # Terminal
 alias bclean="clear && printf '\e[3J'"
 

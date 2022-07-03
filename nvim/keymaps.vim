@@ -1,14 +1,32 @@
 let mapleader = ' '
 
+" ------ BASICS ------
 inoremap jj <Esc>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>x :x<CR>
+" To stop highlights when stop searching
+nnoremap <esc> :noh<return><esc>
 
-" Now we can go to normal mode in terminal with esc and with jj
-tnoremap <Esc> <C-\><C-n>
-tnoremap jj    <C-\><C-n>
-" To send escape key to the terminal, we use ctrl-v esc
-tnoremap <C-v><Esc> <Esc>
+" ----- CUSTOM ------
+" Rename the current file
+function! RenameCurrentFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name !=# '' && new_name !=# old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        exec ':bd ' . old_name
+        redraw!
+    endif
+endfunction
+nnoremap <leader>rf :call RenameCurrentFile()<cr>
 
-" LUASNIP
+" FIXME(santiagotoscanini): This is not working.
+" Google the clipboard contents
+nnoremap <leader>sog <cmd>! _search_google_clipboard<cr>
+
+" ----- LUASNIP ------
 imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
 inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
@@ -18,6 +36,15 @@ snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
 imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 
+" ---- TERMINAL ------
+"
+" Now we can go to normal mode in terminal with esc and with jj
+tnoremap <Esc> <C-\><C-n>
+tnoremap jj    <C-\><C-n>
+" To send escape key to the terminal, we use ctrl-v esc
+tnoremap <C-v><Esc> <Esc>
+
+" ----- TMUX ------
 if exists('$TMUX')
     " Zoom the tmux runner pane
     nnoremap <leader>vz :VimuxZoomRunner<CR>
@@ -31,18 +58,20 @@ if exists('$TMUX')
     map <Leader>grct :wa<CR> :GolangTestFocused<CR>
 endif
 
+" ----- TELESCOPE ------
 " Find
 nnoremap <leader>f  <cmd>Telescope find_files<cr>
 nnoremap <c-t>      <cmd>Telescope live_grep <cr>
-
-
 " Git
 nnoremap <leader>gc <cmd>Telescope git_branches<cr>
+
+
+" ----- GIT ------
 nnoremap <leader>gb <cmd>Gitsigns blame_line<cr>
 " nnoremap <leader>gj :diffget //3<CR>
 " nnoremap <leader>gf :diffget //2<CR>
 
-" ## Tabs
+" ------ TABS -------
 " Go to tab by number
 noremap <leader>1 1gt
 noremap <leader>2 2gt
@@ -65,19 +94,7 @@ nnoremap L gt
 " nnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
 " vnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
 
-
-function! RenameCurrentFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name !=# '' && new_name !=# old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        exec ':bd ' . old_name
-        redraw!
-    endif
-endfunction
-nnoremap <leader>rf :call RenameCurrentFile()<cr>
-
+" ------ SCRATCH FILES
 function NewTabScratchFile()
     execute 'tabnew '
     setlocal buftype=nofile
@@ -85,9 +102,6 @@ function NewTabScratchFile()
     setlocal noswapfile
 endfunction
 nnoremap <leader><leader>sf :call NewTabScratchFile()<CR>
-
-nnoremap <leader>e :NvimTreeToggle<cr>
-nnoremap <leader>sf :NvimTreeFindFile<cr>
 
 function SaveScratchFile()
     let save_path = input('Insert path to save file: ')
@@ -97,10 +111,15 @@ function SaveScratchFile()
 endfunction
 nnoremap <leader><leader>save :call SaveScratchFile()<CR>
 
-" Copilot
+" ------ NVIM-TREE ------
+nnoremap <leader>e :NvimTreeToggle<cr>
+nnoremap <leader>sf :NvimTreeFindFile<cr>
+
+" ------- COPILOT -------
 let g:copilot_no_tab_map = v:true
 imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 
+" ------- LSP ---------
 " nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
 " nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
@@ -115,9 +134,3 @@ nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
 
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>x :x<CR>
-
-" To stop highlights when stop searching
-nnoremap <esc> :noh<return><esc>
