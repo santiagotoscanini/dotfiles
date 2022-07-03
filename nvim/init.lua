@@ -1,7 +1,9 @@
 vim.cmd("source $XDG_CONFIG_HOME/nvim/plugins.vim")
 
 require("nvim-autopairs").setup()
+require("nvim-cmp")
 require("lsp")
+require("indent-blankline")
 require("linter")
 require("snippets")
 
