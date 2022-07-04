@@ -1,6 +1,6 @@
 vim.g.completeopt = { "menu", "menuone", "noselect", "noinsert" }
 vim.opt.list = true
-vim.opt.listchars:append("space:⋅")
+-- vim.opt.listchars:append("space:⋅")
 
 local nvim_lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())

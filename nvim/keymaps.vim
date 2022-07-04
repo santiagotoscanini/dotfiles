@@ -2,6 +2,8 @@ let mapleader = ' '
 
 " ------ BASICS ------
 inoremap jj <Esc>
+" Write without appliying autocommands (as formatting)
+nnoremap <leader>nfw :noa w<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>x :x<CR>
