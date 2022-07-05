@@ -4,4 +4,8 @@ require("nvim-tree").setup({
 		signcolumn = "no",
 		width = 40,
 	},
+	filters = {
+		-- Hide .git folder
+		custom = { ".git$" },
+	},
 })
