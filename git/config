@@ -75,7 +75,10 @@
     # Show the user email for the current repository.
     whoami = config user.email
 [pull]
-    rebase = false
+    rebase = true
+[fetch]
+    # Automatically prune stale branches.
+    prune = true
 [init]
     defaultBranch = main
 [help]
