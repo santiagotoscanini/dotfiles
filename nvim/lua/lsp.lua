@@ -10,6 +10,7 @@ nvim_lsp.tsserver.setup({ capabilities = capabilities })
 nvim_lsp.solc.setup({ capabilities = capabilities })
 nvim_lsp.gopls.setup({ capabilities = capabilities })
 nvim_lsp.vimls.setup({})
+nvim_lsp.graphql.setup({})
 
 -- TODO(santiagotoscanini): make buffers aware of current virtual env (pyenv, poetry, venv, conda, etc)
 --⋅https://github.com/younger-1/nvim/blob/one/lua/young/lang/python.lua
