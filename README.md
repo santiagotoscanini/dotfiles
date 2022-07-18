@@ -1,5 +1,13 @@
 # Santiago Toscanini's dotfiles
 
+```
+    ____        __  _____ __
+   / __ \____  / /_/ __(_) /__  _____
+  / / / / __ \/ __/ /_/ / / _ \/ ___/
+ / /_/ / /_/ / /_/ __/ / /  __(__  )
+/_____/\____/\__/_/ /_/_/\___/____/
+```
+
 Dotfiles that are fully compatible with [XDG Base Directory Specification](https://wiki.archlinux.org/title/XDG_Base_Directory).
 
 For zsh we need to set the `ZDOTDIR` environment variable. [More Information](https://github.com/santiagotoscanini/dotfiles/tree/main/zsh#setup).
