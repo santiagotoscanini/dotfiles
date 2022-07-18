@@ -61,7 +61,7 @@ augroup AuFileTypes
     autocmd BufRead,BufNewFile .flake8                     setf dosini
     autocmd BufRead,BufNewFile */git/config,gitconfig-work setf gitconfig
     autocmd BufRead,BufNewFile */ssh/config                setf sshconfig
-    autocmd BufRead,BufNewFile *.vtl                       setf vm
+    autocmd BufRead,BufNewFile *.vtl                       setf json
 augroup END
 
 augroup AuRunFormatting

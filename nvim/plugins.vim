@@ -47,7 +47,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'TovarishFin/vim-solidity'                   " Filetype for solidity files
 
     Plug 'jparise/vim-graphql'                        " GraphQL syntax highlighting
-    Plug 'sealemar/vtl'                               " VTL syntax highlighting
 
     " Flutter
     Plug 'thosakwe/vim-flutter'                       " Flutter suport (flutter run, flutter test, flutter pub get, etc)
