@@ -44,13 +44,6 @@ set hlsearch
 set ignorecase
 set smartcase
 
-
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-
-
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
@@ -108,8 +101,11 @@ nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 map <leader><leader>f <Plug>(easymotion-s2)
 
 " Similar to windows
-nnoremap <c-> :action SplitVertically<CR>
-nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c--> :action SplitVertically<CR>
+
+nnoremap <c-_> :action SplitHorizontally<CR>
+" ^ This shortcut is not working
+
 nnoremap <c-=> :action Unsplit<CR>
 nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
 
