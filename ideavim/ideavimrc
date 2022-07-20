@@ -1,25 +1,55 @@
-let mapleader=' '
-map <C-c> <Esc>
+""" Map leader to space ----------------
+let mapleader=" "
+set timeout=1
 
-set timeout=200
+""" Plugins ---------------------------
+Plug 'preservim/nerdtree'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'kana/vim-textobj-entire'
+Plug 'machakann/vim-highlightedyank'
+Plug 'dbakker/vim-paragraph-motion'
+
+" --- BASICS ---
+" Change VI
+nnoremap <leader>cvi :e ~/.config/ideavim/ideavimrc<CR>
+" Reload VI
+nnoremap <leader>rvi :action IdeaVim.ReloadVimRc.reload<CR>
+
+inoremap jj        <Esc>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>x :x<CR>
+
+" To stop highlights when stop searching
+nnoremap <esc>     :noh<return><esc>
+
+nnoremap <leader>et :NERDTree<cr>
+let NERDTreeQuitOnOpen=3
+
+nnoremap <leader>sf :action SelectInProjectView<cr>
+
+nnoremap <space>gc :action CommentByLineComment<cr>
+nnoremap <space>gb :action CommentByBlockComment<cr>
+
 set relativenumber
-set scrolloff=8
+set scrolloff=10
 
+" Search
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>x :x<CR>
 
 nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 
-nnoremap <esc> :noh<return><esc>
 
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
@@ -27,13 +57,13 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
 " similar to LSP
-nnoremap [g :action GotoNextError<CR>
-nnoremap ]g :action GotoPreviousError<CR>
-nnoremap <leader>gi :action GotoImplementation<CR>
-nnoremap <leader>rnn :action RenameElement<CR>
-nnoremap <leader>gr :action FindUsages<CR>
-nnoremap <leader>rnf :action RenameFile<CR>
-nnoremap gt :action GotoTest<CR>
+nnoremap [g          :action GotoNextError<CR>
+nnoremap ]g          :action GotoPreviousError<CR>
+nnoremap <leader>gi  :action GotoImplementation<CR>
+nmap <leader>rn <Action>(RenameElement)
+nnoremap <leader>gr  :action FindUsages<CR>
+nnoremap <leader>rf :action RenameFile<CR>
+nnoremap gt          :action GotoTest<CR>
 
 nnoremap <leader>rff :action ShowReformatFileDialog<CR>
 nnoremap <Leader>= :action ReformatCode<CR>
@@ -67,10 +97,6 @@ nnoremap <leader>gl :action ActivateVersionControlToolWindow<CR>
 
 nnoremap <leader>todo :action ActivateTODOToolWindow<CR>
 
-" Open and reload `ideavimrc`
-nnoremap \e :e ~/.config/ideavim/ideavimrc<CR>
-nnoremap \rv :action IdeaVim.ReloadVimRc.reload<CR>
-
 " ZenMode
 nnoremap <c-z> :action ToggleZenMode<CR>
 
@@ -79,9 +105,7 @@ nnoremap <c-z> :action ToggleZenMode<CR>
 nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
-" EasyMotion plugin emulation
-set easymotion
-map <leader>ss <Plug>(easymotion-s2)
+map <leader><leader>f <Plug>(easymotion-s2)
 
 " Similar to windows
 nnoremap <c-> :action SplitVertically<CR>
@@ -91,14 +115,14 @@ nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
 
 nnoremap <TAB> :action PreviousTab<CR>
 nnoremap <s-TAB> :action NextTab<CR>
-nnoremap <Leader>en :action EditSourceInNewWindow<CR>
+" nnoremap <Leader>en :action EditSourceInNewWindow<CR>
 nnoremap <Leader>n :action NextWindow<CR>
 nnoremap <Leader>q :action CloseContent<CR>
 nnoremap <Leader>qa :action CloseAllEditors<CR>
 
 " TODO(santiagotoscanini): debug configuration, toggle breakpoints, etc.
 map <Leader>rp <Esc>:action ChooseRunConfiguration<CR>
-map <Leader>rr <Esc>:action Run<CR>
+" map <Leader>rr <Esc>:action Run<CR>
 nnoremap ,r :action ContextRun<CR>
 nnoremap ,c :action RunClass<CR>
 " you can reach the ActivateDebugConfiguration by holding SHIFT when using ActivateRunConfiguration defined above.
@@ -122,13 +146,17 @@ nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <c-p> :action JumpToLastWindow<CR>
 nnoremap <c-x> :action HideAllWindows<CR>
 
-" TODO multicursors doesnt work well
-set multiple-cursors
-set idearefactormode=keep
-set ideajoin
-set surround
-set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
-set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
+""" Idea specific settings ----------------------
 set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
-set ideawrite=all               " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or " ESLint on save.
-set clipboard=ideaput
+set ideajoin                    " https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
+set idearefactormode=keep
+set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
+set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
+
+" runs :wa (save all) instead of :w, this is to support IJ options like Prettier or ESLint on save.
+set ideawrite=all
+
+set clipboard+=unnamed
+
+let g:highlightedyank_highlight_duration = "250"
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
