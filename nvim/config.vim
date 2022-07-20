@@ -1,6 +1,6 @@
 " Identation
 set tabstop=4                      " Width of the tab character
-set shiftwidth=4                   " Identation to use with identation commands
+set shiftwidth=4                   " Indentation to use with indentation commands
 set expandtab                      " Forces spaces to be used in place of tab characters
 set smartindent                    " Smart indent for braces, etc
 
@@ -15,7 +15,7 @@ set undodir=~/.vim/undodir         " Set the path for the undofiles
 " Left column
 set number                         " Show numbers
 set numberwidth=1                  " Width of numbers
-set signcolumn=auto                " Display simbols on left of number
+set signcolumn=auto                " Display symbols on left of number
 set fillchars=eob:\                " Hide ~ for lines after the end of the file
 
 " Status bar

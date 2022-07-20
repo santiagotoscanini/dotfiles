@@ -16,11 +16,11 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
 # -------------- TMUX -------
-# Aliases and utitlies for tmux.
+# Aliases and utilities for tmux.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
 
 # Avoid auto-starting tmux in IDEs
-if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
+if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
     plugins+=(tmux)
 
     ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session (if doesn't exist one).

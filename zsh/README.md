@@ -33,12 +33,12 @@ Some concepts: **\[1\]**
 
 **Interactive**: As the term implies, interactive means that the commands are run with user-interaction from keyboard. E.g. the shell can prompt the user to enter input.
 
-**Non-interactive**: the shell is probably run from an automated process so it can't assume it can request input or that someone will see the output. E.g., maybe it is best to write output to a log file.
+**Non-interactive**: the shell is probably run from an automated process, so it can't assume it can request input or that someone will see the output. E.g., maybe it is best to write output to a log file.
 
 
-**Login**: Means that the shell is run as part of the login of the user to the system. Typically used to do any configuration that a user needs/wants to establish his work environment.
+**Login**: Means that the shell is run as part of the login of the user to the system. Typically, used to do any configuration that a user needs/wants to establish his work environment.
 
-**Non-login**: Any other shell run by the user after logging on, or which is run by any automated process which is not coupled to a logged in user.
+**Non-login**: Any other shell run by the user after logging on, or which is run by any automated process which is not coupled to a logged-in user.
 
 ---
 

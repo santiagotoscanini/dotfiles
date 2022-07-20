@@ -15,13 +15,13 @@ call plug#begin('~/.vim/plugged')
     " LSP
     Plug 'neovim/nvim-lspconfig'                      " LSP
     " Autocomplete
-    Plug 'hrsh7th/nvim-cmp'                           " Completitions for Neovim
+    Plug 'hrsh7th/nvim-cmp'                           " Autocomplete for Neovim
     Plug 'hrsh7th/cmp-nvim-lua'                       " Completes Lua neovim API
-    Plug 'hrsh7th/cmp-nvim-lsp'                       " Completitions for LSP, Auto-import, moving between snippets, etc.
+    Plug 'hrsh7th/cmp-nvim-lsp'                       " Autocomplete for LSP, Auto-import, moving between snippets, etc.
     Plug 'hrsh7th/cmp-buffer'                         " Completes words from the current buffer
     Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
-    Plug 'hrsh7th/cmp-cmdline'                        " Completitions for command mode and search (based on buffer)
-    Plug 'saadparwaiz1/cmp_luasnip'                   " Completitions for LuaSnip (snippets)
+    Plug 'hrsh7th/cmp-cmdline'                        " Autocomplete for command mode and search (based on buffer)
+    Plug 'saadparwaiz1/cmp_luasnip'                   " Autocomplete for LuaSnip (snippets)
     Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
     Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
@@ -49,7 +49,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'jparise/vim-graphql'                        " GraphQL syntax highlighting
 
     " Flutter
-    Plug 'thosakwe/vim-flutter'                       " Flutter suport (flutter run, flutter test, flutter pub get, etc)
+    Plug 'thosakwe/vim-flutter'                       " Flutter support (flutter run, flutter test, flutter pub get, etc)
     Plug 'dart-lang/dart-vim-plugin'                  " Filetype for dart files
     Plug 'norcalli/nvim-colorizer.lua'                " Colorize RGB/HEX/HSL/HSV colors
 
@@ -68,7 +68,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-user'
 
     Plug 'easymotion/vim-easymotion'                  " Jump to a position
-    Plug 'unblevable/quick-scope'                      " Show occurencies for 'f' and 't'
+    Plug 'unblevable/quick-scope'                      " Show occurrences for 'f' and 't'
     Plug 'numToStr/Comment.nvim'                       " Commenter
     Plug 'tpope/vim-surround'                          " Change surrounding
 call plug#end()

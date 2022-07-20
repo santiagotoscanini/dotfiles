@@ -19,7 +19,7 @@ alias external_ip="curl -s icanhazip.com"
 # Browser
 function _search_on_google() {
     search="" # Clean up search string
-    for term in $@; do
+    for term in "$@"; do
         search="$search%20$term"
     done
     open "http://www.google.com/search?q=$search"
