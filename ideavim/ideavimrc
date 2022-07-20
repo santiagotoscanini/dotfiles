@@ -23,15 +23,18 @@ inoremap jj        <Esc>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q!<CR>
 nnoremap <leader>x :x<CR>
-
 " To stop highlights when stop searching
-nnoremap <esc>     :noh<return><esc>
+nnoremap <esc> :noh<return><esc>
 
-nnoremap <leader>et :NERDTree<cr>
+""" ---- NERDTree ----------
+nnoremap <leader>asdasd :action SelectInProjectView<cr>
+" ^ Change mapping to avoid conflicts
+nnoremap <leader>et  :NERDTree<cr>
 let NERDTreeQuitOnOpen=3
+" ^ This is not working
 
-nnoremap <leader>sf :action SelectInProjectView<cr>
 
+""" ------ Comments -------
 nnoremap <space>gc :action CommentByLineComment<cr>
 nnoremap <space>gb :action CommentByBlockComment<cr>
 
