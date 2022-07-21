@@ -9,4 +9,6 @@ function autoSwitchAlacrittyTheme() {
         _change_alacritty_theme material_lighter
     fi
 }
-autoSwitchAlacrittyTheme
+if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+    autoSwitchAlacrittyTheme
+fi

@@ -1,8 +1,16 @@
-""" Map leader to space ----------------
-let mapleader=" "
-set timeout=1
+" ---------- BASICS -------------------------
+let mapleader=" "           " Map leader to space
+set timeout=200             " Timeout for key
+inoremap jj <Esc>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>x :x<CR>
 
-""" Plugins ---------------------------
+" To stop highlights when stop searching
+nnoremap <esc> :noh<return><esc>
+
+
+""" -------- Plugins ---------------------------
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
@@ -13,30 +21,50 @@ Plug 'kana/vim-textobj-entire'
 Plug 'machakann/vim-highlightedyank'
 Plug 'dbakker/vim-paragraph-motion'
 
-" --- BASICS ---
-" Change VI
+
+""" ------ IdeaVim Settings -------------------------------------------------
+set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
+set ideajoin                    " https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
+set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
+set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
+set idearefactormode=keep
+
+" ideavimrc
 nnoremap <leader>cvi :e ~/.config/ideavim/ideavimrc<CR>
-" Reload VI
-nnoremap <leader>rvi :action IdeaVim.ReloadVimRc.reload<CR>
+nmap <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
 
-inoremap jj        <Esc>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>x :x<CR>
-" To stop highlights when stop searching
-nnoremap <esc> :noh<return><esc>
 
-""" ---- NERDTree ----------
-nnoremap <leader>asdasd :action SelectInProjectView<cr>
-" ^ Change mapping to avoid conflicts
-nnoremap <leader>et  :NERDTree<cr>
-let NERDTreeQuitOnOpen=3
-" ^ This is not working
+""" ------ HIGHLIGHT Yanked text --------------------------------
+let g:highlightedyank_highlight_duration = "250"
+let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
+
+
+""" ---- NERDTree ---------------------------------------------------------
+nmap <leader>ef <Action>(SelectInProjectView)
+nmap <leader>et :NERDTreeToggle<CR>
+
+" TODO(santiagotoscanini): These aren't working
+let g:NERDTreeMapOpenSplit='-'
+let g:NERDTreeMapOpenVSplit='_'
 
 
 """ ------ Comments -------
 nnoremap <space>gc :action CommentByLineComment<cr>
 nnoremap <space>gb :action CommentByBlockComment<cr>
+
+
+""" ------- GIT ---------
+nnoremap <leader>gitc :action ActivateCommitToolWindow<CR>
+nnoremap <leader>gp :action Vcs.Push<CR>
+nnoremap <leader>ggi :action Git.Ignore.File<CR>
+nnoremap <leader>gcc :action Git.ChangesView.Conflicts<CR>
+nnoremap <leader>gf :action Git.ChangesView.AcceptYours<CR>
+nnoremap <leader>gj :action Git.ChangesView.AcceptTheirs<CR>
+nnoremap <leader>gm :action Git.Menu<CR>
+nnoremap <leader>gb :action Git.Branches<CR>
+nnoremap <leader>gpr :action Github.Create.Pull.Request<CR>
+nnoremap <leader>gl :action ActivateVersionControlToolWindow<CR>
+
 
 set relativenumber
 set scrolloff=10
@@ -47,49 +75,42 @@ set hlsearch
 set ignorecase
 set smartcase
 
+
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
-" similar to LSP
-nnoremap [g          :action GotoNextError<CR>
-nnoremap ]g          :action GotoPreviousError<CR>
-nnoremap <leader>gi  :action GotoImplementation<CR>
+""" -------- LSP -------------------------------------------------------
+nmap [g         <Action>(GotoNextError)
+nmap ]g         <Action>(GotoPreviousError)
+nmap <leader>gi <Action>(GotoImplementation)
 nmap <leader>rn <Action>(RenameElement)
-nnoremap <leader>gr  :action FindUsages<CR>
-nnoremap <leader>rf :action RenameFile<CR>
-nnoremap gt          :action GotoTest<CR>
+nmap <leader>gr <Action>(FindUsages)
+nmap <leader>rf <Action>(RenameFile)
+nmap gt         <Action>(GotoTest)
 
+""" -------- Refactorings ------------------------------------------------
 nnoremap <leader>rff :action ShowReformatFileDialog<CR>
 nnoremap <Leader>= :action ReformatCode<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
 nnoremap <leader>cc :action CodeCleanup<CR>
-
 nnoremap <leader>ref :action Refactorings.QuickListPopupAction<CR>
 nnoremap <leader>xm :action ExtractMethod<CR>
 
+""" -------- Services ---------------------------------------------------
 nnoremap <leader>sw :action ActivateServicesToolWindow<CR>
 
 " similar to FZF
-nnoremap <leader><leader> :action GotoFile<CR>
+nmap <leader><leader> <Action>(GotoFile)
+nmap <leader>rg       <Action>(FindInPath)
+nmap <leader>rl       <Action>(RecentLocations)
 nnoremap <c-a> :action GotoAction<CR>
-nnoremap <leader>rg :action FindInPath<CR>
-nnoremap <c-r> :action RecentFiles<CR>
-nnoremap <leader>l :action RecentLocations<CR>
+" nnoremap <c-r> :action RecentFiles<CR>
 nnoremap <leader>sf :action Scratch.ShowFilesPopup<CR>
 
-" similar to Fugitive
-nnoremap <leader>gc :action ActivateCommitToolWindow<CR>
-nnoremap <leader>gp :action Vcs.Push<CR>
-nnoremap <leader>ggi :action Git.Ignore.File<CR>
-nnoremap <leader>gcc :action Git.ChangesView.Conflicts<CR>
-nnoremap <leader>gf :action Git.ChangesView.AcceptYours<CR>
-nnoremap <leader>gj :action Git.ChangesView.AcceptTheirs<CR>
-nnoremap <leader>gm :action Git.Menu<CR>
-nnoremap <leader>gb :action Git.Branches<CR>
-nnoremap <leader>gpr :action Github.Create.Pull.Request<CR>
-nnoremap <leader>gl :action ActivateVersionControlToolWindow<CR>
+
+
 
 nnoremap <leader>todo :action ActivateTODOToolWindow<CR>
 
@@ -145,17 +166,8 @@ nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <c-p> :action JumpToLastWindow<CR>
 nnoremap <c-x> :action HideAllWindows<CR>
 
-""" Idea specific settings ----------------------
-set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
-set ideajoin                    " https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
-set idearefactormode=keep
-set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
-set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
 
 " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or ESLint on save.
 set ideawrite=all
 
 set clipboard+=unnamed
-
-let g:highlightedyank_highlight_duration = "250"
-let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
