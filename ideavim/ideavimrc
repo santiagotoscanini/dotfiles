@@ -24,7 +24,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/argtextobj.vim'
+Plug 'vim-scripts/argtextobj
 Plug 'kana/vim-textobj-entire'
 Plug 'machakann/vim-highlightedyank'
 Plug 'dbakker/vim-paragraph-motion'
@@ -184,3 +184,12 @@ map ,f         <Action>(RerunFailedTests)
 map ,b         <Action>(ToggleLineBreakpoint)
 map ,d         <Action>(ContextDebug)
 map ,n         <Action>(ActivateDebugToolWindow)
+
+
+""" -------- Task management ----------------------------------------------
+" Check tasks.switch
+map <c-o> <Action>(tasks.goto)
+
+map <c-0> <Action>(tasks.time.tracking)
+map <c-c> <Action>(tasks.close)
+map <c-b> <Action>(tasks.open.in.browser)
