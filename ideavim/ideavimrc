@@ -188,7 +188,7 @@ map ,n         <Action>(ActivateDebugToolWindow)
 
 """ -------- Task management ----------------------------------------------
 " Check tasks.switch
-map <c-o> <Action>(tasks.goto)
+map <c-9> <Action>(tasks.goto)
 
 map <c-0> <Action>(tasks.time.tracking)
 map <c-c> <Action>(tasks.close)
