@@ -1,16 +1,24 @@
-" ---------- BASICS -------------------------
+" ---------- BASICS --------------------------------------------------
 let mapleader=" "           " Map leader to space
 set timeout=200             " Timeout for key
 inoremap jj <Esc>
+
+" runs :wa (save all) instead of :w, this is to support IJ options like Prettier or ESLint on save.
+set ideawrite=all
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q!<CR>
+
+map <leader>q <Action>(CloseContent)
+map <leader>qa <Action>(CloseAllEditors)
 nnoremap <leader>x :x<CR>
 
-" To stop highlights when stop searching
-nnoremap <esc> :noh<return><esc>
+set number relativenumber
+set scrolloff=10
+set sidescrolloff=10
 
+set clipboard+=unnamed
+set clipboard+=ideaput
 
-""" -------- Plugins ---------------------------
+""" -------- Plugins --------------------------------------------------
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
@@ -31,7 +39,7 @@ set idearefactormode=keep
 
 " ideavimrc
 nnoremap <leader>cvi :e ~/.config/ideavim/ideavimrc<CR>
-nmap <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
+map <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
 
 
 """ ------ HIGHLIGHT Yanked text --------------------------------
@@ -40,134 +48,144 @@ let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
 
 
 """ ---- NERDTree ---------------------------------------------------------
-nmap <leader>ef <Action>(SelectInProjectView)
-nmap <leader>et :NERDTreeToggle<CR>
+map <c-e> <Action>(SelectInProjectView)
+map <c-n> :NERDTree<CR>
 
 " TODO(santiagotoscanini): These aren't working
 let g:NERDTreeMapOpenSplit='-'
 let g:NERDTreeMapOpenVSplit='_'
 
 
-""" ------ Comments -------
-nnoremap <space>gc :action CommentByLineComment<cr>
-nnoremap <space>gb :action CommentByBlockComment<cr>
+""" ---------- Multiple Cursors --------------------------------------------
+map mn <A-n>
+map mx <A-x>
+map mp <A-p>
 
 
-""" ------- GIT ---------
-nnoremap <leader>gitc :action ActivateCommitToolWindow<CR>
-nnoremap <leader>gp :action Vcs.Push<CR>
-nnoremap <leader>ggi :action Git.Ignore.File<CR>
-nnoremap <leader>gcc :action Git.ChangesView.Conflicts<CR>
-nnoremap <leader>gf :action Git.ChangesView.AcceptYours<CR>
-nnoremap <leader>gj :action Git.ChangesView.AcceptTheirs<CR>
-nnoremap <leader>gm :action Git.Menu<CR>
-nnoremap <leader>gb :action Git.Branches<CR>
-nnoremap <leader>gpr :action Github.Create.Pull.Request<CR>
-nnoremap <leader>gl :action ActivateVersionControlToolWindow<CR>
+""" ---------- EasyMotion --------------------------------------------------
+map <leader>f <Plug>(easymotion-s)
+map <leader>F <Plug>(easymotion-f)
 
 
-set number relativenumber
-set scrolloff=10
+""" ------- GIT -----------------------------------------------------------
+map <leader>gitc <Action>(ActivateCommitToolWindow)
+map <leader>gp   <Action>(Vcs.Push)
+map <leader>ggi  <Action>(Git.Ignore.File)
+map <leader>gcc  <Action>(Git.ChangesView.Conflicts)
+map <leader>gf   <Action>(Git.ChangesView.AcceptYours)
+map <leader>gj   <Action>(Git.ChangesView.AcceptTheirs)
+map <leader>gm   <Action>(Git.Menu)
+map <leader>gb   <Action>(Git.Branches)
+map <leader>gpr  <Action>(Github.Create.Pull.Request)
+map <leader>gl   <Action>(ActivateVersionControlToolWindow)
 
-" Search
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
+
+" ------ Distraction Free Mode -----------------------------------------
+map <c-z> <Action>(ToggleDistractionFreeMode)
 
 
+" ---- Terminal ---------------------------------------------------------
+map <c-t>     <Action>(ActivateTerminalToolWindow)
+map <leader>t <Action>(Terminal.OpenInTerminal)
+
+
+" ---- Window Management ------------------------------------------------
+map <c-\> <Action>(SplitHorizontally)
+map <c--> <Action>(SplitVertically)
+map <c-=> <Action>(Unsplit)
+map <c-m> <Action>(MoveEditorToOppositeTabGroup)
+
+map <leader>e <Action>(EditSourceInNewWindow)
+map <leader>n <Action>(NextWindow)
+
+map ;q <Action>(CloseContent)
+map ;a <Action>(CloseAllEditors)
+
+map <c-p> <Action>(JumpToLastWindow)
+map <c-x> <Action>(HideAllWindows)
+
+map <leader>todo <Action>(ActivateTODOToolWindow)
+
+" To move between tabs (currently I'm not using tabs)
+" map <TAB> <Action>(PreviousTab)
+" map <s-TAB> <Action>(NextTab)
+
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+" Move between windows
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+
+" ----- Search -----------------------------------------------------------
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" To stop highlights when stop searching
+nnoremap <esc> :noh<return><esc>
+
+
 """ -------- LSP -------------------------------------------------------
-nmap [g         <Action>(GotoNextError)
-nmap ]g         <Action>(GotoPreviousError)
-nmap <leader>gi <Action>(GotoImplementation)
-nmap <leader>rn <Action>(RenameElement)
-nmap <leader>gr <Action>(FindUsages)
-nmap <leader>rf <Action>(RenameFile)
-nmap gt         <Action>(GotoTest)
+map ge         <Action>(GotoNextError)
+map gE         <Action>(GotoPreviousError)
+map <leader>gi <Action>(GotoImplementation)
+map <leader>re <Action>(RenameElement)
+map <leader>gr <Action>(FindUsages)
+map <leader>rf <Action>(RenameFile)
+map gt         <Action>(GotoTest)
+
 
 """ -------- Refactorings ------------------------------------------------
-nnoremap <leader>rff :action ShowReformatFileDialog<CR>
-nnoremap <Leader>= :action ReformatCode<CR>
-nnoremap <leader>o :action OptimizeImports<CR>
-nnoremap <leader>cc :action CodeCleanup<CR>
-nnoremap <leader>ref :action Refactorings.QuickListPopupAction<CR>
-nnoremap <leader>xm :action ExtractMethod<CR>
+map <leader>rff <Action>(ShowReformatFileDialog)
+map <Leader>=   <Action>(ReformatCode)
+map <leader>o   <Action>(OptimizeImports)
+map <leader>cc  <Action>(CodeCleanup)
+map <leader>ref <Action>(Refactorings.QuickListPopupAction)
+map <leader>xm  <Action>(ExtractMethod)
+
 
 """ -------- Services ---------------------------------------------------
-nnoremap <leader>sw :action ActivateServicesToolWindow<CR>
-
-" similar to FZF
-nmap <leader><leader> <Action>(GotoFile)
-nmap <leader>rg       <Action>(FindInPath)
-nmap <leader>rl       <Action>(RecentLocations)
-nnoremap <c-a> :action GotoAction<CR>
-" nnoremap <c-r> :action RecentFiles<CR>
-nnoremap <leader>sf :action Scratch.ShowFilesPopup<CR>
+map <leader>sw <Action>(ActivateServicesToolWindow)
 
 
+""" -------- Fuzzy finder ------------------------------------------------
+map <c-f>      <Action>(GotoFile)
+map <leader>rg <Action>(FindInPath)
+map <leader>rl <Action>(RecentLocations)
+map <c-a>      <Action>(GotoAction)
+map <c-r>      <Action>(RecentFiles)
+map <leader>sf <Action>(Scratch.ShowFilesPopup)
 
 
-nnoremap <leader>todo :action ActivateTODOToolWindow<CR>
+""" -------- Folds -------------------------------------------------------
+map zc         <Action>(CollapseRegion)
+map zo         <Action>(ExpandRegion)
+map <leader>zc <Action>(CollapseAllRegions)
+map <leader>zo <Action>(ExpandAllRegions)
 
-" ZenMode
-nnoremap <c-z> :action ToggleZenMode<CR>
 
-" TODO(santiagotoscanini): shortcuts to split and move between terminals like tmux, it has to be configured from IDE settings.
-" Terminal
-nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
-nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+""" -------- Moving ------------------------------------------------------
+map [[ <Action>(MethodUp)
+map ]] <Action>(MethodDown)
 
-map <leader><leader>f <Plug>(easymotion-s2)
 
-" Similar to windows
-nnoremap <c--> :action SplitVertically<CR>
-
-nnoremap <c-_> :action SplitHorizontally<CR>
-" ^ This shortcut is not working
-
-nnoremap <c-=> :action Unsplit<CR>
-nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
-
-nnoremap <TAB> :action PreviousTab<CR>
-nnoremap <s-TAB> :action NextTab<CR>
-" nnoremap <Leader>en :action EditSourceInNewWindow<CR>
-nnoremap <Leader>n :action NextWindow<CR>
-nnoremap <Leader>q :action CloseContent<CR>
-nnoremap <Leader>qa :action CloseAllEditors<CR>
-
+""" -------- Run ---------------------------------------------------------
 " TODO(santiagotoscanini): debug configuration, toggle breakpoints, etc.
-map <Leader>rp <Esc>:action ChooseRunConfiguration<CR>
-" map <Leader>rr <Esc>:action Run<CR>
-nnoremap ,r :action ContextRun<CR>
-nnoremap ,c :action RunClass<CR>
-" you can reach the ActivateDebugConfiguration by holding SHIFT when using ActivateRunConfiguration defined above.
-nnoremap ,t :action ActivateRunToolWindow<CR>
-nnoremap ,u :action Rerun<CR>
-nnoremap ,f :action RerunFailedTests<CR>
+map <leader>rp <Action>(ChooseRunConfiguration)
+map <leader>rr <Action>(Run)
+map ,r         <Action>(ContextRun)
 
-nnoremap ,b :action ToggleLineBreakpoint<CR>
-nnoremap ,d :action ContextDebug<CR>
-nnoremap ,n :action ActivateDebugToolWindow<CR>
+" Run the current file
+map ,c         <Action>(RunClass)
 
-" Move between methods
-nnoremap [[ :action MethodUp<CR>
-nnoremap ]] :action MethodDown<CR>
-
-nnoremap zc :action CollapseRegion<CR>
-nnoremap zo :action ExpandRegion<CR>
-nnoremap <leader>zc :action CollapseAllRegions<CR>
-nnoremap <leader>zo :action ExpandAllRegions<CR>
-
-nnoremap <c-p> :action JumpToLastWindow<CR>
-nnoremap <c-x> :action HideAllWindows<CR>
-
-
-" runs :wa (save all) instead of :w, this is to support IJ options like Prettier or ESLint on save.
-set ideawrite=all
-
-set clipboard+=unnamed
+" you can reach the ActivateDebugConfiguration by holding SHIFT when using ActivateRunConfiguration defined below.
+map ,t         <Action>(ActivateRunToolWindow)
+map ,u         <Action>(Rerun)
+map ,f         <Action>(RerunFailedTests)
+map ,b         <Action>(ToggleLineBreakpoint)
+map ,d         <Action>(ContextDebug)
+map ,n         <Action>(ActivateDebugToolWindow)
