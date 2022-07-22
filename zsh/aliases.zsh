@@ -42,6 +42,7 @@ alias chvim="nvim $XDG_CONFIG_HOME/nvim"
 alias chzsh="nvim $XDG_CONFIG_HOME/zsh"
 alias chgit="nvim $XDG_CONFIG_HOME/git/config"
 alias chgh="nvim $XDG_CONFIG_HOME/gh/config.yml"
+alias idot="idea $DOTFILES_DIR"
 
 # QMK
 function _compile_my_keymap(){
