@@ -51,10 +51,6 @@ let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
 map <c-e> <Action>(SelectInProjectView)
 map <c-n> :NERDTree<CR>
 
-" TODO(santiagotoscanini): These aren't working
-let g:NERDTreeMapOpenSplit='-'
-let g:NERDTreeMapOpenVSplit='_'
-
 
 """ ---------- Multiple Cursors --------------------------------------------
 map mn <A-n>
@@ -174,7 +170,6 @@ map ]] <Action>(MethodDown)
 
 
 """ -------- Run ---------------------------------------------------------
-" TODO(santiagotoscanini): debug configuration, toggle breakpoints, etc.
 map <leader>rp <Action>(ChooseRunConfiguration)
 map <leader>rr <Action>(Run)
 map ,r         <Action>(ContextRun)
