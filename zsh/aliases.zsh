@@ -45,15 +45,20 @@ alias chgh="nvim $XDG_CONFIG_HOME/gh/config.yml"
 alias idot="idea $DOTFILES_DIR"
 
 # QMK
+current_keyboard=crkbd
+current_keymap=santi_km
 function _compile_my_keymap(){
-    current_keyboard=crkbd
-    current_keymap=santi_km
     file_name="$current_keyboard"_rev1_"$current_keymap".hex
 
     qmk compile -kb $current_keyboard -km $current_keymap
     cp $QMK_DIR/$file_name $DOTFILES_DIR/qmk/$current_keymap/$file_name
 }
 alias qmkc='_compile_my_keymap'
+
+function _flash_my_keymap(){
+    qmk flash -kb $current_keyboard -km $current_keymap
+}
+alias qmkf='_flash_my_keymap'
 
 # Docker
 function _docker_build_and_push_image(){
