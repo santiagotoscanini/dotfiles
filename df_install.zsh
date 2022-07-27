@@ -49,6 +49,17 @@ pushd $DOTFILES_DIR
         echo 'Stowed'
     popd
 
+    pushd obsidian
+        notes_dir=~/dev/notes
+        echo ------ obsidian ------
+
+        stow -D -t $notes_dir .
+        echo 'Unstowed'
+
+        stow -t $notes_dir .
+        echo 'Stowed'
+    popd
+
     # Work dotfiles
     pushd work-dotfiles
         echo
