@@ -11,3 +11,10 @@ commitDotfiles() {
     popd
 }
 
+commitNotes() {
+    pushd $NOTES_DIR
+        git add .
+        git commit -m "[Automatically]: Update notes."
+        git push
+    popd
+}

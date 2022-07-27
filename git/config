@@ -69,6 +69,10 @@
     dotfiles = "!source $XDG_CONFIG_HOME/zsh/git-alias.zsh && commitDotfiles"
     df = dotfiles
 
+    # Commit notes
+    obsidian = "!source $XDG_CONFIG_HOME/zsh/git-alias.zsh && commitNotes"
+    obs = obsidian
+
     # List contributors with number of commits.
     contributors = shortlog --summary --numbered
 
