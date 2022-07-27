@@ -96,3 +96,7 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[gpg]
+    # GUI apps that use git (like Obsidian) don't read shell initialization files,
+    # so they don't load homebrew paths.
+	program = /opt/homebrew/bin/gpg

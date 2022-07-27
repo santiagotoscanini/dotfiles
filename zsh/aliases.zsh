@@ -11,6 +11,7 @@ alias cdevw="cd ~/dev/work"
 alias cdevp="cd ~/dev/personal"
 alias cdot="cd $DOTFILES_DIR"
 alias cdxdg="cd $XDG_CONFIG_HOME"
+alias cdnotes="cd ~/dev/notes"
 
 # Network
 alias internal_ip="ipconfig getifaddr en0" # WiFi
