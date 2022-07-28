@@ -104,3 +104,5 @@
     # GUI apps that use git (like Obsidian) don't read shell initialization files,
     # so they don't load homebrew paths.
 	program = /opt/homebrew/bin/gpg
+[push]
+	autoSetupRemote = true
