@@ -106,3 +106,4 @@
 	program = /opt/homebrew/bin/gpg
 [push]
 	autoSetupRemote = true
+	default = current
