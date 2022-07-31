@@ -1,6 +1,8 @@
 # Inherits from https://github.com/qmk/qmk_firmware/blob/master/keyboards/crkbd/rules.mk
+BOOTLOADER = atmel-dfu
 
 RGB_MATRIX_ENABLE = yes
+MOUSEKEY_ENABLE = no
 
 OLED_ENABLE  = yes
 OLED_DRIVER = SSD1306

@@ -8,7 +8,7 @@ extern uint8_t is_master;
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 enum layers {
-  _QWERTY,
+  _BASE = 0,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -17,7 +17,7 @@ enum layers {
 // Custom keycodes for layer keys
 // Dual function escape with left command
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
+    QWERTY = SAFE_RANGE,
     LOWER,
     RAISE,
     ADJUST,
@@ -44,7 +44,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT(
+  [_BASE] = LAYOUT(
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
          KC_TAB,         KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                 KC_Y,    KC_U, KC_I,    KC_O,   KC_P,    KC_BSPC,
       //---------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -82,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
-         RESET, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_SLEP,                       KC_BTN1, XXXXXXX,  XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU,
+         RESET, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_SLEP,                       XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU,
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
-         RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MPLY,                       KC_MS_L, KC_MS_D,  KC_MS_U, KC_MS_R, KC_BRID, KC_BRIU,
+         RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MPLY,                       XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU,
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
-         RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_PSCR,                       KC_WH_R, KC_WH_U,  KC_WH_D, KC_WH_L, KC_MPRV, KC_MNXT,
+         RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, KC_PSCR,                       XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, KC_MPRV, KC_MNXT,
       //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                              KC_LGUI, _______, KC_SPC,       KC_ENT, _______, TD(TD_ALT)
                                             //|------------------------|  |----------------------------|
@@ -311,33 +311,29 @@ bool oled_task_user(void) {
 
 
 
-
 int RGB_current_mode;
 
 void rgb_matrix_indicators_user(void) {
-  #ifdef RGB_MATRIX_ENABLE
-  switch (biton32(layer_state)) {
-      case _RAISE:
-        for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 229, 23, 23);
-        }
-        break;
+    switch (get_highest_layer(layer_state)) {
+        case _BASE:
+            if (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) {
+                rgb_matrix_set_color_all(50, 223, 23);
+            }
+            break;
 
-      case _LOWER:
-        for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-          rgb_matrix_set_color(i, 50, 82, 223);
-        }
-        break;
+        // We also have the function `rgb_matrix_set_color(led, r, g, b)` to only set the color of a single LED.
+        case _LOWER:
+            rgb_matrix_set_color_all(50, 82, 223);
+            break;
 
-      default:
-        if (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) {
-          for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-              rgb_matrix_set_color(i, 50, 223, 79);
-          }
-        }
-        break;
-  }
-  #endif
+        case _RAISE:
+            rgb_matrix_set_color_all(229, 23, 23);
+            break;
+
+        case _ADJUST:
+            rgb_matrix_set_color_all(123, 111, 9);
+            break;
+    }
 }
 
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {

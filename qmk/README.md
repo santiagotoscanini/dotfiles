@@ -1,5 +1,11 @@
-Compile firmware using:
+Compile firmware running:
 
 ```bash
-qmkc
+,qmkc
+```
+
+And flash running:
+
+```bash
+,qmkf
 ```
