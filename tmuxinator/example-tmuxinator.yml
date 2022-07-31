@@ -1,6 +1,6 @@
-# /Users/stoscanini/.config/tmuxinator/ort-asp.yml
+# /Users/stoscanini/.config/tmuxinator/example-tmuxinator.yml
 
-name: obli-ort
+name: example-tmuxinator
 root: ~/
 
 # Optional tmux socket
@@ -52,7 +52,7 @@ windows:
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - vim
+        - nvim
         - guard
-  - server: bundle exec rails s
+  - server: npm start
   - logs: tail -f log/development.log
