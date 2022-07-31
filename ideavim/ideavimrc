@@ -5,18 +5,43 @@ inoremap jj <Esc>
 
 " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or ESLint on save.
 set ideawrite=all
-nnoremap <leader>w :w<CR>
 
-map <leader>q <Action>(CloseContent)
-map <leader>qa <Action>(CloseAllEditors)
-nnoremap <leader>x :x<CR>
+nmap <leader>w  :w<CR>
+nmap <leader>q  <Action>(CloseContent)
+nmap <leader>Q <Action>(CloseAllEditors)
 
 set number relativenumber
 set scrolloff=10
 set sidescrolloff=10
 
 set clipboard+=unnamed
+" enable native idea paste action for put operations
 set clipboard+=ideaput
+
+
+""" ------ IdeaVim Settings -------------------------------------------------
+" https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md
+
+set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
+set ideajoin                    " https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
+set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
+set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
+set idearefactormode=keep       " Define the mode that would be enabled during the refactoring (renaming, etc)
+
+" ideavimrc
+nmap <leader>cvi :e ~/.config/ideavim/ideavimrc<CR>
+map <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
+
+
+" ----- Search -----------------------------------------------------------
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" To stop highlights when stop searching
+nnoremap <esc> :noh<return><esc>
+
 
 """ -------- Plugins --------------------------------------------------
 Plug 'preservim/nerdtree'
@@ -24,22 +49,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/argtextobj
+Plug 'vim-scripts/argtextobj'
 Plug 'kana/vim-textobj-entire'
 Plug 'machakann/vim-highlightedyank'
 Plug 'dbakker/vim-paragraph-motion'
-
-
-""" ------ IdeaVim Settings -------------------------------------------------
-set ideamarks                   " This is to sync vim marks with IJ Bookmarks.
-set ideajoin                    " https://github.com/JetBrains/ideavim/blob/master/doc/ideajoin-examples.md
-set ideastatusicon=enabled      " Shows the icon in the status bar coloured.
-set ideavimsupport=dialogs      " Enable IdeaVim on dialogs.
-set idearefactormode=keep
-
-" ideavimrc
-nnoremap <leader>cvi :e ~/.config/ideavim/ideavimrc<CR>
-map <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
 
 
 """ ------ HIGHLIGHT Yanked text --------------------------------
@@ -63,19 +76,6 @@ map <leader>f <Plug>(easymotion-s)
 map <leader>F <Plug>(easymotion-f)
 
 
-""" ------- GIT -----------------------------------------------------------
-map <leader>gitc <Action>(ActivateCommitToolWindow)
-map <leader>gp   <Action>(Vcs.Push)
-map <leader>ggi  <Action>(Git.Ignore.File)
-map <leader>gcc  <Action>(Git.ChangesView.Conflicts)
-map <leader>gf   <Action>(Git.ChangesView.AcceptYours)
-map <leader>gj   <Action>(Git.ChangesView.AcceptTheirs)
-map <leader>gm   <Action>(Git.Menu)
-map <leader>gb   <Action>(Git.Branches)
-map <leader>gpr  <Action>(Github.Create.Pull.Request)
-map <leader>gl   <Action>(ActivateVersionControlToolWindow)
-
-
 " ------ Distraction Free Mode -----------------------------------------
 map <c-z> <Action>(ToggleDistractionFreeMode)
 
@@ -89,18 +89,15 @@ map <leader>t <Action>(Terminal.OpenInTerminal)
 map <c-\> <Action>(SplitHorizontally)
 map <c--> <Action>(SplitVertically)
 map <c-=> <Action>(Unsplit)
-map <c-m> <Action>(MoveEditorToOppositeTabGroup)
+" map <c-m> <Action>(MoveEditorToOppositeTabGroup)
 
 map <leader>e <Action>(EditSourceInNewWindow)
 map <leader>n <Action>(NextWindow)
 
-map ;q <Action>(CloseContent)
-map ;a <Action>(CloseAllEditors)
-
 map <c-p> <Action>(JumpToLastWindow)
 map <c-x> <Action>(HideAllWindows)
 
-map <leader>todo <Action>(ActivateTODOToolWindow)
+map <leader>,todo <Action>(ActivateTODOToolWindow)
 
 " To move between tabs (currently I'm not using tabs)
 " map <TAB> <Action>(PreviousTab)
@@ -115,33 +112,35 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
 
-" ----- Search -----------------------------------------------------------
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
-
-" To stop highlights when stop searching
-nnoremap <esc> :noh<return><esc>
+""" ------- GIT -----------------------------------------------------------
+map <leader>gc  <Action>(ActivateCommitToolWindow)
+map <leader>gp  <Action>(Vcs.Push)
+map <leader>gi <Action>(Git.Ignore.File)
+map <leader>grc <Action>(Git.ChangesView.Conflicts)
+map <leader>gf  <Action>(Git.ChangesView.AcceptYours)
+map <leader>gj  <Action>(Git.ChangesView.AcceptTheirs)
+map <leader>gm  <Action>(Git.Menu)
+map <leader>gb  <Action>(Git.Branches)
+map <leader>ghp <Action>(Github.Create.Pull.Request)
 
 
 """ -------- LSP -------------------------------------------------------
-map ge         <Action>(GotoNextError)
-map gE         <Action>(GotoPreviousError)
-map <leader>gi <Action>(GotoImplementation)
+map gT         <Action>(GotoTest)
+map gi         <Action>(GotoImplementation)
+map gn         <Action>(GotoNextError)
+map gp         <Action>(GotoPreviousError)
 map <leader>re <Action>(RenameElement)
-map <leader>gr <Action>(FindUsages)
-map <leader>rf <Action>(RenameFile)
-map gt         <Action>(GotoTest)
+map <leader>su <Action>(FindUsages)
+map <leader>rnf <Action>(RenameFile)
 
 
 """ -------- Refactorings ------------------------------------------------
-map <leader>rff <Action>(ShowReformatFileDialog)
-map <Leader>=   <Action>(ReformatCode)
-map <leader>o   <Action>(OptimizeImports)
-map <leader>cc  <Action>(CodeCleanup)
-map <leader>ref <Action>(Refactorings.QuickListPopupAction)
-map <leader>xm  <Action>(ExtractMethod)
+map <leader>rf <Action>(ShowReformatFileDialog)
+map <leader>rq <Action>(Refactorings.QuickListPopupAction)
+map <Leader>=  <Action>(ReformatCode)
+map <leader>o  <Action>(OptimizeImports)
+map <leader>cc <Action>(CodeCleanup)
+map <leader>xm <Action>(ExtractMethod)
 
 
 """ -------- Services ---------------------------------------------------
@@ -149,12 +148,12 @@ map <leader>sw <Action>(ActivateServicesToolWindow)
 
 
 """ -------- Fuzzy finder ------------------------------------------------
-map <c-f>      <Action>(GotoFile)
-map <leader>rg <Action>(FindInPath)
-map <leader>rl <Action>(RecentLocations)
-map <c-a>      <Action>(GotoAction)
-map <c-r>      <Action>(RecentFiles)
-map <leader>sf <Action>(Scratch.ShowFilesPopup)
+map <c-f>       <Action>(GotoFile)
+map <leader>rg  <Action>(FindInPath)
+map <leader>rcl <Action>(RecentLocations)
+map <leader>rcf <Action>(RecentFiles)
+map <c-a>       <Action>(GotoAction)
+map <leader>scf <Action>(Scratch.ShowFilesPopup)
 
 
 """ -------- Folds -------------------------------------------------------
@@ -170,7 +169,7 @@ map ]] <Action>(MethodDown)
 
 
 """ -------- Run ---------------------------------------------------------
-map <leader>rp <Action>(ChooseRunConfiguration)
+map <leader>rm <Action>(ChooseRunConfiguration)
 map <leader>rr <Action>(Run)
 map ,r         <Action>(ContextRun)
 
@@ -186,10 +185,11 @@ map ,d         <Action>(ContextDebug)
 map ,n         <Action>(ActivateDebugToolWindow)
 
 
-""" -------- Task management ----------------------------------------------
-" Check tasks.switch
-map <c-9> <Action>(tasks.goto)
+""" -------- Task management (Jira, GitHub, time tracking, etc) ---------
+" "Manage task"
 
-map <c-0> <Action>(tasks.time.tracking)
-map <c-c> <Action>(tasks.close)
-map <c-b> <Action>(tasks.open.in.browser)
+" Check tasks.switch
+map <leader>mto <Action>(tasks.goto)
+map <leader>mtc <Action>(tasks.close)
+map <leader>mtt <Action>(tasks.time.tracking)
+map <leader>mtb <Action>(tasks.open.in.browser)
