@@ -91,11 +91,12 @@ map <leader>t <Action>(Terminal.OpenInTerminal)
 map <c-e> <Action>(SelectInProjectView)
 map <c-n> :NERDTree<CR>
 g:NERDTreeMapOpenSplit
+" TODO(santiagotoscanini): Create mappings for open files in split using same keymaps as window management (-\)
 
 
 " ---- Window Management ------------------------------------------------
-map <c-\> <Action>(SplitHorizontally)
-map <c--> <Action>(SplitVertically)
+map <c--> <Action>(SplitHorizontally)
+map <c-\> <Action>(SplitVertically)
 map <c-=> <Action>(Unsplit)
 " map <c-m> <Action>(MoveEditorToOppositeTabGroup)
 
