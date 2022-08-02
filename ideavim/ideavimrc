@@ -3,6 +3,13 @@ let mapleader=" "           " Map leader to space
 set timeout=200             " Timeout for key
 inoremap jj <Esc>
 
+" To be consistent with C and D operators, the default behavior is to yank the whole line.
+nnoremap Y y$
+
+" While in visual mode, will delete what is currently highlighted and replace it with what is in the register.
+" But it will yank it to a void register, meaning I still have what I originally had when I pasted.
+vnoremap <leader>p "_dP
+
 " runs :wa (save all) instead of :w, this is to support IJ options like Prettier or ESLint on save.
 set ideawrite=all
 
@@ -60,11 +67,6 @@ let g:highlightedyank_highlight_duration = "250"
 let g:highlightedyank_highlight_color = "rgba(160, 160, 160, 155)"
 
 
-""" ---- NERDTree ---------------------------------------------------------
-map <c-e> <Action>(SelectInProjectView)
-map <c-n> :NERDTree<CR>
-
-
 """ ---------- Multiple Cursors --------------------------------------------
 map mn <A-n>
 map mx <A-x>
@@ -83,6 +85,12 @@ map <c-z> <Action>(ToggleDistractionFreeMode)
 " ---- Terminal ---------------------------------------------------------
 map <c-t>     <Action>(ActivateTerminalToolWindow)
 map <leader>t <Action>(Terminal.OpenInTerminal)
+
+
+""" ---- NERDTree ---------------------------------------------------------
+map <c-e> <Action>(SelectInProjectView)
+map <c-n> :NERDTree<CR>
+g:NERDTreeMapOpenSplit
 
 
 " ---- Window Management ------------------------------------------------
@@ -122,6 +130,7 @@ map <leader>gj  <Action>(Git.ChangesView.AcceptTheirs)
 map <leader>gm  <Action>(Git.Menu)
 map <leader>gb  <Action>(Git.Branches)
 map <leader>ghp <Action>(Github.Create.Pull.Request)
+map <leader>ggb <Action>(Github.Open.In.Browser)
 
 
 """ -------- LSP -------------------------------------------------------
