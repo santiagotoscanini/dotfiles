@@ -3,6 +3,10 @@ let mapleader=" "           " Map leader to space
 set timeout=200             " Timeout for key
 inoremap jj <Esc>
 
+" Because by default uses the same jumplist for everything.
+map <c-o> <Action>(Back)
+map <c-i> <Action>(Forward)
+
 " To be consistent with C and D operators, the default behavior is to yank the whole line.
 nnoremap Y y$
 
