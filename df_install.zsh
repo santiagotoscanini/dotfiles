@@ -50,7 +50,7 @@ pushd $DOTFILES_DIR
     popd
 
     pushd obsidian
-        notes_dir=~/dev/notes
+        notes_dir=~/dev/personal/notes
         echo ------ obsidian ------
 
         stow -D -t $notes_dir .
