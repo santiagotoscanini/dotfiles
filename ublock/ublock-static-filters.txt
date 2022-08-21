@@ -1,0 +1,45 @@
+# TODO(santiagotoscanini): Find a way to use wildcards
+
+unix.stackexchange.com##.mb16.s-anchors__grayscale.s-anchors.s-sidebarwidget__yellow.s-sidebarwidget
+unix.stackexchange.com##.sidebar-related.module
+unix.stackexchange.com##.js-feed-link
+unix.stackexchange.com##.tex2jax_ignore.module
+unix.stackexchange.com##.js-sticky-leftnav.left-sidebar--sticky-container
+unix.stackexchange.com##.js-footer.site-footer
+
+stackoverflow.com##.mb16.s-anchors__grayscale.s-anchors.s-sidebarwidget__yellow.s-sidebarwidget
+stackoverflow.com##.sidebar-related.module
+stackoverflow.com##.js-feed-link
+stackoverflow.com###hot-network-questions
+stackoverflow.com##.module.mb16.s-sidebarwidget
+stackoverflow.com###newsletter-ad
+stackoverflow.com##.js-footer.site-footer
+
+ethereum.stackexchange.com##.mb16.s-anchors__grayscale.s-anchors.s-sidebarwidget__yellow.s-sidebarwidget
+ethereum.stackexchange.com##.sidebar-related.module
+ethereum.stackexchange.com##.js-feed-link
+ethereum.stackexchange.com##.tex2jax_ignore.module
+ethereum.stackexchange.com##.js-sticky-leftnav.left-sidebar--sticky-container
+ethereum.stackexchange.com##.js-dismissable-hero.ps-relative.fc-black-200.bg-black-750.py24.sm\:d-none
+ethereum.stackexchange.com##.show-votes
+ethereum.stackexchange.com##.js-footer.site-footer
+
+
+# ----------- YOUTUBE ----------------
+# Channel logo
+www.youtube.com##.ytd-video-owner-renderer.style-scope.yt-simple-endpoint
+# Name, owner, etc.
+www.youtube.com###upload-info
+# Subscribe buton
+www.youtube.com###subscribe-button > .ytd-video-secondary-info-renderer.style-scope
+# Comments
+www.youtube.com###comments > .ytd-comments.style-scope
+# Like, dislike, etc
+www.youtube.com###menu-container
+# Hashtags
+www.youtube.com##.ytd-video-primary-info-renderer.style-scope.super-title > a.yt-formatted-string.style-scope.yt-simple-endpoint
+
+www.youtube.com###chat
+www.youtube.com##.ytd-live-chat-frame.style-scope > .ytd-toggle-button-renderer.style-scope.yt-simple-endpoint > .ytd-toggle-button-renderer.style-scope
+www.youtube.com###show-hide-button
+
