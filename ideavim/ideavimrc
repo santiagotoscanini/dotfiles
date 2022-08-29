@@ -141,6 +141,7 @@ map <leader>ggb <Action>(Github.Open.In.Browser)
 """ -------- LSP -------------------------------------------------------
 map gT         <Action>(GotoTest)
 map gi         <Action>(GotoImplementation)
+map ge         <Action>(ShowErrorDescription)
 map gn         <Action>(GotoNextError)
 map gp         <Action>(GotoPreviousError)
 map <leader>re <Action>(RenameElement)
