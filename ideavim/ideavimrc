@@ -104,6 +104,8 @@ map <c-\> <Action>(SplitVertically)
 map <c-=> <Action>(Unsplit)
 " map <c-m> <Action>(MoveEditorToOppositeTabGroup)
 
+map <leader>zz <Action>(MaximizeEditorInSplit)
+
 map <leader>e <Action>(EditSourceInNewWindow)
 map <leader>n <Action>(NextWindow)
 
