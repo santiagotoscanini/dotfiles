@@ -1,0 +1,7 @@
+{% if image_url -%}
+![rw-book-cover]({{image_url}})
+{% endif -%}
+{% if category == "tweets" %}by [{{author.split(" ")[0]}}](https://twitter.com/{{author.split(" ")[0].replace("@", "")}})
+{% else %}
+{% set authorList = author.split(';') %}by {% for author in authorList %}[{{author}}](Lectures/People/{{ author.strip().replace(" ", "%20") }}){% if loop.index != authorList | length %}; {% endif %}{% endfor %}
+{% endif %}

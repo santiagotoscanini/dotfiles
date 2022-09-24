@@ -1,0 +1,2 @@
+> [!quote] _"{{highlight_text}}"_ — {% if highlight_location and highlight_location_url %} [{{highlight_location}}]({{highlight_location_url}}){% elif highlight_location %} {{highlight_location}}{% endif %}
+{% if highlight_note %}{{ highlight_note }}{% endif %} {% if highlight_tags %}{% for tag in highlight_tags %}#{{tag}} {% endfor %}{% endif %}

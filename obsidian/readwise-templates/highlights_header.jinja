@@ -1,0 +1,5 @@
+{% if is_new_page %}
+## Highlights
+{% elif has_new_highlights -%}
+## New highlights added {{date|date('F j, Y')}} at {{time}}
+{% endif -%}

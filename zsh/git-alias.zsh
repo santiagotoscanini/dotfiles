@@ -14,7 +14,7 @@ commitDotfiles() {
 commitNotes() {
     pushd $NOTES_DIR
         git add .
-        git commit -m "[Automatically]: Vault backup from $HOST_NAME (CLI)"
+        git commit -m "[Automatically]: Vault backup from $HOSTNAME (CLI)"
         git push
     popd
 }
