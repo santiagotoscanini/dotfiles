@@ -21,7 +21,7 @@ bindkey "^[[B" history-beginning-search-forward
 
 # Avoid auto-starting tmux in IDEs
 if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
-    # plugins+=(tmux)
+    plugins+=(tmux)
 
     ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session (if doesn't exist one).
     ZSH_TMUX_AUTOSTART_ONCE=true                    # Only if tmux hasn't been started previously.

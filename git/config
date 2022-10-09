@@ -6,6 +6,10 @@
     insteadOf = https://github.com/
 [includeIf "gitdir:~/dev/work/"]
     path = "~/.config/git/gitconfig-work"
+[diff]
+    tool = difftastic
+[pager]
+    difftool = true
 [color "diff"]
     meta = yellow bold
     frag = magenta bold # line info
@@ -94,12 +98,6 @@
     gpgsign = true
 [core]
 	excludesfile = /Users/stoscanini/.gitignore_global
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [gpg]
     # GUI apps that use git (like Obsidian) don't read shell initialization files,
     # so they don't load homebrew paths.
