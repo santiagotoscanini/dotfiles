@@ -4,6 +4,7 @@
 # It's a custom plugin so it needs to be installed with:
 # git clone https://github.com/reobin/typewritten $ZSH_CUSTOM/themes/typewritten
 ZSH_THEME="typewritten/typewritten"
+# In case we want to customize the output https://typewritten.dev/#/prompt_customization?id=use-a-custom-function
 TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=(date +%H:%M:%S)
 
 
