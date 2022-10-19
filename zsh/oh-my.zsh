@@ -5,6 +5,11 @@
 # git clone https://github.com/reobin/typewritten $ZSH_CUSTOM/themes/typewritten
 ZSH_THEME="typewritten/typewritten"
 
+function current_timestamp() {
+     date -u +"%H:%M:%S"
+}
+TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION="current_timestamp"
+
 
 # ----- PLUGINS -------------
 
