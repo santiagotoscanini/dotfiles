@@ -1,7 +1,7 @@
 // https://github.com/qmk/qmk_firmware/blob/master/docs/config_options.md
 #pragma once
 
-#define MASTER_RIGHT
+#define MASTER_LEFT
 
 #define SPLIT_WPM_ENABLE
 
