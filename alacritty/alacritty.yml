@@ -41,10 +41,6 @@ font:
     family: JetBrainsMono Nerd Font
     style: Regular
 
-  # macOS only
-  # Thin strokes are suitable for retina displays.
-  use_thin_strokes: true
-
   offset:
     x: 0 # Letter spacing
     y: 0 # Line spacing
