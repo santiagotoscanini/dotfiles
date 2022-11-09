@@ -31,6 +31,11 @@ if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediT
     ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf # Source a different tmux config
 fi
 
+# -------------- asdf -------
+# loads the asdf version manager plugin
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf
+plugins+=(asdf)
+
 # -------------- DOTENV -----
 # Automatically load your project ENV variables from .env file when you cd into project root directory.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
