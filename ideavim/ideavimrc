@@ -41,7 +41,7 @@ set idearefactormode=keep       " Define the mode that would be enabled during t
 
 " ideavimrc
 nmap <leader>cvi :e ~/.config/ideavim/ideavimrc<CR>
-map <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
+map  <leader>rvi <Action>(IdeaVim.ReloadVimRc.reload)
 
 
 " ----- Search -----------------------------------------------------------
@@ -126,6 +126,10 @@ nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 
+" FIXME(santiagotoscanini): This has a bug when moving between projects
+" Project windows
+map <leader> pl <Action>(NextProjectWindow)
+map <leader> ph <Action>(PreviousProjectWindow)
 
 """ ------- GIT -----------------------------------------------------------
 map <leader>gc  <Action>(ActivateCommitToolWindow)
