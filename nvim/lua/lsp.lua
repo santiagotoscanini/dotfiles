@@ -3,7 +3,7 @@ vim.opt.list = true
 -- vim.opt.listchars:append("space:⋅")
 
 local nvim_lsp = require("lspconfig")
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp.dartls.setup({ capabilities = capabilities })
 nvim_lsp.tsserver.setup({ capabilities = capabilities })

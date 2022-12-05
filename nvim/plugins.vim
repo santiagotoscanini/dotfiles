@@ -5,7 +5,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'rafamadriz/friendly-snippets'               " Add some pre-configured snippets
     Plug 'nvim-telescope/telescope.nvim'              " Explorer
 
-    " TODO(santiagotoscanini): remove when neovim has full integration (0.7.0?)
+    " TODO(santiagotoscanini): remove when neovim has full integration (0.9.0 maybe?)
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
     " Fix this two:
@@ -25,11 +25,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
     Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
-    " Debugger
-    Plug 'mfussenegger/nvim-dap'                  " Debugger
-    " Plug 'leoluz/nvim-dap-go'                     " Debugger for Go
-    Plug 'rcarriaga/nvim-dap-ui'                   " Debugger UI
-
     Plug 'github/copilot.vim'                         " GitHub Copilot
 
     Plug 'onsails/lspkind-nvim'                        " vscode-like pictograms for LSP
@@ -45,21 +40,15 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'fatih/vim-go', {'do':':GoUpdateBinaries'}   " Go support (Improve syntax highlight, and build, run commands)
     Plug 'TovarishFin/vim-solidity'                   " Filetype for solidity files
-
     Plug 'jparise/vim-graphql'                        " GraphQL syntax highlighting
-
     " Flutter
-    Plug 'thosakwe/vim-flutter'                       " Flutter support (flutter run, flutter test, flutter pub get, etc)
     Plug 'dart-lang/dart-vim-plugin'                  " Filetype for dart files
     Plug 'norcalli/nvim-colorizer.lua'                " Colorize RGB/HEX/HSL/HSV colors
 
     " Only load these plugins if running inside tmux session
     if exists('$TMUX')
         Plug 'christoomey/vim-tmux-navigator'         " Navigate Between Windows with ctrl + hjlk
-
         Plug 'preservim/vimux'                        " Run code in another tmux pane
-        Plug 'benmills/vimux-golang'                  " Vimux for golang (run current test, run current file)
-        " Plug 'https://github.com/tyewang/vimux-jest-test'
     endif
 
     " ae targets the entire content of the current buffer.
@@ -68,7 +57,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-user'
 
     Plug 'easymotion/vim-easymotion'                  " Jump to a position
-    Plug 'unblevable/quick-scope'                      " Show occurrences for 'f' and 't'
-    Plug 'numToStr/Comment.nvim'                       " Commenter
-    Plug 'tpope/vim-surround'                          " Change surrounding
+    Plug 'unblevable/quick-scope'                     " Show occurrences for 'f' and 't'
+    Plug 'numToStr/Comment.nvim'                      " Commenter
+    Plug 'tpope/vim-surround'                         " Change surrounding
 call plug#end()
