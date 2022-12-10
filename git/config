@@ -2,6 +2,10 @@
     name = Santiago Toscanini
     email = toscaninisantiago@gmail.com
     signingKey = 3E907FAC5742EF2B
+[url "git@github-personal.com:"]
+    insteadOf = https://github.com/
+[includeIf "gitdir:~/dev/work/"]
+    path = "~/.config/git/gitconfig-work"
 [diff]
     tool = difftastic
 [pager]
