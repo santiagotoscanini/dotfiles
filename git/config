@@ -4,8 +4,8 @@
     signingKey = 3E907FAC5742EF2B
 [url "git@github-personal.com:"]
     insteadOf = https://github.com/
-[url "git@github-personal.com:"]
-    insteadOf = https://gist.github.com/
+; [url "git@github-personal.com:"]
+;     insteadOf = https://gist.github.com/
 [includeIf "gitdir:~/dev/work/"]
     path = "~/.config/git/gitconfig-work"
 [diff]
