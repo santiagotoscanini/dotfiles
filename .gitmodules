@@ -4,3 +4,6 @@
 [submodule "smart-home-automations"]
 	path = smart-home-automations
 	url = git@github.com:santiagotoscanini/smart-home-automations.git
+[submodule "dark-mode-notifier"]
+	path = dark-mode-notifier
+	url = git@github.com:santiagotoscanini/dark-mode-notifier.git

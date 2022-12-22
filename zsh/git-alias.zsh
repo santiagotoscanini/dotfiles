@@ -12,6 +12,12 @@ commitDotfiles() {
             git push
         popd || exit
 
+        pushd dark-mode-notifier || exit
+            git add .
+            git commit -m "[Automatically]: Update dark-mode-notifier."
+            git push
+        popd || exit
+
         git add .
         git commit -m "[Automatically]: Update dotfiles."
         git push origin main
