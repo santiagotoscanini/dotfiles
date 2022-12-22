@@ -76,4 +76,15 @@ pushd "$DOTFILES_DIR" || exit
         echo --- SMART HOME AUTOMATIONS ------
         poetry install
     popd || exit
+
+    # Dark Mode Notifier
+    pushd dark-mode-notifier || exit
+        echo
+        echo
+        echo --- DARK MODE NOTIFIER ------
+        echo Removing old version...
+        make uninstall
+        echo Installing new version...
+        make install
+    popd || exit
 popd || exit

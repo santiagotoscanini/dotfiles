@@ -1,6 +1,5 @@
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/change-theme.zsh
 source $ZDOTDIR/oh-my.zsh
 
 # z
@@ -9,6 +8,7 @@ source $ZDOTDIR/oh-my.zsh
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# nvm
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

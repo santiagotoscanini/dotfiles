@@ -14,7 +14,8 @@ For zsh we need to set the `ZDOTDIR` environment variable. [More Information](ht
 
 ---
 
-To stow the files, we run `./df_install.zsh`.
+To stow the files, we run `sudo ./df_install.zsh`.
+Sudo is needed to create the Daemon Agents for the `dark-mode-notifier`.
 
 ---
 

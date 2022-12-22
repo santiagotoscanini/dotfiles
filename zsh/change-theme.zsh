@@ -17,13 +17,13 @@ function _autoSwitchVimTheme() {
 }
 
 function _autoSwitchDesktopLights() {
-    pushd "$DOTFILES_DIR"/smart-home-automations || exit
+    pushd -q "$DOTFILES_DIR"/smart-home-automations || exit
     if defaults read -g AppleInterfaceStyle > /dev/null 2>&1 = 'dark' ; then
         poetry run python3 main.py on
     else
         poetry run python3 main.py off
     fi
-    popd || exit
+    popd -q || exit
 }
 
 # TODO(santiagotoscanini): add more tmux themes
@@ -31,7 +31,10 @@ function _autoSwitchDesktopLights() {
 #}
 
 function autoSwitchEverything() {
+    echo "$DARKMODE"
     _autoSwitchAlacrittyTheme
     _autoSwitchVimTheme
     _autoSwitchDesktopLights
 }
+
+autoSwitchEverything
