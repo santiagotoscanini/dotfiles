@@ -1,3 +1,6 @@
 [submodule "work-dotfiles"]
 	path = work-dotfiles
 	url = git@github.com:santiagotoscanini/dotfiles-work.git
+[submodule "smart-home-automations"]
+	path = smart-home-automations
+	url = git@github.com:santiagotoscanini/smart-home-automations.git

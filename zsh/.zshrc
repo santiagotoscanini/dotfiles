@@ -1,6 +1,6 @@
 source $ZDOTDIR/path.zsh
 source $ZDOTDIR/aliases.zsh
-source $ZDOTDIR/alacritty-theme.zsh
+source $ZDOTDIR/change-theme.zsh
 source $ZDOTDIR/oh-my.zsh
 
 # z

@@ -8,6 +8,7 @@ if exists('+termguicolors')
 endif
 
 colorscheme material
+
 function! SetBackgroundMode(...)
     " https://github.com/marko-cerovac/material.nvim
     " There are 5 styles to choose from:
@@ -23,5 +24,9 @@ function! SetBackgroundMode(...)
     endif
 endfunction
 
-call SetBackgroundMode() " First call
-call timer_start(3000, 'SetBackgroundMode', {'repeat': -1})
+" First call
+call SetBackgroundMode()
+
+" Change the color scheme if we receive a SigUSR1
+autocmd Signal SIGUSR1 call SetBackgroundMode()
+
