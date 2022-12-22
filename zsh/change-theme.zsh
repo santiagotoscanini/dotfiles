@@ -16,18 +16,23 @@ function autoSwitchVimTheme() {
     done
 }
 
-function autoSwitchTmuxTheme() {
-    # todo
+function autoSwitchDesktopLights() {
+    pushd "$DOTFILES_DIR"/smart-home-automations || exit
+    if defaults read -g AppleInterfaceStyle > /dev/null 2>&1 = 'dark' ; then
+        poetry run python3 main.py on
+    else
+        poetry run python3 "$DOTFILES_DIR"/smart-home-automations/main.py off
+    fi
+    popd || exit
 }
 
-function autoSwitchDesktopLights() {
-    # todo
-}
+# TODO(santiagotoscanini): add more tmux themes
+#function autoSwitchTmuxTheme() {
+#}
 
 function autoSwitchEverything() {
-    autoSwitchAllacrittyTheme
+    autoSwitchAlacrittyTheme
     autoSwitchVimTheme
-    autoSwitchTmuxTheme
     autoSwitchDesktopLights
 }
 
