@@ -21,7 +21,7 @@ function _autoSwitchDesktopLights() {
     if defaults read -g AppleInterfaceStyle > /dev/null 2>&1 = 'dark' ; then
         poetry run python3 main.py on
     else
-        poetry run python3 "$DOTFILES_DIR"/smart-home-automations/main.py off
+        poetry run python3 main.py off
     fi
     popd || exit
 }
