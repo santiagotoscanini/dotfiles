@@ -1,5 +1,5 @@
 function _change_alacritty_theme() {
-    sed -i '' "s/^colors:\ \*.*$/colors:\ \*$1/" "$(realpath "$XDG_CONFIG_HOME"/alacritty/color.yml)"
+    sed -i '' "s/^colors:\ \*.*$/colors:\ \*$1/" "$(realpath /Users/stoscanini/.config/alacritty/color.yml)"
 }
 
 function _autoSwitchAlacrittyTheme() {
@@ -17,11 +17,11 @@ function _autoSwitchVimTheme() {
 }
 
 function _autoSwitchDesktopLights() {
-    pushd -q "$DOTFILES_DIR"/smart-home-automations || exit
+    pushd -q /Users/stoscanini/dev/personal/dotfiles/smart-home-automations || exit
     if [[ "$DARKMODE" == '1' ]]; then
-        poetry run python3 main.py on
+        /opt/homebrew/bin/poetry run python3 main.py on
     else
-        poetry run python3 main.py off
+        /opt/homebrew/bin/poetry run python3 main.py off
     fi
     popd -q || exit
 }

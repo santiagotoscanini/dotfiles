@@ -26,7 +26,7 @@ function _search_on_google() {
     open "http://www.google.com/search?q=$search"
 }
 function _search_google_clipboard() {
-    _search_on_google $(pbpaste)
+    _search_on_google "$(pbpaste)"
 }
 alias ,googlecp="_search_google_clipboard"
 
