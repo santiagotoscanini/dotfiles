@@ -3,7 +3,7 @@ function _change_alacritty_theme() {
 }
 
 function _autoSwitchAlacrittyTheme() {
-    if defaults read -g AppleInterfaceStyle > /dev/null 2>&1 = 'dark' ; then
+    if [[ "$DARKMODE" == '1' ]]; then
         _change_alacritty_theme tokyonight_night
     else
         _change_alacritty_theme material_lighter
@@ -18,7 +18,7 @@ function _autoSwitchVimTheme() {
 
 function _autoSwitchDesktopLights() {
     pushd -q "$DOTFILES_DIR"/smart-home-automations || exit
-    if defaults read -g AppleInterfaceStyle > /dev/null 2>&1 = 'dark' ; then
+    if [[ "$DARKMODE" == '1' ]]; then
         poetry run python3 main.py on
     else
         poetry run python3 main.py off
@@ -31,7 +31,6 @@ function _autoSwitchDesktopLights() {
 #}
 
 function autoSwitchEverything() {
-    echo "$DARKMODE"
     _autoSwitchAlacrittyTheme
     _autoSwitchVimTheme
     _autoSwitchDesktopLights
