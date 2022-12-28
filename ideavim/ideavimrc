@@ -128,8 +128,8 @@ nnoremap <c-k> <c-w>k
 
 " FIXME(santiagotoscanini): This has a bug when moving between projects
 " Project windows
-map <leader> pl <Action>(NextProjectWindow)
-map <leader> ph <Action>(PreviousProjectWindow)
+" map <leader> pl <Action>(NextProjectWindow)
+" map <leader> ph <Action>(PreviousProjectWindow)
 
 """ ------- GIT -----------------------------------------------------------
 map <leader>gc  <Action>(ActivateCommitToolWindow)
