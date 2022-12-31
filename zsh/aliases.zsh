@@ -3,7 +3,8 @@ source $ZDOTDIR/alias.work.zsh
 
 # Toggle dark mode on macOS
 alias ,osLights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
-alias ,termLights='_change_alacritty_theme'
+alias ,deskOff="pushd $DOTFILES_DIR/smart-home-automations && poetry run python3 main.py off && popd"
+alias ,deskOn="pushd $DOTFILES_DIR/smart-home-automations && poetry run python3 main.py on && popd"
 
 # Commonly used directories
 alias ,cdev="cd ~/dev"

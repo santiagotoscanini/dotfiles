@@ -36,6 +36,68 @@ fi
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf
 plugins+=(asdf)
 
+# -------------- poetry -------
+# Adds poetry completitions.
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/poetry
+plugins+=(poetry)
+
+# -------------- golang -------
+# Adds golang completitions.
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/golang
+plugins+=(golang)
+
+# -------------- gh -------
+# Adds gh (GitHub CLI) completitions.
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gh
+plugins+=(gh)
+
+# -------------- docker -------
+# Adds docker completitions and some aliases.
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+plugins+=(docker)
+
+# -------------- gcloud -------
+# Adds gcloud (Google Cloud SDK CLI) completitions
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
+CLOUDSDK_HOME=/usr/local/bin/google-cloud-sdk
+plugins+=(gcloud)
+
+# -------------- aws -------
+# Adds awscli completitions and some commands
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
+plugins+=(aws)
+
+# -------------- brew -------
+# Aliases for brew
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/brew
+plugins+=(brew)
+
+# -------------- command-not-found
+# Provide suggested install if a command cannot be found.
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found
+# TODO: Disabled because it makes the prompt slow and I'm not sure it's that useful
+# plugins+=(command-not-found)
+
+# -------------- thefuck ----
+# Loads thefuck and add the <esc>-<esc> key binding.
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/thefuck
+plugins+=(thefuck)
+
+# -------------- common-aliases
+# Create helpful shortcut aliases for many commonly used commands
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
+plugins+=(common-aliases)
+
+# -------------- z ----------
+# Z command for "caching directories"
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
+plugins+=(z)
+
+# -------------- fzf --------
+# Loads fzf
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf
+plugins+=(fzf)
+
 # -------------- DOTENV -----
 # Automatically load your project ENV variables from .env file when you cd into project root directory.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
@@ -43,8 +105,6 @@ plugins+=(dotenv)
 
 ZSH_DOTENV_FILE=.env         # File to detect.
 ZSH_DOTENV_PROMPT=true       # Ask for confirmation.
-# ZSH_DOTENV_ALLOWED_LIST=/path/to/dotenv/allowed/list
-# ZSH_DOTENV_DISALLOWED_LIST=/path/to/dotenv/disallowed/list
 
 # -------------- VI MODE ----
 # Vi mode for ZSH
