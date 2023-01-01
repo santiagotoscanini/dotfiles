@@ -4,6 +4,7 @@ addToPath() {
         export PATH=$1:$PATH
     fi
 }
+source $ZDOTDIR/path.zsh
 
 export QMK_DIR=$HOME/qmk_firmware
 export STOW_PACKAGES="alacritty,git,nvim,tmux,tmuxinator,zsh,ideavim,gh"
