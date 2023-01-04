@@ -26,6 +26,7 @@ Sudo is needed to create the Daemon Agents for the `dark-mode-notifier`.
 - [x] Add IdeaVim dotfiles.
 - [x] Add QMK config files.
 - [x] Create script to add qmk keymaps to firmware directory (using stow).
+- [ ] Add asdf files to dotfiles.
 - [ ] Sign commits using SSH instead of GPG when macOS's SSH support signing arbitrary data.
 - [ ] Make a script for OS Configurations.
 - [ ] Make it available to Windows and Linux.
