@@ -101,10 +101,11 @@ plugins+=(fzf)
 # -------------- DOTENV -----
 # Automatically load your project ENV variables from .env file when you cd into project root directory.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
-plugins+=(dotenv)
+# TODO: Disabled because it's not being used
+# plugins+=(dotenv)
 
-ZSH_DOTENV_FILE=.env         # File to detect.
-ZSH_DOTENV_PROMPT=true       # Ask for confirmation.
+# ZSH_DOTENV_FILE=.env         # File to detect.
+# ZSH_DOTENV_PROMPT=true       # Ask for confirmation.
 
 # -------------- VI MODE ----
 # Vi mode for ZSH
