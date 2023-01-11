@@ -1,5 +1,5 @@
 # Only Relevant Configs for Current Company
-source $ZDOTDIR/alias.work.zsh
+source "$ZDOTDIR/alias.work.zsh"
 
 # Toggle dark mode on macOS
 alias ,osLights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
@@ -53,7 +53,7 @@ function _compile_my_keymap(){
     file_name="$current_keyboard"_rev1_"$current_keymap".hex
 
     qmk compile -kb $current_keyboard -km $current_keymap
-    cp $QMK_DIR/$file_name $DOTFILES_DIR/qmk/$current_keymap/$file_name
+    cp "$QMK_DIR/$file_name" "$DOTFILES_DIR/qmk/$current_keymap/$file_name"
 }
 alias ,qmkc='_compile_my_keymap'
 
@@ -64,16 +64,18 @@ alias ,qmkf='_flash_my_keymap'
 
 # Docker
 function _docker_build_and_push_image(){
-    docker build . -t $1 && docker push $1
+    docker build . -t "$1" && docker push "$1"
 }
+# shellcheck disable=SC2142
 alias ,dkbp='_docker_build_and_push_image $1'        # Build and push image by a tag
+# shellcheck disable=SC2142
 alias ,dkbash='docker exec -it $1 /bin/bash'         # Run bash inside a container
 alias ,dkstart="open --hide --background -a Docker"  # Only for macOS
 
 # Stocks
-function _update_notion_stock_price(){
+function _update_notion_investments(){
     pushd ~/dev/personal/tda-grid-trading || exit
     poetry run python3 main.py
     popd || exit
 }
-alias ,notionStocks='_update_notion_stock_price'
+alias ,notionInvestments='_update_notion_investments'
