@@ -92,16 +92,16 @@
 [help]
     # Automatically correct and execute mistyped commands.
     autocorrect = 1
-[commit]
-    gpgsign = true
-[tag]
-    gpgsign = true
-[core]
-	excludesfile = /Users/stoscanini/.gitignore_global
-[gpg]
-    # GUI apps that use git (like Obsidian) don't read shell initialization files,
-    # so they don't load homebrew paths.
-	program = /opt/homebrew/bin/gpg
+; [commit]
+;     gpgsign = true
+; [tag]
+;     gpgsign = true
+; [core]
+; 	excludesfile = /Users/stoscanini/.gitignore_global
+; [gpg]
+;     # GUI apps that use git (like Obsidian) don't read shell initialization files,
+;     # so they don't load homebrew paths.
+; 	program = /opt/homebrew/bin/gpg
 [push]
 	autoSetupRemote = true
 	default = current

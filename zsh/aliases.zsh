@@ -72,10 +72,16 @@ alias ,dkbp='_docker_build_and_push_image $1'        # Build and push image by a
 alias ,dkbash='docker exec -it $1 /bin/bash'         # Run bash inside a container
 alias ,dkstart="open --hide --background -a Docker"  # Only for macOS
 
-# Stocks
+# Investments
 function _update_notion_investments(){
     pushd ~/dev/personal/tda-grid-trading || exit
     poetry run python3 main.py
     popd || exit
 }
 alias ,notionInvestments='_update_notion_investments'
+
+# Node.js
+function _noderepl(){
+    node -i -e "$(< $1)"
+}
+alias ,noderepl='_noderepl'
