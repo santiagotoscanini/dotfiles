@@ -19,6 +19,16 @@ SSH sessions are login and interactive so they'll behave just like your initial 
 
 ---
 
+### Setup
+
+To be able to load configurations from `XDG_CONFIG_HOME` we have to create a `.zshenv` file in `$HOME` with the following line:
+```bash
+export ZDOTDIR=$HOME/.config/zsh
+. $ZDOTDIR/.zshenv
+```
+
+---
+
 Some concepts: **\[1\]**
 
 **Interactive**: As the term implies, interactive means that the commands are run with user-interaction from keyboard. E.g. the shell can prompt the user to enter input.
