@@ -1,6 +1,4 @@
-addToPath /opt/homebrew/bin                                         # Homebrew
 addToPath ~/.cargo/bin                                              # Cargo (Rust)
-addToPath /Library/Frameworks/Python.framework/Versions/3.9/bin     # Python 3.9
 addToPath ~/Library/Application\ Support/JetBrains/Toolbox/scripts  # JetBrains scripts
 
 # Android
