@@ -1,7 +1,7 @@
 [user]
     name = Santiago Toscanini
     email = toscaninisantiago@gmail.com
-    signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+ghtFfwRNSWB6OTZGGgfog68t9SB/ecHz0TgbdsJYz
+    signingKey = ~/.ssh/id_ed25519_personal
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [includeIf "gitdir:~/dev/work/"]
