@@ -1,7 +1,7 @@
 [user]
     name = Santiago Toscanini
     email = toscaninisantiago@gmail.com
-    signingKey = 3E907FAC5742EF2B
+    signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+ghtFfwRNSWB6OTZGGgfog68t9SB/ecHz0TgbdsJYz
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [includeIf "gitdir:~/dev/work/"]
@@ -92,16 +92,13 @@
 [help]
     # Automatically correct and execute mistyped commands.
     autocorrect = 1
-; [commit]
-;     gpgsign = true
-; [tag]
-;     gpgsign = true
-; [core]
-; 	excludesfile = /Users/stoscanini/.gitignore_global
-; [gpg]
-;     # GUI apps that use git (like Obsidian) don't read shell initialization files,
-;     # so they don't load homebrew paths.
-; 	program = /opt/homebrew/bin/gpg
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true
+[gpg]
+    # To use this we need an SSH version greater than 8.8 (to sign arbitrary data)
+    format = ssh
 [push]
 	autoSetupRemote = true
 	default = current
