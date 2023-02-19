@@ -1,7 +1,7 @@
 [user]
     name = Santiago Toscanini
-    email = toscaninisantiago@gmail.com
-    signingKey = ~/.ssh/id_ed25519_personal
+    email = github@account.toscanini.me
+    signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [includeIf "gitdir:~/dev/work/"]
@@ -99,6 +99,10 @@
 [gpg]
     # To use this we need an SSH version greater than 8.8 (to sign arbitrary data)
     format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
 [push]
 	autoSetupRemote = true
 	default = current
+[core]
+    autocrlf = input
