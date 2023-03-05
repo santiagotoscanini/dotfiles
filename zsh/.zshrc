@@ -1,5 +1,5 @@
-# FIXME(santiagotoscanini): This is a hack because homebrew is being added at the end of the path
-#   I have to find where is being added and remove it.
+# We have to set the homebrew path here because macOS calls /etc/zprofile after .zshenv and this
+# adds some system paths before homebrew's. More information on the README.md.
 export PATH="/opt/homebrew/bin:$PATH"
 
 source $ZDOTDIR/aliases.zsh

@@ -42,6 +42,31 @@ Some concepts: **\[1\]**
 
 ---
 
+**Important for macOS**
+
+If you are using macOS, be aware that the file `/etc/zprofile` is loaded after `.zshenv`. This file is used to set the `PATH` variable for the system.
+
+If we take a look at it, looks something like this:
+```zsh
+# System-wide profile for interactive zsh(1) login shells.
+
+# Setup user specific overrides for this in ~/.zprofile. See zshbuiltins(1)
+# and zshoptions(1) for more details.
+
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+```
+
+And if we take a look at the `path_helper` script running `/usr/libexec/path_helper -s` we can see that it outputs the following:
+```bash
+PATH="{some_system_paths}:{previous_path}"; export PATH;
+```
+
+So in case we want to use the homebrew binaries instead of the system ones, we have to add it on the `.zshrc` file.
+
+---
+
 Popular ZSH Frameworks:
 
 - [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh)
