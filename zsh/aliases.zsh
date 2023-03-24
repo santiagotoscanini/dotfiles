@@ -46,7 +46,7 @@ alias ,chgit="nvim $XDG_CONFIG_HOME/git/config"
 alias ,chgh="nvim $XDG_CONFIG_HOME/gh/config.yml"
 alias ,idot="idea $DOTFILES_DIR"
 
-# QMK
+################# QMK ######################
 current_keyboard=crkbd
 current_keymap=santi_km
 function _compile_my_keymap(){
@@ -61,27 +61,40 @@ function _flash_my_keymap(){
     qmk flash -kb $current_keyboard -km $current_keymap
 }
 alias ,qmkf='_flash_my_keymap'
+####################################################
 
-# Docker
+
+################# Docker ######################
 function _docker_build_and_push_image(){
     docker build . -t "$1" && docker push "$1"
 }
-# shellcheck disable=SC2142
-alias ,dkbp='_docker_build_and_push_image $1'        # Build and push image by a tag
-# shellcheck disable=SC2142
-alias ,dkbash='docker exec -it $1 /bin/bash'         # Run bash inside a container
-alias ,dkstart="open --hide --background -a Docker"  # Only for macOS
 
-# Investments
+# Build and push image by a tag
+# shellcheck disable=SC2142
+alias ,dkbp='_docker_build_and_push_image $1'
+
+# Run bash inside a container
+# shellcheck disable=SC2142
+alias ,dkbash='docker exec -it $1 /bin/bash'
+
+# Only for macOS
+alias ,dkstart="open --hide --background -a Docker"
+####################################################
+
+
+################# Investments ######################
 function _update_notion_investments(){
     pushd ~/dev/personal/tda-grid-trading || exit
     poetry run python3 main.py
     popd || exit
 }
 alias ,notionInvestments='_update_notion_investments'
+####################################################
 
-# Node.js
+
+################### Node.js ########################
 function _noderepl(){
     node -i -e "$(< $1)"
 }
 alias ,noderepl='_noderepl'
+####################################################
