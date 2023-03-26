@@ -10,7 +10,6 @@ selection:
   save_to_clipboard: false
 
 working_directory: None
-alt_send_esc: true
 
 env:
   TERM: xterm-256color
