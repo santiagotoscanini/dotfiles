@@ -98,3 +98,34 @@ function _noderepl(){
 }
 alias ,noderepl='_noderepl'
 ####################################################
+
+################### AWS ############################
+url_to_s3() {
+    local url="$1"
+    local s3_url="s3://"
+
+    # Remove the protocol prefix
+    url="${url#*://}"
+
+    # Extract the bucket name
+    local bucket_name="${url%%.s3.amazonaws.com*}"
+
+    # Remove the bucket name and the s3 domain part
+    url="${url#*.s3.amazonaws.com/}"
+
+    # Combine the S3 URL prefix with the bucket name and the remaining path
+    s3_url="${s3_url}${bucket_name}/${url}"
+
+    echo "$s3_url"
+}
+
+download_s3_file() {
+    local url="$1"
+    local output_file="$2"
+
+    # Convert the URL to an S3 URL
+    local s3_url=$(url_to_s3 "$url")
+
+    # Download the file using the AWS CLI
+    aws s3 cp "$s3_url" "$output_file"
+}
