@@ -76,9 +76,6 @@ alias ,dkbp='_docker_build_and_push_image $1'
 # Run bash inside a container
 # shellcheck disable=SC2142
 alias ,dkbash='docker exec -it $1 /bin/bash'
-
-# Only for macOS
-alias ,dkstart="open --hide --background -a Docker"
 ####################################################
 
 

@@ -1,3 +1,5 @@
+Include /Users/stoscanini/.colima/ssh_config
+
 Host github-work.com
   HostName github.com
   User git
