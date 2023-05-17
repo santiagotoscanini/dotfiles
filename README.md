@@ -9,6 +9,7 @@
 ```
 
 Dotfiles that are fully compatible with [XDG Base Directory Specification](https://wiki.archlinux.org/title/XDG_Base_Directory).
+Util for XDG ([XDG Ninja](https://github.com/b3nj5m1n/xdg-ninja)).
 
 For zsh we need to set the `ZDOTDIR` environment variable. [More Information](https://github.com/santiagotoscanini/dotfiles/tree/main/zsh#setup).
 
