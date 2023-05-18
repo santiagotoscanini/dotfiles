@@ -10,8 +10,8 @@ Host github.com
   User git
   IdentityFile ~/.ssh/id_ed25519_personal
 
-Host ubuntu
-    HostName 192.168.1.21
+Host s2
+    HostName 192.168.1.2
     User santiago
-    IdentityFile ~/.ssh/macos-blastradius
+    IdentityFile ~/.ssh/s2
 

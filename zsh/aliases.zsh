@@ -126,3 +126,9 @@ download_s3_file() {
     # Download the file using the AWS CLI
     aws s3 cp "$s3_url" "$output_file"
 }
+
+# Used to notify when another command run
+# e.g. `ls | notify`
+notify() {
+    afplay /System/Library/Sounds/Glass.aiff
+}
