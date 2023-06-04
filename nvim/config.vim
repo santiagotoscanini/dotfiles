@@ -1,3 +1,14 @@
+" Search
+set ignorecase                     " Case insensitive searches
+set smartcase                      " Case sensitive only if pattern contains at least one uppercase char.
+
+augroup AuHighlightYank
+    autocmd!
+    autocmd TextYankPost * lua vim.highlight.on_yank{higroup="IncSearch", timeout=250, on_visual=true}
+augroup END
+
+set clipboard=unnamedplus          " Copy between OS Clipboard and VIM Clipboard, Unnamed is vim copy register and + is OS reg.
+
 if !exists('g:vscode')
     " Identation
     set tabstop=4                      " Width of the tab character
@@ -22,8 +33,6 @@ if !exists('g:vscode')
     " Status bar
     set noshowmode                     " Don't need to show the mode (Insert, Replace, Visual) because status line already do that.
     set cmdheight=2                    " Size of CMD bar at the bottom, 2 lines.
-
-    set clipboard=unnamedplus          " Copy between OS Clipboard and VIM Clipboard, Unnamed is vim copy register and + is OS reg.
 
     " Extra
     set nowrap                         " No wrap lines (lines longer than the width of the window will wrap and display on the next line)
@@ -66,11 +75,3 @@ if !exists('g:vscode')
     augroup END
 endif
 
-" Search
-set ignorecase                     " Case insensitive searches
-set smartcase                      " Case sensitive only if pattern contains at least one uppercase char.
-
-augroup AuHighlightYank
-    autocmd!
-    autocmd TextYankPost * lua vim.highlight.on_yank{higroup="IncSearch", timeout=250, on_visual=true}
-augroup END

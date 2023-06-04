@@ -14,6 +14,13 @@ nnoremap <esc> :noh<return><esc>
 " Google the clipboard contents
 nnoremap <leader>sog <cmd>! _search_google_clipboard<cr>
 
+" To be consistent with C and D operators, the default behavior is to yank the whole line.
+nnoremap Y y$
+
+" While in visual mode, will delete what is currently highlighted and replace it with what is in the register.
+" But it will yank it to a void register, meaning I still have what I originally had when I pasted.
+vnoremap <leader>p "_dP
+
 if !exists('g:vscode')
     " ----- CUSTOM ------
     " Rename the current file
@@ -136,5 +143,7 @@ if !exists('g:vscode')
     nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
     nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
     nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
+else
+    nnoremap <leader>sa <Plug>(vsc-easymotion-s2)
 endif
 
