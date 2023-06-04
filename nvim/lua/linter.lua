@@ -34,6 +34,6 @@ require("null-ls").setup({
 		diagnostics.solhint,
 
 		-- Vim
-		diagnostics.vint,
+		-- diagnostics.vint,
 	},
 })

@@ -381,12 +381,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t * record) {
         return false;
       case MACRO1:
         if (record -> event.pressed) {
-          SEND_STRING("Macro 1 text:\nsanti");
+          SEND_STRING("092340489");
         }
         return false;
       case MACRO2:
         if (record -> event.pressed) {
-          SEND_STRING("Macro 2 text:\nsanti");
+          SEND_STRING("4.921.898-1");
         }
         return false;
 
