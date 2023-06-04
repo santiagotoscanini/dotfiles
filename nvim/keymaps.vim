@@ -14,8 +14,8 @@ nnoremap <esc> :noh<return><esc>
 " Google the clipboard contents
 nnoremap <leader>sog <cmd>! _search_google_clipboard<cr>
 
-" ----- CUSTOM ------
 if !exists('g:vscode')
+    " ----- CUSTOM ------
     " Rename the current file
     function! RenameCurrentFile()
         let old_name = expand('%')
