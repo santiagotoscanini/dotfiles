@@ -14,6 +14,9 @@ alias ,cdot="cd $DOTFILES_DIR"
 alias ,cdxdg="cd $XDG_CONFIG_HOME"
 alias ,cdnotes="cd ~/dev/personal/notes"
 
+# Export macos settings
+alias ,exportMacos="defaults domains | tr \", \" \"\n\" | sed -r '/^\s*$/d' | xargs -I_ defaults export _ \"$DOTFILES_DIR/macos/backup/_.plist\""
+
 # Network
 alias ,internal_ip="ipconfig getifaddr en0" # WiFi
 alias ,external_ip="curl -s icanhazip.com"

@@ -7,3 +7,6 @@
 [submodule "dark-mode-notifier"]
 	path = dark-mode-notifier
 	url = git@github.com:santiagotoscanini/dark-mode-notifier.git
+[submodule "macos"]
+	path = macos
+	url = git@github.com:santiagotoscanini/macos.git
