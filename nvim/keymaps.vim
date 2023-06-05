@@ -145,5 +145,10 @@ if !exists('g:vscode')
     nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
 else
     nnoremap <leader>sa <Plug>(vsc-easymotion-s2)
+
+    " ------ NVIM-TREE ------
+    "  This is only to reveal in explorer, the toggle is configured in vscode
+    "  keymaps
+    nnoremap <leader>sf <Cmd>call VSCodeNotify('revealInExplorer')<CR>
 endif
 
