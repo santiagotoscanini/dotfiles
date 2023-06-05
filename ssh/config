@@ -13,6 +13,6 @@ Host github.com
 Host s2
     HostName 192.168.1.2
     User santiago
-    IdentityFile ~/.ssh/s2_neo
     IdentityFile ~/.ssh/s2_nano
+    IdentityFile ~/.ssh/s2_neo
 
