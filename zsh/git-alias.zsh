@@ -18,6 +18,12 @@ commitDotfiles() {
             git push
         popd || exit
 
+        pushd macos || exit
+            git add .
+            git commit -m "[Automatically]: Update macos settings."
+            git push
+        popd || exit
+
         git add .
         git commit -m "[Automatically]: Update dotfiles."
         git push origin main
