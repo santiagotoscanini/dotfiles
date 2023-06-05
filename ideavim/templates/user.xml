@@ -1,0 +1,12 @@
+<templateSet group="user">
+  <template name="todo" value="// TODO(santiagotoscanini): $1$" description="Create TODO comment" toReformat="false" toShortenFQNames="true">
+    <variable name="1" expression="Content of comment" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="LATEX" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Python" value="false" />
+      <option name="SQL" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+</templateSet>

@@ -1,0 +1,8 @@
+<templateSet group="Python">
+  <template name="srt" value="# TODO(santiagotoscanini): Remove this.&#10;print(&quot;$VALUE$&quot;, )" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+</templateSet>

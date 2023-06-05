@@ -1,0 +1,85 @@
+{
+    "telemetry.telemetryLevel": "off",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "explorer.excludeGitIgnore": false,
+    "search.useGlobalIgnoreFiles": true,
+    "search.useIgnoreFiles": true,
+    "files.autoSave": "onFocusChange",
+    "files.eol": "\n",
+    "workbench.editor.showTabs": false,
+    "explorer.openEditors.visible": 1,
+    "workbench.list.smoothScrolling": true,
+    "workbench.list.horizontalScrolling": true,
+    "workbench.sideBar.location": "left",
+    "explorer.compactFolders": false,
+    "workbench.tree.indent": 20,
+    "window.autoDetectColorScheme": true,
+    // Files exluded in file tree. I have it here to avoid hiding all the git ignored files.
+    "files.exclude": {
+        "**/build": true,
+        "**/.dart_tool": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        "**/.packages": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/coverage": true,
+        "**/.serverless": true,
+    },
+    // "breadcrumbs.enabled": false,
+    "breadcrumbs.symbolPath": "off",
+    // # terminal
+    "terminal.external.osxExec": "Alacritty.app",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.scrollback": 5000,
+    // # neovim/editor
+    "editor.fontSize": 15,
+    "editor.lineHeight": 25,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.suggestSelection": "first",
+    "editor.rulers": [
+        100
+    ],
+    "editor.codeActionsOnSave": {
+        "source.addMissingImports": true,
+    },
+    "editor.inlineSuggest.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "editor.lineNumbers": "relative",
+    "editor.wordWrap": "off",
+    "editor.minimap.enabled": false,
+    "editor.lightbulb.enabled": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.renderWhitespace": "selection", // Solo mostrar los espacios en blanco al seleccionar
+    "editor.cursorSurroundingLines": 10, // scrolloff
+    "vscode-neovim.textDecorationsAtTop": true, // easy-motion plugin
+    "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
+    // # language specifics
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            120
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggestSelection": "first",
+        "editor.wordBasedSuggestions": false
+    },
+    "python.linting.flake8Enabled": true,
+    "[javascript]": {
+        "editor.formatOnSave": false,
+        "editor.codeActionsOnSave": [
+            "source.addMissingImports",
+            "source.fixAll.eslint",
+        ]
+    },
+    "eslint.nodePath": "/Users/stoscanini/.asdf/shims/node",
+    "workbench.statusBar.visible": false,
+    "workbench.activityBar.visible": false,
+}

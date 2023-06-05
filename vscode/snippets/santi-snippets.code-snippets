@@ -1,0 +1,10 @@
+{
+	"Log using BR logger": {
+		"scope": "javascript,typescript",
+		"prefix": "logg",
+		"body": [
+			"logger.info($1)"
+		],
+		"description": "Log output to console using BR object"
+	}
+}

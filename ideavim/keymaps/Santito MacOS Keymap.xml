@@ -1,0 +1,108 @@
+<keymap version="1" name="Santito MacOS Keymap" parent="Mac OS X 10.5+">
+  <action id="ActivateDatabaseToolWindow">
+    <keyboard-shortcut first-keystroke="shift meta d" />
+  </action>
+  <action id="ActivatePullRequestsToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl meta p" />
+  </action>
+  <action id="ActivateVersionControlToolWindow">
+    <keyboard-shortcut first-keystroke="ctrl meta alt g" />
+  </action>
+  <action id="Annotate">
+    <keyboard-shortcut first-keystroke="shift meta 1" />
+  </action>
+  <action id="ChangesView.Move" />
+  <action id="CloseActiveTab" />
+  <action id="CommentByBlockComment" />
+  <action id="ConfigureIcs">
+    <keyboard-shortcut first-keystroke="ctrl meta alt r" />
+  </action>
+  <action id="Console.TableResult.CompareCells" />
+  <action id="Console.TableResult.SetDefault" />
+  <action id="Dart.NewDartFile">
+    <keyboard-shortcut first-keystroke="ctrl meta alt d" />
+  </action>
+  <action id="Debug" />
+  <action id="Diff.NextChange" />
+  <action id="Diff.PrevChange" />
+  <action id="Diff.ShowSettingsPopup" />
+  <action id="DockPinnedMode">
+    <keyboard-shortcut first-keystroke="ctrl d" />
+  </action>
+  <action id="EditorLookupDown" />
+  <action id="EditorLookupUp" />
+  <action id="EditorRight">
+    <keyboard-shortcut first-keystroke="right" />
+  </action>
+  <action id="FloatMode">
+    <keyboard-shortcut first-keystroke="ctrl f" />
+  </action>
+  <action id="Git.Branches">
+    <keyboard-shortcut first-keystroke="ctrl meta alt b" />
+  </action>
+  <action id="GotoAction" />
+  <action id="Graph.DistributeNodes.Horizontally" />
+  <action id="HideActiveWindow">
+    <keyboard-shortcut first-keystroke="ctrl h" />
+  </action>
+  <action id="HideAllWindows" />
+  <action id="Jdbc.OpenConsole.New" />
+  <action id="Jdbc.OpenConsole.New.Generate" />
+  <action id="JumpToLastWindow" />
+  <action id="MaximizeToolWindow" />
+  <action id="MethodDown" />
+  <action id="MethodUp" />
+  <action id="NextEditorTab" />
+  <action id="NextTab" />
+  <action id="PreviousEditorTab" />
+  <action id="PreviousTab" />
+  <action id="Scala.ShowImplicits">
+    <keyboard-shortcut first-keystroke="shift ctrl alt equals" />
+    <keyboard-shortcut first-keystroke="shift ctrl alt add" />
+  </action>
+  <action id="SelectInProjectView">
+    <keyboard-shortcut first-keystroke="shift meta s" />
+  </action>
+  <action id="ShowContent" />
+  <action id="SplitHorizontally">
+    <keyboard-shortcut first-keystroke="ctrl meta alt down" />
+  </action>
+  <action id="SplitVertically">
+    <keyboard-shortcut first-keystroke="ctrl meta alt right" />
+  </action>
+  <action id="TerminalSplitActionBase$Horizontal">
+    <keyboard-shortcut first-keystroke="shift ctrl quote" />
+    <keyboard-shortcut first-keystroke="alt a" />
+  </action>
+  <action id="TerminalSplitActionBase$Vertical">
+    <keyboard-shortcut first-keystroke="shift ctrl 5" />
+  </action>
+  <action id="TodoViewGroupByFlattenPackage" />
+  <action id="ToggleBookmark5" />
+  <action id="TypeHierarchy" />
+  <action id="TypeHierarchyBase.BaseOnThisType" />
+  <action id="UsageFiltering.WriteAccess" />
+  <action id="UsageGrouping.DirectoryStructure" />
+  <action id="Vcs.MoveChangedLinesToChangelist" />
+  <action id="ViewNavigationBar">
+    <keyboard-shortcut first-keystroke="ctrl meta n" />
+  </action>
+  <action id="ViewStatusBar">
+    <keyboard-shortcut first-keystroke="ctrl meta s" />
+  </action>
+  <action id="ViewToolBar">
+    <keyboard-shortcut first-keystroke="ctrl meta t" />
+  </action>
+  <action id="WindowMode">
+    <keyboard-shortcut first-keystroke="ctrl w" />
+  </action>
+  <action id="android.deploy.ApplyChanges">
+    <keyboard-shortcut first-keystroke="ctrl meta e" />
+  </action>
+  <action id="android.deploy.CodeSwap">
+    <keyboard-shortcut first-keystroke="shift ctrl meta e" />
+  </action>
+  <action id="editRunConfigurations">
+    <keyboard-shortcut first-keystroke="ctrl meta alt r" />
+  </action>
+</keymap>

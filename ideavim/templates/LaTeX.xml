@@ -1,0 +1,8 @@
+<templateSet group="LaTeX">
+  <template name="todo" value="% TODO(juanBalian35): $1$" description="LaTeX TODO" toReformat="false" toShortenFQNames="true">
+    <variable name="1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="LATEX" value="true" />
+    </context>
+  </template>
+</templateSet>
