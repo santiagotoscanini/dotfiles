@@ -1,12 +1,5 @@
 let mapleader = ' '
 
-" ------ BASICS ------
-inoremap jj <Esc>
-" Write without appliying autocommands (as formatting)
-nnoremap <leader>nfw :noa w<CR>
-nnoremap <leader>w :wa<CR>
-nnoremap <leader>q :q!<CR>
-nnoremap <leader>x :x<CR>
 " To stop highlights when stop searching
 nnoremap <esc> :noh<return><esc>
 
@@ -22,6 +15,14 @@ nnoremap Y y$
 vnoremap <leader>p "_dP
 
 if !exists('g:vscode')
+    " ------ BASICS ------
+    inoremap jj <Esc>
+    " Write without appliying autocommands (as formatting)
+    nnoremap <leader>nfw :noa w<CR>
+    nnoremap <leader>w :wa<CR>
+    nnoremap <leader>q :q!<CR>
+    nnoremap <leader>x :x<CR>
+
     " ----- CUSTOM ------
     " Rename the current file
     function! RenameCurrentFile()
