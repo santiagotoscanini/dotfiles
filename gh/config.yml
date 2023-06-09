@@ -13,8 +13,6 @@ aliases:
     label: issue edit --add-label
     claim: issue edit --add-assignee @me
     rmlabel: issue edit --remove-label
-    br-pr: "! source $XDG_CONFIG_HOME/zsh/git-alias.work.zsh && brPullRequest $@"
-    br-release: "! source $XDG_CONFIG_HOME/zsh/git-alias.work.zsh && brRelease $@"
 
 # The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
 http_unix_socket:

@@ -2,5 +2,9 @@
 .idea/**
 .vscode/**
 
+# ZSH
+shell/zsh/work.zsh
+shell/zsh/.zsh_history
+
 # macOS
 .DS_Store

@@ -9,25 +9,19 @@
 ```
 
 Dotfiles that are fully compatible with [XDG Base Directory Specification](https://wiki.archlinux.org/title/XDG_Base_Directory).
-Util for XDG ([XDG Ninja](https://github.com/b3nj5m1n/xdg-ninja)).
-
-For zsh we need to set the `ZDOTDIR` environment variable. [More Information](https://github.com/santiagotoscanini/dotfiles/tree/main/zsh#setup).
+Utility for XDG ([XDG Ninja](https://github.com/b3nj5m1n/xdg-ninja)).
 
 ---
 
-To stow the files, we run `sudo ./df_install.zsh`.
-Sudo is needed to create the Daemon Agents for the `dark-mode-notifier`.
+To symlink the files run `./os/install.py`.
 
 ---
 
 ### TODO
 
 - [x] Make it XDG Compatible.
-- [x] Make an `df_install.zsh` script to stow/unstow config files.
-- [x] Add IdeaVim dotfiles.
-- [x] Add QMK config files.
-- [x] Create script to add qmk keymaps to firmware directory (using stow).
-- [ ] Add asdf files to dotfiles.
-- [ ] Sign commits using SSH instead of GPG when macOS's SSH support signing arbitrary data.
-- [ ] Make a script for OS Configurations.
+- [x] Make an `install.py` script to link config files.
+- [x] Sign commits using SSH instead of GPG when macOS's SSH support signing arbitrary data.
 - [ ] Make it available to Windows and Linux.
+- [ ] Make a script for OS Configurations.
+- [ ] Add asdf files to dotfiles.

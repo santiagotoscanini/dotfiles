@@ -2,7 +2,7 @@
 
 Execution order comparison.
 
-![bash vs zsh execution order comparison](https://github.com/santiagotoscanini/dotfiles/blob/main/zsh/images/shell%20execution%20order%20comparision.png)
+![bash vs zsh execution order comparison](https://github.com/santiagotoscanini/dotfiles/blob/main/shell/zsh/images/shell%20execution%20order%20comparision.png)
 
 Summary of zsh:
 

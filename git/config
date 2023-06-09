@@ -2,10 +2,13 @@
     name = Santiago Toscanini
     email = github@account.toscanini.me
     signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
+[core]
+    autocrlf = input
+    sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_personal
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [includeIf "gitdir:~/dev/work/"]
-    path = "~/.config/git/gitconfig-work"
+    path = "~/.config/git/config.work"
 [diff]
     tool = difftastic
 [pager]
@@ -70,11 +73,11 @@
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
     # Commit dotfiles
-    dotfiles = "!source $XDG_CONFIG_HOME/zsh/git-alias.zsh && commitDotfiles"
+    dotfiles = "!source $XDG_CONFIG_HOME/git/git.alias.zsh && commitDotfiles"
     df = dotfiles
 
     # Commit notes
-    obsidian = "!source $XDG_CONFIG_HOME/zsh/git-alias.zsh && commitNotes"
+    obsidian = "!source $XDG_CONFIG_HOME/git/git.alias.zsh && commitNotes"
     obs = obsidian
 
     # List contributors with number of commits.
@@ -104,5 +107,3 @@
 [push]
 	autoSetupRemote = true
 	default = current
-[core]
-    autocrlf = input

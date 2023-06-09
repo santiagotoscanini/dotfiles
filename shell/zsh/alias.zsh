@@ -1,6 +1,3 @@
-# Only Relevant Configs for Current Company
-source "$ZDOTDIR/alias.work.zsh"
-
 # Toggle dark mode on macOS
 alias ,osLights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 alias ,deskOff="pushd $DOTFILES_DIR/smart-home-automations && poetry run python3 main.py off && popd"
@@ -18,7 +15,7 @@ alias ,cdnotes="cd ~/dev/personal/notes"
 alias ,exportMacos="defaults domains | tr \", \" \"\n\" | sed -r '/^\s*$/d' | xargs -I_ defaults export _ \"$DOTFILES_DIR/macos/backup/_.plist\""
 
 # Network
-alias ,internal_ip="ipconfig getifaddr en0" # WiFi
+alias ,internal_ip="ipconfig getifaddr en0" # WiFi interface
 alias ,external_ip="curl -s icanhazip.com"
 
 # Browser
@@ -36,6 +33,7 @@ alias ,googlecp="_search_google_clipboard"
 
 # Terminal
 alias ,bclean="clear && printf '\e[3J'"
+alias copy="pbcopy"
 
 # neovim
 alias ,vi="nvim"
@@ -50,6 +48,7 @@ alias ,chgh="nvim $XDG_CONFIG_HOME/gh/config.yml"
 alias ,idot="idea $DOTFILES_DIR"
 
 ################# QMK ######################
+# TODO: this can be environment variables so it's easier to change
 current_keyboard=crkbd
 current_keymap=santi_km
 function _compile_my_keymap(){
@@ -68,14 +67,6 @@ alias ,qmkf='_flash_my_keymap'
 
 
 ################# Docker ######################
-function _docker_build_and_push_image(){
-    docker build . -t "$1" && docker push "$1"
-}
-
-# Build and push image by a tag
-# shellcheck disable=SC2142
-alias ,dkbp='_docker_build_and_push_image $1'
-
 # Run bash inside a container
 # shellcheck disable=SC2142
 alias ,dkbash='docker exec -it $1 /bin/bash'

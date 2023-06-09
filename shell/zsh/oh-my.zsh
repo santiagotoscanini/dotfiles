@@ -21,7 +21,7 @@ bindkey "^[[B" history-beginning-search-forward
 # Aliases and utilities for tmux.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
 
-# Avoid auto-starting tmux in IDEs
+# Avoid auto-starting tmux in IDE's terminal
 if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
     plugins+=(tmux)
 
@@ -44,7 +44,7 @@ plugins+=(poetry)
 # -------------- golang -------
 # Adds golang completitions.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/golang
-plugins+=(golang)
+# plugins+=(golang)
 
 # -------------- gh -------
 # Adds gh (GitHub CLI) completitions.
@@ -59,8 +59,8 @@ plugins+=(docker)
 # -------------- gcloud -------
 # Adds gcloud (Google Cloud SDK CLI) completitions
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gcloud
-CLOUDSDK_HOME=/usr/local/bin/google-cloud-sdk
-plugins+=(gcloud)
+# CLOUDSDK_HOME=/usr/local/bin/google-cloud-sdk
+# plugins+=(gcloud)
 
 # -------------- aws -------
 # Adds awscli completitions and some commands
@@ -75,7 +75,7 @@ plugins+=(brew)
 # -------------- command-not-found
 # Provide suggested install if a command cannot be found.
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/command-not-found
-# TODO: Disabled because it makes the prompt slow and I'm not sure it's that useful
+# TODO: Disabled because it makes the prompt slow
 # plugins+=(command-not-found)
 
 # -------------- thefuck ----

@@ -25,7 +25,7 @@
         "**/__pycache__": true,
         "**/.pytest_cache": true,
         "**/coverage": true,
-        "**/.serverless": true,
+        "**/.serverless": true
     },
     // "breadcrumbs.enabled": false,
     "breadcrumbs.symbolPath": "off",

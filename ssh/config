@@ -1,18 +1,11 @@
-Include /Users/stoscanini/.colima/ssh_config
-
-Host github-work.com
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_ed25519_work
-
 Host github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_ed25519_personal
+  IdentitiesOnly yes
 
 Host s2
-    HostName 192.168.1.2
-    User santiago
-    IdentityFile ~/.ssh/s2_nano
-    IdentityFile ~/.ssh/s2_neo
-
+  HostName 192.168.1.2
+  User santiago
+  IdentityFile ~/.ssh/s2_nano
+  IdentityFile ~/.ssh/s2_neo
+  IdentitiesOnly yes
