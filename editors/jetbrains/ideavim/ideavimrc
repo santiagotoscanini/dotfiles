@@ -106,7 +106,7 @@ map <c-=> <Action>(Unsplit)
 
 map <leader>zz <Action>(MaximizeEditorInSplit)
 
-map <leader>e <Action>(EditSourceInNewWindow)
+" map <leader>e <Action>(EditSourceInNewWindow)
 map <leader>n <Action>(NextWindow)
 
 map <c-p> <Action>(JumpToLastWindow)
@@ -172,7 +172,7 @@ map <leader>sw <Action>(ActivateServicesToolWindow)
 map <c-f>       <Action>(GotoFile)
 map <leader>rg  <Action>(FindInPath)
 map <leader>rcl <Action>(RecentLocations)
-map <leader>rcf <Action>(RecentFiles)
+map <leader>e   <Action>(RecentFiles)
 map <c-a>       <Action>(GotoAction)
 map <leader>scf <Action>(Scratch.ShowFilesPopup)
 

@@ -1,29 +1,5 @@
 commitDotfiles() {
     pushd "$DOTFILES_DIR" || exit
-        pushd work-dotfiles || exit
-            git add .
-            git commit -m "[Automatically]: Update work-dotfiles."
-            git push
-        popd || exit
-
-        pushd smart-home-automations || exit
-            git add .
-            git commit -m "[Automatically]: Update smart-home-automations."
-            git push
-        popd || exit
-
-        pushd dark-mode-notifier || exit
-            git add .
-            git commit -m "[Automatically]: Update dark-mode-notifier."
-            git push
-        popd || exit
-
-        pushd macos || exit
-            git add .
-            git commit -m "[Automatically]: Update macos settings."
-            git push
-        popd || exit
-
         git add .
         git commit -m "[Automatically]: Update dotfiles."
         git push origin main
