@@ -16,6 +16,9 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump
 export XDG_CONFIG_HOME=$HOME/.config
 export EDITOR='nvim'
 
+# Load work specific configs
+source $XDG_CONFIG_HOME/zsh/work.zsh
+
 ## Unused
 # export NOTES_DIR=$HOME/dev/personal/notes
 # export GO111MODULE=on
