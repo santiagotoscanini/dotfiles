@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 
-import os, errno
+import errno
+import os
+
 
 def check_required_variables(vars):
     for var in vars:
         if os.environ.get(var) is None:
             print(f"{var} not set")
             exit(1)
+
 
 # Check if required variables are set
 check_required_variables(["XDG_CONFIG_HOME", "QMK_DIR", "HOME", "DOTFILES_DIR"])
@@ -55,9 +58,10 @@ mappings = {
     "QMK": {
         # QMK Files go inside QMK Firmware directory (aren't XDG Compatible).
         "src": "qmk/santi_km",
-        "dst": os.path.join(QMK_DIR, "qmk_firmware/keyboards/crkbd/keymaps/santi_km"),
+        "dst": os.path.join(QMK_DIR, "keyboards/crkbd/keymaps/santi_km"),
     }
 }
+
 
 def force_symlink(src, dst, is_dir):
     try:
@@ -66,6 +70,7 @@ def force_symlink(src, dst, is_dir):
         if e.errno == errno.EEXIST:
             os.remove(dst)
             os.symlink(src, dst, target_is_directory=True)
+
 
 for service_name, mapping in mappings.items():
     src = os.path.join(DOTFILES_DIR, mapping["src"])

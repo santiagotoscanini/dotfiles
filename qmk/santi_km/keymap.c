@@ -34,7 +34,7 @@ enum {
   // TD_SLASH,
   // TD_JJ,
 };
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
   [TD_CAPLOCK] =   ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
   [TD_ALT] =       ACTION_TAP_DANCE_DOUBLE(KC_RALT, KC_LALT),
   // [TD_SEMICOLON] = ACTION_TAP_DANCE_DOUBLE(KC_SCLN, LSFT(KC_SCLN)),
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT(
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
-         RESET, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_SLEP,                       XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU,
+        QK_BOOT, XXXXXXX,  XXXXXXX, XXXXXXX, XXXXXXX,  KC_SLEP,                       XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, KC_VOLD, KC_VOLU,
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
          RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, XXXXXXX, KC_MPLY,                       XXXXXXX, XXXXXXX,  XXXXXXX, XXXXXXX, KC_BRID, KC_BRIU,
       //|-----------------------------------------------------|                    |-----------------------------------------------------|
@@ -298,10 +298,17 @@ bool oled_task_user(void) {
   }
   oled_on(); // not essential but turns on animation OLED with any alpha keypress
 
-  if (is_master) {
+  if (is_keyboard_master()) {
     render_screen();
   } else {
-    render_screen();
+      render_logo();
+      render_space();
+      render_space();
+      render_space();
+      render_space();
+      render_space();
+      render_space();
+      render_space();
   }
 
   return false;
@@ -313,7 +320,7 @@ bool oled_task_user(void) {
 
 int RGB_current_mode;
 
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         case _BASE:
             if (host_keyboard_leds() & (1 << USB_LED_CAPS_LOCK)) {
@@ -334,6 +341,8 @@ void rgb_matrix_indicators_user(void) {
             rgb_matrix_set_color_all(123, 111, 9);
             break;
     }
+
+    return true;
 }
 
 void update_tri_layer_RGB(uint8_t layer1, uint8_t layer2, uint8_t layer3) {
