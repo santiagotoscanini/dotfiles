@@ -49,10 +49,10 @@ if !exists('g:vscode')
     "     autocmd TermOpen * startinsert
     " augroup END
 
-    augroup AuDeleteBufferGitEditor
-        autocmd!
-        autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
-    augroup END
+    " augroup AuDeleteBufferGitEditor
+    "     autocmd!
+    "     autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+    " augroup END
 
     augroup AuToggleRelativeNumber
         autocmd!

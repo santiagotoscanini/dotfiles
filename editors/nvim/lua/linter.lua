@@ -19,9 +19,9 @@ require("null-ls").setup({
 		-- JS/TS
 		diagnostics.eslint,
 		formatting.eslint,
-		formatting.prettier.with({ -- And also HTML/CSS/YAML/MARKDOWN/JSON/GRAPHQL. Could even support Solidity with the use of extensions.
-			extra_filetypes = { "solidity" },
-		}),
+		-- formatting.prettier.with({ -- Also HTML/CSS/YAML/MD/JSON/GRAPHQL. Can even support Solidity with extensions.
+		-- 	extra_filetypes = { "solidity" },
+		-- }),
 
 		-- ZSH
 		diagnostics.zsh,
@@ -31,9 +31,9 @@ require("null-ls").setup({
 		formatting.stylua,
 
 		-- Solidity
-		diagnostics.solhint,
+		-- diagnostics.solhint,
 
 		-- Vim
-		-- diagnostics.vint,
+		diagnostics.vint,
 	},
 })

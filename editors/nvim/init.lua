@@ -4,17 +4,15 @@ if not vim.g.vscode then
 	require("nvim-autopairs").setup()
 	require("nvim-cmp")
 	require("lsp")
-	require("indent-blankline")
+	require("debug-config")
 	require("linter")
 	require("snippets")
 
 	vim.cmd("source $XDG_CONFIG_HOME/nvim/style.vim")
 
-	require("nvim-tree-config")
 	require("trouble").setup()
 	require("gitsigns").setup()
 	require("feline-config")
-	require("smooth-scrolling")
 	require("treesitter")
 
 	-- TODO(santiagotoscanini): check - https://github.com/smjonas/inc-rename.nvim

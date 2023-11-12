@@ -5,7 +5,7 @@ nnoremap <esc> :noh<return><esc>
 
 " FIXME(santiagotoscanini): This is not working.
 " Google the clipboard contents
-nnoremap <leader>sog <cmd>! _search_google_clipboard<cr>
+" nnoremap <leader>sog <cmd>! _search_google_clipboard<cr>
 
 " To be consistent with C and D operators, the default behavior is to yank the whole line.
 nnoremap Y y$
@@ -17,11 +17,11 @@ vnoremap <leader>p "_dP
 if !exists('g:vscode')
     " ------ BASICS ------
     inoremap jj <Esc>
-    " Write without appliying autocommands (as formatting)
-    nnoremap <leader>nfw :noa w<CR>
     nnoremap <leader>w :wa<CR>
     nnoremap <leader>q :q!<CR>
     nnoremap <leader>x :x<CR>
+    " Write without appliying autocommands (as formatting)
+    nnoremap <leader>nfw :noa w<CR>
 
     " ----- CUSTOM ------
     " Rename the current file
@@ -144,6 +144,22 @@ if !exists('g:vscode')
     nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
     nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
     nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
+
+    " Debugger
+    lua << EOF
+    -- steps
+    vim.keymap.set('n', '<F5>', require 'dap'.continue)
+    vim.keymap.set('n', '<F10>', require 'dap'.step_over)
+    vim.keymap.set('n', '<F11>', require 'dap'.step_into)
+    vim.keymap.set('n', '<F12>', require 'dap'.step_out)
+    -- breakpoints
+    vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
+    vim.keymap.set('n', '<leader>B', function()
+      require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+    end)
+    -- ui
+    vim.keymap.set('n', '<leader>ui', require 'dapui'.toggle)
+EOF
 else
     nnoremap <leader>sa <Plug>(easymotion-s2)
 

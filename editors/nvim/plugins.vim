@@ -36,7 +36,15 @@ call plug#begin('~/.vim/plugged')
         Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
         Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
-        Plug 'github/copilot.vim'                         " GitHub Copilot
+        " Debug
+        Plug 'mfussenegger/nvim-dap'                       " DAP Client
+        Plug 'rcarriga/nvim-dap-ui'                        " UI for DAP
+        Plug 'theHamsta/nvim-dap-virtual-text'             " Find variable definitions
+        " Adapters
+        Plug 'mxsdev/nvim-dap-vscode-js'                   " Adapter for JS
+
+
+        Plug 'github/copilot.vim'                          " GitHub Copilot
 
         Plug 'onsails/lspkind-nvim'                        " vscode-like pictograms for LSP
         Plug 'folke/tokyonight.nvim', { 'branch': 'main' } " Theme

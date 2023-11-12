@@ -1,3 +1,6 @@
+# Temporary
+alias mydocker='docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
+
 # Toggle dark mode on macOS
 alias ,osLights="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 alias ,deskOff="pushd $DOTFILES_DIR/smart-home-automations && poetry run python3 main.py off && popd"

@@ -1,15 +1,15 @@
--- TODO(santiagotoscanini): Check if neovim comes with TreeSitter installed
+-- TODO(santiagotoscanini): Check if neovim comes with Treesitter installed
 require("nvim-treesitter.configs").setup({
 	-- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 	ensure_installed = {
-		"c",
+		-- "c",
 		"lua",
 		"javascript",
 		"typescript",
 		"python",
-		"solidity",
+		-- "solidity",
 		"vim",
-		"dart",
+		-- "dart",
 	},
 	highlight = {
 		enable = true,

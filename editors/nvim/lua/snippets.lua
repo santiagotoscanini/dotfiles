@@ -32,7 +32,7 @@ ls.config.set_config({
 })
 
 require("luasnip/loaders/from_vscode").lazy_load()
-ls.filetype_extend("dart", { "flutter" })
+-- ls.filetype_extend("dart", { "flutter" })
 
 ---------- SNIPPETS
 
