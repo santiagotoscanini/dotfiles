@@ -36,14 +36,21 @@ call plug#begin('~/.vim/plugged')
         Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
         Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
-        " Debug
+        " --- Debug
         Plug 'mfussenegger/nvim-dap'                       " DAP Client
         Plug 'rcarriga/nvim-dap-ui'                        " UI for DAP
         Plug 'theHamsta/nvim-dap-virtual-text'             " Find variable definitions
-        " Adapters
-        Plug 'mxsdev/nvim-dap-vscode-js'                   " Adapter for JS
 
+        Plug 'mxsdev/nvim-dap-vscode-js'                   " A bridge from the VSCode JS adapter
+        " In case we want to persist the breakpoints we need
+        " https://github.com/Weissle/persistent-breakpoints.nvim
 
+        " --- Tests
+        Plug 'nvim-neotest/neotest'
+
+        Plug 'nvim-neotest/neotest-jest'
+
+        " --- Copilot
         Plug 'github/copilot.vim'                          " GitHub Copilot
 
         Plug 'onsails/lspkind-nvim'                        " vscode-like pictograms for LSP

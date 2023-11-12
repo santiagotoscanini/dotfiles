@@ -30,6 +30,9 @@ call SetBackgroundMode()
 " Change the color scheme if we receive a SigUSR1
 autocmd Signal SIGUSR1 call SetBackgroundMode()
 
+" Show syntax highlighting in markdown code blocks
+let g:markdown_fenced_languages = ['html', 'js=javascript', 'lua']
+
 lua << EOF
 vim.fn.sign_define('DapBreakpoint',{ text ='🟥', texthl ='', linehl ='', numhl =''})
 vim.fn.sign_define('DapStopped',{ text ='▶️', texthl ='', linehl ='', numhl =''})

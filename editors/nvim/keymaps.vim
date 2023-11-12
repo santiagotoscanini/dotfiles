@@ -159,6 +159,15 @@ if !exists('g:vscode')
     end)
     -- ui
     vim.keymap.set('n', '<leader>ui', require 'dapui'.toggle)
+
+    -- tests
+    -- debug test
+    vim.keymap.set('n', '<leader>tt', function()
+        require("neotest").run.run({strategy = "dap"})
+    end)
+    vim.keymap.set('n', '<leader>tf', function()
+        require("neotest").run.run(vim.fn.expand("%"))
+    end)
 EOF
 else
     nnoremap <leader>sa <Plug>(easymotion-s2)
