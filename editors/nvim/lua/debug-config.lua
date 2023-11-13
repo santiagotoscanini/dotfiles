@@ -60,12 +60,3 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close({})
 end
-
--- TODO MOVE THIS
-require("neotest").setup({
-	adapters = {
-		require("neotest-jest")({
-			dap = { justMyCode = false },
-		}),
-	},
-})

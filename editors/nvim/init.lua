@@ -5,6 +5,7 @@ if not vim.g.vscode then
 	require("nvim-cmp")
 	require("lsp")
 	require("debug-config")
+	require("test-config")
 	require("linter")
 	require("snippets")
 
