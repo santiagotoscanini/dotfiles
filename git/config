@@ -2,17 +2,35 @@
     name = Santiago Toscanini
     email = github@account.toscanini.me
     signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
+
 [core]
     autocrlf = input
     sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_personal
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+[diff]
+    colorMoved = default
+    algorithm = histogram
+    submodule = log
+[pager]
+    difftool = true
+
+[status]
+    submoduleSummary = true
+[log]
+    date = iso
+
+[submodule]
+    recurse = true
+
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [includeIf "gitdir:~/dev/work/"]
     path = "~/.config/git/config.work"
-[diff]
-    tool = difftastic
-[pager]
-    difftool = true
 [color "diff"]
     meta = yellow bold
     frag = magenta bold # line info
@@ -87,23 +105,33 @@
     whoami = config user.email
 [pull]
     rebase = false
+[merge]
+    conflictStyle = zdiff3
+    tool = nvim
+[rerere]
+    enabled = true
 [fetch]
     # Automatically prune stale branches.
     prune = true
 [init]
     defaultBranch = main
+[branch]
+    sort = -committerdate
 [help]
-    # Automatically correct and execute mistyped commands.
-    autocorrect = 1
+    # Automatically correct and execute mistyped commands after prompting
+    autocorrect = prompt
 [commit]
     gpgsign = true
+    verbose = true
 [tag]
     gpgsign = true
+    sort = taggerdate
 [gpg]
     # To use this we need an SSH version greater than 8.8 (to sign arbitrary data)
     format = ssh
 [gpg "ssh"]
-	allowedSignersFile = ~/.ssh/allowed_signers
+    allowedSignersFile = ~/.ssh/allowed_signers
 [push]
-	autoSetupRemote = true
-	default = current
+    autoSetupRemote = true
+    default = current
+    followTags = true
