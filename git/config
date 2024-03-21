@@ -2,7 +2,10 @@
     name = Santiago Toscanini
     email = github@account.toscanini.me
     signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
-
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[includeIf "gitdir:~/dev/work/"]
+    path = "~/.config/git/config.work"
 [core]
     autocrlf = input
     sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_personal
@@ -26,11 +29,6 @@
 
 [submodule]
     recurse = true
-
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-[includeIf "gitdir:~/dev/work/"]
-    path = "~/.config/git/config.work"
 [color "diff"]
     meta = yellow bold
     frag = magenta bold # line info
