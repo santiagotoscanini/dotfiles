@@ -2,14 +2,14 @@
     name = Santiago Toscanini
     email = github@account.toscanini.me
     signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-[includeIf "gitdir:~/dev/work/"]
-    path = "~/.config/git/config.work"
 [core]
     autocrlf = input
     sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_personal
     pager = delta
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[includeIf "gitdir:~/dev/work/"]
+    path = "~/.config/git/config.work"
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -21,7 +21,6 @@
     submodule = log
 [pager]
     difftool = true
-
 [status]
     submoduleSummary = true
 [log]
@@ -132,4 +131,7 @@
 [push]
     autoSetupRemote = true
     default = current
-
+[column]
+    ui = auto
+[maintenance]
+	repo = /Users/stoscanini/dev/work/fabric/fabric-service
