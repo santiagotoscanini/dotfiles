@@ -1,0 +1,5 @@
+[user]
+    email = github@account.toscanini.me
+    signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
+[core]
+    sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_personal

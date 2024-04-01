@@ -1,13 +1,12 @@
 [user]
     name = Santiago Toscanini
-    email = github@account.toscanini.me
-    signingkey = /Users/stoscanini/.ssh/id_ed25519_personal
 [core]
     autocrlf = input
-    sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_personal
     pager = delta
 [url "git@github.com:"]
     insteadOf = https://github.com/
+[includeIf "gitdir:~/dev/personal/"]
+    path = "~/.config/git/config.personal"
 [includeIf "gitdir:~/dev/work/"]
     path = "~/.config/git/config.work"
 [interactive]
