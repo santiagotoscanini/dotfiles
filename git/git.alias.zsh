@@ -1,5 +1,6 @@
 commitDotfiles() {
     pushd "$DOTFILES_DIR" || exit
+        git submodule foreach --recursive git pull origin main
         git add .
         git commit -m "[Automatically]: Update dotfiles."
         git push origin main
