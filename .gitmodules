@@ -1,0 +1,6 @@
+[submodule "os/macos/dark-mode-notifier"]
+	path = os/macos/dark-mode-notifier
+	url = https://github.com/santiagotoscanini/dark-mode-notifier.git
+[submodule "os/macos/macos-settings"]
+	path = os/macos/macos-settings
+	url = https://github.com/santiagotoscanini/macos.git
