@@ -1,4 +1,4 @@
-import = ["/Users/stoscanini/.config/alacritty/color.toml"]
+import = ["/Users/stoscanini/.config/alacritty/active.toml"]
 live_config_reload = true
 working_directory = "None"
 
