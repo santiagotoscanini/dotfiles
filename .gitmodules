@@ -1,3 +1,0 @@
-[submodule "os/macos/macos-settings"]
-	path = os/macos/macos-settings
-	url = git@github.com:santiagotoscanini/macos.git
