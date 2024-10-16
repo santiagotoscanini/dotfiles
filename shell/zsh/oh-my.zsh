@@ -22,7 +22,7 @@ bindkey "^[[B" history-beginning-search-forward
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
 
 # Avoid auto-starting tmux in IDE's terminal
-if [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
+if [ "$TERM_PROGRAM" != "zed" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ] && [ -z "$INTELLIJ_ENVIRONMENT_READER" ]; then
     plugins+=(tmux)
 
     ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session (if doesn't exist one).
