@@ -176,5 +176,7 @@ else
     "  This is only to reveal in explorer, the toggle is configured in vscode
     "  keymaps
     nnoremap <leader>sf <Cmd>call VSCodeNotify('revealInExplorer')<CR>
+
+    nnoremap <leader>re <Cmd>call VSCodeNotify('editor.action.rename')<CR>
 endif
 

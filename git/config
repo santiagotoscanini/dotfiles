@@ -5,6 +5,8 @@
     pager = delta
 [url "git@github.com:"]
     insteadOf = https://github.com/
+# There is a better way of configuring this based on remote
+# https://www.benji.dog/articles/git-config/
 [includeIf "gitdir:~/dev/personal/"]
     path = "~/.config/git/config.personal"
 [includeIf "gitdir:~/dev/work/"]
