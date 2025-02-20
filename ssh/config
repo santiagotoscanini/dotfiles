@@ -4,7 +4,7 @@ Host github.com
   IdentitiesOnly yes
   # We need a default identity to use it with outside commands, like brew update
   # I override this with the -i flag when I need to use a different identity (check .gitconfig)
-  IdentityFile ~/.ssh/id_ed25519_personal
+  IdentityFile ~/.ssh/id_personal
 
 Host s2
   HostName 192.168.0.2

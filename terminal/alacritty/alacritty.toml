@@ -9,7 +9,7 @@ TERM = "xterm-256color"
 size = 14
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrains Mono"
 style = "Regular"
 
 [font.offset]
