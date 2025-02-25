@@ -6,7 +6,7 @@ local nvim_lsp = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- nvim_lsp.dartls.setup({ capabilities = capabilities })
-nvim_lsp.tsserver.setup({ capabilities = capabilities })
+nvim_lsp.ts_ls.setup({ capabilities = capabilities })
 -- nvim_lsp.solc.setup({ capabilities = capabilities })
 -- nvim_lsp.gopls.setup({ capabilities = capabilities })
 nvim_lsp.vimls.setup({})

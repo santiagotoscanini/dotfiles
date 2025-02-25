@@ -1,8 +1,10 @@
 [user]
     name = Santiago Toscanini
+    signingkey = /Users/stoscanini/.ssh/id_personal
 [core]
     autocrlf = input
     pager = delta
+    sshCommand = ssh -i /Users/stoscanini/.ssh/id_personal
 [url "git@github.com:"]
     insteadOf = https://github.com/
 # There is a better way of configuring this based on remote

@@ -1,5 +1,2 @@
 [user]
-    email = santiago@blastradius.ai
-    signingkey = /Users/stoscanini/.ssh/id_ed25519_work
-[core]
-    sshCommand = ssh -i /Users/stoscanini/.ssh/id_ed25519_work
+    email = stoscanini@canarytechnologies.com

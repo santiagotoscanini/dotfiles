@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin()
     Plug 'nvim-lua/plenary.nvim'                      " Util functions for Lua
 
     " ae targets the entire content of the current buffer.
@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
         " --- Debug
+	Plug 'nvim-neotest/nvim-nio'                       " A library for asynchronous IO
         Plug 'mfussenegger/nvim-dap'                       " DAP Client
         Plug 'rcarriga/nvim-dap-ui'                        " UI for DAP
         Plug 'theHamsta/nvim-dap-virtual-text'             " Find variable definitions

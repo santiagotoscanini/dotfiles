@@ -4,6 +4,13 @@ export PATH="~/.cargo/bin:$PATH"
 # JetBrains scripts
 export PATH="~/Library/Application\ Support/JetBrains/Toolbox/scripts:$PATH"
 
+# Try to load nix since sometimes nix PATH is not loaded for some devs
+if ! which nix > /dev/null 2>&1 && [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+    # shellcheck source=/dev/null
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+
+# End Nix
 ### CONFIGS
 
 # TODO: migrate to git submodules inside respective folders
