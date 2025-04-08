@@ -1,50 +1,116 @@
+# Main Alacritty configuration file
+# See full documentation at: https://alacritty.org/config-alacritty.html
 
-[colors]
-draw_bold_text_with_bright_colors = true
+# Window configuration
+[window]
+# Window dimensions in terminal cells (columns x lines)
+dimensions = { columns = 130, lines = 45 }
 
-[env]
-TERM = "xterm-256color"
+# Window padding (in pixels) - adds space around terminal content
+padding = { x = 3, y = 3 }
 
+# No dynamic padding to maintain consistent spacing
+dynamic_padding = false
+
+# Window opacity (1.0 = fully opaque)
+opacity = 1.0
+
+# macOS specific: removes title bar buttons but keeps title bar
+decorations = "buttonless"
+
+# Default startup mode
+startup_mode = "Windowed"
+
+# Add window title configuration
+title = "Alacritty"
+dynamic_title = true
+
+# General settings
+[general]
+# Automatically reload configuration changes
+live_config_reload = true
+
+# Working directory when starting Alacritty
+# "None" means use the parent process directory
+working_directory = "None"
+
+# Import theme configuration
+import = ["/Users/stoscanini/.config/alacritty/active.toml"]
+
+# Font configuration
 [font]
+# Base font size in points
 size = 14
 
 [font.normal]
 family = "JetBrains Mono"
 style = "Regular"
 
+# Font offset (useful for tweaking alignment)
 [font.offset]
 x = 0
 y = 0
 
+# Add bold and italic font configuration
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+# Terminal colors
+[colors]
+# Use bright colors for bold text
+draw_bold_text_with_bright_colors = true
+
+# Mouse behavior
 [mouse]
+# Hide cursor when typing
 hide_when_typing = true
 
-# [mouse.hints]
-# launcher = "open"
+# Configure URL handling and hints
+[hints]
+# Enable mouse hints (clickable URLs)
+[[hints.enabled]]
+# Regular expression for matching URLs
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+# Command to execute when clicking on matches
+command = "open"
+# Mouse button to use for clicking (1-3)
+mouse.enabled = true
+mouse.mods = "None"
+# Binding to trigger hints (Command+U for macOS)
+binding = { key = "U", mods = "Command" }
 
+# Scrollback buffer configuration
 [scrolling]
+# Number of lines to keep in scrollback buffer (max 100000)
 history = 10000
+# Lines scrolled for each scroll increment
 multiplier = 3
 
+# Text selection settings
 [selection]
+# Don't automatically copy selected text to clipboard
 save_to_clipboard = false
+# Characters that are used as separators for "semantic parts" in selection
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
-[window]
-decorations = "buttonless"
-dynamic_padding = false
-opacity = 1.0
-startup_mode = "Windowed"
+# Environment variables
+[env]
+TERM = "xterm-256color"
 
-[window.dimensions]
-columns = 130
-lines = 45
+# Keyboard shortcuts
+# Uncomment to customize key bindings
+# [keyboard]
+# bindings = [
+#   { key = "N", mods = "Command", action = "CreateNewWindow" },
+# ]
 
-[window.padding]
-x = 3
-y = 3
-
-[general]
-live_config_reload = true
-working_directory = "None"
-import = ["/Users/stoscanini/.config/alacritty/active.toml"]
+# Advanced debugging options
+# Uncomment if needed for troubleshooting
+# [debug]
+# log_level = "Warn"
+# render_timer = false

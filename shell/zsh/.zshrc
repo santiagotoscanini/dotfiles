@@ -1,9 +1,29 @@
-# We have to set the homebrew path here because macOS calls /etc/zprofile after .zshenv and this
-# adds some system paths before homebrew's. More information on the README.md.
-export PATH="/opt/homebrew/bin:$PATH"
+# ===========================================
+# ~/.config/zsh/.zshrc
+# Sourced only for interactive shells
+# ===========================================
 
-source $ZDOTDIR/alias.zsh
-source $ZDOTDIR/oh-my.zsh
+# Fix Homebrew PATH ordering issue
+# macOS calls /etc/zprofile after .zshenv which adds some system paths before homebrew's.
+# This ensures Homebrew binaries take precedence over system ones.
+typeset -U PATH path  # Ensure PATH contains no duplicates
+[[ -d /opt/homebrew/bin ]] && path=(/opt/homebrew/bin $path)
 
-# The work file can exist or not, so we don't want to see errors if they don't exist
-source $ZDOTFIR/work.zsh 2> /dev/null || true
+# History configuration
+HISTSIZE=50000                   # Maximum events in internal history
+SAVEHIST=10000                   # Maximum events in history file
+setopt HIST_IGNORE_ALL_DUPS      # Don't record duplicates
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicates to history file
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks
+setopt EXTENDED_HISTORY          # Record timestamp of command
+setopt SHARE_HISTORY             # Share history between sessions
+
+# Load additional configuration files
+[[ -f $ZDOTDIR/alias.zsh ]] && source $ZDOTDIR/alias.zsh  # Load aliases
+[[ -f $ZDOTDIR/oh-my.zsh ]] && source $ZDOTDIR/oh-my.zsh  # Load Oh-My-Zsh config
+
+# Enable command completion system
+autoload -Uz compinit && compinit -d $ZSH_COMPDUMP
+
+# Local customizations (if any)
+[[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh

@@ -1,32 +1,37 @@
-### PATH
-# Cargo (Rust)
-export PATH="~/.cargo/bin:$PATH"
-# JetBrains scripts
-export PATH="~/Library/Application\ Support/JetBrains/Toolbox/scripts:$PATH"
+# ===========================================
+# ~/.config/zsh/.zshenv
+# Sourced on all invocations of the shell
+# ===========================================
 
-# Try to load nix since sometimes nix PATH is not loaded for some devs
-if ! which nix > /dev/null 2>&1 && [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    # shellcheck source=/dev/null
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
+# =========== PATH Configuration ===========
+typeset -U PATH path  # Ensure PATH contains no duplicates
 
-# End Nix
-### CONFIGS
+# Add Cargo (Rust) binaries to PATH
+[[ -d $HOME/.cargo/bin ]] && path=($HOME/.cargo/bin $path)
 
-# TODO: migrate to git submodules inside respective folders
-export QMK_DIR=$HOME/qmk_firmware
-export ZSH=$HOME/.oh-my-zsh
+# Add JetBrains scripts to PATH
+[[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && \
+  path=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts" $path)
 
-# TODO: migrate to .dotfiles
+# =========== Environment Variables ===========
+# Directory configurations
 export DOTFILES_DIR=$HOME/dev/personal/dotfiles
+export QMK_DIR=$HOME/qmk_firmware
+
+# Oh-My-Zsh configuration
+export ZSH=$HOME/.oh-my-zsh
+export ZSH_CUSTOM=$ZSH/custom    # Custom themes and plugins directory
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump
+
+# XDG Base Directory specification
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+
+# Default applications
 export EDITOR='nvim'
+export VISUAL='nvim'
+export PAGER='less'
 
-# Load work specific configs
-source $XDG_CONFIG_HOME/zsh/work.zsh
-
-## Unused
-# export NOTES_DIR=$HOME/dev/personal/notes
-# export GO111MODULE=on
-# export JAVA_HOME="/opt/homebrew/Cellar/openjdk/19.0.2/libexec/openjdk.jdk/Contents/Home"
+# Load work-specific configurations
+[[ -f $XDG_CONFIG_HOME/zsh/work.zsh ]] && source $XDG_CONFIG_HOME/zsh/work.zsh
