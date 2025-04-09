@@ -1,19 +1,65 @@
+# ===========================================
+# GitHub CLI Configuration (gh)
+# ===========================================
+
+# =========== Core Settings ===========
+# Protocol for git operations (ssh or https)
 git_protocol: ssh
+
+# Default editor for editing issues, PRs, etc.
 editor: nvim
+
+# Enable interactive prompts
 prompt: enabled
+
+# Default pager for output
 pager: less
-aliases:
-    co: pr checkout
-    diff: pr diff
-    merge: pr merge
-    close: issue close
-    add: issue create --title
-    mine: issue list -a @me
-    e: issue edit
-    label: issue edit --add-label
-    claim: issue edit --add-assignee @me
-    rmlabel: issue edit --remove-label
-# The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.
-http_unix_socket:
+
+# Default browser command (empty = system default)
 browser:
+
+# HTTP settings (unix socket for HTTP connections)
+http_unix_socket:
+
+# =========== Theme Settings ===========
+# Theme for color output (auto, light, dark)
+theme: auto
+
+# =========== Aliases ===========
+# Custom command shortcuts for common operations
+aliases:
+  # Pull request operations
+  co: pr checkout
+  diff: pr diff
+  merge: pr merge
+  prcreate: pr create --fill --web
+  update: pr update-branch
+
+  # Issue operations
+  close: issue close
+  add: issue create --title
+  mine: issue list -a @me
+  e: issue edit
+  label: issue edit --add-label
+  claim: issue edit --add-assignee @me
+  rmlabel: issue edit --remove-label
+
+  # Repository operations
+  fork: repo fork --clone --remote
+  clone: repo clone
+
+  # Workflow operations
+  wf: workflow list
+  wfrun: workflow run
+
+  # Enhanced search
+  find: search issues --state open
+  findall: search issues
+
+  # Open in browser shortcuts
+  browse-repo: repo view --web
+  browse-pr: pr view --web
+  browse-issue: issue view --web
+
+# File format version
 version: "1"
