@@ -6,7 +6,6 @@ call plug#begin()
     Plug 'kana/vim-textobj-entire'
     Plug 'kana/vim-textobj-user'
 
-    asdas
     Plug 'unblevable/quick-scope'                     " Show occurrences for 'f' and 't'
     Plug 'numToStr/Comment.nvim'                      " Commenter
     Plug 'tpope/vim-surround'                         " Change surrounding
