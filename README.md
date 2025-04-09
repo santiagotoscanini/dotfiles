@@ -17,7 +17,7 @@ To symlink the files run `./os/install.py`.
 
 ---
 
-### TODO
+## TODO
 
 - [x] Make it XDG Compatible.
 - [x] Make an `install.py` script to link config files.
