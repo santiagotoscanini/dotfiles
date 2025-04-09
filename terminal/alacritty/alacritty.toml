@@ -43,7 +43,7 @@ import = ["/Users/stoscanini/.config/alacritty/active.toml"]
 size = 14
 
 [font.normal]
-family = "JetBrains Mono"
+family = "JetBrainsMono Nerd Font"
 style = "Regular"
 
 # Font offset (useful for tweaking alignment)
