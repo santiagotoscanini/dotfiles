@@ -149,7 +149,7 @@
 [merge]
     conflictStyle = zdiff3   # Show better context in conflicts
     tool = nvim              # Use Neovim for merge conflicts
-    ff = only                # Fast-forward only by default
+    # ff = only                # Fast-forward only by default
 
 [rerere]
     enabled = true           # Reuse recorded resolution

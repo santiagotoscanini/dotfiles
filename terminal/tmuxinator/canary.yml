@@ -1,0 +1,12 @@
+name: canary
+root: /Users/stoscanini/dev/work/canary/backend/canary
+
+windows:
+  - backend:
+      layout: main-vertical
+      panes:
+        - make up
+  - ngrok:
+      layout: main-vertical
+      panes:
+        - ngrok http --url=unique-hermit-centrally.ngrok-free.app 8000

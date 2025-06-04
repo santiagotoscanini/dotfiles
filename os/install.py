@@ -43,6 +43,10 @@ mappings = {
         "src": "terminal/tmux",
         "dst": os.path.join(XDG_CONFIG_HOME, "tmux"),
     },
+    "Tmuxinator": {
+        "src": "terminal/tmuxinator",
+        "dst": os.path.join(XDG_CONFIG_HOME, "tmuxinator"),
+    },
     "IdeaVim": {
         "src": "editors/jetbrains/ideavim",
         "dst": os.path.join(XDG_CONFIG_HOME, "ideavim"),
