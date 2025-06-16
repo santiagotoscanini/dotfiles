@@ -10,3 +10,7 @@ windows:
       layout: main-vertical
       panes:
         - ngrok http --url=unique-hermit-centrally.ngrok-free.app 8000
+  - claude:
+      layout: main-vertical
+      panes:
+        - claude
