@@ -2,7 +2,7 @@ name: canary
 root: /Users/stoscanini/dev/work/canary/backend/canary
 
 windows:
-  - backend:
+  - canary-app:
       layout: main-vertical
       panes:
         - make up
@@ -10,7 +10,9 @@ windows:
       layout: main-vertical
       panes:
         - ngrok http --url=unique-hermit-centrally.ngrok-free.app 8000
-  - claude:
+  - claude-code:
       layout: main-vertical
       panes:
         - claude
+  - shell:
+     layout: main-vertical

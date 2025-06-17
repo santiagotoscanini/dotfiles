@@ -10,15 +10,16 @@ local formatting = null_ls.builtins.formatting
 require("null-ls").setup({
 	sources = {
 		-- Python
-		diagnostics.flake8.with({ diagnostics_postprocess = make_linter_warnings }),
+		-- diagnostics.ruff.with({ diagnostics_postprocess = make_linter_warnings }),
 		formatting.black,
 		formatting.isort,
 
 		-- JSON
-		formatting.jq,
+		-- formatting.jq,
+
 		-- JS/TS
-		diagnostics.eslint,
-		formatting.eslint,
+		-- diagnostics.eslint,
+		-- formatting.eslint,
 		-- formatting.prettier.with({ -- Also HTML/CSS/YAML/MD/JSON/GRAPHQL. Can even support Solidity with extensions.
 		-- 	extra_filetypes = { "solidity" },
 		-- }),
@@ -27,7 +28,7 @@ require("null-ls").setup({
 		diagnostics.zsh,
 
 		-- Lua
-		diagnostics.luacheck,
+		-- diagnostics.stylua,
 		formatting.stylua,
 
 		-- Solidity

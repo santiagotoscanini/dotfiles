@@ -102,6 +102,10 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 [env]
 TERM = "xterm-256color"
 
+# Notification
+[bell]
+command = { program = "osascript", args = ["-e", "beep"] }
+
 # Keyboard shortcuts
 # Uncomment to customize key bindings
 # [keyboard]

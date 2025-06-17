@@ -33,7 +33,7 @@ call plug#begin()
         Plug 'hrsh7th/cmp-path'                           " Completes for filesystem paths
         Plug 'hrsh7th/cmp-cmdline'                        " Autocomplete for command mode and search (based on buffer)
         Plug 'saadparwaiz1/cmp_luasnip'                   " Autocomplete for LuaSnip (snippets)
-        Plug 'jose-elias-alvarez/null-ls.nvim'            " Linter and formatter
+        Plug 'nvimtools/none-ls.nvim'                     " Linter and formatter (community fork of null-ls)
         Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
         " --- Debug
