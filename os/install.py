@@ -39,6 +39,10 @@ mappings = {
         "src": "terminal/alacritty",
         "dst": os.path.join(XDG_CONFIG_HOME, "alacritty"),
     },
+    "Ghostty": {
+        "src": "terminal/ghostty",
+        "dst": os.path.join(XDG_CONFIG_HOME, "ghostty"),
+    },
     "Tmux": {
         "src": "terminal/tmux",
         "dst": os.path.join(XDG_CONFIG_HOME, "tmux"),
