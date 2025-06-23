@@ -1,2 +1,3 @@
-
 macos-titlebar-style=hidden
+
+theme = dark:catppuccin-frappe,light:catppuccin-latte
