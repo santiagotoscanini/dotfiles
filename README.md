@@ -13,7 +13,7 @@ Utility for XDG ([XDG Ninja](https://github.com/b3nj5m1n/xdg-ninja)).
 
 ---
 
-To symlink the files run `./os/install.py`.
+To symlink the files run `./install.py`.
 
 ---
 

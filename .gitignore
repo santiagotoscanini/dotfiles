@@ -10,3 +10,6 @@ shell/zsh/.zsh_sessions
 
 # macOS
 **/.DS_Store
+
+# ignore chezmoi
+bin/chezmoi
