@@ -1,6 +1,7 @@
-# Just in case...
-**/.idea
-.vscode/**
+# Editors
+.idea
+.claude
+.vscode
 
 # ZSH
 shell/zsh/work.zsh
