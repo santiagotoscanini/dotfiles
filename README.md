@@ -13,7 +13,7 @@ Utility for XDG ([XDG Ninja](https://github.com/b3nj5m1n/xdg-ninja)).
 
 ---
 
-To symlink the files run `./install.py`.
+To symlink the files check the README inside `/dotfile`.
 
 ---
 
@@ -22,6 +22,7 @@ To symlink the files run `./install.py`.
 - [x] Make it XDG Compatible.
 - [x] Make an `install.py` script to link config files.
 - [x] Sign commits using SSH instead of GPG when macOS's SSH support signing arbitrary data.
-- [ ] Make it available to Windows and Linux.
-- [ ] Make a script for OS Configurations.
+- [x] Make a script for macOS Configurations.
+- [ ] Make it available to Linux.
+- [ ] Make it available to Windows.
 - [ ] Add asdf files to dotfiles.

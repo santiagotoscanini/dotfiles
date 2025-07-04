@@ -16,3 +16,5 @@ windows:
         - claude
   - shell:
      layout: main-vertical
+     panes:
+       - cursor /Users/stoscanini/dev/work/canary/canary.code-workspace

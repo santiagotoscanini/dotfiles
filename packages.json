@@ -1,5 +1,4 @@
 {
-  "version": "1.0.0",
   "packages": {
     "aldente": {
       "description": "Battery health and charging manager",
@@ -98,33 +97,33 @@
       }
     },
     "gh": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/gh",
+        "source": "gh"
+      },
       "description": "GitHub CLI for pull requests, issues, and more",
       "macos": {
         "brew": "gh"
-      },
-      "config": {
-        "source": "gh",
-        "destination": "$XDG_CONFIG_HOME/gh"
       }
     },
     "ghostty": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/ghostty",
+        "source": "terminal/ghostty"
+      },
       "description": "Fast, feature-rich terminal emulator",
       "macos": {
         "brew_cask": "ghostty"
-      },
-      "config": {
-        "source": "terminal/ghostty",
-        "destination": "$XDG_CONFIG_HOME/ghostty"
       }
     },
     "git": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/git",
+        "source": "git"
+      },
       "description": "Distributed version control system",
       "macos": {
         "brew": "git"
-      },
-      "config": {
-        "source": "git",
-        "destination": "$XDG_CONFIG_HOME/git"
       }
     },
     "git-delta": {
@@ -170,13 +169,13 @@
       }
     },
     "neovim": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/nvim",
+        "source": "editors/nvim"
+      },
       "description": "Hyperextensible Vim-based text editor",
       "macos": {
         "brew": "neovim"
-      },
-      "config": {
-        "source": "editors/nvim",
-        "destination": "$XDG_CONFIG_HOME/nvim"
       }
     },
     "nextcloud": {
@@ -204,13 +203,13 @@
       }
     },
     "openssh": {
+      "config": {
+        "destination": "~/.ssh/config",
+        "source": "ssh/config"
+      },
       "description": "OpenSSH for secure remote access",
       "macos": {
         "brew": "openssh"
-      },
-      "config": {
-        "source": "ssh/config",
-        "destination": "$HOME/.ssh/config"
       }
     },
     "pnpm": {
@@ -223,6 +222,16 @@
       "description": "ProtonVPN for secure VPN access",
       "macos": {
         "brew_cask": "protonvpn"
+      }
+    },
+    "qmk": {
+      "config": {
+        "destination": "$QMK_DIR/keyboards/crkbd/keymaps/santi_km",
+        "source": "qmk/santi_km"
+      },
+      "description": "QMK keyboard firmware toolkit",
+      "macos": {
+        "brew": "qmk/qmk/qmk"
       }
     },
     "raycast": {
@@ -274,23 +283,23 @@
       }
     },
     "tmux": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/tmux",
+        "source": "terminal/tmux"
+      },
       "description": "Terminal multiplexer for managing sessions",
       "macos": {
         "brew": "tmux"
-      },
-      "config": {
-        "source": "terminal/tmux",
-        "destination": "$XDG_CONFIG_HOME/tmux"
       }
     },
     "tmuxinator": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/tmuxinator",
+        "source": "terminal/tmuxinator"
+      },
       "description": "Tmuxinator for managing tmux sessions",
       "macos": {
         "brew": "tmuxinator"
-      },
-      "config": {
-        "source": "terminal/tmuxinator",
-        "destination": "$XDG_CONFIG_HOME/tmuxinator"
       }
     },
     "tree": {
@@ -341,19 +350,55 @@
         "brew": "zrok"
       }
     },
-    "qmk": {
-      "description": "QMK keyboard firmware toolkit",
+    "qpdf": {
+      "description": "qpdf (auto-discovered)",
       "macos": {
-        "brew": "qmk/qmk/qmk"
-      },
-      "config": {
-        "source": "qmk/santi_km",
-        "destination": "$QMK_DIR/keyboards/crkbd/keymaps/santi_km",
-        "optional": true
+        "brew": "qpdf"
       }
     }
   },
   "pre-install": {
+    "dev-directories": {
+      "description": "Create development directory structure",
+      "macos": {
+        "paths": ["~/dev/personal", "~/dev/work", "~/Documents/Screenshots"],
+        "permissions": "755"
+      },
+      "provider": "directory"
+    },
+    "dock-autohide": {
+      "description": "Enable dock auto-hide",
+      "macos": {
+        "apply": "killall Dock",
+        "domain": "com.apple.dock",
+        "key": "autohide",
+        "type": "bool",
+        "value": true
+      },
+      "provider": "defaults"
+    },
+    "dock-orientation": {
+      "description": "Dock position",
+      "macos": {
+        "apply": "killall Dock",
+        "domain": "com.apple.dock",
+        "key": "orientation",
+        "type": "string",
+        "value": "right"
+      },
+      "provider": "defaults"
+    },
+    "dock-size": {
+      "description": "Set dock icon size",
+      "macos": {
+        "apply": "killall Dock",
+        "domain": "com.apple.dock",
+        "key": "tilesize",
+        "type": "int",
+        "value": 65
+      },
+      "provider": "defaults"
+    },
     "homebrew": {
       "description": "Homebrew package manager",
       "macos": {
@@ -363,15 +408,25 @@
       }
     },
     "oh-my-zsh": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/zsh",
+        "source": "shell/zsh"
+      },
       "description": "Oh My Zsh framework (includes zsh configuration)",
       "macos": {
         "check": "[ -d \"$HOME/.oh-my-zsh\" ]",
         "install": "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended"
-      },
-      "config": {
-        "source": "shell/zsh",
-        "destination": "$XDG_CONFIG_HOME/zsh"
       }
+    },
+    "screencapture-location": {
+      "description": "Screenshot location",
+      "macos": {
+        "domain": "com.apple.screencapture",
+        "key": "location",
+        "type": "string",
+        "value": "~/Documents/Screenshots"
+      },
+      "provider": "defaults"
     },
     "typewritten": {
       "description": "Typewritten Zsh theme",
@@ -389,97 +444,80 @@
     }
   },
   "profiles": {
-    "minimal": {
-      "pre-install": ["homebrew"],
-      "packages": ["git", "neovim", "tmux"]
-    },
-    "personal": {
-      "pre-install": ["homebrew", "oh-my-zsh", "typewritten", "vi-mode"],
+    "base": {
       "packages": [
         "aldente",
         "arc",
         "awscli",
+        "cursor",
+        "docker",
+        "docker-desktop",
+        "eslint",
+        "fzf",
+        "gh",
+        "ghostty",
+        "git",
+        "git-delta",
+        "hiddenbar",
+        "logi-options+",
+        "lunar",
+        "neovim",
+        "notunes",
+        "openssh",
+        "raycast",
+        "ripgrep",
+        "shottr",
+        "slack",
+        "spotify",
+        "ticktick",
+        "tmux",
+        "tmuxinator",
+        "tree",
+        "vint"
+      ],
+      "pre-install": [
+        "homebrew",
+        "oh-my-zsh",
+        "typewritten",
+        "vi-mode",
+        "dev-directories",
+        "dock-orientation",
+        "dock-size",
+        "dock-autohide",
+        "screencapture-location"
+      ]
+    },
+    "personal": {
+      "base": "@base",
+      "packages": [
         "bambu-studio",
         "bitwarden",
         "calibre",
         "chatgpt",
-        "cursor",
         "discord",
-        "docker",
-        "docker-desktop",
-        "eslint",
         "ffmpeg",
-        "fzf",
-        "gh",
-        "ghostty",
-        "git",
-        "git-delta",
-        "hiddenbar",
         "insta360-studio",
-        "logi-options+",
-        "lunar",
-        "neovim",
         "nextcloud",
-        "notunes",
         "obsidian",
-        "openssh",
         "protonvpn",
-        "raycast",
-        "ripgrep",
-        "shottr",
-        "slack",
-        "spotify",
-        "ticktick",
-        "tmux",
-        "tmuxinator",
-        "tree",
-        "vint",
         "whatsapp",
-        "yubico-yubikey-manager",
-        "qmk"
+        "yubico-yubikey-manager"
       ]
     },
     "work": {
-      "pre-install": ["homebrew", "oh-my-zsh", "typewritten", "vi-mode"],
+      "base": "@base",
       "packages": [
-        "aldente",
-        "arc",
-        "awscli",
-        "cursor",
         "dbeaver-community",
-        "docker",
-        "docker-desktop",
-        "eslint",
         "figma",
-        "fzf",
-        "gh",
-        "ghostty",
-        "git",
-        "git-delta",
-        "hiddenbar",
         "linear-linear",
-        "logi-options+",
         "loom",
-        "lunar",
-        "neovim",
         "ngrok",
-        "notunes",
-        "openssh",
         "pnpm",
-        "raycast",
-        "ripgrep",
         "ruff",
-        "shottr",
-        "slack",
-        "spotify",
-        "ticktick",
-        "tmux",
-        "tmuxinator",
-        "tree",
-        "vint",
         "zoom",
         "zrok"
       ]
     }
-  }
+  },
+  "version": "1.0.0"
 }

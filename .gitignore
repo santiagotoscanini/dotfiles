@@ -8,6 +8,10 @@ shell/zsh/work.zsh
 shell/zsh/.zsh_history
 shell/zsh/.zsh_sessions
 
+# Python
+__pycache__/
+.ruff_cache/
+
 # macOS
 **/.DS_Store
 

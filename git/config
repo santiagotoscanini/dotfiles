@@ -13,7 +13,7 @@
     autocrlf = input         # Convert CRLF to LF on commit but not the other way around
     pager = delta            # Use delta for enhanced diff viewing
     sshCommand = ssh -i /Users/stoscanini/.ssh/id_personal  # Default SSH key
-    fsmonitor = true         # Use filesystem monitor for faster status
+    # fsmonitor = true         # Use filesystem monitor for faster status
     untrackedCache = true    # Cache untracked files for performance
 
 # =========== URL Rewriting ===========
