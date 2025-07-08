@@ -517,6 +517,8 @@
       ],
       "pre-install": [
         "rosetta",
+        "root_zshenv",
+        "ssh__github",
         "homebrew",
         "oh-my-zsh",
         "typewritten",
@@ -543,7 +545,8 @@
         "protonvpn",
         "whatsapp",
         "yubico-yubikey-manager"
-      ]
+      ],
+      "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
     },
     "work": {
       "base": "@base",
