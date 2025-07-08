@@ -70,6 +70,7 @@ class Config:
             "name": name,
             "description": item.get("description", name),
             "provider": item.get("provider"),  # Handler type
+            "config": item.get("config"),  # Symlink configuration
         }
         
         # Add platform-specific data

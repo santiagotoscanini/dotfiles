@@ -59,39 +59,38 @@ class Runner:
             
             if check.status == Status.INSTALLED:
                 print(f"✓ {description} already configured")
-                continue
             elif check.status == Status.ERROR:
                 print(f"⚠️  {description}: {check.message}")
                 continue
-            
-            # Install
-            print(f"→ {description}...")
-            if handler.install(item, dry_run):
-                if not dry_run:
-                    print(f"✓ {description} completed")
-                    
-                # If pre-install item has config (symlinks), create them
-                if item.get("config") and success:
-                    symlink_config = item["config"]
-                    source = symlink_config.get("source")
-                    destination = symlink_config.get("destination")
-                    
-                    if source and destination:
-                        print(f"  → Creating config symlink for {item_name}...")
-                        symlink_data = {
-                            "source": source,
-                            "destination": destination,
-                        }
-                        
-                        check = self.symlink_handler.check(symlink_data)
-                        if check.status == Status.INSTALLED:
-                            print("  ✓ Config symlink already exists")
-                        elif check.status != Status.ERROR:
-                            if not self.symlink_handler.install(symlink_data, dry_run):
-                                success = False
             else:
-                success = False
-                break
+                # Install
+                print(f"→ {description}...")
+                if handler.install(item, dry_run):
+                    if not dry_run:
+                        print(f"✓ {description} completed")
+                else:
+                    success = False
+                    break
+            
+            # Always check and create symlinks if needed (even if main item is already installed)
+            if item.get("config"):
+                symlink_config = item["config"]
+                source = symlink_config.get("source")
+                destination = symlink_config.get("destination")
+                
+                if source and destination:
+                    symlink_data = {
+                        "source": source,
+                        "destination": destination,
+                    }
+                    
+                    symlink_check = self.symlink_handler.check(symlink_data)
+                    if symlink_check.status == Status.INSTALLED:
+                        print(f"  ✓ Config symlink already exists")
+                    elif symlink_check.status != Status.ERROR:
+                        print(f"  → Creating config symlink for {item_name}...")
+                        if not self.symlink_handler.install(symlink_data, dry_run):
+                            success = False
         
         return success
     
