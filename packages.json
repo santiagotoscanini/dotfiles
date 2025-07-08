@@ -368,7 +368,12 @@
     "dev-directories": {
       "description": "Create development directory structure",
       "macos": {
-        "paths": ["~/dev/personal", "~/dev/work", "~/Documents/Screenshots"],
+        "paths": [
+          "~/.config",
+          "~/dev/personal",
+          "~/dev/work",
+          "~/Documents/Screenshots"
+        ],
         "permissions": "755"
       },
       "provider": "directory"
