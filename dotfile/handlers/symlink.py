@@ -18,6 +18,13 @@ class SymlinkHandler:
         
         dotfiles_dir = os.environ.get("DOTFILES_DIR", ".")
         source_path = (Path(dotfiles_dir) / source).resolve()
+        
+        # Handle XDG_CONFIG_HOME with default value if not set
+        if "$XDG_CONFIG_HOME" in destination and "XDG_CONFIG_HOME" not in os.environ:
+            # Set default XDG_CONFIG_HOME to ~/.config
+            default_xdg_config = os.path.expanduser("~/.config")
+            destination = destination.replace("$XDG_CONFIG_HOME", default_xdg_config)
+        
         # Don't resolve the destination to avoid following symlinks
         expanded = os.path.expandvars(os.path.expanduser(destination))
         dest_path = Path(expanded)
