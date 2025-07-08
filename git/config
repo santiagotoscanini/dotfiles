@@ -5,14 +5,14 @@
 # =========== User Information ===========
 [user]
     name = Santiago Toscanini
-    signingkey = /Users/stoscanini/.ssh/id_personal
+    signingkey = /Users/stoscanini/.ssh/id_github
     # useConfigOnly = true  # Uncomment to force explicit email setup per repo
 
 # =========== Core Settings ===========
 [core]
     autocrlf = input         # Convert CRLF to LF on commit but not the other way around
     pager = delta            # Use delta for enhanced diff viewing
-    sshCommand = ssh -i /Users/stoscanini/.ssh/id_personal  # Default SSH key
+    sshCommand = ssh -i /Users/stoscanini/.ssh/id_github  # Default SSH key
     # fsmonitor = true         # Use filesystem monitor for faster status
     untrackedCache = true    # Cache untracked files for performance
 
