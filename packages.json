@@ -382,7 +382,7 @@
     "ssh__s2_neo": {
       "description": "Add SSH key to S2",
       "macos": {
-        "check": "test -f ~/.ssh/id_s2",
+        "check": "test -f ~/.ssh/id_s2_neo",
         "install": "ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_neo"
       }
     },
