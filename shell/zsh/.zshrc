@@ -27,3 +27,4 @@ autoload -Uz compinit && compinit -d $ZSH_COMPDUMP
 
 # Local customizations (if any)
 [[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh
+

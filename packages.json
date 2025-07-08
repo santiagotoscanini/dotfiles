@@ -358,6 +358,13 @@
     }
   },
   "pre-install": {
+    "rosetta": {
+      "description": "Rosetta for Apple Silicon, required to run Intel apps on Apple silicon",
+      "macos": {
+        "check": "pgrep oahd",
+        "install": "softwareupdate --install-rosetta"
+      }
+    },
     "dev-directories": {
       "description": "Create development directory structure",
       "macos": {
