@@ -483,6 +483,7 @@
         "vint"
       ],
       "pre-install": [
+        "rosetta",
         "homebrew",
         "oh-my-zsh",
         "typewritten",
