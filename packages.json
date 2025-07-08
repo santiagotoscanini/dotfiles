@@ -372,6 +372,27 @@
         "install": "printf 'export ZDOTDIR=$HOME/.config/zsh\n. $ZDOTDIR/.zshenv\n' >> ~/.zshenv"
       }
     },
+    "ssh__github": {
+      "description": "Add SSH key to GitHub",
+      "macos": {
+        "check": "test -f ~/.ssh/id_github",
+        "install": "ssh-keygen -t ed25519 -C \"github@account.toscanini.me\" -f ~/.ssh/id_github -N \"\""
+      }
+    },
+    "ssh__s2_neo": {
+      "description": "Add SSH key to S2",
+      "macos": {
+        "check": "test -f ~/.ssh/id_s2",
+        "install": "ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_neo"
+      }
+    },
+    "ssh__s2_nano": {
+      "description": "Add SSH key to S2",
+      "macos": {
+        "check": "test -f ~/.ssh/id_s2_nano",
+        "install": "ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_nano"
+      }
+    },
     "dev-directories": {
       "description": "Create development directory structure",
       "macos": {
