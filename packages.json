@@ -365,6 +365,13 @@
         "install": "softwareupdate --install-rosetta --agree-to-license"
       }
     },
+    "root_zshenv": {
+      "description": "Set root .zshenv",
+      "macos": {
+        "check": "test -f /etc/zshenv",
+        "install": "printf 'export ZDOTDIR=$HOME/.config/zsh\n. $ZDOTDIR/.zshenv\n' >> ~/.zshenv"
+      }
+    },
     "dev-directories": {
       "description": "Create development directory structure",
       "macos": {
