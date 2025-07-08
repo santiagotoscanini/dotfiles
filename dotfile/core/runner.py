@@ -69,6 +69,26 @@ class Runner:
             if handler.install(item, dry_run):
                 if not dry_run:
                     print(f"✓ {description} completed")
+                    
+                # If pre-install item has config (symlinks), create them
+                if item.get("config") and success:
+                    symlink_config = item["config"]
+                    source = symlink_config.get("source")
+                    destination = symlink_config.get("destination")
+                    
+                    if source and destination:
+                        print(f"  → Creating config symlink for {item_name}...")
+                        symlink_data = {
+                            "source": source,
+                            "destination": destination,
+                        }
+                        
+                        check = self.symlink_handler.check(symlink_data)
+                        if check.status == Status.INSTALLED:
+                            print("  ✓ Config symlink already exists")
+                        elif check.status != Status.ERROR:
+                            if not self.symlink_handler.install(symlink_data, dry_run):
+                                success = False
             else:
                 success = False
                 break
@@ -181,7 +201,20 @@ class Runner:
                 Status.ERROR: "❌"
             }.get(check.status, "?")
             
-            print(f"  {status_icon} {description}: {check.message}")
+            status_msg = f"{description}: {check.message}"
+            
+            # Also check symlinks if pre-install item has config
+            if item.get("config"):
+                symlink_config = item["config"]
+                symlink_data = {
+                    "source": symlink_config.get("source"),
+                    "destination": symlink_config.get("destination")
+                }
+                if symlink_data["source"] and symlink_data["destination"]:
+                    symlink_check = self.symlink_handler.check(symlink_data)
+                    status_msg += f" (config: {symlink_check.message})"
+            
+            print(f"  {status_icon} {status_msg}")
         
         # Check packages
         print("\nPackages:")
