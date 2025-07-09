@@ -2,8 +2,6 @@
 .idea
 .claude
 .vscode
-# To avoid tracking vim-plug
-editors/nvim/site/autoload/plug.vim
 
 # ZSH
 shell/zsh/work.zsh
