@@ -1,5 +1,11 @@
 {
   "packages": {
+    "mas": {
+      "description": "Mac App Store CLI",
+      "macos": {
+          "brew": "mas"
+      }
+    },
     "aldente": {
       "description": "Battery health and charging manager",
       "macos": {
@@ -35,6 +41,12 @@
       "macos": {
         "brew_cask": "calibre"
       }
+    },
+    "airbuddy": {
+        "description": "Airbuddy device manager",
+        "macos": {
+            "brew_cask": "airbuddy"
+        }
     },
     "chatgpt": {
       "description": "ChatGPT desktop app",
@@ -550,6 +562,8 @@
     "personal": {
       "base": "@base",
       "packages": [
+        "mas",
+        "airbuddy",
         "bambu-studio",
         "bitwarden",
         "calibre",
