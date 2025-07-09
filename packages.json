@@ -519,7 +519,6 @@
     "base": {
       "packages": [
         "mas",
-        "jomo",
         "xcode",
         "aldente",
         "awscli",
@@ -571,6 +570,7 @@
       "base": "@base",
       "packages": [
         "airbuddy",
+        "jomo",
         "bambu-studio",
         "bitwarden",
         "calibre",
