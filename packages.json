@@ -507,7 +507,7 @@
         "git-delta",
         "hiddenbar",
         "logi-options+",
-	"thefuck",
+        "thefuck",
         "lunar",
         "neovim",
         "notunes",
@@ -525,6 +525,7 @@
       ],
       "pre-install": [
         "rosetta",
+        "vim-plug",
         "root_zshenv",
         "ssh__github",
         "homebrew",
