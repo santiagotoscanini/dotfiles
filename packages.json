@@ -394,10 +394,10 @@
       }
     },
     "vim-plug": {
-      "description": "Vim plugin manager",
+      "description": "Vim plugin manager, after this is installed it will run `nvim +PlugInstall` to install plugins",
       "macos": {
         "check": "test -f ~/.local/share/nvim/site/autoload/plug.vim",
-        "install": "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+        "install": "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && nvim +PlugInstall"
       }
     },
     "dev-directories": {
