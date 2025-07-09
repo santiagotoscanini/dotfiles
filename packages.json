@@ -24,12 +24,6 @@
         "brew_cask": "aldente"
       }
     },
-    "arc": {
-      "description": "Modern, minimal browser",
-      "macos": {
-        "brew_cask": "arc"
-      }
-    },
     "awscli": {
       "description": "AWS CLI for managing AWS services",
       "macos": {
@@ -45,7 +39,7 @@
     "bitwarden": {
       "description": "Password manager",
       "macos": {
-        "brew_cask": "bitwarden"
+        "mas": 1352778147
       }
     },
     "calibre": {
@@ -528,7 +522,6 @@
         "jomo",
         "xcode",
         "aldente",
-        "arc",
         "awscli",
         "cursor",
         "docker",
