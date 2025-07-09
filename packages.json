@@ -416,7 +416,6 @@
     "dock-autohide": {
       "description": "Enable dock auto-hide",
       "macos": {
-        "apply": "killall Dock",
         "domain": "com.apple.dock",
         "key": "autohide",
         "type": "bool",
@@ -427,7 +426,6 @@
     "dock-orientation": {
       "description": "Dock position",
       "macos": {
-        "apply": "killall Dock",
         "domain": "com.apple.dock",
         "key": "orientation",
         "type": "string",
@@ -438,11 +436,20 @@
     "dock-size": {
       "description": "Set dock icon size",
       "macos": {
-        "apply": "killall Dock",
         "domain": "com.apple.dock",
         "key": "tilesize",
         "type": "int",
         "value": 65
+      },
+      "provider": "defaults"
+    },
+    "dock-show-recents": {
+      "description": "Show recent apps in dock",
+      "macos": {
+        "domain": "com.apple.dock",
+        "key": "show-recents",
+        "type": "bool",
+        "value": false
       },
       "provider": "defaults"
     },
@@ -536,6 +543,7 @@
         "dock-orientation",
         "dock-size",
         "dock-autohide",
+        "dock-show-recents",
         "screencapture-location"
       ]
     },
