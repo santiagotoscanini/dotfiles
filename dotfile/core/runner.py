@@ -3,7 +3,7 @@
 
 from .handler import Status
 from .config import Config
-from ..handlers import BrewHandler, SymlinkHandler, DefaultsHandler, ScriptHandler, DirectoryHandler
+from ..handlers import BrewHandler, SymlinkHandler, DefaultsHandler, ScriptHandler, DirectoryHandler, MasHandler
 
 
 class Runner:
@@ -16,6 +16,7 @@ class Runner:
         self.defaults_handler = DefaultsHandler()
         self.script_handler = ScriptHandler()
         self.directory_handler = DirectoryHandler()
+        self.mas_handler = MasHandler()
     
     def run_pre_install(self, config: Config, profile_name: str, dry_run: bool = False) -> bool:
         """Run pre-install tasks for a profile.
@@ -126,8 +127,14 @@ class Runner:
                 print(f"⚠️  No configuration for package: {pkg_name}")
                 continue
             
-            # Check and install with brew handler
-            check = self.brew_handler.check(pkg_config)
+            # Determine which handler to use based on package config
+            handler = self._get_handler_for_package(pkg_config)
+            if not handler:
+                print(f"⚠️  No handler for package: {pkg_name}")
+                continue
+            
+            # Check and install with appropriate handler
+            check = handler.check(pkg_config)
             
             if check.status == Status.INSTALLED:
                 print(f"✓ {pkg_name} already installed")
@@ -136,7 +143,7 @@ class Runner:
                 continue
             else:
                 print(f"→ Installing {pkg_name}...")
-                if not self.brew_handler.install(pkg_config, dry_run):
+                if not handler.install(pkg_config, dry_run):
                     success = False
                     if not dry_run:
                         break
@@ -222,7 +229,12 @@ class Runner:
             if not pkg_config:
                 continue
                 
-            check = self.brew_handler.check(pkg_config)
+            # Determine which handler to use
+            handler = self._get_handler_for_package(pkg_config)
+            if not handler:
+                continue
+                
+            check = handler.check(pkg_config)
             
             status_icon = {
                 Status.INSTALLED: "✓",
@@ -293,15 +305,37 @@ class Runner:
                         self.symlink_handler.uninstall(symlink_data, dry_run)
             
             # Then uninstall package
-            check = self.brew_handler.check(pkg_config)
+            handler = self._get_handler_for_package(pkg_config)
+            if not handler:
+                continue
+                
+            check = handler.check(pkg_config)
             if check.status == Status.NOT_INSTALLED:
                 print(f"✓ {pkg_name} not installed")
                 continue
             
             print(f"→ Uninstalling {pkg_name}...")
-            if not self.brew_handler.uninstall(pkg_config, dry_run):
+            if not handler.uninstall(pkg_config, dry_run):
                 success = False
                 if not dry_run:
                     break
         
         return success
+    
+    def _get_handler_for_package(self, pkg_config):
+        """Determine which handler to use based on package configuration.
+        
+        Args:
+            pkg_config: Package configuration dict
+            
+        Returns:
+            Appropriate handler instance or None
+        """
+        # Check what installation method is specified
+        if "brew" in pkg_config or "brew_cask" in pkg_config:
+            return self.brew_handler
+        elif "mas" in pkg_config:
+            return self.mas_handler
+        else:
+            # Default to brew handler for backward compatibility
+            return self.brew_handler

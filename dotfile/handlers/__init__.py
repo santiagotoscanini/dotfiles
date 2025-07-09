@@ -5,6 +5,7 @@ from .symlink import SymlinkHandler
 from .defaults import DefaultsHandler
 from .script import ScriptHandler
 from .directory import DirectoryHandler
+from .mas import MasHandler
 
 __all__ = [
     "BrewHandler",
@@ -12,4 +13,5 @@ __all__ = [
     "DefaultsHandler",
     "ScriptHandler",
     "DirectoryHandler",
+    "MasHandler",
 ]

@@ -56,6 +56,8 @@ class Config:
                 result["brew"] = macos["brew"]
             elif "brew_cask" in macos:
                 result["brew_cask"] = macos["brew_cask"]
+            elif "mas" in macos:
+                result["mas"] = macos["mas"]
         
         return result
     
