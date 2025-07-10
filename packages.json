@@ -6,6 +6,12 @@
           "brew": "mas"
       }
     },
+    "arc": {
+      "description": "Arc browser",
+      "macos": {
+          "brew_cask": "arc"
+      }
+    },
     "jomo": {
       "description": "Jomo screen time blocker",
       "macos": {
@@ -519,6 +525,7 @@
     "base": {
       "packages": [
         "mas",
+        "arc",
         "xcode",
         "aldente",
         "awscli",
@@ -547,7 +554,8 @@
         "tmux",
         "tmuxinator",
         "tree",
-        "vint"
+        "vint",
+        "zoom"
       ],
       "pre-install": [
         "rosetta",
@@ -596,7 +604,6 @@
         "ngrok",
         "pnpm",
         "ruff",
-        "zoom",
         "zrok"
       ]
     }
