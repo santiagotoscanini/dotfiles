@@ -6,6 +6,12 @@
           "brew": "mas"
       }
     },
+    "wireguard": {
+      "description": "WireGuard VPN",
+      "macos": {
+        "mas": 1451685025
+      }
+    },
     "arc": {
       "description": "Arc browser",
       "macos": {
@@ -590,7 +596,8 @@
         "obsidian",
         "protonvpn",
         "whatsapp",
-        "yubico-yubikey-manager"
+        "yubico-yubikey-manager",
+        "wireguard"
       ],
       "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
     },
