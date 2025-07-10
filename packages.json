@@ -41,7 +41,8 @@
     "outerbase": {
       "description": "Outerbase Studio - DB client",
       "macos": {
-        "brew_cask": "outerbase-studio"
+        "brew": "outerbase-studio",
+        "cask": true
       }
     },
     "awscli": {
