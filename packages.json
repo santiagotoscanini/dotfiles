@@ -6,6 +6,12 @@
         "brew": "mas"
       }
     },
+    "wireguard": {
+      "description": "WireGuard VPN",
+      "macos": {
+        "mas": 1451685025
+      }
+    },
     "arc": {
       "description": "Arc browser",
       "macos": {
@@ -30,6 +36,12 @@
       "macos": {
         "brew": "aldente",
         "cask": true
+      }
+    },
+    "outerbase": {
+      "description": "Outerbase Studio - DB client",
+      "macos": {
+        "brew_cask": "outerbase-studio"
       }
     },
     "awscli": {
@@ -596,7 +608,8 @@
         "tree",
         "vint",
         "vim-language-server",
-        "zoom"
+        "zoom",
+        "outerbase"
       ],
       "pre-install": [
         "rosetta",
@@ -631,7 +644,8 @@
         "obsidian",
         "protonvpn",
         "whatsapp",
-        "yubico-yubikey-manager"
+        "yubico-yubikey-manager",
+        "wireguard"
       ],
       "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
     },
