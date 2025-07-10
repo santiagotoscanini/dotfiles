@@ -36,6 +36,12 @@
         "brew_cask": "aldente"
       }
     },
+    "outerbase": {
+        "description": "Outerbase Studio - DB client",
+        "macos": {
+            "brew_cask": "outerbase-studio"
+        }
+    },
     "awscli": {
       "description": "AWS CLI for managing AWS services",
       "macos": {
@@ -561,7 +567,8 @@
         "tmuxinator",
         "tree",
         "vint",
-        "zoom"
+        "zoom",
+        "outerbase"
       ],
       "pre-install": [
         "rosetta",
