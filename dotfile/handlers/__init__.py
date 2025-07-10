@@ -6,6 +6,7 @@ from .defaults import DefaultsHandler
 from .script import ScriptHandler
 from .directory import DirectoryHandler
 from .mas import MasHandler
+from .npm import NpmHandler
 
 __all__ = [
     "BrewHandler",
@@ -14,4 +15,5 @@ __all__ = [
     "ScriptHandler",
     "DirectoryHandler",
     "MasHandler",
+    "NpmHandler",
 ]

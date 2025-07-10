@@ -3,31 +3,33 @@
     "mas": {
       "description": "Mac App Store CLI",
       "macos": {
-          "brew": "mas"
+        "brew": "mas"
       }
     },
     "arc": {
       "description": "Arc browser",
       "macos": {
-          "brew_cask": "arc"
+        "brew": "arc",
+        "cask": true
       }
     },
     "jomo": {
       "description": "Jomo screen time blocker",
       "macos": {
-          "mas": 1609960918
+        "mas": 1609960918
       }
     },
     "xcode": {
-        "description": "Xcode editor",
-        "macos": {
-            "mas": 497799835
-        }
+      "description": "Xcode editor",
+      "macos": {
+        "mas": 497799835
+      }
     },
     "aldente": {
       "description": "Battery health and charging manager",
       "macos": {
-        "brew_cask": "aldente"
+        "brew": "aldente",
+        "cask": true
       }
     },
     "awscli": {
@@ -39,7 +41,8 @@
     "bambu-studio": {
       "description": "3D printing software",
       "macos": {
-        "brew_cask": "bambu-studio"
+        "brew": "bambu-studio",
+        "cask": true
       }
     },
     "bitwarden": {
@@ -51,49 +54,57 @@
     "calibre": {
       "description": "E-book manager",
       "macos": {
-        "brew_cask": "calibre"
+        "brew": "calibre",
+        "cask": true
       }
     },
     "airbuddy": {
-        "description": "Airbuddy device manager",
-        "macos": {
-            "brew_cask": "airbuddy"
-        }
+      "description": "Airbuddy device manager",
+      "macos": {
+        "brew": "airbuddy",
+        "cask": true
+      }
     },
     "chatgpt": {
       "description": "ChatGPT desktop app",
       "macos": {
-        "brew_cask": "chatgpt"
+        "brew": "chatgpt",
+        "cask": true
       }
     },
     "cursor": {
       "description": "AI-powered code editor",
       "macos": {
-        "brew_cask": "cursor"
+        "brew": "cursor",
+        "cask": true
       }
     },
     "dbeaver-community": {
       "description": "Database management tool",
       "macos": {
-        "brew_cask": "dbeaver-community"
+        "brew": "dbeaver-community",
+        "cask": true
       }
     },
     "discord": {
       "description": "Voice, video, and text communication platform",
       "macos": {
-        "brew_cask": "discord"
+        "brew": "discord",
+        "cask": true
       }
     },
     "docker": {
       "description": "Container platform for application development",
       "macos": {
-        "brew_cask": "docker"
+        "brew": "docker",
+        "cask": true
       }
     },
     "docker-desktop": {
       "description": "Docker desktop app, check https://github.com/apple/container in the future",
       "macos": {
-        "brew_cask": "docker-desktop"
+        "brew": "docker-desktop",
+        "cask": true
       }
     },
     "eslint": {
@@ -111,7 +122,8 @@
     "figma": {
       "description": "UI/UX design tool",
       "macos": {
-        "brew_cask": "figma"
+        "brew": "figma",
+        "cask": true
       }
     },
     "fzf": {
@@ -137,7 +149,8 @@
       },
       "description": "Fast, feature-rich terminal emulator",
       "macos": {
-        "brew_cask": "ghostty"
+        "brew": "ghostty",
+        "cask": true
       }
     },
     "git": {
@@ -159,37 +172,43 @@
     "hiddenbar": {
       "description": "Hidden bar for macOS",
       "macos": {
-        "brew_cask": "hiddenbar"
+        "brew": "hiddenbar",
+        "cask": true
       }
     },
     "insta360-studio": {
       "description": "Insta360 Studio for 360-degree video editing",
       "macos": {
-        "brew_cask": "insta360-studio"
+        "brew": "insta360-studio",
+        "cask": true
       }
     },
     "linear-linear": {
       "description": "Linear for project management",
       "macos": {
-        "brew_cask": "linear-linear"
+        "brew": "linear-linear",
+        "cask": true
       }
     },
     "logi-options+": {
       "description": "Logitech Options+ for Logitech devices",
       "macos": {
-        "brew_cask": "logi-options+"
+        "brew": "logi-options+",
+        "cask": true
       }
     },
     "loom": {
       "description": "Loom for screen recording and collaboration",
       "macos": {
-        "brew_cask": "loom"
+        "brew": "loom",
+        "cask": true
       }
     },
     "lunar": {
       "description": "Lunar for managing display settings",
       "macos": {
-        "brew_cask": "lunar"
+        "brew": "lunar",
+        "cask": true
       }
     },
     "neovim": {
@@ -205,25 +224,29 @@
     "nextcloud": {
       "description": "Nextcloud sync app",
       "macos": {
-        "brew_cask": "nextcloud"
+        "brew": "nextcloud",
+        "cask": true
       }
     },
     "ngrok": {
       "description": "Ngrok for local development",
       "macos": {
-        "brew_cask": "ngrok"
+        "brew": "ngrok",
+        "cask": true
       }
     },
     "notunes": {
       "description": "Avoid opening iTunes accidentally",
       "macos": {
-        "brew_cask": "notunes"
+        "brew": "notunes",
+        "cask": true
       }
     },
     "obsidian": {
       "description": "Knowledge management and note-taking app",
       "macos": {
-        "brew_cask": "obsidian"
+        "brew": "obsidian",
+        "cask": true
       }
     },
     "openssh": {
@@ -245,7 +268,8 @@
     "protonvpn": {
       "description": "ProtonVPN for secure VPN access",
       "macos": {
-        "brew_cask": "protonvpn"
+        "brew": "protonvpn",
+        "cask": true
       }
     },
     "qmk": {
@@ -261,7 +285,8 @@
     "raycast": {
       "description": "Raycast for command-line productivity",
       "macos": {
-        "brew_cask": "raycast"
+        "brew": "raycast",
+        "cask": true
       }
     },
     "ripgrep": {
@@ -279,19 +304,22 @@
     "shottr": {
       "description": "Shottr for screen recording and screenshot management",
       "macos": {
-        "brew_cask": "shottr"
+        "brew": "shottr",
+        "cask": true
       }
     },
     "slack": {
       "description": "Team collaboration and messaging platform",
       "macos": {
-        "brew_cask": "slack"
+        "brew": "slack",
+        "cask": true
       }
     },
     "spotify": {
       "description": "Music streaming service",
       "macos": {
-        "brew_cask": "spotify"
+        "brew": "spotify",
+        "cask": true
       }
     },
     "thefuck": {
@@ -303,7 +331,8 @@
     "ticktick": {
       "description": "TickTick for task management",
       "macos": {
-        "brew_cask": "ticktick"
+        "brew": "ticktick",
+        "cask": true
       }
     },
     "tmux": {
@@ -341,43 +370,54 @@
     "visual-studio-code": {
       "description": "Visual Studio Code for code editing",
       "macos": {
-        "brew_cask": "visual-studio-code"
+        "brew": "visual-studio-code",
+        "cask": true
       }
     },
     "whatsapp": {
       "description": "WhatsApp for messaging",
       "macos": {
-        "brew_cask": "whatsapp"
+        "brew": "whatsapp",
+        "cask": true
       }
     },
     "yubico-yubikey-manager": {
       "description": "Yubico YubiKey Manager for managing YubiKeys",
       "macos": {
-        "brew_cask": "yubico-yubikey-manager"
+        "brew": "yubico-yubikey-manager",
+        "cask": true
       }
     },
     "zed": {
       "description": "Zed for code editing",
       "macos": {
-        "brew_cask": "zed"
+        "brew": "zed",
+        "cask": true
       }
     },
     "zoom": {
       "description": "Zoom for video conferencing",
       "macos": {
-        "brew_cask": "zoom"
+        "brew": "zoom",
+        "cask": true
       }
     },
     "zrok": {
-      "description": "Zrok for local development",
+      "description": "Zrok for local development, like ngrok but with HTTPS support",
       "macos": {
         "brew": "zrok"
       }
     },
     "qpdf": {
-      "description": "qpdf (auto-discovered)",
+      "description": "qpdf (auto-discovered), only used for zlib library - git tech talk",
       "macos": {
         "brew": "qpdf"
+      }
+    },
+    "vim-language-server": {
+      "description": "Language Server Protocol implementation for Vim script",
+      "macos": {
+        "npm": "vim-language-server"
       }
     }
   },
@@ -555,6 +595,7 @@
         "tmuxinator",
         "tree",
         "vint",
+        "vim-language-server",
         "zoom"
       ],
       "pre-install": [

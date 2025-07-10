@@ -65,12 +65,15 @@ class BackupTool:
             if package not in existing_packages:
                 # New package not in config
                 new.append(package)
-                existing_packages[package] = {
+                pkg_config = {
                     "description": f"{package} (auto-discovered)",
                     "macos": {
-                        "brew_cask" if is_cask else "brew": package
+                        "brew": package
                     }
                 }
+                if is_cask:
+                    pkg_config["macos"]["cask"] = True
+                existing_packages[package] = pkg_config
                 
         return new
     

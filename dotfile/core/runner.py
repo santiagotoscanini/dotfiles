@@ -3,7 +3,7 @@
 
 from .handler import Status
 from .config import Config
-from ..handlers import BrewHandler, SymlinkHandler, DefaultsHandler, ScriptHandler, DirectoryHandler, MasHandler
+from ..handlers import BrewHandler, SymlinkHandler, DefaultsHandler, ScriptHandler, DirectoryHandler, MasHandler, NpmHandler
 
 
 class Runner:
@@ -17,6 +17,7 @@ class Runner:
         self.script_handler = ScriptHandler()
         self.directory_handler = DirectoryHandler()
         self.mas_handler = MasHandler()
+        self.npm_handler = NpmHandler()
     
     def run_pre_install(self, config: Config, profile_name: str, dry_run: bool = False) -> bool:
         """Run pre-install tasks for a profile.
@@ -332,10 +333,12 @@ class Runner:
             Appropriate handler instance or None
         """
         # Check what installation method is specified
-        if "brew" in pkg_config or "brew_cask" in pkg_config:
+        if "brew" in pkg_config:
             return self.brew_handler
         elif "mas" in pkg_config:
             return self.mas_handler
+        elif "npm" in pkg_config:
+            return self.npm_handler
         else:
             # Default to brew handler for backward compatibility
             return self.brew_handler
