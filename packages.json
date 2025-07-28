@@ -203,7 +203,7 @@
         "cask": true
       }
     },
-    "linear-linear": {
+    "linear": {
       "description": "Linear for project management",
       "macos": {
         "brew": "linear-linear",
@@ -602,6 +602,7 @@
         "logi-options+",
         "thefuck",
         "lunar",
+        "linear",
         "neovim",
         "notunes",
         "openssh",
@@ -663,7 +664,6 @@
         "dbeaver-community",
         "claude-desktop",
         "figma",
-        "linear-linear",
         "loom",
         "ngrok",
         "pnpm",
