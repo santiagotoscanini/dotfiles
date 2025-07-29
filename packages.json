@@ -6,6 +6,13 @@
         "brew": "mas"
       }
     },
+    "figma": {
+      "description": "figma collaborative design",
+      "macos": {
+        "brew": "figma",
+        "cask": true
+      }
+    },
     "wireguard": {
       "description": "WireGuard VPN",
       "macos": {
@@ -611,6 +618,7 @@
         "vint",
         "vim-language-server",
         "zoom",
+        "loom",
         "outerbase"
       ],
       "pre-install": [
@@ -647,7 +655,8 @@
         "protonvpn",
         "whatsapp",
         "yubico-yubikey-manager",
-        "wireguard"
+        "wireguard",
+        "figma"
       ],
       "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
     },
@@ -656,7 +665,6 @@
       "packages": [
         "dbeaver-community",
         "figma",
-        "loom",
         "ngrok",
         "pnpm",
         "ruff",
