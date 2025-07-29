@@ -178,5 +178,41 @@ else
     nnoremap <leader>sf <Cmd>call VSCodeNotify('revealInExplorer')<CR>
 
     nnoremap <leader>re <Cmd>call VSCodeNotify('editor.action.rename')<CR>
+
+    " ------ SAVE AND CLOSE ------
+    nnoremap <leader>w <Cmd>call VSCodeNotify('workbench.action.files.save')<CR>
+    nnoremap <leader>q <Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
+
+    " ------ PANEL NAVIGATION ------
+    nnoremap <C-h> <Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>
+    nnoremap <C-l> <Cmd>call VSCodeNotify('workbench.action.focusRightGroup')<CR>
+    nnoremap <C-j> <Cmd>call VSCodeNotify('workbench.action.focusBelowGroup')<CR>
+    nnoremap <C-k> <Cmd>call VSCodeNotify('workbench.action.focusAboveGroup')<CR>
+
+    " ------ SPLITS ------
+    " Similar to tmux: - for horizontal split, _ for vertical split
+    nnoremap <leader>- <Cmd>call VSCodeNotify('workbench.action.splitEditorDown')<CR>
+    nnoremap <leader>_ <Cmd>call VSCodeNotify('workbench.action.splitEditor')<CR>
+
+    " ------ FOLDING ------
+    nnoremap zc <Cmd>call VSCodeNotify('editor.fold')<CR>
+    nnoremap zo <Cmd>call VSCodeNotify('editor.unfold')<CR>
+    nnoremap <leader>zc <Cmd>call VSCodeNotify('editor.foldAll')<CR>
+    nnoremap <leader>zo <Cmd>call VSCodeNotify('editor.unfoldAll')<CR>
+
+    " ------ FUZZY FINDER ------
+    nnoremap <leader>f <Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>
+    nnoremap <leader>rg <Cmd>call VSCodeNotify('workbench.action.findInFiles')<CR>
+    nnoremap <leader>rcl <Cmd>call VSCodeNotify('workbench.action.openRecent')<CR>
+    nnoremap <leader>e <Cmd>call VSCodeNotify('workbench.action.showAllEditorsByMostRecentlyUsed')<CR>
+    nnoremap <C-a> <Cmd>call VSCodeNotify('workbench.action.showCommands')<CR>
+
+    " ------ GIT ------
+    nnoremap <leader>gc <Cmd>call VSCodeNotify('workbench.view.scm')<CR>
+    nnoremap <leader>gp <Cmd>call VSCodeNotify('git.push')<CR>
+    nnoremap <leader>gi <Cmd>call VSCodeNotify('git.ignore')<CR>
+    nnoremap <leader>gm <Cmd>call VSCodeNotify('git.openChange')<CR>
+    nnoremap <leader>gb <Cmd>call VSCodeNotify('git.checkout')<CR>
+    nnoremap <leader>ghp <Cmd>call VSCodeNotify('pr.create')<CR>
 endif
 

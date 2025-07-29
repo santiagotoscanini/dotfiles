@@ -52,6 +52,13 @@
         "cask": true
       }
     },
+    "claude-desktop": {
+      "description": "Claude desktop app",
+      "macos": {
+        "brew": "claude",
+        "cask": true
+      }
+    },
     "awscli": {
       "description": "AWS CLI for managing AWS services",
       "macos": {
@@ -664,6 +671,7 @@
       "base": "@base",
       "packages": [
         "dbeaver-community",
+        "claude-desktop",
         "figma",
         "ngrok",
         "pnpm",
