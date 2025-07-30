@@ -17,6 +17,7 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicates to history file
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks
 setopt EXTENDED_HISTORY          # Record timestamp of command
 setopt SHARE_HISTORY             # Share history between sessions
+setopt HIST_IGNORE_SPACE         # Ignore commands that start with a space (useful for commands including passwords)
 
 # Load additional configuration files
 [[ -f $ZDOTDIR/alias.zsh ]] && source $ZDOTDIR/alias.zsh  # Load aliases
