@@ -146,13 +146,6 @@
         "brew": "ffmpeg"
       }
     },
-    "figma": {
-      "description": "UI/UX design tool",
-      "macos": {
-        "brew": "figma",
-        "cask": true
-      }
-    },
     "fzf": {
       "description": "Command-line fuzzy finder",
       "macos": {
@@ -618,6 +611,7 @@
         "shottr",
         "slack",
         "spotify",
+        "figma",
         "ticktick",
         "tmux",
         "tmuxinator",
@@ -662,8 +656,7 @@
         "protonvpn",
         "whatsapp",
         "yubico-yubikey-manager",
-        "wireguard",
-        "figma"
+        "wireguard"
       ],
       "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
     },
@@ -672,7 +665,6 @@
       "packages": [
         "dbeaver-community",
         "claude-desktop",
-        "figma",
         "ngrok",
         "pnpm",
         "ruff",
