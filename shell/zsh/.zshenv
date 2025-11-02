@@ -9,6 +9,9 @@ typeset -U PATH path  # Ensure PATH contains no duplicates
 # Add Cargo (Rust) binaries to PATH
 [[ -d $HOME/.cargo/bin ]] && path=($HOME/.cargo/bin $path)
 
+# Add Postgres
+[[ -d /opt/homebrew/opt/libpq/bin ]] && path=(/opt/homebrew/opt/libpq/bin $path)
+
 # Add JetBrains scripts to PATH
 [[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && \
   path=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts" $path)
