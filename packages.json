@@ -439,6 +439,16 @@
       "macos": {
         "npm": "vim-language-server"
       }
+    },
+    "ccstatusline": {
+      "description": "Claude Code status line with context tracking",
+      "macos": {
+        "npm": "ccstatusline"
+      },
+      "config": {
+        "source": "tools/ccstatusline",
+        "destination": "$XDG_CONFIG_HOME/ccstatusline"
+      }
     }
   },
   "pre-install": {
@@ -619,6 +629,7 @@
         "tree",
         "vint",
         "vim-language-server",
+        "ccstatusline",
         "zoom",
         "loom",
         "outerbase"
