@@ -78,12 +78,6 @@
         "cask": true
       }
     },
-    "bitwarden": {
-      "description": "Password manager",
-      "macos": {
-        "mas": 1352778147
-      }
-    },
     "calibre": {
       "description": "E-book manager",
       "macos": {
@@ -593,6 +587,7 @@
         "mas",
         "arc",
         "xcode",
+        "dbeaver-community",
         "aldente",
         "awscli",
         "cursor",
@@ -651,7 +646,6 @@
         "airbuddy",
         "jomo",
         "bambu-studio",
-        "bitwarden",
         "calibre",
         "chatgpt",
         "discord",
@@ -669,7 +663,6 @@
     "work": {
       "base": "@base",
       "packages": [
-        "dbeaver-community",
         "claude-desktop",
         "ngrok",
         "pnpm",
