@@ -8,6 +8,7 @@ typeset -U PATH path  # Ensure PATH contains no duplicates
 
 # Add Cargo (Rust) binaries to PATH
 [[ -d $HOME/.cargo/bin ]] && path=($HOME/.cargo/bin $path)
+[[ -d /opt/homebrew/bin ]] && path=(/opt/homebrew/bin $path)
 
 # Add JetBrains scripts to PATH
 [[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && \
@@ -27,6 +28,7 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
 
 # Default applications
 export EDITOR='nvim'

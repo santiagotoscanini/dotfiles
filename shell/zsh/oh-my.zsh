@@ -33,11 +33,12 @@ bindkey "^[[B" history-beginning-search-forward
 # -------------- TMUX -------
 # Only start tmux automatically in standalone terminals, not in IDEs
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
-if [[ "$TERM_PROGRAM" != "zed" && 
-      "$TERM_PROGRAM" != "vscode" && 
-      "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" && 
+if [[ "$TERM_PROGRAM" != "zed" &&
+      "$TERM_PROGRAM" != "vscode" &&
+      "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" &&
+      -z "$CONDUCTOR_WORKSPACE_NAME" &&
       -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then
-      
+
   plugins+=(tmux)
 
   ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session
