@@ -51,13 +51,6 @@
         "cask": true
       }
     },
-    "outerbase": {
-      "description": "Outerbase Studio - DB client",
-      "macos": {
-        "brew": "outerbase-studio",
-        "cask": true
-      }
-    },
     "claude-desktop": {
       "description": "Claude desktop app",
       "macos": {
@@ -449,6 +442,13 @@
         "source": "tools/ccstatusline",
         "destination": "$XDG_CONFIG_HOME/ccstatusline"
       }
+    },
+    "claude-squad": {
+      "description": "Claude Squad CLI utility",
+      "macos": {
+        "brew": "claude-squad",
+        "post_install": "ln -sf \"$(brew --prefix)/bin/claude-squad\" \"$(brew --prefix)/bin/cs\""
+      }
     }
   },
   "pre-install": {
@@ -632,7 +632,7 @@
         "ccstatusline",
         "zoom",
         "loom",
-        "outerbase"
+        "claude-squad"
       ],
       "pre-install": [
         "rosetta",
@@ -673,13 +673,7 @@
     },
     "work": {
       "base": "@base",
-      "packages": [
-        "claude-desktop",
-        "ngrok",
-        "pnpm",
-        "ruff",
-        "zrok"
-      ]
+      "packages": ["claude-desktop", "ngrok", "pnpm", "ruff", "zrok"]
     }
   },
   "version": "1.0.0"

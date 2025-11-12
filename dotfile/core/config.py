@@ -54,13 +54,15 @@ class Config:
             macos = package["macos"]
             if "brew" in macos:
                 result["brew"] = macos["brew"]
-                # Pass through cask, tap, and options if present
+                # Pass through cask, tap, options, and post_install if present
                 if "cask" in macos:
                     result["cask"] = macos["cask"]
                 if "tap" in macos:
                     result["tap"] = macos["tap"]
                 if "options" in macos:
                     result["options"] = macos["options"]
+                if "post_install" in macos:
+                    result["post_install"] = macos["post_install"]
             elif "mas" in macos:
                 result["mas"] = macos["mas"]
             elif "npm" in macos:

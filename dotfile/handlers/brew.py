@@ -69,6 +69,8 @@ class BrewHandler:
         if dry_run:
             cmd_type = "brew install --cask" if self._is_cask(config) else "brew install"
             print(f"Would install {name} ({cmd_type} {package})")
+            if "post_install" in config:
+                print(f"Would run post-install: {config['post_install']}")
             return True
         
         try:
@@ -90,9 +92,46 @@ class BrewHandler:
             # Run installation
             print(f"  → Running: {' '.join(cmd)}")
             subprocess.run(cmd, check=True)
-            return True
             
-        except subprocess.CalledProcessError:
+        except subprocess.CalledProcessError as e:
+            print(f"  ✗ Installation failed: {e}")
+            return False
+        
+        # Run post_install if specified (outside try block to ensure it runs)
+        if not self.run_post_install(config, dry_run):
+            return False
+        
+        return True
+    
+    def run_post_install(self, config: Dict[str, Any], dry_run: bool = False) -> bool:
+        """Run post-install command if specified."""
+        if "post_install" not in config:
+            return True
+        
+        if dry_run:
+            print(f"Would run post-install: {config['post_install']}")
+            return True
+        
+        try:
+            print("  → Running post-install...")
+            post_result = subprocess.run(
+                config["post_install"],
+                shell=True,
+                capture_output=True,
+                text=True
+            )
+            if post_result.returncode != 0:
+                error_msg = post_result.stderr.strip() if post_result.stderr else f"Exit code: {post_result.returncode}"
+                print(f"  ✗ Post-install failed: {error_msg}")
+                if post_result.stdout:
+                    print(f"  Output: {post_result.stdout.strip()}")
+                return False
+            if post_result.stdout:
+                print(f"  {post_result.stdout.strip()}")
+            print("  ✓ Post-install completed")
+            return True
+        except Exception as e:
+            print(f"  ✗ Post-install error: {e}")
             return False
     
     def uninstall(self, config: Dict[str, Any], dry_run: bool = False) -> bool:
