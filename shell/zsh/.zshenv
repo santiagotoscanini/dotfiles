@@ -9,6 +9,7 @@ typeset -U PATH path  # Ensure PATH contains no duplicates
 # Add Cargo (Rust) binaries to PATH
 [[ -d $HOME/.cargo/bin ]] && path=($HOME/.cargo/bin $path)
 [[ -d /opt/homebrew/bin ]] && path=(/opt/homebrew/bin $path)
+[[ -d $HOME/.local/bin ]] && path=($HOME/.local/bin $path)
 
 # Add Postgres
 [[ -d /opt/homebrew/opt/libpq/bin ]] && path=(/opt/homebrew/opt/libpq/bin $path)

@@ -181,4 +181,3 @@ function download_s3_file() {
 # =========== Temporary Aliases ===========
 # Docker build and run with SYS_ADMIN capability
 alias mydocker='docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
-alias claude="~/.claude/local/claude"
