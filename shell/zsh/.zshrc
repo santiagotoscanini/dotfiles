@@ -26,6 +26,11 @@ setopt HIST_IGNORE_SPACE         # Ignore commands that start with a space (usef
 # Enable command completion system
 autoload -Uz compinit && compinit -d $ZSH_COMPDUMP
 
+# Register completions (must be after compinit)
+compdef _santree santree
+compdef _santree_completions ,wts
+compdef _santree_completions ,wtr
+
 # Local customizations (if any)
 [[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh
 
