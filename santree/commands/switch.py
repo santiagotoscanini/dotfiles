@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from ..core import find_repo_root, GitOperations
+from ..core import find_main_repo_root, GitOperations
 
 
 class SwitchCommand:
@@ -14,7 +14,7 @@ class SwitchCommand:
         Note: This command outputs a path with SANTREE_CD: prefix
         that the shell wrapper will use to cd into the worktree.
         """
-        repo_root = find_repo_root()
+        repo_root = find_main_repo_root()
         if not repo_root:
             print("Error: Not inside a git repository")
             return 1

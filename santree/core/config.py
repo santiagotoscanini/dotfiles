@@ -6,7 +6,7 @@ from typing import Optional
 
 
 def find_repo_root() -> Optional[Path]:
-    """Find the git repository root from current directory."""
+    """Find the git repository root from current directory (may be a worktree)."""
     result = subprocess.run(
         ["git", "rev-parse", "--show-toplevel"],
         capture_output=True,
@@ -15,6 +15,25 @@ def find_repo_root() -> Optional[Path]:
 
     if result.returncode == 0:
         return Path(result.stdout.strip())
+    return None
+
+
+def find_main_repo_root() -> Optional[Path]:
+    """Find the main repository root (not a worktree).
+
+    Uses git's --git-common-dir to find the shared git directory,
+    which is always in the main repo.
+    """
+    result = subprocess.run(
+        ["git", "rev-parse", "--git-common-dir"],
+        capture_output=True,
+        text=True,
+    )
+
+    if result.returncode == 0:
+        git_common_dir = Path(result.stdout.strip()).resolve()
+        # The common dir is .git in the main repo, so parent is repo root
+        return git_common_dir.parent
     return None
 
 

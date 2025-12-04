@@ -53,30 +53,40 @@ class GitOperations:
         return True, "Successfully fetched latest changes"
 
     def create_worktree(self, branch_name: str, base_branch: str) -> Tuple[bool, str]:
-        """Create a new worktree with a new branch."""
-        worktree_path = self.worktrees_dir / branch_name
+        """Create a new worktree, with new or existing branch."""
+        # Transform slashes to avoid creating subdirectories
+        dir_name = branch_name.replace("/", "__")
+        worktree_path = self.worktrees_dir / dir_name
 
         # Check if worktree already exists
         if worktree_path.exists():
             return False, f"Worktree already exists at {worktree_path}"
 
-        # Check if branch already exists
-        result = self._run_git("rev-parse", "--verify", f"refs/heads/{branch_name}")
-        if result.returncode == 0:
-            return False, f"Branch '{branch_name}' already exists"
-
         # Ensure .santree/worktrees directory exists
         self.worktrees_dir.mkdir(parents=True, exist_ok=True)
 
-        # Create worktree with new branch
-        result = self._run_git(
-            "worktree",
-            "add",
-            "-b",
-            branch_name,
-            str(worktree_path),
-            base_branch,
-        )
+        # Check if branch already exists
+        result = self._run_git("rev-parse", "--verify", f"refs/heads/{branch_name}")
+        branch_exists = result.returncode == 0
+
+        if branch_exists:
+            # Create worktree from existing branch
+            result = self._run_git(
+                "worktree",
+                "add",
+                str(worktree_path),
+                branch_name,
+            )
+        else:
+            # Create worktree with new branch
+            result = self._run_git(
+                "worktree",
+                "add",
+                "-b",
+                branch_name,
+                str(worktree_path),
+                base_branch,
+            )
 
         if result.returncode != 0:
             return False, f"Failed to create worktree: {result.stderr}"
@@ -136,10 +146,11 @@ class GitOperations:
         return True, f"Removed worktree and branch: {branch_name}"
 
     def get_worktree_path(self, branch_name: str) -> Optional[Path]:
-        """Get path to a specific worktree."""
-        worktree_path = self.worktrees_dir / branch_name
-        if worktree_path.exists():
-            return worktree_path
+        """Get path to a specific worktree by branch name."""
+        # Search through all worktrees
+        for wt in self.list_worktrees():
+            if wt.branch == branch_name:
+                return wt.path
         return None
 
     def _run_git(self, *args) -> subprocess.CompletedProcess:

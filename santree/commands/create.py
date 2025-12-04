@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from ..core import find_repo_root, GitOperations, ScriptRunner
+from ..core import find_main_repo_root, GitOperations, ScriptRunner
 
 
 class CreateCommand:
@@ -10,8 +10,8 @@ class CreateCommand:
 
     def execute(self, args: Any) -> int:
         """Execute the create command."""
-        # Find repo root
-        repo_root = find_repo_root()
+        # Find main repo root
+        repo_root = find_main_repo_root()
         if not repo_root:
             print("Error: Not inside a git repository")
             return 1

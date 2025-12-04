@@ -5,7 +5,7 @@ import argparse
 import sys
 from textwrap import dedent
 
-from .commands import CreateCommand, ListCommand, RemoveCommand, SwitchCommand
+from .commands import CreateCommand, ListCommand, RemoveCommand, SetupCommand, SwitchCommand
 
 
 def get_epilog():
@@ -24,6 +24,8 @@ def get_epilog():
 
       %(prog)s remove feature/old          # Remove worktree and branch
       %(prog)s rm -f feature/old           # Force removal
+
+      %(prog)s setup                       # Run init script in current directory
 
     Configuration:
       Worktrees are stored in .santree/worktrees/ inside each repo.
@@ -108,6 +110,12 @@ def create_parser() -> argparse.ArgumentParser:
         help="Name of the worktree to switch to",
     )
 
+    # Setup command
+    subparsers.add_parser(
+        "setup",
+        help="Run init script in current directory",
+    )
+
     return parser
 
 
@@ -129,6 +137,7 @@ def main() -> int:
         "ls": ListCommand,
         "remove": RemoveCommand,
         "rm": RemoveCommand,
+        "setup": SetupCommand,
         "switch": SwitchCommand,
         "sw": SwitchCommand,
     }

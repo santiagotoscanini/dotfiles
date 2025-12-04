@@ -45,12 +45,9 @@ class ScriptRunner:
             return False, f"Init script exists but is not executable: {self.init_script}\nRun: chmod +x {self.init_script}"
 
         try:
-            # Run init script with worktree path as working directory
             result = subprocess.run(
                 [str(self.init_script)],
                 cwd=worktree_path,
-                capture_output=True,
-                text=True,
                 env={
                     **os.environ,
                     "SANTREE_WORKTREE_PATH": str(worktree_path),
@@ -59,12 +56,9 @@ class ScriptRunner:
             )
 
             if result.returncode == 0:
-                output = result.stdout.strip()
-                if output:
-                    return True, f"Init script completed:\n{output}"
                 return True, "Init script completed successfully"
             else:
-                return False, f"Init script failed (exit code {result.returncode}):\n{result.stderr}"
+                return False, f"Init script failed (exit code {result.returncode})"
 
         except Exception as e:
             return False, f"Error running init script: {e}"

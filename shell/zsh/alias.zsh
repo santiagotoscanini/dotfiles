@@ -181,6 +181,12 @@ function download_s3_file() {
 # =========== Santree (Git Worktree Manager) ===========
 # Wrapper function to handle directory switching
 function santree() {
+    # For setup command, run directly without capturing (to stream output)
+    if [[ "$1" == "setup" ]]; then
+        PYTHONPATH="$DOTFILES_DIR" python3 -m santree "$@"
+        return $?
+    fi
+
     local output
     output=$(PYTHONPATH="$DOTFILES_DIR" python3 -m santree "$@" 2>&1)
     local exit_code=$?
@@ -245,3 +251,6 @@ alias ,sts="santree switch"
 # =========== Temporary Aliases ===========
 # Docker build and run with SYS_ADMIN capability
 alias mydocker='docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
+
+# Useful when using the local installation method (Canary MacBook)
+alias claude="~/.claude/local/claude"
