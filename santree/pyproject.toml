@@ -1,0 +1,19 @@
+[project]
+name = "santree"
+version = "0.1.0"
+description = "Git worktree manager with Linear integration"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "gnureadline>=8.2.13",
+]
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

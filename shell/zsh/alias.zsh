@@ -181,14 +181,17 @@ function download_s3_file() {
 # =========== Santree (Git Worktree Manager) ===========
 # Wrapper function to handle directory switching
 function santree() {
-    # For setup command, run directly without capturing (to stream output)
-    if [[ "$1" == "setup" ]]; then
-        PYTHONPATH="$DOTFILES_DIR" python3 -m santree "$@"
+    local santree_dir="$DOTFILES_DIR/santree"
+    local current_dir="$PWD"
+
+    # For setup and pr commands, run directly without capturing (to stream output)
+    if [[ "$1" == "setup" || "$1" == "pr" ]]; then
+        (cd "$current_dir" && uv run --project "$santree_dir" python -m src "$@")
         return $?
     fi
 
     local output
-    output=$(PYTHONPATH="$DOTFILES_DIR" python3 -m santree "$@" 2>&1)
+    output=$(cd "$current_dir" && uv run --project "$santree_dir" python -m src "$@" 2>&1)
     local exit_code=$?
 
     # Check if output contains a path to cd into (can be anywhere in output)

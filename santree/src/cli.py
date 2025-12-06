@@ -5,7 +5,7 @@ import argparse
 import sys
 from textwrap import dedent
 
-from .commands import CreateCommand, ListCommand, RemoveCommand, SetupCommand, SwitchCommand
+from .commands import CreateCommand, ListCommand, PRCommand, RemoveCommand, SetupCommand, SwitchCommand
 
 
 def get_epilog():
@@ -116,6 +116,18 @@ def create_parser() -> argparse.ArgumentParser:
         help="Run init script in current directory",
     )
 
+    # PR command
+    pr_parser = subparsers.add_parser(
+        "pr",
+        help="Create a GitHub PR",
+    )
+    pr_parser.add_argument(
+        "--draft",
+        "-d",
+        action="store_true",
+        help="Create as draft PR",
+    )
+
     return parser
 
 
@@ -135,6 +147,7 @@ def main() -> int:
         "c": CreateCommand,
         "list": ListCommand,
         "ls": ListCommand,
+        "pr": PRCommand,
         "remove": RemoveCommand,
         "rm": RemoveCommand,
         "setup": SetupCommand,

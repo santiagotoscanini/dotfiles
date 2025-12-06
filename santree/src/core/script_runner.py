@@ -6,7 +6,7 @@ import subprocess
 from pathlib import Path
 from typing import Tuple
 
-from santree.core.config import get_santree_dir
+from .config import get_santree_dir
 
 
 class ScriptRunner:

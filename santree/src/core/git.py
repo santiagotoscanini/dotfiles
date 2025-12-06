@@ -1,11 +1,13 @@
 """Git operations for worktree management."""
 
+import json
 import subprocess
 from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-from santree.core.config import get_santree_dir, get_worktrees_dir
+from .config import get_santree_dir, get_worktrees_dir
 
 
 @dataclass
@@ -91,7 +93,27 @@ class GitOperations:
         if result.returncode != 0:
             return False, f"Failed to create worktree: {result.stderr}"
 
+        # Save metadata for PR creation
+        self._save_worktree_metadata(worktree_path, branch_name, base_branch)
+
         return True, str(worktree_path)
+
+    def _save_worktree_metadata(self, worktree_path: Path, branch_name: str, base_branch: str) -> None:
+        """Save worktree metadata for later use (e.g., PR creation)."""
+        metadata = {
+            "branch_name": branch_name,
+            "base_branch": base_branch,
+            "created_at": datetime.now().isoformat(),
+        }
+        metadata_file = worktree_path / ".santree_metadata.json"
+        metadata_file.write_text(json.dumps(metadata, indent=2))
+
+    def get_worktree_metadata(self, worktree_path: Path) -> Optional[dict]:
+        """Read worktree metadata if it exists."""
+        metadata_file = worktree_path / ".santree_metadata.json"
+        if metadata_file.exists():
+            return json.loads(metadata_file.read_text())
+        return None
 
     def list_worktrees(self) -> List[Worktree]:
         """List all worktrees."""
