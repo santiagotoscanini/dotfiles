@@ -208,8 +208,8 @@ function santree() {
     return $exit_code
 }
 
-# Completion function for santree
-function _santree_completions() {
+# Completion function for santree branch names
+function _santree_branches() {
     local branches
     # Get branch names from all worktrees (excluding detached HEAD)
     branches=($(git worktree list --porcelain 2>/dev/null | grep "^branch " | sed 's/branch refs\/heads\///'))
@@ -222,23 +222,15 @@ function _santree_completions() {
 # Main santree completion
 function _santree() {
     local -a commands
-    commands=(
-        'create:Create a new worktree'
-        'c:Create a new worktree'
-        'list:List all worktrees'
-        'ls:List all worktrees'
-        'remove:Remove a worktree'
-        'rm:Remove a worktree'
-        'switch:Switch to a worktree'
-        'sw:Switch to a worktree'
-    )
 
     if (( CURRENT == 2 )); then
-        _describe 'command' commands
+        # Only show main command names, not aliases
+        commands=(create list remove switch setup pr sync clean)
+        compadd -a commands
     elif (( CURRENT == 3 )); then
         case "${words[2]}" in
-            switch|sw|remove|rm)
-                _santree_completions
+            switch|sw|remove|rm|clean)
+                _santree_branches
                 ;;
         esac
     fi
@@ -250,6 +242,8 @@ alias ,stc="santree create"
 alias ,stl="santree list"
 alias ,str="santree remove"
 alias ,sts="santree switch"
+alias ,sty="santree sync"
+alias ,stp="santree pr"
 
 # =========== Temporary Aliases ===========
 # Docker build and run with SYS_ADMIN capability

@@ -144,7 +144,9 @@ class GitOperations:
 
     def remove_worktree(self, branch_name: str, force: bool = False) -> Tuple[bool, str]:
         """Remove a worktree."""
-        worktree_path = self.worktrees_dir / branch_name
+        # Transform slashes to match how worktrees are created
+        dir_name = branch_name.replace("/", "__")
+        worktree_path = self.worktrees_dir / dir_name
 
         if not worktree_path.exists():
             return False, f"Worktree not found: {branch_name}"

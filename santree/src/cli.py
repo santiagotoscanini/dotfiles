@@ -5,7 +5,16 @@ import argparse
 import sys
 from textwrap import dedent
 
-from .commands import CreateCommand, ListCommand, PRCommand, RemoveCommand, SetupCommand, SwitchCommand
+from .commands import (
+    CleanCommand,
+    CreateCommand,
+    ListCommand,
+    PRCommand,
+    RemoveCommand,
+    SetupCommand,
+    SwitchCommand,
+    SyncCommand,
+)
 
 
 def get_epilog():
@@ -128,6 +137,36 @@ def create_parser() -> argparse.ArgumentParser:
         help="Create as draft PR",
     )
 
+    # Sync command
+    sync_parser = subparsers.add_parser(
+        "sync",
+        help="Sync worktree with base branch (rebase)",
+    )
+    sync_parser.add_argument(
+        "--merge",
+        "-m",
+        action="store_true",
+        help="Merge instead of rebase",
+    )
+
+    # Clean command
+    clean_parser = subparsers.add_parser(
+        "clean",
+        help="Remove worktrees with merged/closed PRs",
+    )
+    clean_parser.add_argument(
+        "--dry-run",
+        "-n",
+        action="store_true",
+        help="Show what would be removed without removing",
+    )
+    clean_parser.add_argument(
+        "--force",
+        "-f",
+        action="store_true",
+        help="Remove without prompting for confirmation",
+    )
+
     return parser
 
 
@@ -143,6 +182,7 @@ def main() -> int:
 
     # Route to appropriate command handler
     commands = {
+        "clean": CleanCommand,
         "create": CreateCommand,
         "c": CreateCommand,
         "list": ListCommand,
@@ -153,6 +193,7 @@ def main() -> int:
         "setup": SetupCommand,
         "switch": SwitchCommand,
         "sw": SwitchCommand,
+        "sync": SyncCommand,
     }
 
     try:

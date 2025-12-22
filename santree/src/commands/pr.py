@@ -1,54 +1,25 @@
 """PR command handler - create GitHub PR with Linear integration."""
 
+import json
 import re
 import subprocess
-import sys
 from pathlib import Path
 from typing import Any, Optional, Tuple
 
-from ..core import find_main_repo_root, find_repo_root, GitOperations
+from ..core import (
+    GitOperations,
+    dim,
+    error,
+    find_main_repo_root,
+    find_repo_root,
+    get_santree_dir,
+    header,
+    info,
+    label,
+    success,
+    warning,
+)
 from ..core.linear import LinearClient, load_linear_config
-
-
-# ANSI color codes
-class Colors:
-    HEADER = "\033[95m"
-    BLUE = "\033[94m"
-    CYAN = "\033[96m"
-    GREEN = "\033[92m"
-    YELLOW = "\033[93m"
-    RED = "\033[91m"
-    BOLD = "\033[1m"
-    DIM = "\033[2m"
-    RESET = "\033[0m"
-
-
-def header(text: str) -> str:
-    return f"{Colors.BOLD}{Colors.CYAN}{text}{Colors.RESET}"
-
-
-def success(text: str) -> str:
-    return f"{Colors.GREEN}{text}{Colors.RESET}"
-
-
-def error(text: str) -> str:
-    return f"{Colors.RED}{text}{Colors.RESET}"
-
-
-def warning(text: str) -> str:
-    return f"{Colors.YELLOW}{text}{Colors.RESET}"
-
-
-def info(text: str) -> str:
-    return f"{Colors.BLUE}{text}{Colors.RESET}"
-
-
-def dim(text: str) -> str:
-    return f"{Colors.DIM}{text}{Colors.RESET}"
-
-
-def label(text: str) -> str:
-    return f"{Colors.BOLD}{text}{Colors.RESET}"
 
 
 class PRCommand:
@@ -384,8 +355,6 @@ class PRCommand:
 
     def _get_title_from_linear(self, main_repo: Path, issue_id: str) -> Optional[str]:
         """Try to fetch issue title from Linear API."""
-        from ..core.config import get_santree_dir
-
         santree_dir = get_santree_dir(main_repo)
         api_key = load_linear_config(santree_dir)
 
@@ -424,7 +393,6 @@ class PRCommand:
             text=True,
         )
         if result.returncode == 0:
-            import json
             try:
                 data = json.loads(result.stdout)
                 return data.get("url"), data.get("state", "OPEN")
