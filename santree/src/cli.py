@@ -7,6 +7,7 @@ from textwrap import dedent
 
 from .commands import (
     CleanCommand,
+    CommitCommand,
     CreateCommand,
     ListCommand,
     PRCommand,
@@ -167,6 +168,13 @@ def create_parser() -> argparse.ArgumentParser:
         help="Remove without prompting for confirmation",
     )
 
+    # Commit command
+    subparsers.add_parser(
+        "commit",
+        aliases=["ci"],
+        help="Commit with pre-filled ticket ID from branch",
+    )
+
     return parser
 
 
@@ -183,6 +191,8 @@ def main() -> int:
     # Route to appropriate command handler
     commands = {
         "clean": CleanCommand,
+        "commit": CommitCommand,
+        "ci": CommitCommand,
         "create": CreateCommand,
         "c": CreateCommand,
         "list": ListCommand,

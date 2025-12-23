@@ -184,8 +184,8 @@ function santree() {
     local santree_dir="$DOTFILES_DIR/santree"
     local current_dir="$PWD"
 
-    # For setup and pr commands, run directly without capturing (to stream output)
-    if [[ "$1" == "setup" || "$1" == "pr" ]]; then
+    # For interactive commands, run directly without capturing (to stream output)
+    if [[ "$1" == "setup" || "$1" == "pr" || "$1" == "commit" || "$1" == "ci" ]]; then
         (cd "$current_dir" && uv run --project "$santree_dir" python -m src "$@")
         return $?
     fi
@@ -225,7 +225,7 @@ function _santree() {
 
     if (( CURRENT == 2 )); then
         # Only show main command names, not aliases
-        commands=(create list remove switch setup pr sync clean)
+        commands=(create list remove switch setup pr sync clean commit)
         compadd -a commands
     elif (( CURRENT == 3 )); then
         case "${words[2]}" in
@@ -244,6 +244,7 @@ alias ,str="santree remove"
 alias ,sts="santree switch"
 alias ,sty="santree sync"
 alias ,stp="santree pr"
+alias ,stci="santree commit"
 
 # =========== Temporary Aliases ===========
 # Docker build and run with SYS_ADMIN capability
