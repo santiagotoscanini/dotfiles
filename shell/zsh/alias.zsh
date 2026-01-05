@@ -237,6 +237,7 @@ function _santree() {
 }
 
 # Aliases for quick access
+alias st="santree"
 alias ,st="santree"
 alias ,stc="santree create"
 alias ,stl="santree list"
