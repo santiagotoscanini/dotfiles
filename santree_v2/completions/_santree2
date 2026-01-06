@@ -1,0 +1,82 @@
+#compdef santree2 st2
+
+_santree2_branches() {
+    local branches
+    branches=(${(f)"$(git worktree list --porcelain 2>/dev/null | grep '^branch ' | sed 's/branch refs\/heads\///')"})
+    if [[ ${#branches[@]} -gt 0 ]]; then
+        compadd -a branches
+    fi
+}
+
+_santree2() {
+    local -a commands
+    local -a options
+
+    case $CURRENT in
+        2)
+            commands=(
+                'list:List all worktrees'
+                'create:Create a new worktree'
+                'switch:Switch to a worktree'
+                'remove:Remove a worktree'
+                'work:Launch Claude for current ticket'
+                'setup:Run init script'
+                'commit:Commit with ticket ID'
+                'pr:Create GitHub PR'
+                'sync:Sync with base branch'
+                'clean:Remove stale worktrees'
+            )
+            _describe 'command' commands
+            ;;
+        3)
+            case "${words[2]}" in
+                switch|sw|remove|rm)
+                    _santree2_branches
+                    ;;
+            esac
+            ;;
+        *)
+            case "${words[2]}" in
+                create)
+                    options=(
+                        '--base[Base branch to create from]:branch:'
+                        '--work[Launch Claude after creating]'
+                        '--plan[With --work, only plan]'
+                        '--no-pull[Skip pulling latest changes]'
+                    )
+                    _arguments $options
+                    ;;
+                remove|rm)
+                    options=('--force[Force removal]')
+                    _arguments $options
+                    ;;
+                work)
+                    options=(
+                        '--plan[Only create implementation plan]'
+                        '--review[Review changes against ticket]'
+                        '--fix-pr[Fetch PR comments and fix them]'
+                    )
+                    _arguments $options
+                    ;;
+                pr)
+                    options=('--draft[Create as draft PR]')
+                    _arguments $options
+                    ;;
+                sync)
+                    options=('--rebase[Use rebase instead of merge]')
+                    _arguments $options
+                    ;;
+                clean)
+                    options=(
+                        '--dry-run[Show what would be removed]'
+                        '--force[Skip confirmation]'
+                    )
+                    _arguments $options
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+compdef _santree2 santree2
+compdef _santree2 st2

@@ -15,6 +15,7 @@ from .commands import (
     SetupCommand,
     SwitchCommand,
     SyncCommand,
+    WorkCommand,
 )
 
 
@@ -83,6 +84,17 @@ def create_parser() -> argparse.ArgumentParser:
         "--no-pull",
         action="store_true",
         help="Skip fetching latest changes before creating",
+    )
+    create_parser.add_argument(
+        "--work",
+        "-w",
+        action="store_true",
+        help="Launch Claude after creating worktree",
+    )
+    create_parser.add_argument(
+        "--plan",
+        action="store_true",
+        help="With --work, only plan (don't implement)",
     )
 
     # List command
@@ -175,6 +187,28 @@ def create_parser() -> argparse.ArgumentParser:
         help="Commit with pre-filled ticket ID from branch",
     )
 
+    # Work command
+    work_parser = subparsers.add_parser(
+        "work",
+        aliases=["w"],
+        help="Launch Claude to work on current ticket",
+    )
+    work_parser.add_argument(
+        "--plan",
+        action="store_true",
+        help="Only create implementation plan",
+    )
+    work_parser.add_argument(
+        "--review",
+        action="store_true",
+        help="Review changes against ticket requirements",
+    )
+    work_parser.add_argument(
+        "--fix-pr",
+        action="store_true",
+        help="Fetch PR comments and fix them",
+    )
+
     return parser
 
 
@@ -204,6 +238,8 @@ def main() -> int:
         "switch": SwitchCommand,
         "sw": SwitchCommand,
         "sync": SyncCommand,
+        "work": WorkCommand,
+        "w": WorkCommand,
     }
 
     try:

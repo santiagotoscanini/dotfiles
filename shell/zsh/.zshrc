@@ -23,6 +23,9 @@ setopt HIST_IGNORE_SPACE         # Ignore commands that start with a space (usef
 [[ -f $ZDOTDIR/alias.zsh ]] && source $ZDOTDIR/alias.zsh  # Load aliases
 [[ -f $ZDOTDIR/oh-my.zsh ]] && source $ZDOTDIR/oh-my.zsh  # Load Oh-My-Zsh config
 
+# Add custom completions to fpath (must be before compinit)
+fpath=($ZDOTDIR/completions $fpath)
+
 # Enable command completion system
 autoload -Uz compinit && compinit -d $ZSH_COMPDUMP
 
@@ -30,6 +33,8 @@ autoload -Uz compinit && compinit -d $ZSH_COMPDUMP
 compdef _santree santree
 compdef _santree_completions ,wts
 compdef _santree_completions ,wtr
+compdef _santree2 santree2
+compdef _santree2 st2
 
 # Local customizations (if any)
 [[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh

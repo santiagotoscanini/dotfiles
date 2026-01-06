@@ -94,6 +94,12 @@ class CreateCommand:
 
         # Output special prefix for shell wrapper to cd into the new worktree
         print(f"SANTREE_CD:{worktree_path}")
+
+        # If --work flag, output marker for shell wrapper to launch Claude
+        if args.work:
+            mode = "plan" if args.plan else "implement"
+            print(f"SANTREE_WORK:{mode}")
+
         return 0
 
     def _validate_branch_name(self, name: str) -> bool:

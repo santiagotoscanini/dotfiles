@@ -9,6 +9,7 @@ from .remove import RemoveCommand
 from .setup import SetupCommand
 from .switch import SwitchCommand
 from .sync import SyncCommand
+from .work import WorkCommand
 
 __all__ = [
     "CleanCommand",
@@ -20,4 +21,5 @@ __all__ = [
     "SetupCommand",
     "SwitchCommand",
     "SyncCommand",
+    "WorkCommand",
 ]
