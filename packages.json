@@ -6,6 +6,12 @@
         "brew": "mas"
       }
     },
+    "witr": {
+      "description": "WITR - Explain process",
+      "macos": {
+        "brew": "witr"
+      }
+    },
     "figma": {
       "description": "figma collaborative design",
       "macos": {
@@ -595,6 +601,7 @@
     "base": {
       "packages": [
         "mas",
+        "witr",
         "arc",
         "xcode",
         "dbeaver-community",
