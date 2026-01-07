@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Text, Box, useInput, useApp } from "ink";
+import TextInput from "ink-text-input";
 import Spinner from "ink-spinner";
-import { execSync } from "child_process";
-import * as readline from "readline";
+import { exec } from "child_process";
+import { promisify } from "util";
 import {
 	findRepoRoot,
 	getCurrentBranch,
@@ -12,6 +13,8 @@ import {
 	hasStagedChanges,
 	hasUnstagedChanges,
 } from "../lib/git.js";
+
+const execAsync = promisify(exec);
 
 type Status =
 	| "loading"
@@ -32,16 +35,18 @@ export default function Commit() {
 	const [gitStatus, setGitStatus] = useState("");
 	const [diffStat, setDiffStat] = useState("");
 	const [repoRoot, setRepoRoot] = useState<string | null>(null);
+	const [commitInput, setCommitInput] = useState("");
 
 	// Handle confirmation for staging
-	useInput((input) => {
+	useInput((input, key) => {
 		if (status === "confirm-stage") {
 			if (input === "y" || input === "Y") {
 				stageAndContinue();
-			} else if (input === "n" || input === "N" || input === "\x03") {
-				// Check if there are staged changes to commit
+			} else if (input === "n" || input === "N" || key.escape) {
 				if (hasStagedChanges()) {
-					promptForMessage();
+					setStatus("awaiting-message");
+					const prefix = ticketId ? `[${ticketId}] ` : "";
+					setCommitInput(prefix);
 				} else {
 					setStatus("no-changes");
 					setMessage("No staged changes to commit");
@@ -51,65 +56,41 @@ export default function Commit() {
 		}
 	});
 
-	function stageAndContinue() {
+	async function stageAndContinue() {
 		try {
-			execSync("git add -A", { cwd: repoRoot ?? undefined, stdio: "ignore" });
-			// Refresh status
+			await execAsync("git add -A", { cwd: repoRoot ?? undefined });
 			setGitStatus(getGitStatus());
 			setDiffStat(getStagedDiffStat());
-			promptForMessage();
+			setStatus("awaiting-message");
+			const prefix = ticketId ? `[${ticketId}] ` : "";
+			setCommitInput(prefix);
 		} catch (e) {
 			setStatus("error");
 			setMessage(`Failed to stage changes: ${e}`);
 		}
 	}
 
-	function promptForMessage() {
-		setStatus("awaiting-message");
+	async function handleCommitSubmit(value: string) {
+		const trimmed = value.trim();
+		if (!trimmed) {
+			setStatus("error");
+			setMessage("Empty commit message, cancelled");
+			setTimeout(() => exit(), 100);
+			return;
+		}
 
-		// Use readline for interactive input
-		const rl = readline.createInterface({
-			input: process.stdin,
-			output: process.stdout,
-		});
+		// Prepend ticket ID if not already present
+		const commitMessage =
+			ticketId && !trimmed.includes(`[${ticketId}]`)
+				? `[${ticketId}] ${trimmed}`
+				: trimmed;
 
-		const prefix = ticketId ? `[${ticketId}] ` : "";
-
-		// Clear the current line and show prompt
-		process.stdout.write("\n");
-
-		rl.question(`Commit message: `, (answer) => {
-			rl.close();
-
-			const finalMessage = answer.trim() || prefix.trim();
-			if (!finalMessage) {
-				setStatus("error");
-				setMessage("Empty commit message, cancelled");
-				setTimeout(() => exit(), 100);
-				return;
-			}
-
-			// Prepend ticket ID if not already present
-			const commitMessage =
-				ticketId && !answer.includes(`[${ticketId}]`)
-					? `[${ticketId}] ${answer}`
-					: answer;
-
-			performCommit(commitMessage);
-		});
-
-		// Pre-fill the input with ticket ID
-		rl.write(prefix);
-	}
-
-	function performCommit(commitMessage: string) {
 		setStatus("committing");
 		setMessage("Creating commit...");
 
 		try {
-			execSync(`git commit -m "${commitMessage.replace(/"/g, '\\"')}"`, {
+			await execAsync(`git commit -m "${commitMessage.replace(/"/g, '\\"')}"`, {
 				cwd: repoRoot ?? undefined,
-				stdio: "pipe",
 			});
 		} catch (e: unknown) {
 			setStatus("error");
@@ -119,14 +100,12 @@ export default function Commit() {
 			return;
 		}
 
-		// Push to origin
 		setStatus("pushing");
 		setMessage("Pushing to origin...");
 
 		try {
-			execSync(`git push -u origin "${branch}"`, {
+			await execAsync(`git push -u origin "${branch}"`, {
 				cwd: repoRoot ?? undefined,
-				stdio: "pipe",
 			});
 		} catch (e: unknown) {
 			setStatus("error");
@@ -142,52 +121,55 @@ export default function Commit() {
 	}
 
 	useEffect(() => {
-		// Check we're in a git repo
-		const root = findRepoRoot();
-		if (!root) {
-			setStatus("error");
-			setMessage("Not inside a git repository");
-			return;
+		async function init() {
+			await new Promise((r) => setTimeout(r, 100));
+
+			const root = findRepoRoot();
+			if (!root) {
+				setStatus("error");
+				setMessage("Not inside a git repository");
+				return;
+			}
+			setRepoRoot(root);
+
+			const currentBranch = getCurrentBranch();
+			if (!currentBranch) {
+				setStatus("error");
+				setMessage("Could not determine current branch");
+				return;
+			}
+			setBranch(currentBranch);
+
+			const ticket = extractTicketId(currentBranch);
+			setTicketId(ticket);
+
+			const statusOutput = getGitStatus();
+			if (!statusOutput) {
+				setStatus("no-changes");
+				setMessage("No changes");
+				setTimeout(() => exit(), 100);
+				return;
+			}
+			setGitStatus(statusOutput);
+
+			const unstaged = hasUnstagedChanges();
+			const staged = hasStagedChanges();
+
+			if (unstaged) {
+				setStatus("confirm-stage");
+			} else if (staged) {
+				setDiffStat(getStagedDiffStat());
+				setStatus("awaiting-message");
+				const prefix = ticket ? `[${ticket}] ` : "";
+				setCommitInput(prefix);
+			} else {
+				setStatus("no-changes");
+				setMessage("No changes to commit");
+				setTimeout(() => exit(), 100);
+			}
 		}
-		setRepoRoot(root);
 
-		// Get current branch
-		const currentBranch = getCurrentBranch();
-		if (!currentBranch) {
-			setStatus("error");
-			setMessage("Could not determine current branch");
-			return;
-		}
-		setBranch(currentBranch);
-
-		// Extract ticket ID
-		const ticket = extractTicketId(currentBranch);
-		setTicketId(ticket);
-
-		// Get git status
-		const statusOutput = getGitStatus();
-		if (!statusOutput) {
-			setStatus("no-changes");
-			setMessage("No changes");
-			setTimeout(() => exit(), 100);
-			return;
-		}
-		setGitStatus(statusOutput);
-
-		// Check if we need to stage changes
-		const unstaged = hasUnstagedChanges();
-		const staged = hasStagedChanges();
-
-		if (unstaged) {
-			setStatus("confirm-stage");
-		} else if (staged) {
-			setDiffStat(getStagedDiffStat());
-			promptForMessage();
-		} else {
-			setStatus("no-changes");
-			setMessage("No changes to commit");
-			setTimeout(() => exit(), 100);
-		}
+		init();
 	}, []);
 
 	const isLoading =
@@ -308,7 +290,14 @@ export default function Commit() {
 					</Text>
 				)}
 				{status === "awaiting-message" && (
-					<Text dimColor>(enter commit message above)</Text>
+					<Box>
+						<Text color="cyan" bold>Commit message: </Text>
+						<TextInput
+							value={commitInput}
+							onChange={setCommitInput}
+							onSubmit={handleCommitSubmit}
+						/>
+					</Box>
 				)}
 				{status === "done" && (
 					<Text color="green" bold>

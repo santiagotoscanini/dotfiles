@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Text, Box, useApp } from "ink";
+import TextInput from "ink-text-input";
 import Spinner from "ink-spinner";
 import { z } from "zod";
-import * as readline from "readline";
-import { execSync } from "child_process";
+import { exec } from "child_process";
+import { promisify } from "util";
 import {
 	findMainRepoRoot,
 	findRepoRoot,
@@ -19,11 +20,13 @@ import {
 } from "../lib/git.js";
 import {
 	ghCliAvailable,
-	getPRInfo,
+	getPRInfoAsync,
 	pushBranch,
 	createPR,
 } from "../lib/github.js";
 import { loadLinearConfig, getIssueTitle } from "../lib/linear.js";
+
+const execAsync = promisify(exec);
 
 export const options = z.object({
 	draft: z.boolean().optional().describe("Create as draft PR"),
@@ -67,42 +70,23 @@ export default function PR({ options }: Props) {
 	const [branch, setBranch] = useState<string | null>(null);
 	const [baseBranch, setBaseBranch] = useState<string | null>(null);
 	const [issueId, setIssueId] = useState<string | null>(null);
+	const [titleInput, setTitleInput] = useState("");
 
-	function promptForTitle(suggestedTitle: string) {
-		setStatus("awaiting-title");
+	async function handleTitleSubmit(value: string) {
+		const finalTitle = value.trim();
+		if (!finalTitle) {
+			setStatus("error");
+			setMessage("PR title is required");
+			setTimeout(() => exit(), 100);
+			return;
+		}
 
-		const rl = readline.createInterface({
-			input: process.stdin,
-			output: process.stdout,
-		});
-
-		process.stdout.write("\n");
-
-		rl.question("PR Title: ", (answer) => {
-			rl.close();
-
-			const finalTitle = answer.trim() || suggestedTitle;
-			if (!finalTitle) {
-				setStatus("error");
-				setMessage("PR title is required");
-				setTimeout(() => exit(), 100);
-				return;
-			}
-
-			createPullRequest(finalTitle);
-		});
-
-		// Pre-fill with suggested title
-		rl.write(suggestedTitle);
-	}
-
-	function createPullRequest(title: string) {
 		if (!branch || !baseBranch) return;
 
 		setStatus("creating");
 		setMessage("Creating PR...");
 
-		const result = createPR(title, baseBranch, branch, options.draft ?? false);
+		const result = createPR(finalTitle, baseBranch, branch, options.draft ?? false);
 
 		if (result === 0) {
 			setStatus("done");
@@ -116,6 +100,9 @@ export default function PR({ options }: Props) {
 
 	useEffect(() => {
 		async function run() {
+			// Allow spinner to render first
+			await new Promise((r) => setTimeout(r, 100));
+
 			// Check gh CLI is available
 			if (!ghCliAvailable()) {
 				setStatus("error");
@@ -191,7 +178,7 @@ export default function PR({ options }: Props) {
 			}
 
 			// Check if PR already exists
-			const existingPr = getPRInfo(branchName);
+			const existingPr = await getPRInfoAsync(branchName);
 			if (existingPr) {
 				setStatus("existing");
 				setMessage(
@@ -199,7 +186,7 @@ export default function PR({ options }: Props) {
 				);
 				if (existingPr.url) {
 					try {
-						execSync(`open "${existingPr.url}"`, { stdio: "ignore" });
+						await execAsync(`open "${existingPr.url}"`);
 					} catch {
 						// Ignore open errors
 					}
@@ -244,7 +231,8 @@ export default function PR({ options }: Props) {
 				}
 			}
 
-			promptForTitle(suggestedTitle);
+			setTitleInput(suggestedTitle);
+			setStatus("awaiting-title");
 		}
 
 		run();
@@ -325,7 +313,14 @@ export default function PR({ options }: Props) {
 					</Box>
 				)}
 				{status === "awaiting-title" && (
-					<Text dimColor>(enter PR title above)</Text>
+					<Box>
+						<Text color="cyan" bold>PR Title: </Text>
+						<TextInput
+							value={titleInput}
+							onChange={setTitleInput}
+							onSubmit={handleTitleSubmit}
+						/>
+					</Box>
 				)}
 				{status === "done" && (
 					<Text color="green" bold>

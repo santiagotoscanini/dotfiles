@@ -215,6 +215,9 @@ function santree() {
     node "$santree_dir/dist/cli.js" "$@"
 }
 
+# Build santree
+alias stc="npm run build --prefix $DOTFILES_DIR/santree"
+
 # Aliases for quick access
 alias st="santree"
 alias ,st="santree"
