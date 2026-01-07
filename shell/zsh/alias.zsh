@@ -182,96 +182,6 @@ function download_s3_file() {
 # Wrapper function to handle directory switching
 function santree() {
     local santree_dir="$DOTFILES_DIR/santree"
-    local current_dir="$PWD"
-
-    # For interactive commands, run directly without capturing (to stream output)
-    if [[ "$1" == "setup" || "$1" == "pr" || "$1" == "commit" || "$1" == "ci" || "$1" == "work" || "$1" == "w" ]]; then
-        (cd "$current_dir" && uv run --project "$santree_dir" python -m src "$@")
-        return $?
-    fi
-
-    local output
-    output=$(cd "$current_dir" && uv run --project "$santree_dir" python -m src "$@" 2>&1)
-    local exit_code=$?
-
-    # Check if output contains a path to cd into (can be anywhere in output)
-    if [[ "$output" == *SANTREE_CD:* ]]; then
-        # Print everything except the SANTREE_CD and SANTREE_WORK lines
-        echo "$output" | grep -v "^SANTREE_CD:" | grep -v "^SANTREE_WORK:"
-        # Extract the path and cd into it
-        local target_dir=$(echo "$output" | grep "^SANTREE_CD:" | cut -d: -f2)
-        cd "$target_dir" && echo "Switched to: $target_dir"
-
-        # Check if we should launch Claude (santree work)
-        if [[ "$output" == *SANTREE_WORK:* ]]; then
-            local work_mode=$(echo "$output" | grep "^SANTREE_WORK:" | cut -d: -f2)
-            case "$work_mode" in
-                plan)
-                    santree work --plan
-                    ;;
-                review)
-                    santree work --review
-                    ;;
-                *)
-                    santree work
-                    ;;
-            esac
-        fi
-    else
-        echo "$output"
-    fi
-
-    return $exit_code
-}
-
-# Completion function for santree branch names
-function _santree_branches() {
-    local branches
-    # Get branch names from all worktrees (excluding detached HEAD)
-    branches=($(git worktree list --porcelain 2>/dev/null | grep "^branch " | sed 's/branch refs\/heads\///'))
-
-    if [[ ${#branches[@]} -gt 0 ]]; then
-        compadd -a branches
-    fi
-}
-
-# Main santree completion
-function _santree() {
-    local -a commands
-
-    if (( CURRENT == 2 )); then
-        # Only show main command names, not aliases
-        commands=(create list remove switch setup pr sync clean commit work)
-        compadd -a commands
-    elif (( CURRENT == 3 )); then
-        case "${words[2]}" in
-            switch|sw|remove|rm|clean)
-                _santree_branches
-                ;;
-        esac
-    fi
-}
-
-# Aliases for quick access
-alias st="santree"
-alias ,st="santree"
-alias ,stc="santree create"
-alias ,stl="santree list"
-alias ,str="santree remove"
-alias ,sts="santree switch"
-alias ,sty="santree sync"
-alias ,stp="santree pr"
-alias ,stci="santree commit"
-alias ,stw="santree work"
-alias ,stf="santree work --fix-pr"
-
-# =========== Santree v2 (React/Ink/TypeScript) ===========
-# Compile santree v2
-alias stc="npm run build --prefix $DOTFILES_DIR/santree_v2"
-
-# Wrapper only needed for cd functionality (create, switch)
-function santree2() {
-    local santree_dir="$DOTFILES_DIR/santree_v2"
 
     # Only create/switch need output capture for cd
     if [[ "$1" == "create" || "$1" == "switch" || "$1" == "sw" ]]; then
@@ -281,14 +191,19 @@ function santree2() {
 
         # Check if output contains a path to cd into
         if [[ "$output" == *SANTREE_CD:* ]]; then
-            echo "$output" | grep -v "^SANTREE_CD:" | grep -v "^SANTREE_WORK:"
-            local target_dir=$(echo "$output" | grep "^SANTREE_CD:" | cut -d: -f2)
-            cd "$target_dir" && echo "Switched to: $target_dir"
+            # Print UI output (filter out SANTREE_CD/SANTREE_WORK lines)
+            echo "$output" | grep -v "SANTREE_CD:" | grep -v "SANTREE_WORK:"
+
+            # Extract target dir - strip ANSI codes and get path after SANTREE_CD:
+            local target_dir=$(echo "$output" | sed 's/\x1b\[[0-9;]*m//g' | grep "SANTREE_CD:" | sed 's/.*SANTREE_CD://')
+            if [[ -n "$target_dir" && -d "$target_dir" ]]; then
+                cd "$target_dir" && echo "Switched to: $target_dir"
+            fi
 
             # Launch Claude if --work flag was used
             if [[ "$output" == *SANTREE_WORK:* ]]; then
-                local work_mode=$(echo "$output" | grep "^SANTREE_WORK:" | cut -d: -f2)
-                [[ "$work_mode" == "plan" ]] && santree2 work --plan || santree2 work
+                local work_mode=$(echo "$output" | sed 's/\x1b\[[0-9;]*m//g' | grep "SANTREE_WORK:" | sed 's/.*SANTREE_WORK://')
+                [[ "$work_mode" == "plan" ]] && santree work --plan || santree work
             fi
         else
             echo "$output"
@@ -300,9 +215,18 @@ function santree2() {
     node "$santree_dir/dist/cli.js" "$@"
 }
 
-alias st2="santree2"
+# Aliases for quick access
+alias st="santree"
+alias ,st="santree"
+alias ,stc="santree create"
+alias ,stl="santree list"
+alias ,str="santree remove"
+alias ,sts="santree switch"
+alias ,sty="santree sync"
+alias ,stw="santree work"
+alias ,stf="santree work --fix-pr"
 
-# Completions are loaded from shell/zsh/completions/_santree2 via fpath
+# Completions are loaded from shell/zsh/completions/_santree via fpath
 
 # =========== Temporary Aliases ===========
 # Docker build and run with SYS_ADMIN capability
