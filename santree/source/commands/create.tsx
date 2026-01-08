@@ -11,13 +11,17 @@ import {
 	pullLatest,
 	hasInitScript,
 	getInitScriptPath,
+	extractTicketId,
 } from "../lib/git.js";
+import { execSync } from "child_process";
 
 export const options = z.object({
 	base: z.string().optional().describe("Base branch to create from"),
 	work: z.boolean().optional().describe("Launch Claude after creating"),
 	plan: z.boolean().optional().describe("With --work, only plan"),
 	"no-pull": z.boolean().optional().describe("Skip pulling latest changes"),
+	tmux: z.boolean().optional().describe("Create a new tmux window"),
+	name: z.string().optional().describe("Custom tmux window name"),
 });
 
 export const args = z.tuple([z.string().optional().describe("Branch name")]);
@@ -32,8 +36,38 @@ type Status =
 	| "pulling"
 	| "creating"
 	| "init-script"
+	| "tmux"
 	| "done"
 	| "error";
+
+function isInTmux(): boolean {
+	return !!process.env.TMUX;
+}
+
+function createTmuxWindow(name: string, path: string, runCommand?: string): boolean {
+	try {
+		execSync(`tmux new-window -n "${name}" -c "${path}"`, { stdio: "ignore" });
+		// If a command is provided, send it to the new window
+		if (runCommand) {
+			execSync(`tmux send-keys -t "${name}" "${runCommand}" Enter`, { stdio: "ignore" });
+		}
+		return true;
+	} catch {
+		return false;
+	}
+}
+
+function getWindowName(branchName: string, customName?: string): string {
+	if (customName) return customName;
+
+	// Try to extract ticket ID (e.g., "TEAM-123")
+	const ticketId = extractTicketId(branchName);
+	if (ticketId) return ticketId;
+
+	// Fallback to last part of branch name
+	const parts = branchName.split("/");
+	return parts[parts.length - 1] ?? branchName;
+}
 
 export default function Create({ options, args }: Props) {
 	const [branchName] = args;
@@ -41,6 +75,53 @@ export default function Create({ options, args }: Props) {
 	const [message, setMessage] = useState("");
 	const [worktreePath, setWorktreePath] = useState("");
 	const [baseBranch, setBaseBranch] = useState<string | null>(null);
+	const [tmuxWindowName, setTmuxWindowName] = useState<string | null>(null);
+
+	function finalize(path: string, branch: string) {
+		// Handle tmux window creation
+		if (options.tmux) {
+			if (!isInTmux()) {
+				setMessage("Worktree created, but not in tmux session");
+				setStatus("done");
+				console.log(`SANTREE_CD:${path}`);
+				return;
+			}
+
+			setStatus("tmux");
+			setMessage("Creating tmux window...");
+
+			const windowName = getWindowName(branch, options.name);
+			setTmuxWindowName(windowName);
+
+			// Build command to run in new window (if --work is set)
+			let runCommand: string | undefined;
+			if (options.work) {
+				runCommand = options.plan ? "st work --plan" : "st work";
+			}
+
+			if (!createTmuxWindow(windowName, path, runCommand)) {
+				setMessage("Worktree created, but failed to create tmux window");
+				setStatus("done");
+				console.log(`SANTREE_CD:${path}`);
+				return;
+			}
+
+			setStatus("done");
+			const workInfo = options.work ? (options.plan ? " + Claude (plan)" : " + Claude") : "";
+			setMessage(`Worktree and tmux window created!${workInfo}`);
+			// Don't output SANTREE_CD when tmux window is created - user is already in new window
+			return;
+		}
+
+		setStatus("done");
+		setMessage("Worktree created successfully!");
+		console.log(`SANTREE_CD:${path}`);
+
+		if (options.work) {
+			const mode = options.plan ? "plan" : "implement";
+			console.log(`SANTREE_WORK:${mode}`);
+		}
+	}
 
 	useEffect(() => {
 		async function run() {
@@ -52,6 +133,8 @@ export default function Create({ options, args }: Props) {
 				setMessage("Branch name is required");
 				return;
 			}
+
+			const branch = branchName as string; // Type assertion after null check
 
 			const mainRepo = findMainRepoRoot();
 			if (!mainRepo) {
@@ -78,7 +161,7 @@ export default function Create({ options, args }: Props) {
 			setStatus("creating");
 			setMessage(`Creating worktree from ${base}...`);
 
-			const result = await createWorktree(branchName, base, mainRepo);
+			const result = await createWorktree(branch, base, mainRepo);
 
 			if (result.success && result.path) {
 				setWorktreePath(result.path);
@@ -95,25 +178,23 @@ export default function Create({ options, args }: Props) {
 						fs.accessSync(initScript, fs.constants.X_OK);
 					} catch {
 						setMessage("Warning: Init script exists but is not executable");
-						setStatus("done");
-						setMessage("Worktree created successfully!");
-						console.log(`SANTREE_CD:${result.path}`);
-						if (options.work) {
-							const mode = options.plan ? "plan" : "implement";
-							console.log(`SANTREE_WORK:${mode}`);
-						}
+						finalize(result.path!, branch);
 						return;
 					}
 
 					const child = spawn(initScript, [], {
 						cwd: result.path,
-						stdio: "inherit",
+						stdio: "pipe",
 						env: {
 							...process.env,
 							SANTREE_WORKTREE_PATH: result.path,
 							SANTREE_REPO_ROOT: mainRepo,
 						},
 					});
+
+					// Capture output but don't display (to avoid conflicting with Ink)
+					child.stdout?.on("data", () => {});
+					child.stderr?.on("data", () => {});
 
 					child.on("error", (err) => {
 						setMessage(`Warning: Init script failed: ${err.message}`);
@@ -123,28 +204,10 @@ export default function Create({ options, args }: Props) {
 						if (code !== 0) {
 							setMessage(`Warning: Init script exited with code ${code}`);
 						}
-						setStatus("done");
-						setMessage("Worktree created successfully!");
-
-						// Output SANTREE_CD for shell wrapper
-						console.log(`SANTREE_CD:${result.path}`);
-
-						if (options.work) {
-							const mode = options.plan ? "plan" : "implement";
-							console.log(`SANTREE_WORK:${mode}`);
-						}
+						finalize(result.path!, branch);
 					});
 				} else {
-					setStatus("done");
-					setMessage("Worktree created successfully!");
-
-					// Output SANTREE_CD for shell wrapper
-					console.log(`SANTREE_CD:${result.path}`);
-
-					if (options.work) {
-						const mode = options.plan ? "plan" : "implement";
-						console.log(`SANTREE_WORK:${mode}`);
-					}
+					finalize(result.path!, branch);
 				}
 			} else {
 				setStatus("error");
@@ -159,10 +222,12 @@ export default function Create({ options, args }: Props) {
 		options.work,
 		options.plan,
 		options["no-pull"],
+		options.tmux,
+		options.name,
 	]);
 
 	const isLoading =
-		status === "pulling" || status === "creating" || status === "init-script";
+		status === "pulling" || status === "creating" || status === "init-script" || status === "tmux";
 
 	return (
 		<Box flexDirection="column" padding={1} width="100%">
@@ -211,6 +276,15 @@ export default function Create({ options, args }: Props) {
 							</Text>
 						</Box>
 					)}
+
+					{options.tmux && (
+						<Box gap={1}>
+							<Text dimColor>tmux:</Text>
+							<Text backgroundColor="green" color="white">
+								{` ${options.name || "auto"} `}
+							</Text>
+						</Box>
+					)}
 				</Box>
 			)}
 
@@ -229,6 +303,9 @@ export default function Create({ options, args }: Props) {
 							✓ {message}
 						</Text>
 						<Text dimColor> {worktreePath}</Text>
+						{tmuxWindowName && (
+							<Text dimColor> tmux window: {tmuxWindowName}</Text>
+						)}
 					</Box>
 				)}
 				{status === "error" && (

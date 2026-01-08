@@ -183,6 +183,24 @@ function download_s3_file() {
 function santree() {
     local santree_dir="$DOTFILES_DIR/santree"
 
+    # Check if current directory exists (might have been deleted by clean/remove)
+    if [[ ! -d "$(pwd 2>/dev/null)" ]]; then
+        local current_path="$(pwd 2>/dev/null)"
+        # Try to extract main repo from worktree path (.santree/worktrees/<name>)
+        if [[ "$current_path" == */.santree/worktrees/* ]]; then
+            local main_repo="${current_path%%/.santree/worktrees/*}"
+            if [[ -d "$main_repo" ]]; then
+                echo "⚠ Worktree directory deleted. Returning to main repo."
+                cd "$main_repo" || cd ~ || return 1
+            else
+                cd ~ || return 1
+            fi
+        else
+            echo "⚠ Current directory no longer exists. Returning to home."
+            cd ~ || return 1
+        fi
+    fi
+
     # Only create/switch need output capture for cd
     if [[ "$1" == "create" || "$1" == "switch" || "$1" == "sw" ]]; then
         local output
@@ -215,8 +233,14 @@ function santree() {
     node "$santree_dir/dist/cli.js" "$@"
 }
 
-# Build santree
-alias stc="npm run build --prefix $DOTFILES_DIR/santree"
+# Build santree (function to handle deleted directory)
+function stc() {
+    if [[ ! -d "$(pwd 2>/dev/null)" ]]; then
+        echo "⚠ Current directory no longer exists. Running from santree dir."
+        cd "$DOTFILES_DIR/santree" || return 1
+    fi
+    npm run build --prefix "$DOTFILES_DIR/santree"
+}
 
 # Aliases for quick access
 alias st="santree"

@@ -176,10 +176,20 @@ export default function Work({ options }: Props) {
 
 		const claudePath = getClaudePath();
 
-		// Spawn Claude as a child process
-		const child = spawn(claudePath, [prompt], {
+		// Build args array
+		const args: string[] = [];
+
+		// Add plan mode flag (Claude's native plan mode)
+		if (mode === "plan") {
+			args.push("--permission-mode", "plan");
+		}
+
+		// Add the prompt
+		args.push(prompt);
+
+		// Spawn Claude directly with prompt as argument (no shell)
+		const child = spawn(claudePath, args, {
 			stdio: "inherit",
-			shell: true,
 		});
 
 		child.on("error", (err) => {
@@ -245,9 +255,14 @@ export default function Work({ options }: Props) {
 					</Box>
 				)}
 				{status === "launching" && (
-					<Text color="green" bold>
-						✓ Launching Claude...
-					</Text>
+					<Box flexDirection="column">
+						<Text color="green" bold>
+							✓ Launching Claude...
+						</Text>
+						<Text dimColor>
+							{" "}claude{mode === "plan" ? " --permission-mode plan" : ""} {`"<${getModeLabel(mode)} prompt for ${ticketId}>"`}
+						</Text>
+					</Box>
 				)}
 				{status === "error" && (
 					<Text color="red" bold>
