@@ -134,7 +134,7 @@ export default function Create({ options, args }: Props) {
 				return;
 			}
 
-			const branch = branchName as string; // Type assertion after null check
+			const branch = branchName; // Capture for closures
 
 			const mainRepo = findMainRepoRoot();
 			if (!mainRepo) {
@@ -237,7 +237,7 @@ export default function Create({ options, args }: Props) {
 				</Text>
 			</Box>
 
-			{branchName && (
+		{branchName && (
 				<Box
 					flexDirection="column"
 					borderStyle="round"

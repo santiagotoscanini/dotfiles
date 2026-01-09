@@ -101,7 +101,7 @@ export default function PR({ options }: Props) {
 	useEffect(() => {
 		async function run() {
 			// Allow spinner to render first
-			await new Promise((r) => setTimeout(r, 100));
+			await new Promise((r) => setTimeout(r, 50));
 
 			// Check gh CLI is available
 			if (!ghCliAvailable()) {
@@ -111,6 +111,9 @@ export default function PR({ options }: Props) {
 				);
 				return;
 			}
+
+			// Yield to let spinner animate
+			await new Promise((r) => setTimeout(r, 10));
 
 			// Find repos
 			const mainRepoRoot = findMainRepoRoot();
@@ -128,6 +131,9 @@ export default function PR({ options }: Props) {
 				setMessage("Not inside a worktree (you are in the main repository)");
 				return;
 			}
+
+			// Yield to let spinner animate
+			await new Promise((r) => setTimeout(r, 10));
 
 			// Get current branch
 			const branchName = getCurrentBranch();
@@ -147,6 +153,9 @@ export default function PR({ options }: Props) {
 				return;
 			}
 
+			// Yield to let spinner animate
+			await new Promise((r) => setTimeout(r, 10));
+
 			// Get base branch from metadata
 			const metadata = getWorktreeMetadata(currentRepo);
 			const base = metadata?.base_branch ?? getDefaultBranch();
@@ -162,6 +171,9 @@ export default function PR({ options }: Props) {
 				return;
 			}
 
+			// Yield to let spinner animate
+			await new Promise((r) => setTimeout(r, 10));
+
 			// Check if we need to push
 			const remoteExists = remoteBranchExists(branchName);
 			const unpushed = getUnpushedCommits(branchName);
@@ -169,6 +181,9 @@ export default function PR({ options }: Props) {
 			if (!remoteExists || unpushed > 0) {
 				setStatus("pushing");
 				setMessage("Pushing to remote...");
+
+				// Yield before push
+				await new Promise((r) => setTimeout(r, 10));
 
 				if (!pushBranch(branchName)) {
 					setStatus("error");

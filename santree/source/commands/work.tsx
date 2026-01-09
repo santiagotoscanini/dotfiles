@@ -22,6 +22,8 @@ type Status = "loading" | "ready" | "launching" | "error";
 const TEMPLATES = {
 	implement: `Fetch Linear ticket {{ticket_id}} using MCP and analyze what needs to be done.
 
+If a PR URL is linked in the ticket, use \`gh\` CLI to fetch PR details, comments, and review feedback.
+
 Review the codebase to understand the relevant areas and existing patterns.
 
 Create an implementation plan, then implement the changes.
@@ -31,6 +33,8 @@ After implementation:
 - Ensure code follows existing patterns`,
 
 	plan: `Fetch Linear ticket {{ticket_id}} using MCP and analyze what needs to be done.
+
+If a PR URL is linked in the ticket, use \`gh\` CLI to fetch PR details, comments, and review feedback for additional context.
 
 Review the codebase to understand:
 - Relevant files and modules
@@ -46,6 +50,8 @@ Do NOT implement yet - just plan. Wait for approval before making changes.`,
 
 	review: `Fetch Linear ticket {{ticket_id}} using MCP to understand the requirements and acceptance criteria.
 
+If a PR URL is linked in the ticket, use \`gh\` CLI to fetch PR details and any existing review comments.
+
 Review the current changes by running \`git diff\` against the base branch.
 
 Analyze:
@@ -57,6 +63,8 @@ Analyze:
 Provide a summary of findings and any recommended changes.`,
 
 	"fix-pr": `Fetch Linear ticket {{ticket_id}} using MCP to understand the original requirements.
+
+If a PR URL is linked in the ticket, use \`gh\` CLI to fetch the latest PR comments and review feedback.
 
 ## PR Comments to Address
 

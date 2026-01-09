@@ -242,6 +242,14 @@ function stc() {
     npm run build --prefix "$DOTFILES_DIR/santree"
 }
 
+# Quick create worktree with work+plan+tmux (prompts for branch)
+function stw() {
+    local branch
+    vared -p "Branch name: " branch
+    [[ -z "$branch" ]] && echo "Branch name required" && return 1
+    santree create "$branch" --work --plan --tmux
+}
+
 # Aliases for quick access
 alias st="santree"
 alias ,st="santree"
