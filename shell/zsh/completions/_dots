@@ -1,0 +1,140 @@
+#compdef dots
+# -----------------------------------------------------------------------------
+# Dots Zsh Completion
+# Dotfile manager - React/Ink/TypeScript CLI
+# -----------------------------------------------------------------------------
+
+__dots_get_profiles() {
+    local -a profiles
+    local config_file="$DOTFILES_DIR/dots/source/packages.json"
+    if [[ -f "$config_file" ]]; then
+        profiles=(${(f)"$(node -e "console.log(Object.keys(require('$config_file').profiles || {}).join('\n'))" 2>/dev/null)"})
+    fi
+    _describe -t profiles 'profiles' profiles
+}
+
+__dots_get_packages() {
+    local -a packages
+    local config_file="$DOTFILES_DIR/dots/source/packages.json"
+    if [[ -f "$config_file" ]]; then
+        packages=(${(f)"$(node -e "console.log(Object.keys(require('$config_file').packages || {}).join('\n'))" 2>/dev/null)"})
+    fi
+    _describe -t packages 'packages' packages
+}
+
+__dots_commands() {
+    local -a commands
+    commands=(
+        'install:Install packages from a profile'
+        'uninstall:Uninstall packages from a profile'
+        'check:Check installation status of packages'
+        'list:List profiles and packages'
+        'add:Add a new package to config'
+        'remove:Remove a package from config'
+        'edit:Open packages.json in editor'
+        'backup:Discover and save installed brew packages'
+        'untracked:List packages not in any profile'
+    )
+    _describe -t commands 'dots commands' commands
+}
+
+__dots_install() {
+    _arguments \
+        '--profile[Profile to install]:profile:__dots_get_profiles' \
+        '--dry-run[Show what would be installed without making changes]'
+}
+
+__dots_uninstall() {
+    _arguments \
+        '--profile[Profile to uninstall]:profile:__dots_get_profiles' \
+        '--dry-run[Show what would be uninstalled without making changes]' \
+        '--yes[Skip confirmation prompt]'
+}
+
+__dots_check() {
+    _arguments \
+        '--profile[Profile to check]:profile:__dots_get_profiles' \
+        '--all[Show all items, not just issues]'
+}
+
+__dots_list() {
+    _arguments \
+        '--profile[Show details for a specific profile]:profile:__dots_get_profiles' \
+        '--packages[List all packages]' \
+        '--pre-install[List all pre-install tasks]'
+}
+
+__dots_add() {
+    _arguments \
+        '1:package name:'
+}
+
+__dots_remove() {
+    _arguments \
+        '1:package:__dots_get_packages' \
+        '--from-profile[Only remove from this profile]:profile:__dots_get_profiles'
+}
+
+__dots_edit() {
+    return 0
+}
+
+__dots_backup() {
+    return 0
+}
+
+__dots_untracked() {
+    return 0
+}
+
+_dots() {
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments -C \
+        '-v[Show version]' \
+        '--version[Show version]' \
+        '-h[Show help]' \
+        '--help[Show help]' \
+        '1: :->command' \
+        '*:: :->args'
+
+    case $state in
+        command)
+            __dots_commands
+            ;;
+        args)
+            case $line[1] in
+                install)
+                    __dots_install
+                    ;;
+                uninstall)
+                    __dots_uninstall
+                    ;;
+                check)
+                    __dots_check
+                    ;;
+                list)
+                    __dots_list
+                    ;;
+                add)
+                    __dots_add
+                    ;;
+                remove)
+                    __dots_remove
+                    ;;
+                edit)
+                    __dots_edit
+                    ;;
+                backup)
+                    __dots_backup
+                    ;;
+                untracked)
+                    __dots_untracked
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_dots "$@"

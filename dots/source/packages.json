@@ -1,0 +1,687 @@
+{
+  "packages": {
+    "mas": {
+      "description": "Mac App Store CLI",
+      "macos": {
+        "brew": "mas"
+      }
+    },
+    "witr": {
+      "description": "WITR - Explain process",
+      "macos": {
+        "brew": "witr"
+      }
+    },
+    "figma": {
+      "description": "figma collaborative design",
+      "macos": {
+        "brew": "figma",
+        "cask": true
+      }
+    },
+    "wireguard": {
+      "description": "WireGuard VPN",
+      "macos": {
+        "mas": 1451685025
+      }
+    },
+    "sweet-home-3d": {
+      "description": "Sweet Home 3D - design",
+      "macos": {
+        "mas": 669289700
+      }
+    },
+    "arc": {
+      "description": "Arc browser",
+      "macos": {
+        "brew": "arc",
+        "cask": true
+      }
+    },
+    "jomo": {
+      "description": "Jomo screen time blocker",
+      "macos": {
+        "mas": 1609960918
+      }
+    },
+    "xcode": {
+      "description": "Xcode editor",
+      "macos": {
+        "mas": 497799835
+      }
+    },
+    "aldente": {
+      "description": "Battery health and charging manager",
+      "macos": {
+        "brew": "aldente",
+        "cask": true
+      }
+    },
+    "claude-desktop": {
+      "description": "Claude desktop app",
+      "macos": {
+        "brew": "claude",
+        "cask": true
+      }
+    },
+    "awscli": {
+      "description": "AWS CLI for managing AWS services",
+      "macos": {
+        "brew": "awscli"
+      }
+    },
+    "bambu-studio": {
+      "description": "3D printing software",
+      "macos": {
+        "brew": "bambu-studio",
+        "cask": true
+      }
+    },
+    "calibre": {
+      "description": "E-book manager",
+      "macos": {
+        "brew": "calibre",
+        "cask": true
+      }
+    },
+    "airbuddy": {
+      "description": "Airbuddy device manager",
+      "macos": {
+        "brew": "airbuddy",
+        "cask": true
+      }
+    },
+    "chatgpt": {
+      "description": "ChatGPT desktop app",
+      "macos": {
+        "brew": "chatgpt",
+        "cask": true
+      }
+    },
+    "cursor": {
+      "description": "AI-powered code editor",
+      "macos": {
+        "brew": "cursor",
+        "cask": true
+      }
+    },
+    "dbeaver-community": {
+      "description": "Database management tool",
+      "macos": {
+        "brew": "dbeaver-community",
+        "cask": true
+      }
+    },
+    "discord": {
+      "description": "Voice, video, and text communication platform",
+      "macos": {
+        "brew": "discord",
+        "cask": true
+      }
+    },
+    "docker": {
+      "description": "Container platform for application development",
+      "macos": {
+        "brew": "docker",
+        "cask": true
+      }
+    },
+    "docker-desktop": {
+      "description": "Docker desktop app, check https://github.com/apple/container in the future",
+      "macos": {
+        "brew": "docker-desktop",
+        "cask": true
+      }
+    },
+    "eslint": {
+      "description": "JavaScript linter, installed for nvim",
+      "macos": {
+        "brew": "eslint"
+      }
+    },
+    "ffmpeg": {
+      "description": "FFmpeg for video and audio processing",
+      "macos": {
+        "brew": "ffmpeg"
+      }
+    },
+    "fzf": {
+      "description": "Command-line fuzzy finder",
+      "macos": {
+        "brew": "fzf"
+      }
+    },
+    "gh": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/gh",
+        "source": "gh"
+      },
+      "description": "GitHub CLI for pull requests, issues, and more",
+      "macos": {
+        "brew": "gh"
+      }
+    },
+    "ghostty": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/ghostty",
+        "source": "terminal/ghostty"
+      },
+      "description": "Fast, feature-rich terminal emulator",
+      "macos": {
+        "brew": "ghostty",
+        "cask": true
+      }
+    },
+    "git": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/git",
+        "source": "git"
+      },
+      "description": "Distributed version control system",
+      "macos": {
+        "brew": "git"
+      }
+    },
+    "git-delta": {
+      "description": "Git diff viewer",
+      "macos": {
+        "brew": "git-delta"
+      }
+    },
+    "hiddenbar": {
+      "description": "Hidden bar for macOS",
+      "macos": {
+        "brew": "hiddenbar",
+        "cask": true
+      }
+    },
+    "insta360-studio": {
+      "description": "Insta360 Studio for 360-degree video editing",
+      "macos": {
+        "brew": "insta360-studio",
+        "cask": true
+      }
+    },
+    "linear": {
+      "description": "Linear for project management",
+      "macos": {
+        "brew": "linear-linear",
+        "cask": true
+      }
+    },
+    "logi-options+": {
+      "description": "Logitech Options+ for Logitech devices",
+      "macos": {
+        "brew": "logi-options+",
+        "cask": true
+      }
+    },
+    "loom": {
+      "description": "Loom for screen recording and collaboration",
+      "macos": {
+        "brew": "loom",
+        "cask": true
+      }
+    },
+    "lunar": {
+      "description": "Lunar for managing display settings",
+      "macos": {
+        "brew": "lunar",
+        "cask": true
+      }
+    },
+    "neovim": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/nvim",
+        "source": "editors/nvim"
+      },
+      "description": "Hyperextensible Vim-based text editor",
+      "macos": {
+        "brew": "neovim"
+      }
+    },
+    "nextcloud": {
+      "description": "Nextcloud sync app",
+      "macos": {
+        "brew": "nextcloud",
+        "cask": true
+      }
+    },
+    "ngrok": {
+      "description": "Ngrok for local development",
+      "macos": {
+        "brew": "ngrok",
+        "cask": true
+      }
+    },
+    "notunes": {
+      "description": "Avoid opening iTunes accidentally",
+      "macos": {
+        "brew": "notunes",
+        "cask": true
+      }
+    },
+    "obsidian": {
+      "description": "Knowledge management and note-taking app",
+      "macos": {
+        "brew": "obsidian",
+        "cask": true
+      }
+    },
+    "openssh": {
+      "config": {
+        "destination": "~/.ssh/config",
+        "source": "ssh/config"
+      },
+      "description": "OpenSSH for secure remote access",
+      "macos": {
+        "brew": "openssh"
+      }
+    },
+    "pnpm": {
+      "description": "Package manager for JavaScript",
+      "macos": {
+        "brew": "pnpm"
+      }
+    },
+    "protonvpn": {
+      "description": "ProtonVPN for secure VPN access",
+      "macos": {
+        "brew": "protonvpn",
+        "cask": true
+      }
+    },
+    "qmk": {
+      "config": {
+        "destination": "$QMK_DIR/keyboards/crkbd/keymaps/santi_km",
+        "source": "qmk/santi_km"
+      },
+      "description": "QMK keyboard firmware toolkit",
+      "macos": {
+        "brew": "qmk/qmk/qmk"
+      }
+    },
+    "raycast": {
+      "description": "Raycast for command-line productivity",
+      "macos": {
+        "brew": "raycast",
+        "cask": true
+      }
+    },
+    "ripgrep": {
+      "description": "Lightning-fast recursive text search tool",
+      "macos": {
+        "brew": "ripgrep"
+      }
+    },
+    "ruff": {
+      "description": "Ruff for Python linting and formatting",
+      "macos": {
+        "brew": "ruff"
+      }
+    },
+    "shottr": {
+      "description": "Shottr for screen recording and screenshot management",
+      "macos": {
+        "brew": "shottr",
+        "cask": true
+      }
+    },
+    "slack": {
+      "description": "Team collaboration and messaging platform",
+      "macos": {
+        "brew": "slack",
+        "cask": true
+      }
+    },
+    "spotify": {
+      "description": "Music streaming service",
+      "macos": {
+        "brew": "spotify",
+        "cask": true
+      }
+    },
+    "thefuck": {
+      "description": "The Fuck for correcting command-line mistakes",
+      "macos": {
+        "brew": "thefuck"
+      }
+    },
+    "ticktick": {
+      "description": "TickTick for task management",
+      "macos": {
+        "brew": "ticktick",
+        "cask": true
+      }
+    },
+    "tmux": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/tmux",
+        "source": "terminal/tmux"
+      },
+      "description": "Terminal multiplexer for managing sessions",
+      "macos": {
+        "brew": "tmux"
+      }
+    },
+    "tmuxinator": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/tmuxinator",
+        "source": "terminal/tmuxinator"
+      },
+      "description": "Tmuxinator for managing tmux sessions",
+      "macos": {
+        "brew": "tmuxinator"
+      }
+    },
+    "tree": {
+      "description": "Tree for directory listing",
+      "macos": {
+        "brew": "tree"
+      }
+    },
+    "vint": {
+      "description": "Vint for Vim script linting",
+      "macos": {
+        "brew": "vint"
+      }
+    },
+    "visual-studio-code": {
+      "description": "Visual Studio Code for code editing",
+      "macos": {
+        "brew": "visual-studio-code",
+        "cask": true
+      }
+    },
+    "whatsapp": {
+      "description": "WhatsApp for messaging",
+      "macos": {
+        "brew": "whatsapp",
+        "cask": true
+      }
+    },
+    "yubico-yubikey-manager": {
+      "description": "Yubico YubiKey Manager for managing YubiKeys",
+      "macos": {
+        "brew": "yubico-yubikey-manager",
+        "cask": true
+      }
+    },
+    "zed": {
+      "description": "Zed for code editing",
+      "macos": {
+        "brew": "zed",
+        "cask": true
+      }
+    },
+    "zoom": {
+      "description": "Zoom for video conferencing",
+      "macos": {
+        "brew": "zoom",
+        "cask": true
+      }
+    },
+    "zrok": {
+      "description": "Zrok for local development, like ngrok but with HTTPS support",
+      "macos": {
+        "brew": "zrok"
+      }
+    },
+    "qpdf": {
+      "description": "qpdf (auto-discovered), only used for zlib library - git tech talk",
+      "macos": {
+        "brew": "qpdf"
+      }
+    },
+    "vim-language-server": {
+      "description": "Language Server Protocol implementation for Vim script",
+      "macos": {
+        "npm": "vim-language-server"
+      }
+    },
+    "ccstatusline": {
+      "description": "Claude Code status line with context tracking",
+      "macos": {
+        "npm": "ccstatusline"
+      },
+      "config": {
+        "source": "tools/ccstatusline",
+        "destination": "$XDG_CONFIG_HOME/ccstatusline"
+      }
+    },
+    "claude-squad": {
+      "description": "Claude Squad CLI utility",
+      "macos": {
+        "brew": "claude-squad",
+        "post_install": "ln -sf \"$(brew --prefix)/bin/claude-squad\" \"$(brew --prefix)/bin/cs\""
+      }
+    }
+  },
+  "pre-install": {
+    "rosetta": {
+      "description": "Rosetta for Apple Silicon, required to run Intel apps on Apple silicon",
+      "macos": {
+        "check": "pgrep oahd",
+        "install": "softwareupdate --install-rosetta --agree-to-license"
+      }
+    },
+    "root_zshenv": {
+      "description": "Set root .zshenv",
+      "macos": {
+        "check": "test -f /etc/zshenv",
+        "install": "printf 'export ZDOTDIR=$HOME/.config/zsh\n. $ZDOTDIR/.zshenv\n' >> ~/.zshenv"
+      }
+    },
+    "ssh__github": {
+      "description": "Add SSH key to GitHub",
+      "macos": {
+        "check": "test -f ~/.ssh/id_github",
+        "install": "ssh-keygen -t ed25519 -C \"github@account.toscanini.me\" -f ~/.ssh/id_github -N \"\""
+      }
+    },
+    "ssh__s2_neo": {
+      "description": "Add SSH key to S2",
+      "macos": {
+        "check": "test -f ~/.ssh/id_s2_neo",
+        "install": "ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_neo"
+      }
+    },
+    "ssh__s2_nano": {
+      "description": "Add SSH key to S2",
+      "macos": {
+        "check": "test -f ~/.ssh/id_s2_nano",
+        "install": "ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_nano"
+      }
+    },
+    "vim-plug": {
+      "description": "Vim plugin manager, after this is installed it will run `nvim +PlugInstall` to install plugins",
+      "macos": {
+        "check": "test -f ~/.local/share/nvim/site/autoload/plug.vim",
+        "install": "curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim && nvim +PlugInstall"
+      }
+    },
+    "dev-directories": {
+      "description": "Create development directory structure",
+      "macos": {
+        "paths": [
+          "~/.config",
+          "~/dev/personal",
+          "~/dev/work",
+          "~/Documents/Screenshots"
+        ],
+        "permissions": "755"
+      },
+      "provider": "directory"
+    },
+    "dock-autohide": {
+      "description": "Enable dock auto-hide",
+      "macos": {
+        "domain": "com.apple.dock",
+        "key": "autohide",
+        "type": "bool",
+        "value": true
+      },
+      "provider": "defaults"
+    },
+    "dock-orientation": {
+      "description": "Dock position",
+      "macos": {
+        "domain": "com.apple.dock",
+        "key": "orientation",
+        "type": "string",
+        "value": "right"
+      },
+      "provider": "defaults"
+    },
+    "dock-size": {
+      "description": "Set dock icon size",
+      "macos": {
+        "domain": "com.apple.dock",
+        "key": "tilesize",
+        "type": "int",
+        "value": 65
+      },
+      "provider": "defaults"
+    },
+    "dock-show-recents": {
+      "description": "Show recent apps in dock",
+      "macos": {
+        "domain": "com.apple.dock",
+        "key": "show-recents",
+        "type": "bool",
+        "value": false
+      },
+      "provider": "defaults"
+    },
+    "homebrew": {
+      "description": "Homebrew package manager",
+      "macos": {
+        "check": "command -v brew",
+        "install": "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"",
+        "post_install": "brew update"
+      }
+    },
+    "oh-my-zsh": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/zsh",
+        "source": "shell/zsh"
+      },
+      "description": "Oh My Zsh framework (includes zsh configuration)",
+      "macos": {
+        "check": "[ -d \"$HOME/.oh-my-zsh\" ]",
+        "install": "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended"
+      }
+    },
+    "screencapture-location": {
+      "description": "Screenshot location",
+      "macos": {
+        "domain": "com.apple.screencapture",
+        "key": "location",
+        "type": "string",
+        "value": "~/Documents/Screenshots"
+      },
+      "provider": "defaults"
+    },
+    "typewritten": {
+      "description": "Typewritten Zsh theme",
+      "macos": {
+        "check": "[ -d \"${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/typewritten\" ]",
+        "install": "git clone https://github.com/reobin/typewritten ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/typewritten"
+      }
+    },
+    "vi-mode": {
+      "description": "Zsh vi-mode plugin",
+      "macos": {
+        "check": "[ -d \"${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode\" ]",
+        "install": "git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-vi-mode"
+      }
+    }
+  },
+  "profiles": {
+    "base": {
+      "packages": [
+        "mas",
+        "witr",
+        "arc",
+        "xcode",
+        "dbeaver-community",
+        "aldente",
+        "awscli",
+        "cursor",
+        "docker",
+        "docker-desktop",
+        "eslint",
+        "fzf",
+        "gh",
+        "ghostty",
+        "git",
+        "git-delta",
+        "hiddenbar",
+        "logi-options+",
+        "thefuck",
+        "lunar",
+        "linear",
+        "neovim",
+        "notunes",
+        "openssh",
+        "raycast",
+        "ripgrep",
+        "shottr",
+        "slack",
+        "spotify",
+        "figma",
+        "ticktick",
+        "tmux",
+        "tmuxinator",
+        "tree",
+        "vint",
+        "vim-language-server",
+        "ccstatusline",
+        "zoom",
+        "loom",
+        "claude-squad"
+      ],
+      "pre-install": [
+        "rosetta",
+        "vim-plug",
+        "root_zshenv",
+        "ssh__github",
+        "homebrew",
+        "oh-my-zsh",
+        "typewritten",
+        "vi-mode",
+        "dev-directories",
+        "dock-orientation",
+        "dock-size",
+        "dock-autohide",
+        "dock-show-recents",
+        "screencapture-location"
+      ]
+    },
+    "personal": {
+      "base": "@base",
+      "packages": [
+        "airbuddy",
+        "jomo",
+        "bambu-studio",
+        "calibre",
+        "chatgpt",
+        "discord",
+        "ffmpeg",
+        "insta360-studio",
+        "nextcloud",
+        "obsidian",
+        "protonvpn",
+        "whatsapp",
+        "yubico-yubikey-manager",
+        "wireguard"
+      ],
+      "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
+    },
+    "work": {
+      "base": "@base",
+      "packages": ["claude-desktop", "ngrok", "pnpm", "ruff", "zrok"]
+    }
+  },
+  "version": "1.0.0"
+}

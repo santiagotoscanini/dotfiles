@@ -35,6 +35,7 @@ compdef _santree_completions ,wts
 compdef _santree_completions ,wtr
 compdef _santree2 santree2
 compdef _santree2 st2
+compdef _dots dots
 
 # Local customizations (if any)
 [[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh

@@ -1,0 +1,35 @@
+{
+	"name": "dots",
+	"version": "1.0.0",
+	"description": "Beautiful dotfile manager for macOS",
+	"license": "MIT",
+	"bin": {
+		"dots": "dist/cli.js"
+	},
+	"type": "module",
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch",
+		"start": "node dist/cli.js"
+	},
+	"files": [
+		"dist"
+	],
+	"dependencies": {
+		"ink": "^6.0.0",
+		"ink-select-input": "^6.0.0",
+		"ink-spinner": "^5.0.0",
+		"ink-text-input": "^6.0.0",
+		"pastel": "^4.0.0",
+		"react": "^19.0.0",
+		"zod": "^4.0.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.0.0",
+		"@types/react": "^19.0.0",
+		"typescript": "^5.7.0"
+	}
+}

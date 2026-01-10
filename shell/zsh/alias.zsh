@@ -263,6 +263,22 @@ alias ,stf="santree work --fix-pr"
 
 # Completions are loaded from shell/zsh/completions/_santree via fpath
 
+# =========== Dots (Dotfile Manager) ===========
+function dots() {
+    node "$DOTFILES_DIR/dots/dist/cli.js" "$@"
+}
+
+# Aliases for quick access
+alias ,di="dots install"
+alias ,dc="dots check"
+alias ,da="dots add"
+alias ,dr="dots remove"
+alias ,de="dots edit"
+alias ,db="dots backup"
+alias ,du="dots uninstall"
+alias ,dt="dots untracked"
+alias ,dl="dots list"
+
 # =========== Temporary Aliases ===========
 # Docker build and run with SYS_ADMIN capability
 alias mydocker='docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
