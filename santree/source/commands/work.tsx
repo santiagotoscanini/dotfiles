@@ -3,8 +3,6 @@ import { Text, Box } from "ink";
 import Spinner from "ink-spinner";
 import { z } from "zod";
 import { spawn } from "child_process";
-import * as path from "path";
-import * as fs from "fs";
 import { getCurrentBranch, extractTicketId, findRepoRoot } from "../lib/git.js";
 
 export const options = z.object({
@@ -20,7 +18,7 @@ type Props = {
 type Status = "loading" | "ready" | "launching" | "error";
 
 const TEMPLATES = {
-	implement: `Fetch Linear ticket {{ticket_id}} using MCP and analyze what needs to be done.
+	implement: `Fetch Linear ticket {{ticket_id}} using MCP (including issue comments) and analyze what needs to be done.
 
 If a PR URL is linked in the ticket, use \`gh\` CLI to fetch PR details, comments, and review feedback.
 
@@ -32,7 +30,7 @@ After implementation:
 - Run tests if applicable
 - Ensure code follows existing patterns`,
 
-	plan: `Fetch Linear ticket {{ticket_id}} using MCP and analyze what needs to be done.
+	plan: `Fetch Linear ticket {{ticket_id}} using MCP (including issue comments) and analyze what needs to be done.
 
 If a PR URL is linked in the ticket, use \`gh\` CLI to fetch PR details, comments, and review feedback for additional context.
 
@@ -48,7 +46,7 @@ Create a detailed implementation plan with:
 
 Do NOT implement yet - just plan. Wait for approval before making changes.`,
 
-	review: `Fetch Linear ticket {{ticket_id}} using MCP to understand the requirements and acceptance criteria.
+	review: `Fetch Linear ticket {{ticket_id}} using MCP (including issue comments) to understand the requirements and acceptance criteria.
 
 If a PR URL is linked in the ticket, use \`gh\` CLI to fetch PR details and any existing review comments.
 
@@ -62,7 +60,7 @@ Analyze:
 
 Provide a summary of findings and any recommended changes.`,
 
-	"fix-pr": `Fetch Linear ticket {{ticket_id}} using MCP to understand the original requirements.
+	"fix-pr": `Fetch Linear ticket {{ticket_id}} using MCP (including issue comments) to understand the original requirements.
 
 If a PR URL is linked in the ticket, use \`gh\` CLI to fetch the latest PR comments and review feedback.
 
@@ -79,22 +77,6 @@ If a PR URL is linked in the ticket, use \`gh\` CLI to fetch the latest PR comme
 
 Address all comments systematically, starting from the most critical ones.`,
 };
-
-function getClaudePath(): string {
-	const paths = [
-		path.join(process.env.HOME ?? "", ".claude", "local", "claude"),
-		"/usr/local/bin/claude",
-		path.join(process.env.HOME ?? "", ".local", "bin", "claude"),
-	];
-
-	for (const p of paths) {
-		if (fs.existsSync(p)) {
-			return p;
-		}
-	}
-
-	return "claude";
-}
 
 function getMode(opts: z.infer<typeof options>): keyof typeof TEMPLATES {
 	if (opts["fix-pr"]) return "fix-pr";
@@ -182,7 +164,7 @@ export default function Work({ options }: Props) {
 		const template = TEMPLATES[mode];
 		const prompt = template.replace(/\{\{ticket_id\}\}/g, ticketId);
 
-		const claudePath = getClaudePath();
+		const happyCmd = "happy";
 
 		// Build args array
 		const args: string[] = [];
@@ -195,14 +177,14 @@ export default function Work({ options }: Props) {
 		// Add the prompt
 		args.push(prompt);
 
-		// Spawn Claude directly with prompt as argument (no shell)
-		const child = spawn(claudePath, args, {
+		// Spawn happy directly with prompt as argument (no shell)
+		const child = spawn(happyCmd, args, {
 			stdio: "inherit",
 		});
 
 		child.on("error", (err) => {
 			setStatus("error");
-			setError(`Failed to launch Claude: ${err.message}`);
+			setError(`Failed to launch happy: ${err.message}`);
 		});
 
 		child.on("close", () => {
@@ -265,10 +247,10 @@ export default function Work({ options }: Props) {
 				{status === "launching" && (
 					<Box flexDirection="column">
 						<Text color="green" bold>
-							✓ Launching Claude...
+							✓ Launching Claude (through Happy)...
 						</Text>
 						<Text dimColor>
-							{" "}claude{mode === "plan" ? " --permission-mode plan" : ""} {`"<${getModeLabel(mode)} prompt for ${ticketId}>"`}
+							{" "}happy{mode === "plan" ? " --permission-mode plan" : ""} {`"<${getModeLabel(mode)} prompt for ${ticketId}>"`}
 						</Text>
 					</Box>
 				)}
