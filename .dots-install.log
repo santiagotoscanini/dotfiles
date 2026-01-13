@@ -1,28 +1,0 @@
-
-============================================================
-Dots manager started at 2026-01-09T22:15:20.412Z
-Command: dots install --profile personal
-============================================================
-[2026-01-09T22:15:20.417Z] === Pre-install tasks ===
-[2026-01-09T22:15:20.521Z] Running install script for ssh__s2_neo: ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_neo
-[2026-01-09T22:15:22.732Z] Failed to run script for ssh__s2_neo: Key enrollment failed: device not found
-[2026-01-09T22:15:22.738Z] Running install script for ssh__s2_nano: ssh-keygen -t ed25519-sk -f ~/.ssh/id_s2_nano
-[2026-01-09T22:15:22.770Z] Failed to run script for ssh__s2_nano: Key enrollment failed: device not found
-[2026-01-09T22:15:22.771Z] === Packages ===
-[2026-01-09T22:15:25.274Z] Installing airbuddy: brew install --cask airbuddy
-[2026-01-09T22:16:31.580Z] Failed to install airbuddy: ==> Auto-updating Homebrew...
-Adjust how often this is run with `$HOMEBREW_AUTO_UPDATE_SECS` or disable with
-`$HOMEBREW_NO_AUTO_UPDATE=1`. Hide these hints with `$HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
-==> Downloading https://ghcr.io/v2/homebrew/core/portable-ruby/blobs/sha256:1c98fa49eacc935640a6f8e10a2bf33f14cfc276804b71ddb658ea45ba99d167
-#=#=#                                                                          ##O#-#                                                                         ##O=#  #                                                                       #=#=-#  #                                                                      -#O#- #   #                                                                                                                                               0.9%#########                                                                 12.7%###############################                                           44.4%###########################################################               82.1%######################################################################## 100.0%
-==> Pouring portable-ruby-3.4.8.arm64_big_sur.bottle.tar.gz
-Error: It seems there is already an App at '/Applications/AirBuddy.app'.
-[2026-01-09T22:16:38.767Z] Installing bambu-studio: brew install --cask bambu-studio
-[2026-01-09T22:16:58.594Z] Successfully installed bambu-studio
-[2026-01-09T22:17:00.525Z] Installing calibre: brew install --cask calibre
-[2026-01-09T22:17:47.884Z] Successfully installed calibre
-[2026-01-09T22:17:49.727Z] Installing chatgpt: brew install --cask chatgpt
-[2026-01-09T22:17:58.993Z] Successfully installed chatgpt
-[2026-01-09T22:18:05.190Z] Installing discord: brew install --cask discord
-[2026-01-09T22:18:20.463Z] Successfully installed discord
-[2026-01-09T22:18:27.177Z] Installing ffmpeg: brew install  ffmpeg

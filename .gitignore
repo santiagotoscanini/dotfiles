@@ -17,6 +17,7 @@ __pycache__/
 
 # Logs
 .dotfiles-install.log
+.dots-install.log
 
 # Santree
 .santree/

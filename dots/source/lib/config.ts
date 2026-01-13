@@ -8,8 +8,9 @@ import type {
 	ResolvedProfile,
 } from "./types.js";
 
-// Path to the packages.json file (bundled with CLI)
-const CONFIG_PATH = path.join(import.meta.dirname, "..", "packages.json");
+// Path to the packages.json file (source file for persistence)
+const DOTFILES_DIR = process.env.DOTFILES_DIR || path.join(import.meta.dirname, "..");
+const CONFIG_PATH = path.join(DOTFILES_DIR, "dots", "source", "packages.json");
 
 let cachedConfig: ConfigFile | null = null;
 

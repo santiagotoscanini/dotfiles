@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Text, useApp, useInput } from "ink";
 import TextInput from "ink-text-input";
 import SelectInput from "ink-select-input";
+import Spinner from "ink-spinner";
 import { z } from "zod";
 import { Header } from "../components/Header.js";
 import {
@@ -10,7 +11,8 @@ import {
 	addPackage,
 	addPackageToProfile,
 } from "../lib/config.js";
-import type { Package } from "../lib/types.js";
+import { installPackage } from "../lib/runner.js";
+import type { Package, ProgressItem } from "../lib/types.js";
 
 export const args = z.tuple([
 	z.string().optional().describe("Package name to add"),
@@ -20,7 +22,7 @@ type Props = {
 	args: z.infer<typeof args>;
 };
 
-type Step = "name" | "type" | "profile" | "description" | "confirm" | "done" | "error";
+type Step = "name" | "type" | "profile" | "description" | "confirm" | "installing" | "done" | "error";
 
 type PackageType = "brew" | "cask" | "mas" | "npm";
 
@@ -40,6 +42,7 @@ export default function Add({ args }: Props) {
 	const [description, setDescription] = useState("");
 	const [masId, setMasId] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
+	const [installProgress, setInstallProgress] = useState<ProgressItem | null>(null);
 
 	const profileNames = getProfileNames();
 	const profileItems = profileNames.map((p) => ({ label: p, value: p }));
@@ -108,7 +111,7 @@ export default function Add({ args }: Props) {
 		setStep("profile");
 	}
 
-	function handleConfirm() {
+	async function handleConfirm() {
 		try {
 			// Build package config
 			const pkg: Package = {
@@ -127,7 +130,18 @@ export default function Add({ args }: Props) {
 				addPackageToProfile(name, profile);
 			}
 
-			setStep("done");
+			// Install the package
+			setStep("installing");
+			const success = await installPackage(name, false, (progress) => {
+				setInstallProgress(progress);
+			});
+
+			if (success) {
+				setStep("done");
+			} else {
+				setErrorMessage("Installation failed");
+				setStep("error");
+			}
 			setTimeout(() => exit(), 100);
 		} catch (error) {
 			setErrorMessage(error instanceof Error ? error.message : "Unknown error");
@@ -247,10 +261,28 @@ export default function Add({ args }: Props) {
 				</Box>
 			)}
 
+			{step === "installing" && (
+				<Box flexDirection="column" marginTop={1}>
+					<Box gap={1}>
+						<Text color="cyan">
+							<Spinner type="dots" />
+						</Text>
+						<Text>Installing </Text>
+						<Text color="cyan" bold>{name}</Text>
+						<Text>...</Text>
+					</Box>
+					{installProgress && (
+						<Box marginLeft={2}>
+							<Text dimColor>{installProgress.message}</Text>
+						</Box>
+					)}
+				</Box>
+			)}
+
 			{step === "done" && (
 				<Box marginTop={1}>
 					<Text color="green" bold>
-						✓ Added {name} to {profile} profile
+						✓ Added and installed {name} to {profile} profile
 					</Text>
 				</Box>
 			)}

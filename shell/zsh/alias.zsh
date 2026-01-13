@@ -233,13 +233,9 @@ function santree() {
     node "$santree_dir/dist/cli.js" "$@"
 }
 
-# Build santree (function to handle deleted directory)
+# Build santree
 function stc() {
-    if [[ ! -d "$(pwd 2>/dev/null)" ]]; then
-        echo "⚠ Current directory no longer exists. Running from santree dir."
-        cd "$DOTFILES_DIR/santree" || return 1
-    fi
-    npm run build --prefix "$DOTFILES_DIR/santree"
+    "$DOTFILES_DIR/santree/compile.sh"
 }
 
 # Quick create worktree with work+plan+tmux (prompts for branch)
@@ -266,6 +262,11 @@ alias ,stf="santree work --fix-pr"
 # =========== Dots (Dotfile Manager) ===========
 function dots() {
     node "$DOTFILES_DIR/dots/dist/cli.js" "$@"
+}
+
+# Build dots
+function dotc() {
+    "$DOTFILES_DIR/dots/compile.sh"
 }
 
 # Aliases for quick access

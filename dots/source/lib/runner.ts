@@ -357,6 +357,67 @@ export async function checkProfileParallel(
 	return results.flat();
 }
 
+/**
+ * Install a single package by name
+ */
+export async function installPackage(
+	pkgName: string,
+	dryRun = false,
+	onProgress?: ProgressCallback,
+): Promise<boolean> {
+	await initLog(`install-package ${pkgName}${dryRun ? " --dry-run" : ""}`);
+
+	onProgress?.({ name: pkgName, state: "in_progress", message: "Checking..." });
+
+	const pkg = getPackage(pkgName);
+	if (!pkg?.macos) {
+		onProgress?.({ name: pkgName, state: "error", message: "No config" });
+		await finalizeLog(false);
+		return false;
+	}
+
+	const handler = getPackageHandler(pkg.macos);
+	if (!handler) {
+		onProgress?.({ name: pkgName, state: "error", message: "No handler" });
+		await finalizeLog(false);
+		return false;
+	}
+
+	// Check if already installed
+	const checkResult = await handler.check(pkg.macos, pkgName);
+	if (checkResult.status === "installed") {
+		onProgress?.({ name: pkgName, state: "done", message: "Already installed" });
+		await finalizeLog(true);
+		return true;
+	} else if (checkResult.status === "error") {
+		onProgress?.({ name: pkgName, state: "error", message: checkResult.message });
+		await finalizeLog(false);
+		return false;
+	}
+
+	// Install
+	onProgress?.({ name: pkgName, state: "in_progress", message: "Installing..." });
+	const result = await handler.install(pkg.macos, pkgName, dryRun);
+	if (result) {
+		onProgress?.({ name: pkgName, state: "done", message: dryRun ? "Would install" : "Installed" });
+	} else {
+		onProgress?.({ name: pkgName, state: "error", message: "Failed" });
+		await finalizeLog(false);
+		return false;
+	}
+
+	// Create symlinks if configured
+	if (pkg.config) {
+		const symlinkCheck = await symlinkHandler.checkSymlink(pkg.config, pkgName);
+		if (symlinkCheck.status !== "installed") {
+			await symlinkHandler.installSymlink(pkg.config, pkgName, dryRun);
+		}
+	}
+
+	await finalizeLog(true);
+	return true;
+}
+
 async function checkSingleItem(
 	name: string,
 	type: "package" | "pre-install",

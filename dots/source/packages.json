@@ -455,6 +455,12 @@
         "brew": "claude-squad",
         "post_install": "ln -sf \"$(brew --prefix)/bin/claude-squad\" \"$(brew --prefix)/bin/cs\""
       }
+    },
+    "happy-coder": {
+      "description": "Happy Coder (Claude for Mobile)",
+      "macos": {
+        "npm": "happy-coder"
+      }
     }
   },
   "pre-install": {
@@ -639,7 +645,8 @@
         "ccstatusline",
         "zoom",
         "loom",
-        "claude-squad"
+        "claude-squad",
+        "happy-coder"
       ],
       "pre-install": [
         "rosetta",
@@ -676,11 +683,20 @@
         "yubico-yubikey-manager",
         "wireguard"
       ],
-      "pre-install": ["ssh__s2_neo", "ssh__s2_nano"]
+      "pre-install": [
+        "ssh__s2_neo",
+        "ssh__s2_nano"
+      ]
     },
     "work": {
       "base": "@base",
-      "packages": ["claude-desktop", "ngrok", "pnpm", "ruff", "zrok"]
+      "packages": [
+        "claude-desktop",
+        "ngrok",
+        "pnpm",
+        "ruff",
+        "zrok"
+      ]
     }
   },
   "version": "1.0.0"
