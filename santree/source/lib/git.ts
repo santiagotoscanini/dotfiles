@@ -421,3 +421,13 @@ export function hasInitScript(repoRoot: string): boolean {
 export function getInitScriptPath(repoRoot: string): string {
 	return path.join(getSantreeDir(repoRoot), "init.sh");
 }
+
+export function getLatestCommitMessage(): string | null {
+	try {
+		return execSync("git log -1 --format=%s", {
+			encoding: "utf-8",
+		}).trim();
+	} catch {
+		return null;
+	}
+}

@@ -17,6 +17,7 @@ import {
 	getUnpushedCommits,
 	extractTicketId,
 	isInWorktree,
+	getLatestCommitMessage,
 } from "../lib/git.js";
 import {
 	ghCliAvailable,
@@ -24,7 +25,6 @@ import {
 	pushBranch,
 	createPR,
 } from "../lib/github.js";
-import { loadLinearConfig, getIssueTitle } from "../lib/linear.js";
 
 const execAsync = promisify(exec);
 
@@ -39,29 +39,11 @@ type Props = {
 type Status =
 	| "checking"
 	| "pushing"
-	| "fetching-title"
 	| "awaiting-title"
 	| "creating"
 	| "done"
 	| "existing"
 	| "error";
-
-// Pattern: <author>/<team>-<number>-<description>
-const BRANCH_PATTERN = /^[^/]+\/([a-zA-Z]+)-(\d+)-(.+)$/;
-
-function parseBranchName(
-	branch: string,
-): { team: string; number: string; description: string } | null {
-	const match = branch.match(BRANCH_PATTERN);
-	if (match) {
-		return {
-			team: match[1]!,
-			number: match[2]!,
-			description: match[3]!,
-		};
-	}
-	return null;
-}
 
 export default function PR({ options }: Props) {
 	const { exit } = useApp();
@@ -210,40 +192,14 @@ export default function PR({ options }: Props) {
 				return;
 			}
 
-			// Parse branch name
-			const parsed = parseBranchName(branchName);
-			let suggestedTitle = "";
+			// Get the latest commit message for the PR title
+			const latestCommit = getLatestCommitMessage();
+			let suggestedTitle = latestCommit ?? "";
 
-			if (parsed) {
-				const { team, number, description } = parsed;
-				const issue = `${team.toUpperCase()}-${number}`;
-				setIssueId(issue);
-
-				// Try to get title from Linear
-				setStatus("fetching-title");
-				setMessage("Fetching title from Linear...");
-
-				const apiKey = loadLinearConfig(mainRepoRoot);
-				let linearTitle: string | null = null;
-
-				if (apiKey) {
-					linearTitle = await getIssueTitle(apiKey, issue);
-				}
-
-				if (linearTitle) {
-					suggestedTitle = `[${issue}] ${linearTitle}`;
-				} else {
-					// Fallback to branch description
-					const fallbackTitle = description.replace(/-/g, " ");
-					suggestedTitle = `[${issue}] ${fallbackTitle.charAt(0).toUpperCase() + fallbackTitle.slice(1)}`;
-				}
-			} else {
-				// No issue ID, extract ticket ID if possible
-				const ticket = extractTicketId(branchName);
-				if (ticket) {
-					setIssueId(ticket);
-					suggestedTitle = `[${ticket}] `;
-				}
+			// Extract ticket ID from branch name to display in UI
+			const ticket = extractTicketId(branchName);
+			if (ticket) {
+				setIssueId(ticket);
 			}
 
 			setTitleInput(suggestedTitle);
@@ -254,10 +210,7 @@ export default function PR({ options }: Props) {
 	}, [options.draft]);
 
 	const isLoading =
-		status === "checking" ||
-		status === "pushing" ||
-		status === "fetching-title" ||
-		status === "creating";
+		status === "checking" || status === "pushing" || status === "creating";
 
 	return (
 		<Box flexDirection="column" padding={1} width="100%">
