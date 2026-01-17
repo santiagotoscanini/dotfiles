@@ -179,63 +179,17 @@ function download_s3_file() {
 }
 
 # =========== Santree (Git Worktree Manager) ===========
-# Wrapper function to handle directory switching
-function santree() {
-    local santree_dir="$DOTFILES_DIR/santree"
+# Shell integration (enables cd after create/switch)
+eval "$(santree shell-init zsh)"
 
-    # Check if current directory exists (might have been deleted by clean/remove)
-    if [[ ! -d "$(pwd 2>/dev/null)" ]]; then
-        local current_path="$(pwd 2>/dev/null)"
-        # Try to extract main repo from worktree path (.santree/worktrees/<name>)
-        if [[ "$current_path" == */.santree/worktrees/* ]]; then
-            local main_repo="${current_path%%/.santree/worktrees/*}"
-            if [[ -d "$main_repo" ]]; then
-                echo "⚠ Worktree directory deleted. Returning to main repo."
-                cd "$main_repo" || cd ~ || return 1
-            else
-                cd ~ || return 1
-            fi
-        else
-            echo "⚠ Current directory no longer exists. Returning to home."
-            cd ~ || return 1
-        fi
-    fi
-
-    # Only create/switch need output capture for cd
-    if [[ "$1" == "create" || "$1" == "switch" || "$1" == "sw" ]]; then
-        local output
-        output=$(node "$santree_dir/dist/cli.js" "$@" 2>&1)
-        local exit_code=$?
-
-        # Check if output contains a path to cd into
-        if [[ "$output" == *SANTREE_CD:* ]]; then
-            # Print UI output (filter out SANTREE_CD/SANTREE_WORK lines)
-            echo "$output" | grep -v "SANTREE_CD:" | grep -v "SANTREE_WORK:"
-
-            # Extract target dir - strip ANSI codes and get path after SANTREE_CD:
-            local target_dir=$(echo "$output" | sed 's/\x1b\[[0-9;]*m//g' | grep "SANTREE_CD:" | sed 's/.*SANTREE_CD://')
-            if [[ -n "$target_dir" && -d "$target_dir" ]]; then
-                cd "$target_dir" && echo "Switched to: $target_dir"
-            fi
-
-            # Launch Claude if --work flag was used
-            if [[ "$output" == *SANTREE_WORK:* ]]; then
-                local work_mode=$(echo "$output" | sed 's/\x1b\[[0-9;]*m//g' | grep "SANTREE_WORK:" | sed 's/.*SANTREE_WORK://')
-                [[ "$work_mode" == "plan" ]] && santree work --plan || santree work
-            fi
-        else
-            echo "$output"
-        fi
-        return $exit_code
-    fi
-
-    # All other commands run directly
-    node "$santree_dir/dist/cli.js" "$@"
+# Local dev version (,st) - for development/testing
+function ,st() {
+    node "$HOME/dev/personal/santree/dist/cli.js" "$@"
 }
 
-# Build santree
+# Build local santree
 function stc() {
-    "$DOTFILES_DIR/santree/compile.sh"
+    "$HOME/dev/personal/santree/compile.sh"
 }
 
 # Quick create worktree with work+plan+tmux (prompts for branch)
@@ -246,16 +200,8 @@ function stw() {
     santree create "$branch" --work --plan --tmux
 }
 
-# Aliases for quick access
+# Alias for quick access
 alias st="santree"
-alias ,st="santree"
-alias ,stc="santree create"
-alias ,stl="santree list"
-alias ,str="santree remove"
-alias ,sts="santree switch"
-alias ,sty="santree sync"
-alias ,stw="santree work"
-alias ,stf="santree work --fix-pr"
 
 # Completions are loaded from shell/zsh/completions/_santree via fpath
 
