@@ -439,16 +439,6 @@
         "npm": "vim-language-server"
       }
     },
-    "ccstatusline": {
-      "description": "Claude Code status line with context tracking",
-      "macos": {
-        "npm": "ccstatusline"
-      },
-      "config": {
-        "source": "tools/ccstatusline",
-        "destination": "$XDG_CONFIG_HOME/ccstatusline"
-      }
-    },
     "happy-coder": {
       "description": "Happy Coder (Claude for Mobile)",
       "macos": {
@@ -635,7 +625,6 @@
         "tree",
         "vint",
         "vim-language-server",
-        "ccstatusline",
         "zoom",
         "loom",
         "happy-coder"
