@@ -179,31 +179,20 @@ function download_s3_file() {
 }
 
 # =========== Santree (Git Worktree Manager) ===========
-# Shell integration (enables cd after create/switch)
-eval "$(santree shell-init zsh)"
-
+# == LOCAL Development
+# Build local santree
+function ,stc() {
+    npm run build --prefix "$HOME/dev/personal/santree"
+}
 # Local dev version (,st) - for development/testing
 function ,st() {
     node "$HOME/dev/personal/santree/dist/cli.js" "$@"
 }
+# ==
 
-# Build local santree
-function stc() {
-    "$HOME/dev/personal/santree/compile.sh"
-}
-
-# Quick create worktree with work+plan+tmux (prompts for branch)
-function stw() {
-    local branch
-    vared -p "Branch name: " branch
-    [[ -z "$branch" ]] && echo "Branch name required" && return 1
-    santree create "$branch" --work --plan --tmux
-}
-
-# Alias for quick access
-alias st="santree"
-
-# Completions are loaded from shell/zsh/completions/_santree via fpath
+# Shell integration (enables cd after create/switch, completions, aliases, useful functions, etc)
+eval "$(santree shell-init zsh)"
+# =======================================================
 
 # =========== Dots (Dotfile Manager) ===========
 function dots() {

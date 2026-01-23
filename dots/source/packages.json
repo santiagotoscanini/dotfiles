@@ -449,13 +449,6 @@
         "destination": "$XDG_CONFIG_HOME/ccstatusline"
       }
     },
-    "claude-squad": {
-      "description": "Claude Squad CLI utility",
-      "macos": {
-        "brew": "claude-squad",
-        "post_install": "ln -sf \"$(brew --prefix)/bin/claude-squad\" \"$(brew --prefix)/bin/cs\""
-      }
-    },
     "happy-coder": {
       "description": "Happy Coder (Claude for Mobile)",
       "macos": {
@@ -645,7 +638,6 @@
         "ccstatusline",
         "zoom",
         "loom",
-        "claude-squad",
         "happy-coder"
       ],
       "pre-install": [
