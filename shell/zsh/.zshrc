@@ -26,8 +26,11 @@ fpath=($ZDOTDIR/completions $fpath)
 [[ -f $ZDOTDIR/alias.zsh ]] && source $ZDOTDIR/alias.zsh  # Load aliases
 [[ -f $ZDOTDIR/oh-my.zsh ]] && source $ZDOTDIR/oh-my.zsh  # Load Oh-My-Zsh config
 
-# Register custom completion (must be after oh-my-zsh loads compinit)
+# Register custom completions (must be after oh-my-zsh loads compinit)
 compdef _dots dots
+
+# Santree shell integration (enables cd after create/switch, completions, aliases, useful functions, etc)
+eval "$(santree shell-init zsh)"
 
 # Local customizations (if any)
 [[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh

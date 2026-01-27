@@ -190,8 +190,6 @@ function ,st() {
 }
 # ==
 
-# Shell integration (enables cd after create/switch, completions, aliases, useful functions, etc)
-eval "$(santree shell-init zsh)"
 # =======================================================
 
 # =========== Dots (Dotfile Manager) ===========
