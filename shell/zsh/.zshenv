@@ -36,6 +36,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 
 # Default applications
 export EDITOR='nvim'
+export SANTREE_EDITOR='cursor'
 export VISUAL='nvim'
 export PAGER='less'
 
