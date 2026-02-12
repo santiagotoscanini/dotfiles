@@ -178,20 +178,6 @@ function download_s3_file() {
   aws s3 cp "$s3_url" "$output_file"
 }
 
-# =========== Santree (Git Worktree Manager) ===========
-# == LOCAL Development
-# Build local santree
-function ,stc() {
-    npm run build --prefix "$HOME/dev/personal/santree"
-}
-# Local dev version (,st) - for development/testing
-function ,st() {
-    node "$HOME/dev/personal/santree/dist/cli.js" "$@"
-}
-# ==
-
-# =======================================================
-
 # =========== Dots (Dotfile Manager) ===========
 function dots() {
     node "$DOTFILES_DIR/dots/dist/cli.js" "$@"

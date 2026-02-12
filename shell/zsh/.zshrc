@@ -30,7 +30,7 @@ fpath=($ZDOTDIR/completions $fpath)
 compdef _dots dots
 
 # Santree shell integration (enables cd after create/switch, completions, aliases, useful functions, etc)
-eval "$(santree shell-init zsh)"
+eval "$(santree helpers shell-init zsh)"
 
 # Local customizations (if any)
 [[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh
