@@ -438,12 +438,6 @@
       "macos": {
         "npm": "vim-language-server"
       }
-    },
-    "happy-coder": {
-      "description": "Happy Coder (Claude for Mobile)",
-      "macos": {
-        "npm": "happy-coder"
-      }
     }
   },
   "pre-install": {
@@ -626,8 +620,7 @@
         "vint",
         "vim-language-server",
         "zoom",
-        "loom",
-        "happy-coder"
+        "loom"
       ],
       "pre-install": [
         "rosetta",
