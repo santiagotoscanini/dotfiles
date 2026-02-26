@@ -14,6 +14,13 @@ typeset -U PATH path  # Ensure PATH contains no duplicates
 # Add Postgres
 [[ -d /opt/homebrew/opt/libpq/bin ]] && path=(/opt/homebrew/opt/libpq/bin $path)
 
+# Add Claude Code
+if [[ -d $HOME/.claude/local ]]; then
+  path=($HOME/.claude/local $path)
+elif [[ -d $HOME/.local/bin ]] && [[ -x $HOME/.local/bin/claude ]]; then
+  path=($HOME/.local/bin $path)
+fi
+
 # Add JetBrains scripts to PATH
 [[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && \
   path=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts" $path)

@@ -203,9 +203,3 @@ alias ,dl="dots list"
 # Docker build and run with SYS_ADMIN capability
 alias mydocker='docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker'
 
-# Claude CLI - use local installation if available, otherwise fall back to ~/.local/bin
-if [[ -x "$HOME/.claude/local/claude" ]]; then
-    alias claude="$HOME/.claude/local/claude"
-elif [[ -x "$HOME/.local/bin/claude" ]]; then
-    alias claude="$HOME/.local/bin/claude"
-fi
