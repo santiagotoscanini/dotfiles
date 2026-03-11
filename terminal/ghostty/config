@@ -1,3 +1,4 @@
 macos-titlebar-style=hidden
 theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+desktop-notifications = true
 
