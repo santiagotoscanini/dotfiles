@@ -47,5 +47,7 @@ export SANTREE_EDITOR='cursor'
 export VISUAL='nvim'
 export PAGER='less'
 
+export SANTREE_SKIP_PERMISSIONS=1
+
 # Load work-specific configurations
 [[ -f $XDG_CONFIG_HOME/zsh/work.zsh ]] && source $XDG_CONFIG_HOME/zsh/work.zsh
