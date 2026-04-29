@@ -1,0 +1,43 @@
+// Zed keymap — migrated from VSCode/Cursor.
+// Reference: https://zed.dev/docs/key-bindings
+// Most VSCode bindings already match Zed's "VSCode" base_keymap; this file
+// only adds the customizations from editors/vscode/keybindings.json that
+// have direct Zed equivalents.
+[
+  // jj → escape in vim insert mode (replaces the vscode-neovim composite).
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      "j j": "vim::NormalBefore"
+    }
+  },
+
+  // Toggle the project panel (left dock) with cmd-shift-e in any context.
+  // Zed default already maps cmd-shift-e to project_panel::ToggleFocus, but
+  // we want true open/close behavior.
+  {
+    "bindings": {
+      "shift-cmd-e": "workspace::ToggleLeftDock",
+      // Toggle terminal — was ctrl+alt+cmd+t in VSCode.
+      "ctrl-alt-cmd-t": "workspace::ToggleBottomDock",
+      // Reveal current file in the project panel — was ctrl+alt+cmd+q.
+      "ctrl-alt-cmd-q": "pane::RevealInProjectPanel",
+      // Git panel — mirrors VSCode's cmd-shift-g (Source Control view).
+      "shift-cmd-g": "git_panel::ToggleFocus",
+      // Project-wide uncommitted diff in a multibuffer.
+      "shift-cmd-d": "git::Diff"
+    }
+  },
+
+  // When the project panel is focused: enter opens the entry, escape returns
+  // focus to the editor. Mirrors the VSCode "list.select" + "focusActiveEditorGroup"
+  // bindings.
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "enter": "project_panel::Open",
+      "escape": "workspace::ActivateNextPane",
+      "shift-cmd-n": "project_panel::NewFile"
+    }
+  }
+]

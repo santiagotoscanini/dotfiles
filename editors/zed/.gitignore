@@ -1,0 +1,8 @@
+# Zed runtime data lives next to user config in ~/.config/zed/.
+# Since we symlink the whole directory into the dotfiles repo, ignore the
+# pieces Zed writes itself.
+prompts/
+conversations/
+*.mdb
+*.mdb.lock
+*.log

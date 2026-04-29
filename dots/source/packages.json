@@ -408,6 +408,10 @@
       }
     },
     "zed": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/zed",
+        "source": "editors/zed"
+      },
       "description": "Zed for code editing",
       "macos": {
         "brew": "zed",
@@ -451,7 +455,7 @@
     "root_zshenv": {
       "description": "Set root .zshenv",
       "macos": {
-        "check": "test -f /etc/zshenv",
+        "check": "grep -q 'ZDOTDIR=$HOME/.config/zsh' ~/.zshenv 2>/dev/null",
         "install": "printf 'export ZDOTDIR=$HOME/.config/zsh\n. $ZDOTDIR/.zshenv\n' >> ~/.zshenv"
       }
     },
@@ -620,6 +624,7 @@
         "tree",
         "vint",
         "vim-language-server",
+        "zed",
         "zoom",
         "loom"
       ],

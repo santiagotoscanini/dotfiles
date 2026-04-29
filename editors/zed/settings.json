@@ -1,0 +1,185 @@
+// Zed settings — migrated from VSCode/Cursor.
+// Reference: https://zed.dev/docs/reference/all-settings
+// Migration:  https://zed.dev/docs/migrate/vs-code
+{
+  // Vim mode (replaces vscode-neovim).
+  "proxy": "",
+  "vim_mode": true,
+  "base_keymap": "VSCode",
+
+  // Telemetry off — was telemetry.telemetryLevel = "off".
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
+
+  // Auto-detect light/dark — was window.autoDetectColorScheme.
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "icon_theme": "Zed (Default)",
+
+  // Font — Cursor used JetBrains Mono with ligatures, size 15, line-height 25
+  // (≈ 1.67, "comfortable").
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 15,
+  "buffer_line_height": "comfortable",
+
+  // Cursor — Cursor settings used solid blink + no smooth caret.
+  "cursor_blink": false,
+  "cursor_shape": "bar",
+  "current_line_highlight": "all",
+
+  // Line numbers / scroll — relative numbers, scrolloff 5.
+  "relative_line_numbers": "enabled",
+  "vertical_scroll_margin": 5,
+  "scroll_beyond_last_line": "one_page",
+
+  // Whitespace / wrap — render on selection, no soft wrap, ruler at 100.
+  "show_whitespaces": "selection",
+  "soft_wrap": "none",
+  "wrap_guides": [100],
+
+  // Hide minimap — was editor.minimap.enabled = false.
+  "minimap": {
+    "show": "never",
+  },
+
+  // Inline AI suggestions — was editor.inlineSuggest.enabled.
+  "show_edit_predictions": true,
+  "edit_predictions_disabled_in": ["string", "comment"],
+
+  // Git inline blame — was git.blame.editorDecoration.enabled (Cursor).
+  "git": {
+    "inline_blame": {
+      "enabled": true,
+      "delay_ms": 600,
+    },
+    "git_gutter": "tracked_files",
+  },
+
+  // Files / saving — autosave on focus change, LF endings, trim trailing ws.
+  "autosave": "on_focus_change",
+  "format_on_save": "on",
+  "auto_indent_on_paste": false,
+  "ensure_final_newline_on_save": true,
+  "remove_trailing_whitespace_on_save": true,
+  "line_ending": "enforce_lf",
+
+  // Hide tabs — was workbench.editor.showTabs = "none".
+  "tab_bar": {
+    "show": false,
+  },
+
+  // Hide breadcrumbs / quick action chrome.
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false,
+  },
+
+  // Project panel — was workbench.tree.indent = 20, openEditors visible 1.
+  "project_panel": {
+    "auto_fold_dirs": false,
+    "indent_size": 20,
+    "git_status": true,
+  },
+
+  // File scan exclusions — Zed's defaults plus the build/cache dirs from
+  // VSCode's files.exclude.
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+    "**/build",
+    "**/.dart_tool",
+    "**/.flutter-plugins",
+    "**/.flutter-plugins-dependencies",
+    "**/.packages",
+    "**/__pycache__",
+    "**/.pytest_cache",
+    "**/.ruff_cache",
+    "**/.mypy_cache",
+    "**/coverage",
+    "**/.coverage",
+    "**/.serverless",
+    "**/node_modules",
+    "**/.next",
+    "**/.turbo",
+  ],
+
+  // Search — was search.useIgnoreFiles = true (don't search ignored).
+  "search": {
+    "include_ignored": false,
+  },
+  "use_smartcase_search": true,
+
+  // Terminal — was terminal.integrated.scrollback = 5000.
+  "terminal": {
+    "max_scroll_history_lines": 5000,
+    "blinking": "off",
+    "copy_on_select": false,
+  },
+
+  // Node — ignore the asdf shim at ~/.asdf/shims/node, which fails when no
+  // global nodejs version is set in ~/.tool-versions, and use Zed's bundled
+  // Node instead. Avoids the "No version is set for command node" log spam.
+  "node": {
+    "ignore_system_version": true,
+  },
+
+  // Confirmations / quality of life.
+  "confirm_quit": false,
+  "restore_on_startup": "last_session",
+
+  // Per-language overrides.
+  "languages": {
+    "Python": {
+      // ruff handles both formatting and linting; pyright provides type info.
+      // Order matters — Zed asks the first server that advertises the
+      // capability, so ruff (formatter) goes first.
+      "language_servers": ["ruff", "pyright"],
+      "format_on_save": "on"
+    },
+    "JavaScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true,
+      },
+    },
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true,
+      },
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true,
+      },
+    },
+    "YAML": {
+      "tab_size": 2,
+    },
+    "Markdown": {
+      "show_edit_predictions": false,
+      "soft_wrap": "editor_width",
+      // Default formatter ("auto") picks Zed's bundled Prettier for Markdown.
+      "format_on_save": "on",
+      // Prettier handles whitespace; trailing-space trim would also strip
+      // meaningful "  " line-break markers.
+      "remove_trailing_whitespace_on_save": false
+    },
+    "Plain Text": {
+      "show_edit_predictions": false,
+    },
+  },
+}
