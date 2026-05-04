@@ -64,6 +64,18 @@
         "cask": true
       }
     },
+    "cmux": {
+      "config": {
+        "destination": "$XDG_CONFIG_HOME/cmux",
+        "source": "terminal/cmux"
+      },
+      "description": "cmux - workspace manager for AI coding agents",
+      "macos": {
+        "brew": "cmux",
+        "cask": true,
+        "tap": "manaflow-ai/cmux"
+      }
+    },
     "awscli": {
       "description": "AWS CLI for managing AWS services",
       "macos": {
@@ -595,6 +607,7 @@
         "dbeaver-community",
         "aldente",
         "awscli",
+        "cmux",
         "cursor",
         "docker",
         "docker-desktop",
