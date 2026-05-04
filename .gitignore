@@ -8,6 +8,7 @@ shell/zsh/work.zsh
 shell/zsh/.zsh_history
 shell/zsh/.zsh_sessions
 shell/zsh/.zcompdump
+shell/zsh/.cache/
 
 # Python
 __pycache__/

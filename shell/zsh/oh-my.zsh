@@ -2,18 +2,21 @@
 # Oh-My-Zsh Configuration
 # ===========================================
 
+# Disable URL-quote-magic and bracketed-paste-magic helpers (rarely missed in
+# practice; they auto-escape special chars when pasting URLs into the prompt).
+DISABLE_MAGIC_FUNCTIONS=true
+
 # =========== Theme Configuration ===========
-# Typewritten minimal ZSH prompt
-# Installation: git clone https://github.com/reobin/typewritten $ZSH_CUSTOM/themes/typewritten
-if [[ -d "$ZSH_CUSTOM/themes/typewritten" ]]; then
-  ZSH_THEME="typewritten/typewritten"
-  
-  # Display current time in prompt (format: HH:MM:SS)
-  # See customization options: https://typewritten.dev/#/prompt_customization?id=use-a-custom-function
-  TYPEWRITTEN_LEFT_PROMPT_PREFIX_FUNCTION=(date +%H:%M:%S)
+# Powerlevel10k — chosen for its Instant Prompt feature, which makes the shell
+# feel responsive immediately even while init is still running in the
+# background. Sourcing the theme itself takes ~1s (similar to typewritten) but
+# the perceived latency drops to <100ms because Instant Prompt paints first.
+# Configure interactively with `p10k configure`; settings live in ~/.p10k.zsh.
+# Installation: git clone --depth=1 https://github.com/romkatv/powerlevel10k $ZSH_CUSTOM/themes/powerlevel10k
+if [[ -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
+  ZSH_THEME="powerlevel10k/powerlevel10k"
 else
-  echo "Warning: typewritten theme not found. Install with: git clone https://github.com/reobin/typewritten $ZSH_CUSTOM/themes/typewritten" >&2
-  # Fallback to a built-in theme
+  echo "Warning: powerlevel10k theme not found. Install with: git clone --depth=1 https://github.com/romkatv/powerlevel10k $ZSH_CUSTOM/themes/powerlevel10k" >&2
   ZSH_THEME="robbyrussell"
 fi
 
@@ -39,9 +42,9 @@ if [[ "$TERM_PROGRAM" != "zed" &&
       -z "$CONDUCTOR_WORKSPACE_NAME" &&
       -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then
 
-  plugins+=(tmux)
+  # plugins+=(tmux)  # disabled to speed up shell startup
 
-  ZSH_TMUX_AUTOSTART=true                         # Automatically start tmux session
+  ZSH_TMUX_AUTOSTART=false                        # Automatically start tmux session
   ZSH_TMUX_AUTOSTART_ONCE=true                    # Only if tmux hasn't been started previously
   ZSH_TMUX_AUTOQUIT=true                          # Automatically closes terminal once tmux exits
   ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf # Use custom tmux config
@@ -54,19 +57,19 @@ plugins+=(asdf)
 
 # Development tool completions and integrations
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/poetry
-plugins+=(poetry)  # Poetry completion for Python projects
+# plugins+=(poetry)  # disabled to speed up shell startup
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/golang
 # plugins+=(golang)  # Go completions and environment management
 
 # CLI tools and completions
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/gh
-plugins+=(gh)      # GitHub CLI completions
+# plugins+=(gh)      # disabled to speed up shell startup
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
-plugins+=(docker)  # Docker completions and shortcuts
+# plugins+=(docker)  # disabled to speed up shell startup
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/aws
-plugins+=(aws)     # AWS CLI completions
+# plugins+=(aws)     # disabled to speed up shell startup
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/brew
-plugins+=(brew)    # Homebrew completions and shortcuts
+# plugins+=(brew)    # disabled to speed up shell startup
 
 # -------------- System Enhancements -------
 # Suggestion system for command typos
@@ -81,13 +84,13 @@ plugins+=(thefuck)
 
 # Common aliases for frequently used commands
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
-plugins+=(common-aliases)
+# plugins+=(common-aliases)  # disabled to speed up shell startup
 
 # Directory navigation
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/z
 plugins+=(z)       # Jump to frequently used directories
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf
-plugins+=(fzf)     # Fuzzy finder for files and history
+# plugins+=(fzf)     # disabled to speed up shell startup
 
 # -------------- Environment Management -------
 # Auto-load environment variables from .env files

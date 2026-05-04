@@ -27,6 +27,7 @@ export QMK_DIR=$HOME/qmk_firmware
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$ZSH/custom    # Custom themes and plugins directory
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump
+export ZSH_DISABLE_COMPFIX=true  # Skip completion-dir security audit on every startup (~300ms)
 
 # XDG Base Directory specification
 export XDG_CONFIG_HOME=$HOME/.config
