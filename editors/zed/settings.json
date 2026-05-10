@@ -3,6 +3,9 @@
 // Migration:  https://zed.dev/docs/migrate/vs-code
 {
   // Vim mode (replaces vscode-neovim).
+  "git_panel": {
+    "tree_view": true
+  },
   "proxy": "",
   "vim_mode": true,
   "base_keymap": "VSCode",
