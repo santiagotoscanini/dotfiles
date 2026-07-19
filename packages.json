@@ -77,20 +77,6 @@
         "cask": true
       }
     },
-    "calibre": {
-      "description": "E-book manager",
-      "macos": {
-        "brew": "calibre",
-        "cask": true
-      }
-    },
-    "airbuddy": {
-      "description": "Airbuddy device manager",
-      "macos": {
-        "brew": "airbuddy",
-        "cask": true
-      }
-    },
     "chatgpt": {
       "description": "ChatGPT desktop app",
       "macos": {
@@ -192,13 +178,6 @@
       "description": "Hidden bar for macOS",
       "macos": {
         "brew": "hiddenbar",
-        "cask": true
-      }
-    },
-    "insta360-studio": {
-      "description": "Insta360 Studio for 360-degree video editing",
-      "macos": {
-        "brew": "insta360-studio",
         "cask": true
       }
     },
@@ -661,14 +640,11 @@
     "personal": {
       "base": "@base",
       "packages": [
-        "airbuddy",
         "jomo",
         "bambu-studio",
-        "calibre",
         "chatgpt",
         "discord",
         "ffmpeg",
-        "insta360-studio",
         "nextcloud",
         "obsidian",
         "protonvpn",
