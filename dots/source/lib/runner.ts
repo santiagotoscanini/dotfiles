@@ -151,7 +151,7 @@ export async function installProfile(
 			onProgress?.({ name: taskName, state: "error", message: checkResult.message });
 		} else {
 			// Install
-			onProgress?.({ name: taskName, state: "in_progress", message: "Installing..." });
+			onProgress?.({ name: taskName, state: "in_progress", message: dryRun ? "Would install..." : "Installing..." });
 			const result = await handler.install(task.macos, taskName, dryRun);
 			if (result) {
 				onProgress?.({ name: taskName, state: "done", message: dryRun ? "Would install" : "Installed" });
@@ -202,7 +202,7 @@ export async function installProfile(
 					onProgress?.({ name: pkgName, state: "error", message: checkResult.message });
 				} else {
 					// Install
-					onProgress?.({ name: pkgName, state: "in_progress", message: "Installing..." });
+					onProgress?.({ name: pkgName, state: "in_progress", message: dryRun ? "Would install..." : "Installing..." });
 					const result = await handler.install(pkg.macos, pkgName, dryRun);
 					if (result) {
 						onProgress?.({ name: pkgName, state: "done", message: dryRun ? "Would install" : "Installed" });
@@ -285,7 +285,7 @@ export async function uninstallProfile(
 				}
 
 				// Uninstall
-				onProgress?.({ name: pkgName, state: "in_progress", message: "Uninstalling..." });
+				onProgress?.({ name: pkgName, state: "in_progress", message: dryRun ? "Would uninstall..." : "Uninstalling..." });
 				const result = await handler.uninstall(pkg.macos, pkgName, dryRun);
 				if (result) {
 					onProgress?.({ name: pkgName, state: "done", message: dryRun ? "Would uninstall" : "Uninstalled" });
@@ -396,7 +396,7 @@ export async function installPackage(
 	}
 
 	// Install
-	onProgress?.({ name: pkgName, state: "in_progress", message: "Installing..." });
+	onProgress?.({ name: pkgName, state: "in_progress", message: dryRun ? "Would install..." : "Installing..." });
 	const result = await handler.install(pkg.macos, pkgName, dryRun);
 	if (result) {
 		onProgress?.({ name: pkgName, state: "done", message: dryRun ? "Would install" : "Installed" });

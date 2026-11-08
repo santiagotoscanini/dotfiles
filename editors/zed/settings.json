@@ -3,8 +3,21 @@
 // Migration:  https://zed.dev/docs/migrate/vs-code
 {
   // Vim mode (replaces vscode-neovim).
+  "cli_default_open_behavior": "existing_window",
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "agent": {
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
   "git_panel": {
-    "tree_view": true
+    "tree_view": true,
+    "dock": "left",
   },
   "proxy": "",
   "vim_mode": true,
@@ -85,6 +98,8 @@
 
   // Project panel — was workbench.tree.indent = 20, openEditors visible 1.
   "project_panel": {
+    "hide_hidden": false,
+    "dock": "left",
     "auto_fold_dirs": false,
     "indent_size": 20,
     "git_status": true,
@@ -101,7 +116,6 @@
     "**/Thumbs.db",
     "**/.classpath",
     "**/.settings",
-    "**/build",
     "**/.dart_tool",
     "**/.flutter-plugins",
     "**/.flutter-plugins-dependencies",
@@ -149,7 +163,7 @@
       // Order matters — Zed asks the first server that advertises the
       // capability, so ruff (formatter) goes first.
       "language_servers": ["ruff", "pyright"],
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "JavaScript": {
       "code_actions_on_format": {
@@ -179,7 +193,7 @@
       "format_on_save": "on",
       // Prettier handles whitespace; trailing-space trim would also strip
       // meaningful "  " line-break markers.
-      "remove_trailing_whitespace_on_save": false
+      "remove_trailing_whitespace_on_save": false,
     },
     "Plain Text": {
       "show_edit_predictions": false,

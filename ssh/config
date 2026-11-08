@@ -11,4 +11,3 @@ Host s2
   User santiago
   IdentityFile ~/.ssh/id_s2
   IdentitiesOnly yes
-

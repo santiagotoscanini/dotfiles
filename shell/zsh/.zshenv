@@ -46,12 +46,12 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
 # Default applications
-export EDITOR='nvim'
-export SANTREE_EDITOR='cursor'
+export EDITOR='zed'
+export SANTREE_EDITOR='zed'
+export SANTREE_DIFF_TOOL='delta'
 export VISUAL='nvim'
 export PAGER='less'
 
-export SANTREE_SKIP_PERMISSIONS=1
-
 # Load work-specific configurations
 [[ -f $XDG_CONFIG_HOME/zsh/work.zsh ]] && source $XDG_CONFIG_HOME/zsh/work.zsh
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
