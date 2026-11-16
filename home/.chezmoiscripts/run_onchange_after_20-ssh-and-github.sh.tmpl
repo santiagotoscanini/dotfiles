@@ -50,7 +50,8 @@ login="$(gh api user --jq .login)"
   || warn "gh is logged in as $login, not {{ .identity.github }}; uploading to $login"
 
 # ---- 4. Upload ----
-title="$(scutil --get ComputerName 2>/dev/null || hostname -s)"
+# Mac name plus account: several accounts on one Mac each upload their own key.
+title="$(scutil --get ComputerName 2>/dev/null || hostname -s) ($(id -un))"
 upload_if_missing() { # <type> <api endpoint listing that type of key>
   # Capture first: piping into `grep -q` can fail under pipefail (SIGPIPE).
   local existing

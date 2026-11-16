@@ -44,7 +44,7 @@ Then `apply` does everything else, in this order:
 1. **Brewfile**: installs the packages for the profile (asks for your password for some casks; sign in to the App Store first for the `mas` apps).
 2. **Files**: writes every config and downloads Oh My Zsh, powerlevel10k, zsh-vi-mode and TPM.
 3. **macOS**: creates `~/Development/{personal,work}` and `~/Documents/Screenshots`, applies the preferences.
-4. **SSH and GitHub**: creates the SSH key, logs in with `gh` (a browser window opens), and uploads the key as both an authentication and a signing key, titled with the Mac's name.
+4. **SSH and GitHub**: creates the SSH key, logs in with `gh` (a browser window opens), and uploads the key as both an authentication and a signing key, titled with the Mac's name and the account.
 
 Steps 1, 3 and 4 are the only scripts (`home/.chezmoiscripts/`). Open a new
 terminal afterwards. Neovim and tmux install their own plugins the first time they start
