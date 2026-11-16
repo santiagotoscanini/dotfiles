@@ -71,6 +71,7 @@ cask "claude"         # Claude desktop app
 cask "wispr-flow"     # Voice-to-text dictation
 cask "google-chrome"  # Web browser
 cask "ticktick"       # TickTick for task management
+cask "obsidian"       # Notes vault; also links the `obsidian` CLI into the Homebrew bin
 
 # ---- macOS utilities ----
 cask "notunes"  # Avoid opening iTunes accidentally
@@ -89,7 +90,6 @@ if profile == "personal"
 
   # ---- Notes and files ----
   cask "nextcloud"  # Nextcloud sync app
-  cask "obsidian"   # Knowledge management and note-taking app
 
   # ---- VPN and security ----
   cask "protonvpn"                 # ProtonVPN for secure VPN access
