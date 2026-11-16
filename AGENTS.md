@@ -50,9 +50,11 @@ There is no other tooling: no build step, no custom CLI.
 | `home/dot_zshenv` | `~/.zshenv`: sets `ZDOTDIR=~/.config/zsh` |
 | `home/dot_config/zsh/` | `.zshenv` (template: `DOTFILES_DIR`, `DEV_DIR`, profile), `.zshrc`, `oh-my.zsh`, `alias.zsh`, `.p10k.zsh` |
 | `home/dot_config/{nvim,git,gh,ghostty,tmux}` | App configs; `git/config*.tmpl` are templates. Neovim and tmux install their plugins themselves on first start (`vim.pack` with `nvim/lua/plugins.lua`; TPM from `tmux.conf`). One colour scheme everywhere: Catppuccin Latte (light) / Frappe (dark) in Ghostty, Neovim, tmux and Zed |
-| `home/dot_config/zed/symlink_*.tmpl`, `home/dot_config/nvim/symlink_nvim-pack-lock.json.tmpl`, `home/private_Library/…/Code/User/**/symlink_*.tmpl` | Symlinks into `linked/` |
+| `home/dot_config/zed/symlink_*.tmpl`, `home/dot_config/nvim/symlink_nvim-pack-lock.json.tmpl`, `home/private_Library/…/Code/User/**/symlink_*.tmpl`, `home/dot_claude/symlink_settings.json.tmpl` | Symlinks into `linked/` |
+| `home/dot_config/agents/AGENTS.md` | `~/.config/agents/AGENTS.md`: global rules for every AI agent on any machine (e.g. system-wide tools go through the `Brewfile`). Kept in an agent-neutral location; each agent's global config points here |
+| `home/dot_claude/CLAUDE.md` | `~/.claude/CLAUDE.md`: Claude Code's user-level memory, a single `@~/.config/agents/AGENTS.md` import. Next to it, `symlink_settings.json.tmpl` links `~/.claude/settings.json` to `linked/claude/settings.json` (commit attribution off). chezmoi manages only these two, never the rest of `~/.claude` |
 | `home/private_dot_ssh/private_config.tmpl` | `~/.ssh/config` (0600 inside a 0700 dir) |
-| `linked/` | Real files for apps that rewrite them: Zed and VS Code settings, Neovim's plugin lockfile |
+| `linked/` | Real files for apps that rewrite them: Zed, VS Code and Claude Code settings, Neovim's plugin lockfile |
 | `obsidian/` | `.obsidian.vimrc`, copied into the vault by hand. Not deployed |
 | `qmk/` | QMK External Userspace for the Corne keymap. Not deployed |
 
