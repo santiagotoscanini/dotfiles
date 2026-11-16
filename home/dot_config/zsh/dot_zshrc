@@ -49,5 +49,9 @@ setopt HIST_IGNORE_SPACE         # Ignore commands that start with a space (usef
 # same prompt style applies on every machine. Re-run `p10k configure` to update.
 [[ -f $ZDOTDIR/.p10k.zsh ]] && source $ZDOTDIR/.p10k.zsh
 
-# Local customizations (if any)
-[[ -f $ZDOTDIR/local.zsh ]] && source $ZDOTDIR/local.zsh
+# Local customizations (if any). An `if`, not `[[ ]] && ...`: as the last
+# line, a failed test would leave status 1 and start every shell with a red
+# prompt.
+if [[ -f $ZDOTDIR/local.zsh ]]; then
+  source $ZDOTDIR/local.zsh
+fi
