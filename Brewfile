@@ -66,8 +66,12 @@ cask "zed"                  # Zed for code editing
 mas "Xcode", id: 497799835  # Xcode editor
 # cask "visual-studio-code" # Settings kept in linked/vscode; deployed once installed
 
+# ---- Claude ----
+cask "claude"                                # Claude desktop app
+cask "claude-code"                           # Claude Code CLI, also used by Obsidian's Agent Client plugin
+npm "@agentclientprotocol/claude-agent-acp"  # ACP adapter: lets Agent Client (Obsidian) drive Claude Code
+
 # ---- Apps ----
-cask "claude"         # Claude desktop app
 cask "wispr-flow"     # Voice-to-text dictation
 cask "google-chrome"  # Web browser
 cask "ticktick"       # TickTick for task management
