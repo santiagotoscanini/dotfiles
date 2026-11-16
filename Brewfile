@@ -120,6 +120,9 @@ if profile == "work"
   # ---- Communication ----
   cask "slack"  # Team collaboration and messaging platform
 
+  # ---- Project management ----
+  cask "linear"  # Issue tracking and project planning
+
   # ---- Flai monorepo ----
   brew "colima"          # Docker-compatible VM; runs Supabase, Redis and LocalStack
   brew "docker"          # Docker CLI that talks to the Colima VM
