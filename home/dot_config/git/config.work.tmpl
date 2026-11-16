@@ -1,0 +1,6 @@
+# Identity for repos under ~/{{ .devDir }}/work (see includeIf in config);
+# everywhere else git uses the personal email.
+# Only deployed on the work profile (.chezmoiignore). The email comes from
+# this machine's `chezmoi init` answer; change it with `chezmoi init --prompt`.
+[user]
+    email = {{ .workEmail }}

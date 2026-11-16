@@ -1,0 +1,4 @@
+# Where projects live, the same on every machine:
+#   ~/Development/personal   personal repos (this dotfiles repo included)
+#   ~/Development/work       work repos; git uses the work email there
+devDir: Development

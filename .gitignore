@@ -3,23 +3,6 @@
 .claude
 .vscode
 
-# ZSH
-shell/zsh/work.zsh
-shell/zsh/.zsh_history
-shell/zsh/.zsh_sessions
-shell/zsh/.zcompdump
-shell/zsh/.cache/
-
-# Python
-__pycache__/
-.ruff_cache/
-
 # macOS
 **/.DS_Store
 
-# Logs
-.dotfiles-install.log
-.dots-install.log
-
-# Santree
-.santree/

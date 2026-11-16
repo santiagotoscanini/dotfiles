@@ -1,0 +1,38 @@
+# macOS preferences applied by .chezmoiscripts/run_onchange_after_10-macos.sh.
+# Editing this file re-runs the script on the next `chezmoi apply`.
+#
+#   domain  defaults domain (find one with `defaults domains`)
+#   key     preference key (inspect with `defaults read <domain>`)
+#   type    bool | int | float | string
+#   value   a leading "~/" is expanded to the home folder
+#   why     shown in the apply log
+#
+# `restart` lists the processes to relaunch so the changes take effect.
+macos:
+  restart: [Dock, SystemUIServer]
+  defaults:
+    - domain: com.apple.dock
+      key: autohide
+      type: bool
+      value: true
+      why: Hide the Dock until the pointer reaches it
+    - domain: com.apple.dock
+      key: orientation
+      type: string
+      value: right
+      why: Dock on the right edge
+    - domain: com.apple.dock
+      key: tilesize
+      type: int
+      value: 65
+      why: Dock icon size
+    - domain: com.apple.dock
+      key: show-recents
+      type: bool
+      value: false
+      why: No recent apps in the Dock
+    - domain: com.apple.screencapture
+      key: location
+      type: string
+      value: ~/Documents/Screenshots
+      why: Screenshots go to their own folder instead of the Desktop

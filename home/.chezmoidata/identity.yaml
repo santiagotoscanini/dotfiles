@@ -1,0 +1,8 @@
+# Who I am, used by templates (git, SSH key comments).
+# Static data only: .chezmoidata files are never templates.
+# The work email is not here: it's asked per machine by `chezmoi init`
+# (data.workEmail in ~/.config/chezmoi/chezmoi.toml).
+identity:
+  name: Santiago Toscanini
+  github: santiagotoscanini
+  email: github@account.toscanini.me

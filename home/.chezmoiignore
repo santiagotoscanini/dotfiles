@@ -1,0 +1,29 @@
+# Targets chezmoi must never write. This file is a template, and patterns
+# match TARGET paths (".config/x"), not source names ("dot_config/x").
+
+# ---- Documentation ----
+# READMEs live next to the configs they describe; they are not dotfiles.
+README.md
+**/README.md
+.config/zsh/images
+.config/zsh/images/**
+
+# ---- Runtime data inside externals ----
+# Externals use exact = true; without these lines apply would delete them.
+.oh-my-zsh/cache
+.oh-my-zsh/cache/**
+.oh-my-zsh/log
+.oh-my-zsh/log/**
+
+# ---- Work-only ----
+{{- if ne .profile "work" }}
+.config/git/config.work
+{{- end }}
+
+# ---- Apps that aren't installed ----
+# Their settings are deployed automatically once the app is installed
+# (next `chezmoi apply`), instead of creating folders for missing apps.
+{{- if not (stat "/Applications/Visual Studio Code.app") }}
+Library
+Library/**
+{{- end }}

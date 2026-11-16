@@ -1,0 +1,5 @@
+# ~/.zshenv: the only zsh file in $HOME.
+# It moves zsh's config to ~/.config/zsh (XDG) and loads the real .zshenv.
+# Managed by chezmoi: edit home/dot_zshenv in the dotfiles repo.
+export ZDOTDIR="$HOME/.config/zsh"
+. "$ZDOTDIR/.zshenv"

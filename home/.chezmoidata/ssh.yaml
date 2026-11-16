@@ -1,0 +1,10 @@
+# The machine's SSH key: used to authenticate to GitHub and to sign commits.
+#
+# id_ed25519 is the name `gh auth login` creates and uploads, so whichever
+# runs first (`chezmoi apply` or `gh auth login`) the other reuses the same
+# key. Referenced by ~/.ssh/config, git's user.signingkey and
+# .chezmoiscripts/run_onchange_after_20-ssh-and-github.sh. The private key never
+# enters this repo.
+ssh:
+  key: id_ed25519
+  type: ed25519

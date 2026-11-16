@@ -1,0 +1,20 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Installs everything in the repo's Brewfile for this machine's profile.
+#
+# run_onchange: chezmoi re-runs this only when the rendered script changes.
+# The hash below changes whenever the Brewfile or the profile changes, so
+# editing the Brewfile and running `chezmoi apply` installs the new entries.
+#
+#   Brewfile sha256: {{ include (joinPath .chezmoi.workingTree "Brewfile") | sha256sum }}
+#   Profile:         {{ .profile }}
+#
+# --no-upgrade keeps apply predictable: it only installs what is missing.
+# Upgrade on your own schedule with `brew upgrade`. Nothing is ever
+# uninstalled; see `brew bundle cleanup` in README.md for that.
+{{ template "script-prelude.sh" . }}
+
+log "Installing Brewfile packages for the {{ .profile }} profile"
+HOMEBREW_DOTFILES_PROFILE={{ .profile | quote }} \
+  brew bundle --file={{ joinPath .chezmoi.workingTree "Brewfile" | quote }} --no-upgrade
+{{ end -}}

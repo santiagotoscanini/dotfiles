@@ -1,0 +1,66 @@
+#!/bin/bash
+# The machine's SSH key, used for both git over SSH and commit signing:
+#   1. create ~/.ssh/{{ .ssh.key }} if it's missing (never touches an existing key)
+#   2. write ~/.ssh/allowed_signers so git can verify my own signed commits
+#   3. log in to GitHub with gh if needed (opens a browser)
+#   4. upload the key as an authentication key and as a signing key, only
+#      where GitHub doesn't have it yet
+#
+# run_onchange: re-runs when the key name, emails or GitHub user change.
+# If the GitHub part fails (no browser, declined login), the next
+# `chezmoi apply` tries again. Runs last so it never blocks the rest.
+{{ template "script-prelude.sh" . }}
+
+ssh_dir={{ joinPath .chezmoi.homeDir ".ssh" | quote }}
+key="$ssh_dir/{{ .ssh.key }}"
+
+# ---- 1. Key ----
+mkdir -p "$ssh_dir" && chmod 700 "$ssh_dir"
+if [ ! -f "$key" ]; then
+  log "Generating SSH key ~/.ssh/{{ .ssh.key }}"
+  ssh-keygen -t {{ .ssh.type | quote }} -f "$key" -N "" -C {{ .identity.email | quote }}
+fi
+pubkey="$(cut -d' ' -f1,2 "$key.pub")"   # "<type> <base64>", comment dropped
+
+# ---- 2. allowed_signers ----
+{
+{{- range (list .identity.email .workEmail | compact) }}
+  printf '%s namespaces="git" %s\n' {{ . | quote }} "$pubkey"
+{{- end }}
+} > "$ssh_dir/allowed_signers"
+
+# ---- 3. GitHub login ----
+# --skip-ssh-key: gh would upload the key itself, as auth only; step 4
+# uploads it both ways.
+scopes="admin:public_key,admin:ssh_signing_key"
+if ! gh auth status --hostname github.com >/dev/null 2>&1; then
+  if [ ! -t 0 ]; then
+    warn "Not logged in to GitHub; run \`chezmoi apply\` from a terminal to log in"
+    exit 1
+  fi
+  log "Logging in to GitHub (a browser window will open)"
+  gh auth login --hostname github.com --git-protocol ssh --web --skip-ssh-key --scopes "$scopes"
+elif [[ "$(gh auth status --hostname github.com 2>&1)" != *admin:ssh_signing_key* ]]; then
+  log "Granting gh permission to manage SSH keys (a browser window will open)"
+  gh auth refresh --hostname github.com --scopes "$scopes"
+fi
+
+login="$(gh api user --jq .login)"
+[ "$login" = {{ .identity.github | quote }} ] \
+  || warn "gh is logged in as $login, not {{ .identity.github }}; uploading to $login"
+
+# ---- 4. Upload ----
+title="$(scutil --get ComputerName 2>/dev/null || hostname -s)"
+upload_if_missing() { # <type> <api endpoint listing that type of key>
+  # Capture first: piping into `grep -q` can fail under pipefail (SIGPIPE).
+  local existing
+  existing="$(gh api --paginate "$2" --jq '.[].key')"
+  if grep -qxF "$pubkey" <<<"$existing"; then
+    echo "    already on GitHub as $1 key"
+  else
+    log "Uploading ~/.ssh/{{ .ssh.key }}.pub to GitHub as $1 key ($title)"
+    gh ssh-key add "$key.pub" --type "$1" --title "$title"
+  fi
+}
+upload_if_missing authentication user/keys
+upload_if_missing signing user/ssh_signing_keys
