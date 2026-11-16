@@ -1,0 +1,11 @@
+# Targets chezmoi deletes on apply: files an earlier version of this repo
+# deployed and no longer does. Without this, old machines keep them forever.
+
+# Neovim before vim.pack and the plugin rewrite (replaced by lua/plugins.lua,
+# lua/completion.lua and lua/ui.lua).
+.config/nvim/plugins.vim
+.config/nvim/lua/comments.lua
+.config/nvim/lua/feline-config.lua
+.config/nvim/lua/nvim-cmp.lua
+.local/share/nvim/site/autoload/plug.vim
+.local/share/nvim/plugged

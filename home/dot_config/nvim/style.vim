@@ -1,20 +1,17 @@
 set termguicolors
 
-colorscheme material
+" Catppuccin, like Ghostty: Latte in light mode, Frappe in dark mode.
+lua require("catppuccin").setup({ background = { light = "latte", dark = "frappe" } })
 
+" Follow the macOS appearance. Asking macOS (instead of the terminal) also
+" works inside tmux.
 function! SetBackgroundMode(...)
-    " https://github.com/marko-cerovac/material.nvim
-    " There are 5 styles to choose from:
-    " -oceanic
-    " -deep ocean
-    " -palenight
-    " -darker
-    " -lighter
     if systemlist('defaults read -g AppleInterfaceStyle')[0] ==? 'dark'
-        lua require('material.functions').change_style('palenight')
+        set background=dark
     else
-        lua require('material.functions').change_style('lighter')
+        set background=light
     endif
+    colorscheme catppuccin
 endfunction
 
 " First call

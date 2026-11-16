@@ -65,7 +65,7 @@ if not vim.g.vscode then
 		gh("folke/snacks.nvim"), -- Picker, file tree, dashboard, smooth scroll, indent guides
 		gh("folke/which-key.nvim"), -- Shows the available keymaps while typing
 		gh("stevearc/oil.nvim"), -- Edit a directory like a buffer
-		gh("marko-cerovac/material.nvim"), -- Theme
+		{ src = gh("catppuccin/nvim"), name = "catppuccin" }, -- Theme, the same one as Ghostty
 		gh("nvim-lualine/lualine.nvim"), -- Status bar
 		gh("lewis6991/gitsigns.nvim"), -- Git info (status bar, left bar)
 		gh("nvim-mini/mini.icons"), -- Icons

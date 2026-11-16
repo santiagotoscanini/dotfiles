@@ -1,4 +1,75 @@
-macos-titlebar-style=hidden
-theme = dark:Catppuccin Frappe,light:Catppuccin Latte
-desktop-notifications = true
+# Ghostty. Only what differs from the defaults is set here.
+# All options, with docs:  ghostty +show-config --default --docs
+# Reload with cmd+shift+, (some options need a new window or a restart).
 
+# ---- Look ----
+# Follows the system appearance. Both themes live in ./themes.
+theme = light:Catppuccin Latte,dark:Catppuccin Frappe
+
+# No titlebar: just the terminal with rounded corners. Tabs still work
+# (cmd+t); move the window by option+dragging its edge.
+macos-titlebar-style = hidden
+
+# Slightly see-through, with the macOS glass blur behind (restart to change).
+background-opacity = 0.92
+background-blur = macos-glass-regular
+
+# Room around the text. `extend` paints the padding with the colour of the
+# nearest cell, so Neovim and tmux reach the window edge with no frame.
+window-padding-x = 12
+window-padding-y = 10
+window-padding-balance = true
+window-padding-color = extend
+
+# Cleaner text edges where coloured text meets a coloured background.
+alpha-blending = linear-corrected
+# Never let text become invisible against its background.
+minimum-contrast = 1.1
+
+# Splits: a gentle dim on the ones without focus.
+unfocused-split-opacity = 0.85
+
+# No size popup while resizing, no mouse pointer over what you type.
+resize-overlay = never
+mouse-hide-while-typing = true
+
+# ---- Behaviour ----
+# Reopen with the same windows, tabs, splits and folders as last time.
+window-save-state = always
+
+# Left option is Alt for the shell, tmux and Neovim; right option still
+# types characters such as ñ and é.
+macos-option-as-alt = left
+
+# Shell integration extras (the defaults already give prompt marks, the
+# current folder for new tabs, and the title):
+#   sudo          keeps Ghostty's terminfo under sudo
+#   ssh-terminfo  installs Ghostty's terminfo on hosts you ssh into
+#   ssh-env       falls back to xterm-256color where that is not possible
+shell-integration-features = sudo,ssh-terminfo,ssh-env
+
+# A notification when a command that ran for 10s or more finishes while you
+# are looking at something else. Not inside tmux, which hides prompt marks.
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 10s
+
+# ---- Quick terminal ----
+# A terminal that drops down from the top of the screen you are on, from any
+# app, with option+`. macOS asks for the Accessibility permission the first
+# time, which global shortcuts need.
+keybind = global:alt+backquote=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-size = 45%
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0.15
+
+# ---- Keys ----
+# Splits move like Vim. The defaults (cmd+d, cmd+shift+d, cmd+[ and cmd+])
+# still work.
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+l=goto_split:right
+# Toggle the see-through background, for screenshots or bright wallpapers.
+keybind = super+shift+o=toggle_background_opacity

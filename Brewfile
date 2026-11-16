@@ -30,7 +30,6 @@ brew "chezmoi"    # Dotfiles manager that applies this repo to $HOME
 brew "fd"         # Fast alternative to find (nvim file tree search)
 brew "fzf"        # Command-line fuzzy finder
 brew "ripgrep"    # Lightning-fast recursive text search tool (also used by nvim)
-brew "thefuck"    # The Fuck for correcting command-line mistakes
 brew "tree"       # Tree for directory listing
 brew "witr"       # WITR - Explain process
 
@@ -40,24 +39,23 @@ brew "gh"         # GitHub CLI for pull requests, issues, and more
 
 # ---- Neovim and the tools its config calls ----
 brew "neovim"                       # Hyperextensible Vim-based text editor
-brew "tree-sitter-cli"              # Compiles Treesitter parsers (editors/nvim/lua/treesitter.lua)
-brew "vint"                         # Vim script linter (editors/nvim/lua/linter.lua)
-brew "eslint"                       # JavaScript linter (editors/nvim/lua/linter.lua)
-brew "black"                        # Python formatter (editors/nvim/lua/linter.lua)
-brew "isort"                        # Python import sorter (editors/nvim/lua/linter.lua)
-brew "stylua"                       # Lua formatter (editors/nvim/lua/linter.lua)
-npm "vim-language-server"           # Vim script LSP, "vimls" (editors/nvim/lua/lsp.lua)
-brew "typescript"                   # TypeScript 7 compiler and LSP, "tsc" (editors/nvim/lua/lsp.lua)
-brew "pyright"                      # Python LSP (editors/nvim/lua/lsp.lua)
-npm "graphql-language-service-cli"  # GraphQL LSP, "graphql-lsp" (editors/nvim/lua/lsp.lua)
+brew "tree-sitter-cli"              # Compiles Treesitter parsers (nvim/lua/treesitter.lua)
+brew "vint"                         # Vim script linter (nvim/lua/linter.lua)
+brew "black"                        # Python formatter (nvim/lua/linter.lua)
+brew "isort"                        # Python import sorter (nvim/lua/linter.lua)
+brew "stylua"                       # Lua formatter (nvim/lua/linter.lua)
+npm "vim-language-server"           # Vim script LSP, "vimls" (nvim/lua/lsp.lua)
+brew "typescript"                   # TypeScript 7 compiler and LSP, "tsc" (nvim/lua/lsp.lua)
+brew "pyright"                      # Python LSP (nvim/lua/lsp.lua)
+npm "graphql-language-service-cli"  # GraphQL LSP, "graphql-lsp" (nvim/lua/lsp.lua)
 # Also needs ripgrep and fd, listed under "Shell and CLI tools".
 
 # ---- Go ----
 brew "go"             # Go compiler and tools
-brew "gopls"          # Go LSP: completion, gofumpt formatting, imports (editors/nvim/lua/lsp.lua)
-brew "golangci-lint"  # Go linter (editors/nvim/lua/linter.lua)
-brew "delve"          # Go debugger, "dlv" (editors/nvim/lua/debug-config.lua)
-brew "gotestsum"      # Go test runner with reliable output (editors/nvim/lua/test-config.lua)
+brew "gopls"          # Go LSP: completion, gofumpt formatting, imports (nvim/lua/lsp.lua)
+brew "golangci-lint"  # Go linter (nvim/lua/linter.lua)
+brew "delve"          # Go debugger, "dlv" (nvim/lua/debug-config.lua)
+brew "gotestsum"      # Go test runner with reliable output (nvim/lua/test-config.lua)
 
 # ---- Terminal ----
 cask "ghostty"       # Fast, feature-rich terminal emulator
@@ -68,7 +66,7 @@ cask "zed"                  # Zed for code editing
 mas "Xcode", id: 497799835  # Xcode editor
 # cask "visual-studio-code" # Settings kept in linked/vscode; deployed once installed
 
-# ---- Work apps ----
+# ---- Apps ----
 cask "claude"         # Claude desktop app
 cask "wispr-flow"     # Voice-to-text dictation
 cask "google-chrome"  # Web browser
@@ -102,8 +100,6 @@ if profile == "personal"
   cask "minecraft"                    # Sandbox construction video game
   cask "steam"                        # Video game distribution service
 
-  # ---- Focus ----
-  # mas "Jomo", id: 1609960918  # Jomo screen time blocker
 end
 
 # ==================== work ====================

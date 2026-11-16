@@ -23,7 +23,7 @@ typeset -U PATH path  # Ensure PATH contains no duplicates
 
 # History configuration
 HISTSIZE=50000                   # Maximum events in internal history
-SAVEHIST=10000                   # Maximum events in history file
+SAVEHIST=50000                   # Maximum events in history file
 setopt HIST_IGNORE_ALL_DUPS      # Don't record duplicates
 setopt HIST_SAVE_NO_DUPS         # Don't write duplicates to history file
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks

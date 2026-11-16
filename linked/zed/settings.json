@@ -32,8 +32,12 @@
   // Auto-detect light/dark — was window.autoDetectColorScheme.
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé",
+  },
+  // The Catppuccin themes come from this extension; Zed installs it if missing.
+  "auto_install_extensions": {
+    "catppuccin": true,
   },
   "icon_theme": "Zed (Default)",
 

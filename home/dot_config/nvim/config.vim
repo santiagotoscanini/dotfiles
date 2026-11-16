@@ -22,7 +22,6 @@ if !exists('g:vscode')
     set hidden                         " Hidden files instead of closing it, so avoid saving message when moving between buffers
     set noswapfile                     " Don't use swapfiles for buffers
     set undofile                       " Use undofiles, so we can use Undo and Redo in files even when we save, close and open again
-    set undodir=~/.vim/undodir         " Set the path for the undofiles
 
    " Left column
     set number                         " Show numbers

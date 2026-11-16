@@ -56,7 +56,7 @@ export GOPATH=$XDG_DATA_HOME/go
 path=($GOPATH/bin $path)
 
 # Default applications
-export EDITOR='zed'
+export EDITOR='zed --wait'  # --wait: block until the file is closed
 export SANTREE_EDITOR='zed'
 export SANTREE_DIFF_TOOL='delta'
 export VISUAL='nvim'

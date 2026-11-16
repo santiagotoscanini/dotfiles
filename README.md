@@ -47,11 +47,10 @@ Then `apply` does everything else, in this order:
 4. **SSH and GitHub**: creates the SSH key, logs in with `gh` (a browser window opens), and uploads the key as both an authentication and a signing key, titled with the Mac's name.
 
 Steps 1, 3 and 4 are the only scripts (`home/.chezmoiscripts/`). Open a new
-terminal afterwards. Neovim installs its own plugins the first time it starts
-(`vim.pack`, see `home/dot_config/nvim/lua/plugins.lua`). A few things are left as one-time manual steps, because
+terminal afterwards. Neovim and tmux install their own plugins the first time they start
+(`vim.pack` with `home/dot_config/nvim/lua/plugins.lua`; TPM from `tmux.conf`). A few things are left as one-time manual steps, because
 they're rarely needed:
 
-- tmux plugins: prefix (`Ctrl-a`) then `I` inside tmux.
 - Obsidian: copy [`obsidian/.obsidian.vimrc`](obsidian/.obsidian.vimrc) into the vault, if it isn't synced there already.
 - QMK keyboard: see [`qmk/README.md`](qmk/README.md).
 - Rosetta: macOS offers to install it the first time an Intel-only app opens.

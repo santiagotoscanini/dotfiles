@@ -56,10 +56,6 @@ if [[ "$TERM_PROGRAM" != "zed" &&
 fi
 
 # -------------- Development Tools -------
-# Loads the asdf version manager plugin
-# Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/asdf
-plugins+=(asdf)
-
 # Development tool completions and integrations
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/poetry
 # plugins+=(poetry)  # disabled to speed up shell startup
@@ -82,11 +78,6 @@ plugins+=(asdf)
 # Note: Can be slow, hence commented out
 # plugins+=(command-not-found)
 
-# -------------- thefuck ----
-# Loads thefuck and add the <esc>-<esc> key binding.
-# Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/thefuck
-plugins+=(thefuck)
-
 # Common aliases for frequently used commands
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/common-aliases
 # plugins+=(common-aliases)  # disabled to speed up shell startup
@@ -103,7 +94,7 @@ plugins+=(z)       # Jump to frequently used directories
 plugins+=(dotenv)
 
 ZSH_DOTENV_FILE=.env          # File to detect
-ZSH_DOTENV_PROMPT=false       # Don't prompt before loading .env
+ZSH_DOTENV_PROMPT=true        # Ask before loading a .env (it runs as shell code); "a" remembers the folder
 
 # -------------- Vi Mode -------
 # Custom plugin for Vi mode in ZSH
