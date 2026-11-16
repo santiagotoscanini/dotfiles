@@ -41,7 +41,7 @@ There is no other tooling: no build step, no custom CLI.
 |---|---|
 | `Brewfile` | Ruby DSL: `brew`, `cask`, `mas`, `npm` entries in base / `if profile == "personal"` / `if profile == "work"` sections, grouped by purpose with a trailing comment each |
 | `home/.chezmoi.toml.tmpl` | `chezmoi init` questions (`promptChoiceOnce` / `promptStringOnce`) → `[data]` plus chezmoi settings (edit command, diff pager, autoCommit, scriptEnv) |
-| `home/.chezmoidata/*.yaml` | Static data merged into templates: `identity` (name, GitHub user, personal email), `devDir` (projects folder: `~/Development/{personal,work}`, fixed), `ssh.key` (the one SSH key, `id_ed25519`), `macos.defaults` and `macos.restart`. **Cannot contain templates.** |
+| `home/.chezmoidata/*.yaml` | Static data merged into templates: `identity` (name, GitHub user, personal email), `devDir` (projects folder: `~/Development/{personal,work}`, fixed), `ssh.key` (the one SSH key, `id_ed25519`), `ssh.s2` (home server host, user and the Proton Pass reference of its shared key), `macos.defaults` and `macos.restart`. **Cannot contain templates.** |
 | `home/.chezmoiexternal.toml` | Downloaded third-party code: Oh My Zsh, powerlevel10k, zsh-vi-mode (`archive`, `exact`), TPM. Weekly refresh |
 | `home/.chezmoiignore` | Template. Skips docs (`**/README.md`), runtime caches inside externals, work-only files on personal, and VS Code when it isn't installed (`stat`) |
 | `home/.chezmoiremove` | Targets deleted on apply: files an earlier version of the repo deployed and no longer does. Add a line when you delete or rename a deployed file |
@@ -70,7 +70,7 @@ A template that renders to empty or whitespace is skipped, which is how
 |---|---|---|
 | `run_onchange_before_10-brew-bundle` | `brew bundle --no-upgrade`. In an account that does not own the Homebrew prefix it runs as the owner through `sudo`, Brewfile on stdin (Homebrew supports one owning account; see README "Several accounts on one Mac") | Brewfile sha256 or profile changes (both embedded in a comment) |
 | `run_onchange_after_10-macos` | `mkdir -p` the projects/screenshot folders, `defaults write`, `killall` | `macos.yaml` or `folders.yaml` changes |
-| `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it, adds GitHub's host keys (from `gh api meta`) to `known_hosts` | key, emails or GitHub user change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
+| `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it, adds GitHub's host keys (from `gh api meta`) to `known_hosts`; on S2 machines, `pass-cli login` if needed and copies the S2 key from Proton Pass to `~/.ssh/s2` | key, emails, GitHub user or S2 answer change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
 
 **Keep it at three.** The user wants a lean setup: no script for things done
 once and rarely (Rosetta,
@@ -85,7 +85,8 @@ script depend on another file, embed its hash in a comment:
 
 ## Template cheatsheet
 
-- Data: `.profile`, `.workEmail` (per machine), `.devDir` (`Development`), `.identity.*`,
+- Data: `.profile`, `.workEmail`, `.s2` (per machine; read `.s2` with `dig "s2" false .`
+  so machines initialised before the question still render), `.devDir` (`Development`), `.identity.*`,
   `.ssh.key`, `.macos.*`, plus built-ins `.chezmoi.homeDir`, `.chezmoi.os`,
   `.chezmoi.arch`, `.chezmoi.workingTree` (repo root) and `.chezmoi.sourceDir`
   (`home/`).
@@ -118,8 +119,9 @@ needed.
 
 **SSH key**: one key per machine, `~/.ssh/id_ed25519` (the name `gh auth login`
 uses), for both GitHub auth and commit signing. Its name lives only in
-`home/.chezmoidata/ssh.yaml`; templates use `.ssh.key`. Ask before adding
-per-host keys.
+`home/.chezmoidata/ssh.yaml`; templates use `.ssh.key`. The one exception is
+S2's shared key, `~/.ssh/s2`, copied from Proton Pass (`.ssh.s2`) on machines
+that answered yes at init. Ask before adding other per-host keys.
 
 **Add a shell plugin or theme**: add an `archive` entry under
 `.oh-my-zsh/custom/...` in `.chezmoiexternal.toml`, then enable it in

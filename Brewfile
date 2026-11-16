@@ -104,6 +104,7 @@ if profile == "personal"
   cask "nextcloud"  # Nextcloud sync app
 
   # ---- VPN and security ----
+  brew "proton-pass-cli"           # Proton Pass CLI (fetches the S2 SSH key at setup)
   cask "protonvpn"                 # ProtonVPN for secure VPN access
   mas "WireGuard", id: 1451685025  # WireGuard VPN
 

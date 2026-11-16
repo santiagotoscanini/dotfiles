@@ -7,8 +7,11 @@
 #      where GitHub doesn't have it yet
 #   5. trust GitHub's SSH host keys in ~/.ssh/known_hosts, so the first
 #      `git push` doesn't fail with "Host key verification failed"
+#   6. if this machine connects to S2, copy the home server's key from
+#      Proton Pass to ~/.ssh/{{ .ssh.s2.key }} (logs in to pass-cli if needed)
 #
-# run_onchange: re-runs when the key name, emails or GitHub user change.
+# run_onchange: re-runs when the key name, emails, GitHub user or S2 answer
+# change.
 # If the GitHub part fails (no browser, declined login), the next
 # `chezmoi apply` tries again. Runs last so it never blocks the rest.
 {{ template "script-prelude.sh" . }}
@@ -83,3 +86,28 @@ while read -r hostkey; do
     printf 'github.com %s\n' "$hostkey" >> "$known_hosts"
   fi
 done < <(gh api meta --jq '.ssh_keys[]')
+{{- if dig "s2" false . }}
+
+# ---- 6. S2 home server key ----
+# One shared key, kept in Proton Pass instead of generated per machine, so a
+# new Mac logs in without touching the server. Never overwrites a key that's
+# already there.
+s2_key="$ssh_dir/{{ .ssh.s2.key }}"
+if [ ! -f "$s2_key" ]; then
+  if ! pass-cli info >/dev/null 2>&1; then
+    if [ ! -t 0 ]; then
+      warn "Not logged in to Proton Pass; run \`chezmoi apply\` from a terminal to fetch the S2 key"
+      exit 1
+    fi
+    log "Logging in to Proton Pass (open the link it prints)"
+    pass-cli login
+  fi
+  log "Copying the S2 key from Proton Pass to ~/.ssh/{{ .ssh.s2.key }}"
+  tmp="$(mktemp "$ssh_dir/.s2.XXXXXX")"   # mktemp creates it 0600
+  trap 'rm -f "$tmp"' EXIT
+  pass-cli item view {{ printf "%s/%s" .ssh.s2.item .ssh.s2.field | quote }} > "$tmp"
+  # Fails on anything that isn't a valid private key, before it's installed.
+  ssh-keygen -y -f "$tmp" > "$s2_key.pub"
+  mv "$tmp" "$s2_key"
+fi
+{{- end }}

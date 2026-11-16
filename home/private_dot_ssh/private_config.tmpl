@@ -12,10 +12,12 @@ Host github.com
   User git
   IdentitiesOnly yes
   IdentityFile ~/.ssh/{{ .ssh.key }}
-{{- if eq .profile "personal" }}
+{{- if dig "s2" false . }}
 
-# Home server
+# Home server; its key comes from Proton Pass (.chezmoiscripts, ssh.yaml)
 Host s2
-  HostName 192.168.0.2
-  User santiago
+  HostName {{ .ssh.s2.host }}
+  User {{ .ssh.s2.user }}
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/{{ .ssh.s2.key }}
 {{- end }}

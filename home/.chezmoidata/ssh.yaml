@@ -8,3 +8,14 @@
 ssh:
   key: id_ed25519
   type: ed25519
+
+  # The S2 home server's key, on machines that answered yes to "Connect this
+  # machine to the S2 home server". It is shared, not per machine: the private
+  # key lives in Proton Pass (item below) and the SSH script copies it to
+  # ~/.ssh/<key>. Referenced by ~/.ssh/config.
+  s2:
+    key: s2
+    host: 192.168.0.2
+    user: santiago
+    item: "pass://03. Homelab (S2)/S2"   # vault/item; the script appends the field
+    field: Private key
