@@ -1,12 +1,3 @@
-jestConfigFile = function()
-	local file = vim.fn.expand("%:p")
-	if string.find(file, "/packages/") then
-		return string.match(file, "(.-/[^/]+/)src") .. "jest.config.ts"
-	end
-
-	return vim.fn.getcwd() .. "/jest.config.ts"
-end
-
 require("neotest").setup({
 	adapters = {
 		require("neotest-golang")({

@@ -3,7 +3,8 @@
 
 require("conform").setup({
 	formatters_by_ft = {
-		python = { "isort", "black" },
+		-- ruff sorts the imports, then formats: the same tool Zed uses.
+		python = { "ruff_organize_imports", "ruff_format" },
 		lua = { "stylua" },
 	},
 	-- Format on save; without a formatter above, fall back to the LSP server.
@@ -18,6 +19,7 @@ require("conform").setup({
 local lint = require("lint")
 lint.linters_by_ft = {
 	go = { "golangcilint" },
+	python = { "ruff" },
 	zsh = { "zsh" },
 	vim = { "vint" },
 }

@@ -41,8 +41,7 @@ brew "gh"         # GitHub CLI for pull requests, issues, and more
 brew "neovim"                       # Hyperextensible Vim-based text editor
 brew "tree-sitter-cli"              # Compiles Treesitter parsers (nvim/lua/treesitter.lua)
 brew "vint"                         # Vim script linter (nvim/lua/linter.lua)
-brew "black"                        # Python formatter (nvim/lua/linter.lua)
-brew "isort"                        # Python import sorter (nvim/lua/linter.lua)
+brew "ruff"                         # Python formatter and linter (nvim/lua/linter.lua)
 brew "stylua"                       # Lua formatter (nvim/lua/linter.lua)
 brew "node"                         # JavaScript runtime; its npm installs the npm entries below
 npm "vim-language-server"           # Vim script LSP, "vimls" (nvim/lua/lsp.lua)
