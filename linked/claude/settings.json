@@ -3,5 +3,6 @@
   "attribution": {
     "commit": "",
     "pr": ""
-  }
+  },
+  "theme": "auto"
 }

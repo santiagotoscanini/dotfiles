@@ -22,9 +22,6 @@ elif [[ -d $HOME/.local/bin ]] && [[ -x $HOME/.local/bin/claude ]]; then
   path=($HOME/.local/bin $path)
 fi
 
-# Add obsidian
-[[ -d /Applications/Obsidian.app ]] && path=(/Applications/Obsidian.app/Contents/MacOS $path)
-
 # Add JetBrains scripts to PATH
 [[ -d "$HOME/Library/Application Support/JetBrains/Toolbox/scripts" ]] && \
   path=("$HOME/Library/Application Support/JetBrains/Toolbox/scripts" $path)
