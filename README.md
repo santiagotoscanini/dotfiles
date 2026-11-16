@@ -150,7 +150,9 @@ with a personal and a work account:
   account, `brew` and the brew step of `chezmoi apply` run as that owner
   through `sudo`: they ask for the password of the account you are in, which
   must be an administrator. Read-only commands (`brew list`, `brew info`) run
-  directly.
+  directly. Global npm packages live in the same prefix, so `npm` commands
+  that change them (`npm update -g`) run as the owner too; project npm is
+  untouched.
 - **Configs are per account.** Each account clones this repo and runs
   `chezmoi init` with its own profile, so each has its own shell, git
   identity, SSH key and app settings.

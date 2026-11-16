@@ -88,6 +88,21 @@ if [[ -d /opt/homebrew && ! -O /opt/homebrew ]]; then
           env HOMEBREW_DOTFILES_PROFILE="$HOMEBREW_DOTFILES_PROFILE" /opt/homebrew/bin/brew "$@") ;;
     esac
   }
+
+  # Global npm packages live in Homebrew's prefix too, so commands that change
+  # them (`npm update -g`, `npm i -g x`) run as the owner the same way.
+  # Project npm and read-only global commands (`npm ls -g`, `npm outdated -g`)
+  # run directly. Add global packages to the Brewfile, not with `npm i -g`.
+  function npm() {
+    if [[ " $* " == *" -g "* || " $* " == *" --global "* ]]; then
+      case "$1" in
+        install|i|add|uninstall|un|remove|rm|update|up|upgrade|link|ln)
+          (cd / && sudo -Hu "$(stat -f %Su /opt/homebrew)" /opt/homebrew/bin/npm "$@")
+          return ;;
+      esac
+    fi
+    command npm "$@"
+  }
 fi
 
 # =========== Dotfiles (chezmoi) ===========
