@@ -51,7 +51,6 @@ terminal afterwards. Neovim and tmux install their own plugins the first time th
 (`vim.pack` with `home/dot_config/nvim/lua/plugins.lua`; TPM from `tmux.conf`). A few things are left as one-time manual steps, because
 they're rarely needed:
 
-- Obsidian: nothing to copy. The vault's Vimrc Support plugin reads [`obsidian/.obsidian.vimrc`](obsidian/.obsidian.vimrc) in place, through the path `../../Development/personal/dotfiles/obsidian/.obsidian.vimrc` (relative to the vault at `~/Documents/Notes`).
 - QMK keyboard: see [`qmk/README.md`](qmk/README.md).
 - Rosetta: macOS offers to install it the first time an Intel-only app opens.
 
@@ -104,7 +103,6 @@ home/                  what ends up in $HOME (chezmoi source state)
 ├── private_dot_ssh/       → ~/.ssh (mode 0700/0600)
 └── private_Library/       → ~/Library, kept 0700 (VS Code, only when installed)
 linked/                apps that rewrite their own settings; $HOME gets symlinks to these
-obsidian/              .obsidian.vimrc (read in place by the vault's Vimrc Support plugin)
 qmk/                   Corne keyboard keymap (QMK External Userspace, not deployed)
 AGENTS.md              how AI agents should work in this repo
 ```

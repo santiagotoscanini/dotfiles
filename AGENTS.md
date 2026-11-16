@@ -55,7 +55,6 @@ There is no other tooling: no build step, no custom CLI.
 | `home/dot_claude/CLAUDE.md` | `~/.claude/CLAUDE.md`: Claude Code's user-level memory, a single `@~/.config/agents/AGENTS.md` import. Next to it, `symlink_settings.json.tmpl` links `~/.claude/settings.json` to `linked/claude/settings.json` (commit attribution off). chezmoi manages only these two, never the rest of `~/.claude` |
 | `home/private_dot_ssh/private_config.tmpl` | `~/.ssh/config` (0600 inside a 0700 dir) |
 | `linked/` | Real files for apps that rewrite them: Zed, VS Code and Claude Code settings, Neovim's plugin lockfile |
-| `obsidian/` | `.obsidian.vimrc`. Not deployed: the vault's Vimrc Support plugin reads it in place via a vault-relative path |
 | `qmk/` | QMK External Userspace for the Corne keymap. Not deployed |
 
 ## Scripts (`home/.chezmoiscripts/`)
