@@ -72,6 +72,24 @@ function _noderepl() {
 }
 alias ,noderepl='_noderepl'
 
+# =========== Homebrew on a Mac with several accounts ===========
+# Homebrew supports one owning account per install. In any other account,
+# `brew` runs as that owner through sudo (asks for this account's password),
+# so both accounts install into the same Homebrew. Commands that only read
+# run directly. It runs from /, because the owner cannot read this home
+# folder; so give `brew bundle` its file on stdin: brew bundle --file=- < Brewfile
+if [[ -d /opt/homebrew && ! -O /opt/homebrew ]]; then
+  function brew() {
+    case "$1" in
+      list|ls|info|search|deps|uses|leaves|desc|home|config|shellenv|--prefix|--version|"")
+        command brew "$@" ;;
+      *)
+        (cd / && sudo -Hu "$(stat -f %Su /opt/homebrew)" \
+          env HOMEBREW_DOTFILES_PROFILE="$HOMEBREW_DOTFILES_PROFILE" /opt/homebrew/bin/brew "$@") ;;
+    esac
+  }
+fi
+
 # =========== Dotfiles (chezmoi) ===========
 # The repo in $DOTFILES_DIR is chezmoi's source; see its README.md.
 # The ,d* shortcuts keep the letters the old `dots` CLI used.

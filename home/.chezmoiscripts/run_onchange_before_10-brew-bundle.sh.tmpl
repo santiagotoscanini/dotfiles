@@ -14,7 +14,25 @@
 # uninstalled; see `brew bundle cleanup` in README.md for that.
 {{ template "script-prelude.sh" . }}
 
-log "Installing Brewfile packages for the {{ .profile }} profile"
-HOMEBREW_DOTFILES_PROFILE={{ .profile | quote }} \
-  brew bundle --file={{ joinPath .chezmoi.workingTree "Brewfile" | quote }} --no-upgrade
+brewfile={{ joinPath .chezmoi.workingTree "Brewfile" | quote }}
+prefix="$(brew --prefix)"
+owner="$(stat -f %Su "$prefix")"
+
+if [ "$owner" = "$(id -un)" ]; then
+  log "Installing Brewfile packages for the {{ .profile }} profile"
+  HOMEBREW_DOTFILES_PROFILE={{ .profile | quote }} \
+    brew bundle --file="$brewfile" --no-upgrade
+else
+  # Homebrew supports one owning account per install. On a Mac with several
+  # accounts, the others run it as the owner through sudo (this account's own
+  # password; it must be an administrator). The Brewfile goes in on stdin and
+  # the command runs from /, because the owner cannot read this home folder.
+  if [ ! -t 0 ]; then
+    warn "Homebrew belongs to $owner; run \`chezmoi apply\` from a terminal so sudo can ask for your password"
+    exit 1
+  fi
+  log "Installing Brewfile packages for the {{ .profile }} profile as $owner, who owns Homebrew"
+  (cd / && sudo -Hu "$owner" env HOMEBREW_DOTFILES_PROFILE={{ .profile | quote }} \
+    "$prefix/bin/brew" bundle --file=- --no-upgrade) < "$brewfile"
+fi
 {{ end -}}

@@ -142,6 +142,28 @@ brew bundle cleanup --file=Brewfile           # list installed things NOT in the
 brew bundle cleanup --file=Brewfile --force   # uninstall them
 ```
 
+### Several accounts on one Mac
+
+Homebrew supports one owning account per install ([FAQ](https://docs.brew.sh/FAQ)),
+and its apps go to `/Applications`, which every account sees. So on a Mac
+with a personal and a work account:
+
+- **Homebrew is shared.** The account that installed it owns it. In any other
+  account, `brew` and the brew step of `chezmoi apply` run as that owner
+  through `sudo`: they ask for the password of the account you are in, which
+  must be an administrator. Read-only commands (`brew list`, `brew info`) run
+  directly.
+- **Configs are per account.** Each account clones this repo and runs
+  `chezmoi init` with its own profile, so each has its own shell, git
+  identity, SSH key and app settings.
+- **Both profiles' packages end up installed**, since each account's apply
+  installs its own section into the shared Homebrew.
+
+From a non-owner account, `brew` runs from `/` (the owner cannot read your
+home folder), so pass a Brewfile on stdin: `brew bundle --file=- < Brewfile`.
+Mac App Store entries may not install this way; sign in to the App Store in
+the owning account and run `chezmoi apply` there for those.
+
 ---
 
 ## Troubleshooting

@@ -67,7 +67,7 @@ A template that renders to empty or whitespace is skipped, which is how
 
 | Script | Kind | Re-runs when |
 |---|---|---|
-| `run_onchange_before_10-brew-bundle` | `brew bundle --no-upgrade` | Brewfile sha256 or profile changes (both embedded in a comment) |
+| `run_onchange_before_10-brew-bundle` | `brew bundle --no-upgrade`. In an account that does not own the Homebrew prefix it runs as the owner through `sudo`, Brewfile on stdin (Homebrew supports one owning account; see README "Several accounts on one Mac") | Brewfile sha256 or profile changes (both embedded in a comment) |
 | `run_onchange_after_10-macos` | `mkdir -p` the projects/screenshot folders, `defaults write`, `killall` | `macos.yaml` or `folders.yaml` changes |
 | `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it | key, emails or GitHub user change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
 
