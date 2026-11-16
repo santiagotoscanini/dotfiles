@@ -3,10 +3,6 @@ let mapleader = ' '
 " To stop highlights when stop searching
 nnoremap <esc> :noh<return><esc>
 
-" FIXME(santiagotoscanini): This is not working.
-" Google the clipboard contents
-" nnoremap <leader>sog <cmd>! _search_google_clipboard<cr>
-
 " To be consistent with C and D operators, the default behavior is to yank the whole line.
 nnoremap Y y$
 
@@ -75,8 +71,6 @@ if !exists('g:vscode')
 
     " ----- GIT ------
     nnoremap <leader>gb <cmd>Gitsigns blame_line<cr>
-    " nnoremap <leader>gj :diffget //3<CR>
-    " nnoremap <leader>gf :diffget //2<CR>
 
     " ------ TABS -------
     " Go to tab by number
@@ -94,12 +88,6 @@ if !exists('g:vscode')
     " Move between left and right tabs
     nnoremap H gT
     nnoremap L gt
-
-    " Switch between tabs
-    " au TabLeave * let g:lasttab = tabpagenr() " Save the tab number
-    " Go to that tab
-    " nnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
-    " vnoremap <silent> <leader>l :exe "tabn ".g:lasttab<cr>
 
     " ------ SCRATCH FILES
     function NewTabScratchFile()

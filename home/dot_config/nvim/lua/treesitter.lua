@@ -2,7 +2,6 @@
 -- are Neovim's own. Installing a parser needs the `tree-sitter` CLI.
 -- https://github.com/nvim-treesitter/nvim-treesitter/blob/main/SUPPORTED_LANGUAGES.md
 require("nvim-treesitter").install({
-	-- "c",
 	"go",
 	"gomod",
 	"gosum",
@@ -11,9 +10,7 @@ require("nvim-treesitter").install({
 	"javascript",
 	"typescript",
 	"python",
-	-- "solidity",
 	"vim",
-	-- "dart",
 })
 
 -- Highlight every filetype that has a parser installed.

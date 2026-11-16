@@ -1,10 +1,8 @@
 vim.opt.list = true
--- vim.opt.listchars:append("space:⋅")
 
 -- nvim-lspconfig ships the server definitions (its lsp/ folder); Neovim's own
 -- vim.lsp.enable starts them. blink.cmp adds its completion capabilities to
 -- every server by itself.
--- Not enabled: "dartls", "solc".
 -- TODO(santiagotoscanini): make buffers aware of current virtual env (pyenv, poetry, venv, conda, etc)
 --⋅https://github.com/younger-1/nvim/blob/one/lua/young/lang/python.lua
 local servers = {

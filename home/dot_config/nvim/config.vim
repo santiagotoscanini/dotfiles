@@ -40,19 +40,6 @@ if !exists('g:vscode')
     set colorcolumn=140                " vertical line, to maintain the length of the code
     set mouse=n                        " Mouse usage in vim
 
-    " Terminal
-    " let $GIT_EDITOR = 'nvr -cc split --remote-wait'
-    " augroup AuNoNumberAndInsertInTerminal
-    "     autocmd!
-    "     autocmd TermOpen * setlocal nonumber norelativenumber
-    "     autocmd TermOpen * startinsert
-    " augroup END
-
-    " augroup AuDeleteBufferGitEditor
-    "     autocmd!
-    "     autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
-    " augroup END
-
     augroup AuToggleRelativeNumber
         autocmd!
         " When exiting insert mode, or opening a file in general, we set relative numbers

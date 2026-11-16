@@ -5,13 +5,6 @@ require("neotest").setup({
 			-- parsing `go test` output.
 			runner = vim.fn.executable("gotestsum") == 1 and "gotestsum" or "go",
 		}),
-		require("neotest-jest")({
-			-- jestCommand = "npm run test --",
-			-- jestConfigFile = "custom.jest.config.ts",
-			-- env = { CI = true },
-			-- cwd = function()
-			-- 	return vim.fn.getcwd()
-			-- end,
-		}),
+		require("neotest-jest")({}),
 	},
 })
