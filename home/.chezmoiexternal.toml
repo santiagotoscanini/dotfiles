@@ -29,14 +29,6 @@
     stripComponents = 1
     refreshPeriod = "168h"
 
-# ---- Neovim ----
-
-# vim-plug itself. Install the plugins in plugins.vim once with :PlugInstall.
-[".local/share/nvim/site/autoload/plug.vim"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    refreshPeriod = "168h"
-
 # ---- tmux ----
 
 # TPM itself. Install the plugins in tmux.conf once with prefix + I.

@@ -42,13 +42,13 @@ There is no other tooling: no build step, no custom CLI.
 | `Brewfile` | Ruby DSL: `brew`, `cask`, `mas`, `npm` entries in base / `if profile == "personal"` / `if profile == "work"` sections, grouped by purpose with a trailing comment each |
 | `home/.chezmoi.toml.tmpl` | `chezmoi init` questions (`promptChoiceOnce` / `promptStringOnce`) → `[data]` plus chezmoi settings (edit command, diff pager, autoCommit, scriptEnv) |
 | `home/.chezmoidata/*.yaml` | Static data merged into templates: `identity` (name, GitHub user, personal email), `devDir` (projects folder: `~/Development/{personal,work}`, fixed), `ssh.key` (the one SSH key, `id_ed25519`), `macos.defaults` and `macos.restart`. **Cannot contain templates.** |
-| `home/.chezmoiexternal.toml` | Downloaded third-party code: Oh My Zsh, powerlevel10k, zsh-vi-mode (`archive`, `exact`), vim-plug (`file`), TPM. Weekly refresh |
+| `home/.chezmoiexternal.toml` | Downloaded third-party code: Oh My Zsh, powerlevel10k, zsh-vi-mode (`archive`, `exact`), TPM. Weekly refresh |
 | `home/.chezmoiignore` | Template. Skips docs (`**/README.md`), runtime caches inside externals, work-only files on personal, and VS Code when it isn't installed (`stat`) |
 | `home/.chezmoiscripts/` | Setup scripts (see below). Never deployed as files |
 | `home/.chezmoitemplates/` | `script-prelude.sh`: strict mode, Homebrew on PATH, `log`/`warn` |
 | `home/dot_zshenv` | `~/.zshenv`: sets `ZDOTDIR=~/.config/zsh` |
 | `home/dot_config/zsh/` | `.zshenv` (template: `DOTFILES_DIR`, `DEV_DIR`, profile), `.zshrc`, `oh-my.zsh`, `alias.zsh`, `.p10k.zsh` |
-| `home/dot_config/{nvim,git,gh,ghostty,tmux}` | App configs; `git/config*.tmpl` are templates |
+| `home/dot_config/{nvim,git,gh,ghostty,tmux}` | App configs; `git/config*.tmpl` are templates. Neovim installs its plugins itself on first start (`vim.pack`, list in `nvim/lua/plugins.lua`) |
 | `home/dot_config/zed/symlink_*.tmpl`, `home/private_Library/…/Code/User/**/symlink_*.tmpl` | Symlinks into `linked/` |
 | `home/private_dot_ssh/private_config.tmpl` | `~/.ssh/config` (0600 inside a 0700 dir) |
 | `linked/` | Real settings files for apps that rewrite them (Zed, VS Code) |
@@ -71,7 +71,7 @@ A template that renders to empty or whitespace is skipped, which is how
 | `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it | key, emails or GitHub user change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
 
 **Keep it at three.** The user wants a lean setup: no script for things done
-once and rarely (Neovim/tmux plugin installs, Rosetta, the Obsidian vimrc,
+once and rarely (tmux plugin install, Rosetta, the Obsidian vimrc,
 QMK); those are one-line manual steps in README.md. Homebrew is installed by
 hand before chezmoi (it provides chezmoi itself), so no script installs it.
 Before adding a script, ask; prefer extending one of the three.

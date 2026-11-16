@@ -4,7 +4,7 @@ set smartcase                      " Case sensitive only if pattern contains at 
 
 augroup AuHighlightYank
     autocmd!
-    autocmd TextYankPost * lua vim.highlight.on_yank{higroup="IncSearch", timeout=250, on_visual=true}
+    autocmd TextYankPost * lua vim.hl.on_yank{higroup="IncSearch", timeout=250, on_visual=true}
 augroup END
 
 set clipboard=unnamedplus          " Copy between OS Clipboard and VIM Clipboard, Unnamed is vim copy register and + is OS reg.
@@ -68,10 +68,6 @@ if !exists('g:vscode')
         autocmd BufRead,BufNewFile */git/config,gitconfig-work setf gitconfig
         autocmd BufRead,BufNewFile */ssh/config                setf sshconfig
         autocmd BufRead,BufNewFile *.vtl                       setf json
-    augroup END
-
-    augroup AuRunFormatting
-        autocmd BufWritePre * lua vim.lsp.buf.format()
     augroup END
 endif
 

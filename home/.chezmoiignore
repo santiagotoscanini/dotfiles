@@ -14,6 +14,8 @@ README.md
 .oh-my-zsh/cache/**
 .oh-my-zsh/log
 .oh-my-zsh/log/**
+# powerlevel10k compiles itself to .zwc files at shell startup.
+.oh-my-zsh/custom/themes/powerlevel10k/**/*.zwc
 
 # ---- Work-only ----
 {{- if ne .profile "work" }}

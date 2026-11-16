@@ -14,6 +14,10 @@ nnoremap Y y$
 " But it will yank it to a void register, meaning I still have what I originally had when I pasted.
 vnoremap <leader>p "_dP
 
+" Jump anywhere on screen: type what you are looking at, then the label.
+nnoremap s <cmd>lua require("flash").jump()<cr>
+xnoremap s <cmd>lua require("flash").jump()<cr>
+
 if !exists('g:vscode')
     " ------ BASICS ------
     inoremap jj <Esc>
@@ -38,12 +42,8 @@ if !exists('g:vscode')
     nnoremap <leader>rf :call RenameCurrentFile()<cr>
 
     " ----- LUASNIP ------
-    imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
-    inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-    snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-    snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-
+    " <Tab> and <S-Tab> are in lua/completion.lua: they move through the
+    " completion menu, or through the snippet when the menu is closed.
     imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
     smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 
@@ -63,18 +63,14 @@ if !exists('g:vscode')
         map <Leader>vl :VimuxRunLastCommand<CR>
         " Prompt for a command to run
         map <Leader>vp :VimuxPromptCommand<CR>
-
-        " Golang
-        map <Leader>ra :GolangTestCurrentPackage<CR>
-        map <Leader>grct :wa<CR> :GolangTestFocused<CR>
     endif
 
-    " ----- TELESCOPE ------
+    " ----- PICKER ------
     " Find
-    nnoremap <leader>f  <cmd>Telescope find_files<cr>
-    nnoremap <c-t>      <cmd>Telescope live_grep <cr>
+    nnoremap <leader>f  <cmd>lua Snacks.picker.files()<cr>
+    nnoremap <c-t>      <cmd>lua Snacks.picker.grep()<cr>
     " Git
-    nnoremap <leader>gc <cmd>Telescope git_branches<cr>
+    nnoremap <leader>gc <cmd>lua Snacks.picker.git_branches()<cr>
 
 
     " ----- GIT ------
@@ -122,55 +118,59 @@ if !exists('g:vscode')
     endfunction
     nnoremap <leader><leader>save :call SaveScratchFile()<CR>
 
-    " ------ NVIM-TREE ------
-    nnoremap <leader>e :NvimTreeToggle<cr>
-    nnoremap <leader>sf :NvimTreeFindFile<cr>
-
-    " ------- COPILOT -------
-    let g:copilot_no_tab_map = v:true
-    imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+    " ------ FILES ------
+    " File tree in a sidebar
+    nnoremap <leader>e  <cmd>lua Snacks.explorer()<cr>
+    nnoremap <leader>sf <cmd>lua Snacks.explorer.reveal()<cr>
+    " The current file's directory as an editable buffer
+    nnoremap - <cmd>Oil<cr>
 
     " ------- LSP ---------
-    " nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <silent> gd <cmd>Telescope lsp_definitions<cr>
-    " nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-    nnoremap <silent> gi <cmd>Telescope lsp_implementations<cr>
-    " nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-    nnoremap <silent> gr <cmd>Telescope lsp_references<cr>
+    " Neovim's own defaults also work: grn rename, gra code action, grr
+    " references, gri implementation, K hover.
+    nnoremap <silent> gd <cmd>lua Snacks.picker.lsp_definitions()<cr>
+    nnoremap <silent> gi <cmd>lua Snacks.picker.lsp_implementations()<cr>
+    nnoremap <silent> gr <cmd>lua Snacks.picker.lsp_references()<cr>
     nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
     nnoremap <silent> H  <cmd>lua vim.lsp.buf.hover()<CR>
-    " nnoremap <leader> rn <cmd>lua vim.lsp.buf.rename(vim.fn.input('New name: '))<CR>
-    nnoremap <leader>, <cmd> lua require('renamer').rename()<cr>
+    nnoremap <leader>, <cmd>lua vim.lsp.buf.rename()<cr>
     nnoremap <silent> ge <cmd>lua vim.diagnostic.open_float()<CR>
-    nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.goto_prev()<CR>
-    nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.goto_next()<CR> " nnoremap <silent> ca <cmd>lua vim.lsp.buf.code_action()<CR>
+    nnoremap <silent> <C-n> <cmd>lua vim.diagnostic.jump({ count = -1, float = true })<CR>
+    nnoremap <silent> <C-p> <cmd>lua vim.diagnostic.jump({ count = 1, float = true })<CR>
 
     " Debugger
     lua << EOF
+    local dap, dapui, neotest = require("dap"), require("dapui"), require("neotest")
     -- steps
-    vim.keymap.set('n', '<F5>', require 'dap'.continue)
-    vim.keymap.set('n', '<F10>', require 'dap'.step_over)
-    vim.keymap.set('n', '<F11>', require 'dap'.step_into)
-    vim.keymap.set('n', '<F12>', require 'dap'.step_out)
+    vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: continue" })
+    vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: step over" })
+    vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: step into" })
+    vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: step out" })
     -- breakpoints
-    vim.keymap.set('n', '<leader>b', require 'dap'.toggle_breakpoint)
-    vim.keymap.set('n', '<leader>B', function()
-      require 'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
-    end)
+    vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+    vim.keymap.set("n", "<leader>B", function()
+        dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+    end, { desc = "Conditional breakpoint" })
     -- ui
-    vim.keymap.set('n', '<leader>ui', require 'dapui'.toggle)
+    vim.keymap.set("n", "<leader>ui", dapui.toggle, { desc = "Toggle debugger UI" })
 
     -- tests
-    -- debug test
-    vim.keymap.set('n', '<leader>tt', function()
-        require("neotest").run.run({strategy = "dap"})
-    end)
-    vim.keymap.set('n', '<leader>tf', function()
-        require("neotest").run.run(vim.fn.expand("%"))
-    end)
+    vim.keymap.set("n", "<leader>tt", function()
+        neotest.run.run({ strategy = "dap" })
+    end, { desc = "Debug nearest test" })
+    vim.keymap.set("n", "<leader>tf", function()
+        neotest.run.run(vim.fn.expand("%"))
+    end, { desc = "Run tests in file" })
+    vim.keymap.set("n", "<leader>tn", function()
+        neotest.run.run()
+    end, { desc = "Run nearest test" })
+    vim.keymap.set("n", "<leader>ts", neotest.summary.toggle, { desc = "Toggle test summary" })
+    vim.keymap.set("n", "<leader>to", function()
+        neotest.output.open({ enter = true })
+    end, { desc = "Show test output" })
 EOF
 else
-    nnoremap <leader>sa <Plug>(easymotion-s2)
+    nnoremap <leader>sa <cmd>lua require("flash").jump()<cr>
 
     " ------ NVIM-TREE ------
     "  This is only to reveal in explorer, the toggle is configured in vscode

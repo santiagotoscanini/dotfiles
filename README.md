@@ -42,15 +42,15 @@ except under `work/`.
 Then `apply` does everything else, in this order:
 
 1. **Brewfile**: installs the packages for the profile (asks for your password for some casks; sign in to the App Store first for the `mas` apps).
-2. **Files**: writes every config and downloads Oh My Zsh, powerlevel10k, zsh-vi-mode, vim-plug and TPM.
+2. **Files**: writes every config and downloads Oh My Zsh, powerlevel10k, zsh-vi-mode and TPM.
 3. **macOS**: creates `~/Development/{personal,work}` and `~/Documents/Screenshots`, applies the preferences.
 4. **SSH and GitHub**: creates the SSH key, logs in with `gh` (a browser window opens), and uploads the key as both an authentication and a signing key, titled with the Mac's name.
 
 Steps 1, 3 and 4 are the only scripts (`home/.chezmoiscripts/`). Open a new
-terminal afterwards. A few things are left as one-time manual steps, because
+terminal afterwards. Neovim installs its own plugins the first time it starts
+(`vim.pack`, see `home/dot_config/nvim/lua/plugins.lua`). A few things are left as one-time manual steps, because
 they're rarely needed:
 
-- Neovim plugins: `:PlugInstall` inside nvim.
 - tmux plugins: prefix (`Ctrl-a`) then `I` inside tmux.
 - Obsidian: copy [`obsidian/.obsidian.vimrc`](obsidian/.obsidian.vimrc) into the vault, if it isn't synced there already.
 - QMK keyboard: see [`qmk/README.md`](qmk/README.md).
@@ -96,7 +96,7 @@ Brewfile               every package, split into base / personal / work
 home/                  what ends up in $HOME (chezmoi source state)
 ├── .chezmoi.toml.tmpl     init questions → ~/.config/chezmoi/chezmoi.toml
 ├── .chezmoidata/          static data: identity, SSH keys, macOS preferences
-├── .chezmoiexternal.toml  third-party downloads (Oh My Zsh, plugins, vim-plug, TPM)
+├── .chezmoiexternal.toml  third-party downloads (Oh My Zsh, plugins, TPM)
 ├── .chezmoiignore         files skipped per profile or when an app is missing
 ├── .chezmoiscripts/       the 3 setup scripts: Brewfile, macOS, SSH and GitHub
 ├── .chezmoitemplates/     the shared start of every script

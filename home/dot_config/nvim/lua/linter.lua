@@ -1,40 +1,32 @@
-local make_linter_warnings = function(diagnostic)
-	diagnostic.severity = diagnostic.message:find("really") and vim.diagnostic.severity["ERROR"]
-		or vim.diagnostic.severity["WARN"]
-end
+-- Formatters (conform.nvim) and linters (nvim-lint). Both run external tools
+-- and skip the ones that are not installed.
 
-local null_ls = require("null-ls")
-local diagnostics = null_ls.builtins.diagnostics
-local formatting = null_ls.builtins.formatting
-
-require("null-ls").setup({
-	sources = {
-		-- Python
-		-- diagnostics.ruff.with({ diagnostics_postprocess = make_linter_warnings }),
-		formatting.black,
-		formatting.isort,
-
-		-- JSON
-		-- formatting.jq,
-
-		-- JS/TS
-		-- diagnostics.eslint,
-		-- formatting.eslint,
-		-- formatting.prettier.with({ -- Also HTML/CSS/YAML/MD/JSON/GRAPHQL. Can even support Solidity with extensions.
-		-- 	extra_filetypes = { "solidity" },
-		-- }),
-
-		-- ZSH
-		diagnostics.zsh,
-
-		-- Lua
-		-- diagnostics.stylua,
-		formatting.stylua,
-
-		-- Solidity
-		-- diagnostics.solhint,
-
-		-- Vim
-		diagnostics.vint,
+require("conform").setup({
+	formatters_by_ft = {
+		python = { "isort", "black" },
+		lua = { "stylua" },
 	},
+	-- Format on save; without a formatter above, fall back to the LSP server.
+	-- Skip it once with <leader>nfw.
+	format_on_save = {
+		timeout_ms = 1000,
+		lsp_format = "fallback",
+	},
+	notify_no_formatters = false,
+})
+
+local lint = require("lint")
+lint.linters_by_ft = {
+	go = { "golangcilint" },
+	zsh = { "zsh" },
+	vim = { "vint" },
+}
+
+-- On open and on save. FileType rather than BufReadPost: the filetype, which
+-- picks the linter, is not set yet when BufReadPost runs.
+vim.api.nvim_create_autocmd({ "FileType", "BufWritePost" }, {
+	group = vim.api.nvim_create_augroup("AuLint", { clear = true }),
+	callback = function()
+		lint.try_lint()
+	end,
 })

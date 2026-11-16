@@ -30,26 +30,23 @@ for _, language in ipairs(js_based_languages) do
 	}
 end
 
-require("dap-vscode-js").setup({
-	node_path = vim.fn.exepath("node"), -- whichever node is first on PATH
-	-- After cloning we do "npx gulp vsDebugServerBundle && mv dist out"
-	debugger_path = vim.fn.expand("$DEV_DIR/utils/vscode-js-debug"),
-	-- debugger_cmd = { "extension" }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
-	-- which adapters to register in nvim-dap
-	adapters = {
-		"chrome",
-		"pwa-node",
-		"pwa-chrome",
-		"pwa-msedge",
-		"node-terminal",
-		"pwa-extensionHost",
-		"node",
-		"chrome",
-	},
-	-- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
-	-- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
-	-- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
-})
+-- The adapter is Microsoft's vscode-js-debug, run directly by nvim-dap.
+-- Download js-debug-dap-*.tar.gz from its GitHub releases and extract it into
+-- $DEV_DIR/utils (it unpacks to a js-debug folder).
+for _, adapter in ipairs({ "pwa-node", "pwa-chrome" }) do
+	dap.adapters[adapter] = {
+		type = "server",
+		host = "localhost",
+		port = "${port}",
+		executable = {
+			command = "node",
+			args = { vim.fn.expand("$DEV_DIR/utils/js-debug/src/dapDebugServer.js"), "${port}" },
+		},
+	}
+end
+
+-- Go: adapter and launch configurations for delve, plus "debug this test".
+require("dap-go").setup()
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open({})

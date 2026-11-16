@@ -51,6 +51,10 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
+# Go: keep its workspace out of $HOME (default ~/go); `go install` puts binaries in bin.
+export GOPATH=$XDG_DATA_HOME/go
+path=($GOPATH/bin $path)
+
 # Default applications
 export EDITOR='zed'
 export SANTREE_EDITOR='zed'

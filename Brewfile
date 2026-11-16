@@ -27,7 +27,8 @@ brew "mas"
 brew "chezmoi"    # Dotfiles manager that applies this repo to $HOME
 
 # ---- Shell and CLI tools ----
-brew "fzf"       # Command-line fuzzy finder
+brew "fd"         # Fast alternative to find (nvim file tree search)
+brew "fzf"        # Command-line fuzzy finder
 brew "ripgrep"    # Lightning-fast recursive text search tool (also used by nvim)
 brew "thefuck"    # The Fuck for correcting command-line mistakes
 brew "tree"       # Tree for directory listing
@@ -38,11 +39,25 @@ brew "git-delta"  # Git diff viewer (pager set in git/config)
 brew "gh"         # GitHub CLI for pull requests, issues, and more
 
 # ---- Neovim and the tools its config calls ----
-brew "neovim"              # Hyperextensible Vim-based text editor
-brew "vint"                # Vim script linter (editors/nvim/lua/linter.lua)
-npm "vim-language-server"  # Vim script LSP, "vimls" (editors/nvim/lua/lsp.lua)
-brew "eslint"              # JavaScript linter (editors/nvim/lua/linter.lua)
-# Also needs ripgrep, listed under "Shell and CLI tools".
+brew "neovim"                       # Hyperextensible Vim-based text editor
+brew "tree-sitter-cli"              # Compiles Treesitter parsers (editors/nvim/lua/treesitter.lua)
+brew "vint"                         # Vim script linter (editors/nvim/lua/linter.lua)
+brew "eslint"                       # JavaScript linter (editors/nvim/lua/linter.lua)
+brew "black"                        # Python formatter (editors/nvim/lua/linter.lua)
+brew "isort"                        # Python import sorter (editors/nvim/lua/linter.lua)
+brew "stylua"                       # Lua formatter (editors/nvim/lua/linter.lua)
+npm "vim-language-server"           # Vim script LSP, "vimls" (editors/nvim/lua/lsp.lua)
+brew "typescript"                   # TypeScript 7 compiler and LSP, "tsc" (editors/nvim/lua/lsp.lua)
+brew "pyright"                      # Python LSP (editors/nvim/lua/lsp.lua)
+npm "graphql-language-service-cli"  # GraphQL LSP, "graphql-lsp" (editors/nvim/lua/lsp.lua)
+# Also needs ripgrep and fd, listed under "Shell and CLI tools".
+
+# ---- Go ----
+brew "go"             # Go compiler and tools
+brew "gopls"          # Go LSP: completion, gofumpt formatting, imports (editors/nvim/lua/lsp.lua)
+brew "golangci-lint"  # Go linter (editors/nvim/lua/linter.lua)
+brew "delve"          # Go debugger, "dlv" (editors/nvim/lua/debug-config.lua)
+brew "gotestsum"      # Go test runner with reliable output (editors/nvim/lua/test-config.lua)
 
 # ---- Terminal ----
 cask "ghostty"       # Fast, feature-rich terminal emulator
