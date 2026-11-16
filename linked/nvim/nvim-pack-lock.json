@@ -10,6 +10,10 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "catppuccin": {
+      "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
+      "src": "https://github.com/catppuccin/nvim"
+    },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -29,10 +33,6 @@
     "lualine.nvim": {
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
-    },
-    "material.nvim": {
-      "rev": "92f7366a9315cd386bc4fa4d716fde375dda210f",
-      "src": "https://github.com/marko-cerovac/material.nvim"
     },
     "mini.icons": {
       "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
