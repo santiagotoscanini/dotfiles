@@ -127,10 +127,6 @@
     # Remove branches that have already been merged with main
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-    # Commit dotfiles
-    dotfiles = "!source $XDG_CONFIG_HOME/git/git.alias.zsh && commitDotfiles"
-    df = dotfiles
-
     # List contributors with number of commits
     contributors = shortlog --summary --numbered
 

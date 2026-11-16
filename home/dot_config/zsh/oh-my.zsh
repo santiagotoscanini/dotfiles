@@ -39,21 +39,20 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
 # -------------- TMUX -------
-# Only start tmux automatically in standalone terminals, not in IDEs
+# The oh-my-zsh tmux plugin is off. To use it again, uncomment this block:
+# it starts tmux automatically in standalone terminals, not in IDEs.
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
-if [[ "$TERM_PROGRAM" != "zed" &&
-      "$TERM_PROGRAM" != "vscode" &&
-      "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" &&
-      -z "$CONDUCTOR_WORKSPACE_NAME" &&
-      -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then
-
-  # plugins+=(tmux)  # disabled to speed up shell startup
-
-  ZSH_TMUX_AUTOSTART=false                        # Automatically start tmux session
-  ZSH_TMUX_AUTOSTART_ONCE=true                    # Only if tmux hasn't been started previously
-  ZSH_TMUX_AUTOQUIT=true                          # Automatically closes terminal once tmux exits
-  ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf # Use custom tmux config
-fi
+# if [[ "$TERM_PROGRAM" != "zed" &&
+#       "$TERM_PROGRAM" != "vscode" &&
+#       "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" &&
+#       -z "$CONDUCTOR_WORKSPACE_NAME" &&
+#       -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then
+#   plugins+=(tmux)
+#   ZSH_TMUX_AUTOSTART=false                        # Automatically start tmux session
+#   ZSH_TMUX_AUTOSTART_ONCE=true                    # Only if tmux hasn't been started previously
+#   ZSH_TMUX_AUTOQUIT=true                          # Automatically closes terminal once tmux exits
+#   ZSH_TMUX_CONFIG=$XDG_CONFIG_HOME/tmux/tmux.conf # Use custom tmux config
+# fi
 
 # -------------- Development Tools -------
 # Development tool completions and integrations

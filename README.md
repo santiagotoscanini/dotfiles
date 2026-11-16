@@ -78,7 +78,7 @@ Change an answer later with `chezmoi init --prompt`.
 | List tracked / untracked config | `chezmoi managed` / `chezmoi unmanaged ~/.config` | `,dl` / `,dt` |
 | Get changes from another machine | `chezmoi update` (git pull + apply) | `,du` |
 | Add an app or tool | add it to the [Brewfile](Brewfile), then `chezmoi apply` | |
-| Commit and push everything | `git df` | |
+| Push the commits | `chezmoi git push` | |
 | Check the setup is healthy | `chezmoi doctor` | |
 
 `chezmoi add`, `edit` and `re-add` commit automatically; pushing is manual.

@@ -42,7 +42,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 {{- end }}
 
 # `chezmoi add`, `edit` and `re-add` commit to the repo; pushing stays manual
-# (`git df`, or `chezmoi git push`).
+# (`chezmoi git push`).
 [git]
     autoCommit = true
     autoPush = false

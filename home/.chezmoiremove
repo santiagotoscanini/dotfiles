@@ -9,3 +9,6 @@
 .config/nvim/lua/nvim-cmp.lua
 .local/share/nvim/site/autoload/plug.vim
 .local/share/nvim/plugged
+
+# The `git df` helper, replaced by chezmoi's own auto-commit.
+.config/git/git.alias.zsh

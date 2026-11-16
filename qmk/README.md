@@ -22,6 +22,6 @@ in a `qmk.json` here, so `qmk userspace-compile` builds everything at once.
 ## Build and flash
 
 ```bash
-,qmkc    # qmk compile -kb crkbd -km santi_km
-,qmkf    # qmk flash   -kb crkbd -km santi_km
+qmk compile -kb crkbd -km santi_km
+qmk flash   -kb crkbd -km santi_km
 ```

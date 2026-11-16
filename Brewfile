@@ -44,6 +44,7 @@ brew "vint"                         # Vim script linter (nvim/lua/linter.lua)
 brew "black"                        # Python formatter (nvim/lua/linter.lua)
 brew "isort"                        # Python import sorter (nvim/lua/linter.lua)
 brew "stylua"                       # Lua formatter (nvim/lua/linter.lua)
+brew "node"                         # JavaScript runtime; its npm installs the npm entries below
 npm "vim-language-server"           # Vim script LSP, "vimls" (nvim/lua/lsp.lua)
 brew "typescript"                   # TypeScript 7 compiler and LSP, "tsc" (nvim/lua/lsp.lua)
 brew "pyright"                      # Python LSP (nvim/lua/lsp.lua)

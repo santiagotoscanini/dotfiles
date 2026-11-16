@@ -33,7 +33,6 @@ fi
 # Directory configurations (filled in by chezmoi from this machine's answers)
 export DOTFILES_DIR={{ .chezmoi.workingTree | quote }}  # the chezmoi source repo
 export DEV_DIR="$HOME/{{ .devDir }}"                     # projects: $DEV_DIR/{personal,work}
-export QMK_DIR=$HOME/qmk_firmware
 
 # Machine profile; the Brewfile reads it, so a plain `brew bundle` in the repo
 # installs the same set chezmoi does.
