@@ -38,3 +38,16 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
+
+# ---- Work ----
+
+# Supabase CLI pinned to the version the Flai monorepo's CI and Cloud image use
+# (.github/workflows/db-generate.yml). Homebrew only ships the latest release,
+# and v3 rejects the repo's supabase/config.toml. Bump the version, URL and
+# checksum together, from the release's supabase_<version>_checksums.txt.
+[".local/bin/supabase"]
+    type = "archive-file"
+    url = "https://github.com/supabase/cli/releases/download/v2.75.0/supabase_darwin_arm64.tar.gz"
+    checksum.sha256 = "6618736487287a9f0835c44a7101694deb4ca1192852a070a93014437641cea3"
+    path = "supabase"
+    executable = true

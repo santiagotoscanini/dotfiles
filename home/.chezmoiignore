@@ -20,6 +20,9 @@ README.md
 # ---- Work-only ----
 {{- if ne .profile "work" }}
 .config/git/config.work
+.docker
+.docker/**
+.local/bin/supabase
 {{- end }}
 
 # ---- Apps that aren't installed ----

@@ -119,4 +119,13 @@ end
 if profile == "work"
   # ---- Communication ----
   cask "slack"  # Team collaboration and messaging platform
+
+  # ---- Flai monorepo ----
+  brew "colima"          # Docker-compatible VM; runs Supabase, Redis and LocalStack
+  brew "docker"          # Docker CLI that talks to the Colima VM
+  brew "docker-compose"  # `docker compose` plugin (linked from ~/.docker/cli-plugins)
+  brew "pnpm"            # Workspace package manager; switches to the repo's pinned version
+  brew "temporal"        # Temporal dev server for the core worker
+  brew "uv"              # Python env and 3.12 runtime for agents/voice
+  cask "ngrok"           # Tunnel to the local API for webhook testing
 end
