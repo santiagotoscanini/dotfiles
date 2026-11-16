@@ -5,6 +5,8 @@
 #   3. log in to GitHub with gh if needed (opens a browser)
 #   4. upload the key as an authentication key and as a signing key, only
 #      where GitHub doesn't have it yet
+#   5. trust GitHub's SSH host keys in ~/.ssh/known_hosts, so the first
+#      `git push` doesn't fail with "Host key verification failed"
 #
 # run_onchange: re-runs when the key name, emails or GitHub user change.
 # If the GitHub part fails (no browser, declined login), the next
@@ -65,3 +67,19 @@ upload_if_missing() { # <type> <api endpoint listing that type of key>
 }
 upload_if_missing authentication user/keys
 upload_if_missing signing user/ssh_signing_keys
+
+# ---- 5. GitHub host keys ----
+# gh and the uploads above use HTTPS, so nothing has connected over SSH yet
+# and known_hosts has no github.com entry. Without one, non-interactive git
+# (scripts, agents, editors) refuses to connect. The keys come from GitHub's
+# API over authenticated HTTPS, which is a trusted channel; ssh-keyscan would
+# accept whatever host answers. Appends only missing keys, so it also picks
+# up keys GitHub rotates in.
+known_hosts="$ssh_dir/known_hosts"
+touch "$known_hosts" && chmod 600 "$known_hosts"
+while read -r hostkey; do
+  if ! grep -qxF "github.com $hostkey" "$known_hosts"; then
+    log "Trusting GitHub host key ${hostkey%% *}"
+    printf 'github.com %s\n' "$hostkey" >> "$known_hosts"
+  fi
+done < <(gh api meta --jq '.ssh_keys[]')
