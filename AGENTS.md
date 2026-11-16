@@ -55,7 +55,7 @@ There is no other tooling: no build step, no custom CLI.
 | `home/dot_claude/CLAUDE.md` | `~/.claude/CLAUDE.md`: Claude Code's user-level memory, a single `@~/.config/agents/AGENTS.md` import. Next to it, `symlink_settings.json.tmpl` links `~/.claude/settings.json` to `linked/claude/settings.json` (commit attribution off). chezmoi manages only these two, never the rest of `~/.claude` |
 | `home/private_dot_ssh/private_config.tmpl` | `~/.ssh/config` (0600 inside a 0700 dir) |
 | `linked/` | Real files for apps that rewrite them: Zed, VS Code and Claude Code settings, Neovim's plugin lockfile |
-| `obsidian/` | `.obsidian.vimrc`, copied into the vault by hand. Not deployed |
+| `obsidian/` | `.obsidian.vimrc`. Not deployed: the vault's Vimrc Support plugin reads it in place via a vault-relative path |
 | `qmk/` | QMK External Userspace for the Corne keymap. Not deployed |
 
 ## Scripts (`home/.chezmoiscripts/`)
@@ -74,7 +74,7 @@ A template that renders to empty or whitespace is skipped, which is how
 | `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it, adds GitHub's host keys (from `gh api meta`) to `known_hosts` | key, emails or GitHub user change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
 
 **Keep it at three.** The user wants a lean setup: no script for things done
-once and rarely (Rosetta, the Obsidian vimrc,
+once and rarely (Rosetta,
 QMK); those are one-line manual steps in README.md. Homebrew is installed by
 hand before chezmoi (it provides chezmoi itself), so no script installs it.
 Before adding a script, ask; prefer extending one of the three.
