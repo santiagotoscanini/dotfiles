@@ -18,6 +18,11 @@ unless PROFILES.include?(profile)
   abort "Brewfile: unknown HOMEBREW_DOTFILES_PROFILE=#{profile.inspect} (expected: #{PROFILES.join(", ")})"
 end
 
+# Fonts go to /Library/Fonts instead of the default ~/Library/Fonts: on a Mac
+# with several accounts, brew runs as the account that owns Homebrew, so a
+# per-user font would only reach that account.
+cask_args fontdir: "/Library/Fonts"
+
 # ==================== base ====================
 
 # Mac App Store CLI, needed by the mas entries
@@ -56,6 +61,9 @@ brew "gopls"          # Go LSP: completion, gofumpt formatting, imports (nvim/lu
 brew "golangci-lint"  # Go linter (nvim/lua/linter.lua)
 brew "delve"          # Go debugger, "dlv" (nvim/lua/debug-config.lua)
 brew "gotestsum"      # Go test runner with reliable output (nvim/lua/test-config.lua)
+
+# ---- Fonts ----
+cask "font-jetbrains-mono-nerd-font"  # Obsidian text and code font; Nerd Font glyphs for the shell prompt
 
 # ---- Terminal ----
 cask "ghostty"       # Fast, feature-rich terminal emulator
