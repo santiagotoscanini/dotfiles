@@ -118,3 +118,9 @@ if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
 else
   echo "Error: Oh-My-Zsh not found at $ZSH. Run: chezmoi apply" >&2
 fi
+
+# Window and tab title: the folder's name ("monorepo") instead of
+# user@host:~/full/path. While a command runs it shows the command instead.
+# Set after the source above, which assigns the defaults unconditionally.
+ZSH_THEME_TERM_TITLE_IDLE="%1~"
+ZSH_THEME_TERM_TAB_TITLE_IDLE="%1~"
