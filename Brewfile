@@ -138,5 +138,7 @@ if profile == "work"
   brew "opus"            # Opus codec, linked by the core worker (livekit media-sdk)
   brew "opusfile"        # Opus file decoding for the core worker
   brew "libsoxr"         # Resampler for the core worker's audio pipeline
+  # libpq is keg-only; link: true puts psql and pg_isready on PATH.
+  brew "libpq", link: true  # psql for the local Supabase DB (supabase/scripts/load-on-demand.sh)
   cask "ngrok"           # Tunnel to the local API for webhook testing
 end
