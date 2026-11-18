@@ -58,6 +58,12 @@ export SANTREE_DIFF_TOOL='delta'
 export VISUAL='nvim'
 export PAGER='less'
 
+# process-compose's control server defaults to localhost:8080, which collides
+# with dev servers (the Flai API). 127.0.0.1 also keeps `process-compose down`
+# from dialing IPv6 [::1], where the server doesn't listen.
+export PC_PORT_NUM=8099
+export PC_ADDRESS=127.0.0.1
+
 # Load work-specific configurations
 [[ -f $XDG_CONFIG_HOME/zsh/work.zsh ]] && source $XDG_CONFIG_HOME/zsh/work.zsh
 [[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

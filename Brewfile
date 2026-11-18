@@ -129,6 +129,10 @@ if profile == "work"
   brew "docker"          # Docker CLI that talks to the Colima VM
   brew "docker-compose"  # `docker compose` plugin (linked from ~/.docker/cli-plugins)
   brew "pnpm"            # Workspace package manager; switches to the repo's pinned version
+  # process-compose isn't in homebrew-core; it comes from its author's tap.
+  # trusted: true trusts only this formula, not everything in the tap.
+  tap "f1bonacc1/tap"
+  brew "f1bonacc1/tap/process-compose", trusted: true  # Runs the local dev processes (git-excluded process-compose.yaml)
   brew "temporal"        # Temporal dev server for the core worker
   brew "uv"              # Python env and 3.12 runtime for agents/voice
   cask "ngrok"           # Tunnel to the local API for webhook testing

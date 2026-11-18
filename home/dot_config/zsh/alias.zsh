@@ -72,6 +72,22 @@ function _noderepl() {
 }
 alias ,noderepl='_noderepl'
 
+# =========== process-compose ===========
+# Local dev processes, from the process-compose.yaml in the current directory.
+# The server always runs in the background, so closing the TUI never stops
+# anything; only `pcd` does. Process names pass through: `pcu api worker`
+# starts only those (and their dependencies), `pcr migrate` re-runs one.
+alias pc="process-compose"
+alias pcu="process-compose up --detached-with-tui"  # start and open the TUI
+alias pcub="process-compose up -D"                  # start in the background, no TUI
+alias pca="process-compose attach"                  # reopen the TUI
+alias pcd="process-compose down"                    # stop everything
+alias pcls="process-compose process list -o wide"   # state of each process
+alias pclog="process-compose process logs -f"       # follow one process's logs
+alias pcs="process-compose process start"           # start one (an optional one, or a tool)
+alias pcr="process-compose process restart"         # restart one
+alias pcx="process-compose process stop"            # stop one
+
 # =========== Homebrew on a Mac with several accounts ===========
 # Homebrew supports one owning account per install. In any other account,
 # `brew` runs as that owner through sudo (asks for this account's password),
