@@ -24,6 +24,10 @@ machine gets the same plugin versions.
 `claude/settings.json` holds Claude Code's user-level settings. An empty
 `attribution.commit` / `attribution.pr` stops it adding "Co-Authored-By" and
 "Generated with Claude Code" lines to commits and pull requests.
+`permissions.deny` hides personal claude.ai connectors (finance, health,
+mail, media, chats…) from Claude Code; they stay connected for Claude
+Desktop and the web. A rule naming a whole server (`mcp__claude_ai_<Name>`)
+removes all its tools. New connectors show up until they are added here.
 
 The VS Code links are only created on Macs where VS Code is installed
 (see `home/.chezmoiignore`).
