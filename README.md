@@ -73,7 +73,7 @@ Change an answer later with `chezmoi init --prompt`.
 
 | I want to… | Run | Shortcut |
 |---|---|---|
-| Change a config | `chezmoi edit ~/.config/zsh/alias.zsh` (opens Zed, applies on close, commits) | `,de` |
+| Change a config | `chezmoi edit ~/.config/zsh/alias.zsh` (opens Neovim, applies on close, commits) | `,de` |
 | …or edit the repo directly | edit under `home/`, then `chezmoi apply` | `,di` |
 | See what apply would change | `chezmoi diff` | `,dd` |
 | See drift and pending scripts | `chezmoi status` | `,dc` |
@@ -87,7 +87,7 @@ Change an answer later with `chezmoi init --prompt`.
 | Check the setup is healthy | `chezmoi doctor` | |
 
 `chezmoi add`, `edit` and `re-add` commit automatically; pushing is manual.
-Zed and VS Code settings are symlinks into [`linked/`](linked/README.md), so
+VS Code and Claude Code settings are symlinks into [`linked/`](linked/README.md), so
 changes made in those apps show up in `git status` right away.
 
 ---
@@ -105,7 +105,7 @@ home/                  what ends up in $HOME (chezmoi source state)
 ├── .chezmoiscripts/       the 3 setup scripts: Brewfile, macOS, SSH and GitHub
 ├── .chezmoitemplates/     the shared start of every script
 ├── dot_zshenv             → ~/.zshenv (moves zsh config to ~/.config/zsh)
-├── dot_config/            → ~/.config (zsh, nvim, git, gh, ghostty, tmux, zed)
+├── dot_config/            → ~/.config (zsh, nvim, git, gh, ghostty, tmux)
 ├── private_dot_ssh/       → ~/.ssh (mode 0700/0600)
 └── private_Library/       → ~/Library, kept 0700 (VS Code, only when installed)
 linked/                apps that rewrite their own settings; $HOME gets symlinks to these

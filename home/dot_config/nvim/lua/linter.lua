@@ -3,7 +3,7 @@
 
 require("conform").setup({
 	formatters_by_ft = {
-		-- ruff sorts the imports, then formats: the same tool Zed uses.
+		-- ruff sorts the imports, then formats.
 		python = { "ruff_organize_imports", "ruff_format" },
 		lua = { "stylua" },
 	},

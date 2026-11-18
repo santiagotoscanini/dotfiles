@@ -38,8 +38,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 
 # `chezmoi edit` must block until the file is closed.
 [edit]
-    command = "zed"
-    args = ["--wait"]
+    command = "nvim"
     apply = true  # apply the file as soon as the editor closes
 
 [diff]

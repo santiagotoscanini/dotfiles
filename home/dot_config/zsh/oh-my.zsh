@@ -42,8 +42,7 @@ bindkey "^[[B" history-beginning-search-forward
 # The oh-my-zsh tmux plugin is off. To use it again, uncomment this block:
 # it starts tmux automatically in standalone terminals, not in IDEs.
 # Docs: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/tmux
-# if [[ "$TERM_PROGRAM" != "zed" &&
-#       "$TERM_PROGRAM" != "vscode" &&
+# if [[ "$TERM_PROGRAM" != "vscode" &&
 #       "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" &&
 #       -z "$CONDUCTOR_WORKSPACE_NAME" &&
 #       -z "$INTELLIJ_ENVIRONMENT_READER" ]]; then

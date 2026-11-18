@@ -1,6 +1,6 @@
 # linked/
 
-Files that **apps rewrite themselves**: Zed, VS Code and Claude Code settings,
+Files that **apps rewrite themselves**: VS Code and Claude Code settings,
 and Neovim's plugin lockfile.
 
 Everything under `home/` is copied into `$HOME` by `chezmoi apply`, so if an app
@@ -11,8 +11,6 @@ ready to commit.
 
 | File in this folder | Symlink in $HOME | Defined by |
 |---|---|---|
-| `zed/settings.json` | `~/.config/zed/settings.json` | `home/dot_config/zed/symlink_settings.json.tmpl` |
-| `zed/keymap.json` | `~/.config/zed/keymap.json` | `home/dot_config/zed/symlink_keymap.json.tmpl` |
 | `nvim/nvim-pack-lock.json` | `~/.config/nvim/nvim-pack-lock.json` | `home/dot_config/nvim/symlink_nvim-pack-lock.json.tmpl` |
 | `claude/settings.json` | `~/.claude/settings.json` | `home/dot_claude/symlink_settings.json.tmpl` |
 | `vscode/settings.json` | `~/Library/Application Support/Code/User/settings.json` | `home/private_Library/Application Support/Code/User/symlink_settings.json.tmpl` |

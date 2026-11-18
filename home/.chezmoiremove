@@ -12,3 +12,7 @@
 
 # The `git df` helper, replaced by chezmoi's own auto-commit.
 .config/git/git.alias.zsh
+
+# Zed, replaced by Neovim as the main editor (settings lived in linked/zed).
+.config/zed/settings.json
+.config/zed/keymap.json

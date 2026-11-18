@@ -70,7 +70,6 @@ cask "ghostty"       # Fast, feature-rich terminal emulator
 brew "tmux"          # Terminal multiplexer for managing sessions
 
 # ---- Development ----
-cask "zed"                  # Zed for code editing
 mas "Xcode", id: 497799835  # Xcode editor
 # cask "visual-studio-code" # Settings kept in linked/vscode; deployed once installed
 
