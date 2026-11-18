@@ -77,6 +77,7 @@ mas "Xcode", id: 497799835  # Xcode editor
 cask "claude"                                # Claude desktop app
 cask "claude-code"                           # Claude Code CLI, also used by Obsidian's Agent Client plugin
 npm "@agentclientprotocol/claude-agent-acp"  # ACP adapter: lets Agent Client (Obsidian) drive Claude Code
+cask "t3-code"                               # T3 Code: minimal GUI for running coding agents
 
 # ---- Apps ----
 cask "wispr-flow"     # Voice-to-text dictation
