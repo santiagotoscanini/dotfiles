@@ -112,6 +112,28 @@ if !exists('g:vscode')
     nnoremap <leader>sf <cmd>lua Snacks.explorer.reveal()<cr>
     " The current file's directory as an editable buffer
     nnoremap - <cmd>Oil<cr>
+    " Pick a folder under the working directory and open it in Oil
+    lua << EOF
+    vim.keymap.set("n", "<leader>d", function()
+        Snacks.picker.pick({
+            title = "Folders",
+            finder = "proc",
+            cmd = "fd",
+            args = { "--type", "d", "--color", "never", "-E", ".git" },
+            transform = function(item)
+                item.file = item.text
+                item.dir = true
+            end,
+            format = "file",
+            confirm = function(picker, item)
+                picker:close()
+                if item then
+                    require("oil").open(item.file)
+                end
+            end,
+        })
+    end, { desc = "Find folder" })
+EOF
 
     " ------- LSP ---------
     " Neovim's own defaults also work: grn rename, gra code action, grr
