@@ -135,5 +135,9 @@ if profile == "work"
   brew "f1bonacc1/tap/process-compose", trusted: true  # Runs the local dev processes (git-excluded process-compose.yaml)
   brew "temporal"        # Temporal dev server for the core worker
   brew "uv"              # Python env and 3.12 runtime for agents/voice
+  brew "pkgconf"         # pkg-config for the core worker's cgo audio deps
+  brew "opus"            # Opus codec, linked by the core worker (livekit media-sdk)
+  brew "opusfile"        # Opus file decoding for the core worker
+  brew "libsoxr"         # Resampler for the core worker's audio pipeline
   cask "ngrok"           # Tunnel to the local API for webhook testing
 end
