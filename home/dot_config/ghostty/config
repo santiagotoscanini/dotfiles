@@ -6,8 +6,9 @@
 # Follows the system appearance. Both themes live in ./themes.
 theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 
-# No titlebar: just the terminal with rounded corners. Tabs still work
-# (cmd+t); move the window by option+dragging its edge.
+# No titlebar: just the terminal with rounded corners. Ghostty turns tabs off
+# with it, so cmd+t opens a new window: use splits. Move the window by
+# option+dragging its edge.
 macos-titlebar-style = hidden
 
 # Slightly see-through, with the macOS glass blur behind (restart to change).
@@ -65,8 +66,20 @@ quick-terminal-screen = mouse
 quick-terminal-animation-duration = 0.15
 
 # ---- Keys ----
-# Splits move like Vim. The defaults (cmd+d, cmd+shift+d, cmd+[ and cmd+])
-# still work.
+# Splits use the same keys as tmux and Neovim, with cmd as the prefix:
+#   cmd+-  split below      (tmux prefix -,  Neovim <leader>-)
+#   cmd+_  split beside     (tmux prefix _,  Neovim <leader>_)
+#   cmd+shift+h/j/k/l       resize           (tmux prefix H/J/K/L)
+#   cmd+ctrl+h/j/k/l        move             (tmux and Neovim ctrl+h/j/k/l)
+# The defaults (cmd+d, cmd+shift+d, cmd+[ and cmd+]) still work. cmd+- was
+# smaller text; that moves to cmd+alt+-.
+keybind = super+-=new_split:down
+keybind = super+shift+minus=new_split:right
+keybind = super+alt+minus=decrease_font_size:1
+keybind = super+shift+h=resize_split:left,10
+keybind = super+shift+j=resize_split:down,10
+keybind = super+shift+k=resize_split:up,10
+keybind = super+shift+l=resize_split:right,10
 keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+j=goto_split:down
 keybind = super+ctrl+k=goto_split:up
