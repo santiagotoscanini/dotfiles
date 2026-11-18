@@ -70,7 +70,7 @@ A template that renders to empty or whitespace is skipped, which is how
 |---|---|---|
 | `run_onchange_before_10-brew-bundle` | `brew bundle --no-upgrade`. In an account that does not own the Homebrew prefix it runs as the owner through `sudo`, Brewfile on stdin (Homebrew supports one owning account; see README "Several accounts on one Mac") | Brewfile sha256 or profile changes (both embedded in a comment) |
 | `run_onchange_after_10-macos` | `mkdir -p` the projects/screenshot folders, `defaults write`, `killall` | `macos.yaml` or `folders.yaml` changes |
-| `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it, adds GitHub's host keys (from `gh api meta`) to `known_hosts`; on S2 machines, `pass-cli login` if needed and copies the S2 key from Proton Pass to `~/.ssh/s2` | key, emails, GitHub user or S2 answer change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
+| `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it, adds GitHub's host keys (from `gh api meta`) to `known_hosts`, installs missing gh extensions (`gh-stack`); on S2 machines, `pass-cli login` if needed and copies the S2 key from Proton Pass to `~/.ssh/s2` | key, emails, GitHub user, S2 answer or the gh extension list change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
 
 **Keep it at three.** The user wants a lean setup: no script for things done
 once and rarely (Rosetta,

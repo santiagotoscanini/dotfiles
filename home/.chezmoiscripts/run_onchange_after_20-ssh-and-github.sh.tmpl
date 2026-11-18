@@ -7,11 +7,12 @@
 #      where GitHub doesn't have it yet
 #   5. trust GitHub's SSH host keys in ~/.ssh/known_hosts, so the first
 #      `git push` doesn't fail with "Host key verification failed"
-#   6. if this machine connects to S2, copy the home server's key from
+#   6. install the gh extensions listed below, where they're missing
+#   7. if this machine connects to S2, copy the home server's key from
 #      Proton Pass to ~/.ssh/{{ .ssh.s2.key }} (logs in to pass-cli if needed)
 #
-# run_onchange: re-runs when the key name, emails, GitHub user or S2 answer
-# change.
+# run_onchange: re-runs when the key name, emails, GitHub user, S2 answer or
+# the extension list change.
 # If the GitHub part fails (no browser, declined login), the next
 # `chezmoi apply` tries again. Runs last so it never blocks the rest.
 {{ template "script-prelude.sh" . }}
@@ -86,9 +87,19 @@ while read -r hostkey; do
     printf 'github.com %s\n' "$hostkey" >> "$known_hosts"
   fi
 done < <(gh api meta --jq '.ssh_keys[]')
+
+# ---- 6. gh extensions ----
+# gh-stack: stacked branches and pull requests (`gh stack`).
+installed="$(gh extension list)"
+for ext in github/gh-stack; do
+  if ! grep -qF "$ext" <<<"$installed"; then
+    log "Installing the gh extension $ext"
+    gh extension install "$ext"
+  fi
+done
 {{- if dig "s2" false . }}
 
-# ---- 6. S2 home server key ----
+# ---- 7. S2 home server key ----
 # One shared key, kept in Proton Pass instead of generated per machine, so a
 # new Mac logs in without touching the server. Never overwrites a key that's
 # already there.
