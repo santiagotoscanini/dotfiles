@@ -33,7 +33,10 @@ require("snacks").setup({
 	indent = { enabled = true },
 })
 
-require("oil").setup()
+require("oil").setup({
+	-- Keep <C-t> for the global grep picker instead of "open in new tab".
+	keymaps = { ["<C-t>"] = false },
+})
 
 -- Status bar, plus the file path at the top of every window.
 require("lualine").setup({
