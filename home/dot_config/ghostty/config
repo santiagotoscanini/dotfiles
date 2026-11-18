@@ -10,6 +10,9 @@ theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 # so cmd+t opens a tab. (`hidden` looks cleaner but turns tabs off, so
 # cmd+t opens a new window.) Only new windows pick up a change here.
 macos-titlebar-style = tabs
+# No close/minimize/zoom buttons in it: cmd+w, cmd+m and the window menu do
+# the same.
+macos-window-buttons = hidden
 
 # Slightly see-through, with the macOS glass blur behind (restart to change).
 background-opacity = 0.92
