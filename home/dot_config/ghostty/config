@@ -6,10 +6,10 @@
 # Follows the system appearance. Both themes live in ./themes.
 theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 
-# No titlebar: just the terminal with rounded corners. Ghostty turns tabs off
-# with it, so cmd+t opens a new window: use splits. Move the window by
-# option+dragging its edge.
-macos-titlebar-style = hidden
+# A thin titlebar in the terminal's own colour, with the tab bar inside it,
+# so cmd+t opens a tab. (`hidden` looks cleaner but turns tabs off, so
+# cmd+t opens a new window.) Only new windows pick up a change here.
+macos-titlebar-style = tabs
 
 # Slightly see-through, with the macOS glass blur behind (restart to change).
 background-opacity = 0.92
