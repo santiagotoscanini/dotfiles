@@ -19,3 +19,11 @@ ssh:
     user: santiago
     item: "pass://03. Homelab (S2)/S2"   # vault/item; the script appends the field
     field: Private key
+    # WireGuard app tunnels whose name starts with this ("S2", "S2 - Work")
+    # carry `ssh s2` from outside home: ~/.local/bin/s2-proxy reads the first
+    # one this account has in its keychain and runs wireproxy with it.
+    tunnel: S2
+    # S2's own SSH host key (public), written to ~/.ssh/known_hosts so the
+    # first `ssh s2` doesn't ask to trust it. On S2:
+    # cat /etc/ssh/ssh_host_ed25519_key.pub (drop the trailing comment).
+    hostKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILbTWab5bXTnK28kLR2+C0+/Vv156c2mjr91xUMYxuAh"

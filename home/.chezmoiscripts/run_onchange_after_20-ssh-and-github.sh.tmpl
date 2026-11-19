@@ -10,9 +10,10 @@
 #   6. install the gh extensions listed below, where they're missing
 #   7. if this machine connects to S2, copy the home server's key from
 #      Proton Pass to ~/.ssh/{{ .ssh.s2.key }} (logs in to pass-cli if needed)
+#      and trust S2's host key in ~/.ssh/known_hosts
 #
-# run_onchange: re-runs when the key name, emails, GitHub user, S2 answer or
-# the extension list change.
+# run_onchange: re-runs when the key name, emails, GitHub user, S2 answer,
+# S2 host key or the extension list change.
 # If the GitHub part fails (no browser, declined login), the next
 # `chezmoi apply` tries again. Runs last so it never blocks the rest.
 {{ template "script-prelude.sh" . }}
@@ -120,5 +121,13 @@ if [ ! -f "$s2_key" ]; then
   # Fails on anything that isn't a valid private key, before it's installed.
   ssh-keygen -y -f "$tmp" > "$s2_key.pub"
   mv "$tmp" "$s2_key"
+fi
+
+# S2's host key is pinned in ssh.yaml, so the first `ssh s2` doesn't ask to
+# trust it. ssh looks hosts up by HostName, hence the IP.
+s2_hostkey={{ printf "%s %s" .ssh.s2.host .ssh.s2.hostKey | quote }}
+if ! grep -qxF "$s2_hostkey" "$known_hosts"; then
+  log "Trusting the S2 host key"
+  printf '%s\n' "$s2_hostkey" >> "$known_hosts"
 fi
 {{- end }}

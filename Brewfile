@@ -34,6 +34,7 @@ brew "mas"
 # ---- Dotfiles ----
 brew "chezmoi"          # Dotfiles manager that applies this repo to $HOME
 brew "proton-pass-cli"  # Proton Pass CLI (fetches the S2 SSH key at setup, on machines that connect to S2)
+go "github.com/windtf/wireproxy/cmd/wireproxy"  # WireGuard as a plain process: `ssh s2` tunnels through it (~/.local/bin/s2-proxy)
 
 # ---- Shell and CLI tools ----
 brew "fd"         # Fast alternative to find (nvim file tree search)

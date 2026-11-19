@@ -50,6 +50,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 
 # Go: keep its workspace out of $HOME (default ~/go); `go install` puts binaries in bin.
 export GOPATH=$XDG_DATA_HOME/go
+export HOMEBREW_GOPATH=$GOPATH  # brew strips GOPATH; `go` entries in the Brewfile read this one
 path=($GOPATH/bin $path)
 
 # Default applications

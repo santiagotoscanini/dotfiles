@@ -1,0 +1,97 @@
+{{- if dig "s2" false . -}}
+#!/bin/bash
+# ProxyCommand for `ssh s2` (~/.ssh/config): carries only this SSH session
+# through the home WireGuard tunnel, so the rest of the Mac stays off the VPN.
+# Managed by chezmoi: edit home/dot_local/bin/executable_s2-proxy.tmpl.
+#
+#   1. A WireGuard app tunnel to S2 is already connected → connect directly.
+#   2. S2 answers on the local network (at home)          → connect directly.
+#   3. Otherwise go through this account's wireproxy (WireGuard as a plain
+#      process), listening on 127.0.0.1:<40000 + uid>. The first session
+#      starts it in the background with the tunnel config read from the login
+#      keychain, where the WireGuard app stores it (never written to disk);
+#      later sessions reuse it. One shared WireGuard client, because two with
+#      the same key would fight. It keeps running until logout; after
+#      changing the tunnel's keys, `pkill -x wireproxy` so the next session
+#      starts it with the new ones.
+#
+# Setup per account: import the S2 tunnel in WireGuard and leave it
+# disconnected. The first run asks to let `security` read it: Always Allow.
+set -euo pipefail
+
+host="${1:?usage: s2-proxy <host> <port>}"
+port="${2:-22}"
+prefix={{ .ssh.s2.tunnel | quote }}   # WireGuard tunnel names that start with this
+
+# WireGuard tunnels whose name starts with the prefix, as "<status>|<name>".
+tunnels="$(scutil --nc list | sed -nE \
+  's/^. \(([A-Za-z]+)\).*VPN \(com\.wireguard\.macos\) "([^"]*)".*/\1|\2/p' |
+  awk -F'|' -v p="$prefix" 'index($2, p) == 1')"
+
+# 1. The app's tunnel is up: S2 is already reachable. Stop our wireproxy, which
+#    would use the same key.
+if grep -q '^Connected|' <<<"$tunnels"; then
+  pkill -u "$(id -u)" -x wireproxy 2>/dev/null || true
+  exec nc "$host" "$port"
+fi
+
+# 2. At home: no tunnel needed.
+if nc -z -G 1 "$host" "$port" 2>/dev/null; then
+  exec nc "$host" "$port"
+fi
+
+# 3. Through this account's shared wireproxy.
+local_port=$((40000 + $(id -u)))
+if nc -z 127.0.0.1 "$local_port" 2>/dev/null; then
+  exec nc 127.0.0.1 "$local_port"
+fi
+
+# Not running: start it, one session at a time. A lock older than 30 s is left
+# over from a killed run.
+lock="${TMPDIR:-/tmp}/s2-proxy.lock"
+for _ in $(seq 1 60); do
+  mkdir "$lock" 2>/dev/null && break
+  if (( $(date +%s) - $(stat -f %m "$lock" 2>/dev/null || date +%s) > 30 )); then
+    rmdir "$lock" 2>/dev/null || true
+  fi
+  sleep 0.5
+done
+trap 'rmdir "$lock" 2>/dev/null || true' EXIT
+
+# Another session may have started it while this one waited.
+if ! nc -z 127.0.0.1 "$local_port" 2>/dev/null; then
+  # Find a tunnel this account has in its keychain. Other accounts' tunnels
+  # are listed too (VPN configurations are per Mac), but only ours can be read.
+  config=""
+  while IFS='|' read -r _ name; do
+    [ -n "$name" ] || continue
+    if config="$(security find-generic-password -s com.wireguard.macos \
+        -l "WireGuard Tunnel: $name" -w 2>/dev/null)"; then
+      break
+    fi
+    config=""
+  done <<<"$tunnels"
+  if [ -z "$config" ]; then
+    echo "s2-proxy: no WireGuard tunnel starting with \"$prefix\" in this account's keychain." >&2
+    echo "s2-proxy: import the S2 tunnel in the WireGuard app first (leave it disconnected)." >&2
+    exit 1
+  fi
+  # `security -w` prints the secret as hex when it has newlines.
+  if [[ "$config" =~ ^[0-9a-fA-F]+$ ]]; then
+    config="$(xxd -r -p <<<"$config")"
+  fi
+
+  wireproxy="$(command -v wireproxy || echo "${GOPATH:-$HOME/.local/share/go}/bin/wireproxy")"
+  nohup "$wireproxy" --silent --config <(
+    printf '%s\n\n[TCPClientTunnel]\nBindAddress = 127.0.0.1:%s\nTarget = %s:%s\n' \
+      "$config" "$local_port" "$host" "$port"
+  ) </dev/null >/dev/null 2>&1 &
+  for _ in $(seq 1 50); do
+    nc -z 127.0.0.1 "$local_port" 2>/dev/null && break
+    sleep 0.2
+  done
+fi
+rmdir "$lock" 2>/dev/null || true
+trap - EXIT
+exec nc 127.0.0.1 "$local_port"
+{{ end -}}

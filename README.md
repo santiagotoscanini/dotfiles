@@ -64,7 +64,24 @@ tries again; it only uploads what GitHub doesn't already have.
 The S2 home server uses a second, shared key instead: its private key lives
 in Proton Pass (vault `03. Homelab (S2)`, item `S2`, field `Private key`;
 set in `home/.chezmoidata/ssh.yaml`), so a new Mac connects without adding
-anything on the server. An existing `~/.ssh/s2` is never overwritten.
+anything on the server. An existing `~/.ssh/s2` is never overwritten. S2's
+host key is pinned there too (`hostKey`) and added to `~/.ssh/known_hosts`,
+so the first `ssh s2` doesn't ask to trust it.
+
+Away from home, `ssh s2` goes through the home WireGuard tunnel, and only
+that session does: the rest of the Mac stays off the VPN. Its `ProxyCommand`,
+`~/.local/bin/s2-proxy`, connects directly when S2 answers on the local
+network or the WireGuard app's tunnel is already up. Otherwise it goes
+through [wireproxy](https://github.com/windtf/wireproxy) (WireGuard as a
+plain process, from the Brewfile): the first session starts one in the
+background with the tunnel's config read from the login keychain, where the
+WireGuard app keeps it (nothing is written to disk), and every later session
+shares it. It runs until logout; after changing the tunnel's keys, run
+`pkill -x wireproxy`. Sessions also share one SSH connection (`ControlMaster`),
+kept 10 minutes after the last one closes. Once
+per account: import the S2 tunnel in WireGuard (any name starting with `S2`,
+set by `tunnel` in `ssh.yaml`) and leave it disconnected; the first
+`ssh s2` asks to let `security` read it, answer Always Allow.
 
 Change an answer later with `chezmoi init --prompt`.
 

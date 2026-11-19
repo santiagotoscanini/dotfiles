@@ -14,10 +14,17 @@ Host github.com
   IdentityFile ~/.ssh/{{ .ssh.key }}
 {{- if dig "s2" false . }}
 
-# Home server; its key comes from Proton Pass (.chezmoiscripts, ssh.yaml)
+# Home server; its key comes from Proton Pass (.chezmoiscripts, ssh.yaml).
+# Away from home, s2-proxy carries just this session through WireGuard.
 Host s2
   HostName {{ .ssh.s2.host }}
   User {{ .ssh.s2.user }}
   IdentitiesOnly yes
   IdentityFile ~/.ssh/{{ .ssh.s2.key }}
+  ProxyCommand ~/.local/bin/s2-proxy %h %p
+  # Every session shares one connection (one wireproxy): two WireGuard
+  # clients with the same key would fight. Stays up 10 min after the last one.
+  ControlMaster auto
+  ControlPath ~/.ssh/cm-%C
+  ControlPersist 10m
 {{- end }}
