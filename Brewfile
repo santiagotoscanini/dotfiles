@@ -32,7 +32,8 @@ cask_args fontdir: "/Library/Fonts"
 brew "mas"
 
 # ---- Dotfiles ----
-brew "chezmoi"    # Dotfiles manager that applies this repo to $HOME
+brew "chezmoi"          # Dotfiles manager that applies this repo to $HOME
+brew "proton-pass-cli"  # Proton Pass CLI (fetches the S2 SSH key at setup, on machines that connect to S2)
 
 # ---- Shell and CLI tools ----
 brew "fd"         # Fast alternative to find (nvim file tree search)
@@ -113,7 +114,6 @@ if profile == "personal"
   cask "nextcloud"  # Nextcloud sync app
 
   # ---- VPN and security ----
-  brew "proton-pass-cli"           # Proton Pass CLI (fetches the S2 SSH key at setup)
   cask "protonvpn"                 # ProtonVPN for secure VPN access
   mas "WireGuard", id: 1451685025  # WireGuard VPN
 

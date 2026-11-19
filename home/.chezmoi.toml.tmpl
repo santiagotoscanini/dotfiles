@@ -13,12 +13,9 @@
 {{- if eq $profile "work" -}}
 {{-   $workEmail = promptStringOnce . "workEmail" "Work email (git commits in the work folder)" -}}
 {{- end -}}
-{{- /* Only personal machines are asked. Yes fetches the home server's SSH key
-       from Proton Pass at setup (needs a Proton login). */ -}}
-{{- $s2 := false -}}
-{{- if eq $profile "personal" -}}
-{{-   $s2 = promptBoolOnce . "s2" "Connect this machine to the S2 home server" false -}}
-{{- end -}}
+{{- /* Every profile is asked. Yes fetches the home server's SSH key from
+       Proton Pass at setup (needs a Proton login). */ -}}
+{{- $s2 := promptBoolOnce . "s2" "Connect this machine to the S2 home server" false -}}
 {{- /* Every profile is asked. Yes installs Xcode and sets it up for building
        iOS apps and running the iOS Simulator. */ -}}
 {{- $mobileDev := promptBoolOnce . "mobileDev" "Set this machine up for mobile development (Xcode, iOS Simulator)" false -}}
@@ -32,7 +29,7 @@ sourceDir = {{ .chezmoi.workingTree | quote }}
 [data]
     profile = {{ $profile | quote }}  # personal | work, drives Brewfile and templates
     workEmail = {{ $workEmail | quote }}  # work profile only
-    s2 = {{ $s2 }}  # personal only: SSH key for the home server, from Proton Pass
+    s2 = {{ $s2 }}  # SSH key for the home server, from Proton Pass
     mobileDev = {{ $mobileDev }}  # Xcode and the iOS Simulator
 
 # Every script sees the profile and the mobile answer, so `brew bundle` picks

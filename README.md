@@ -34,7 +34,7 @@ chezmoi init --source ~/Development/personal/dotfiles --apply santiagotoscanini
 |---|---|
 | Machine profile (`personal` / `work`) | Which Brewfile section and configs this machine gets |
 | Work email (work machines only) | git commits under `~/Development/work` |
-| Connect this machine to the S2 home server (personal machines only) | `ssh s2`: the `~/.ssh/config` host, and its key fetched from Proton Pass |
+| Connect this machine to the S2 home server | `ssh s2`: the `~/.ssh/config` host, and its key fetched from Proton Pass |
 | Set this machine up for mobile development | Xcode, the developer tools pointed at it, and the iOS Simulator |
 
 Projects always live in `~/Development/personal` and `~/Development/work`
@@ -125,7 +125,7 @@ symlink, `.tmpl` → rendered with machine data, `run_once_` / `run_onchange_`
 The profile chosen at `chezmoi init` drives:
 
 - **Brewfile**: base packages plus the `personal` or `work` section (`HOMEBREW_DOTFILES_PROFILE`), and the mobile development section when that answer is yes (`HOMEBREW_DOTFILES_MOBILE`).
-- **Configs**: `~/.ssh/config` gets the home server host on personal machines that connect to S2; `~/.config/git/config.work` only exists on work.
+- **Configs**: `~/.ssh/config` gets the home server host on machines that connect to S2 (any profile); `~/.config/git/config.work` only exists on work.
 
 ### Machine-only settings (not tracked)
 
