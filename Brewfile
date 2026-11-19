@@ -88,7 +88,8 @@ cask "obsidian"       # Notes vault; also links the `obsidian` CLI into the Home
 # ---- macOS utilities ----
 cask "notunes"  # Avoid opening iTunes accidentally
 cask "raycast"  # Raycast for command-line productivity
-cask "shottr"   # Shottr for screen recording and screenshot management
+cask "shottr"   # Shottr for screenshots and annotation
+cask "kap"      # Kap for screen recordings exported as GIF or MP4
 
 # ---- Media ----
 cask "spotify"  # Music streaming service

@@ -1,7 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
-# macOS setup: the folders other configs expect, the preferences listed in
-# .chezmoidata/macos.yaml, then Screenshot Ultra (not in Homebrew).
+# macOS setup: the folders other configs expect, then the preferences listed
+# in .chezmoidata/macos.yaml.
 # run_onchange: every value is embedded below, so editing macos.yaml or
 # folders.yaml re-runs this on the next `chezmoi apply`.
 {{ template "script-prelude.sh" . }}
@@ -22,11 +22,4 @@ defaults write {{ .domain | quote }} {{ .key | quote }} -{{ .type }} {{ $value |
 {{- range .macos.restart }}
 killall {{ . | quote }} >/dev/null 2>&1 || true
 {{- end }}
-
-# Screenshot Ultra isn't in Homebrew. Its installer replaces the app on every
-# run, so only call it when the app is missing.
-if [ ! -d "/Applications/Screenshot Ultra.app" ]; then
-  log "Installing Screenshot Ultra"
-  curl -sSL https://raw.githubusercontent.com/MPJHorner/ScreenshotUltra/main/scripts/install.sh | bash
-fi
 {{ end -}}
