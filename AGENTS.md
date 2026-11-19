@@ -39,7 +39,7 @@ There is no other tooling: no build step, no custom CLI.
 
 | Path | Purpose |
 |---|---|
-| `Brewfile` | Ruby DSL: `brew`, `cask`, `mas`, `npm` entries in base / `if profile == "personal"` / `if profile == "work"` sections, grouped by purpose with a trailing comment each |
+| `Brewfile` | Ruby DSL: `brew`, `cask`, `mas`, `npm` entries in base / `if mobile` / `if profile == "personal"` / `if profile == "work"` sections, grouped by purpose with a trailing comment each |
 | `home/.chezmoi.toml.tmpl` | `chezmoi init` questions (`promptChoiceOnce` / `promptStringOnce`) → `[data]` plus chezmoi settings (edit command, diff pager, autoCommit, scriptEnv) |
 | `home/.chezmoidata/*.yaml` | Static data merged into templates: `identity` (name, GitHub user, personal email), `devDir` (projects folder: `~/Development/{personal,work}`, fixed), `ssh.key` (the one SSH key, `id_ed25519`), `ssh.s2` (home server host, user and the Proton Pass reference of its shared key), `macos.defaults` and `macos.restart`. **Cannot contain templates.** |
 | `home/.chezmoiexternal.toml` | Downloaded third-party code: Oh My Zsh, powerlevel10k, zsh-vi-mode (`archive`, `exact`), TPM. Weekly refresh |
@@ -68,8 +68,8 @@ A template that renders to empty or whitespace is skipped, which is how
 
 | Script | Kind | Re-runs when |
 |---|---|---|
-| `run_onchange_before_10-brew-bundle` | `brew bundle --no-upgrade`. In an account that does not own the Homebrew prefix it runs as the owner through `sudo`, Brewfile on stdin (Homebrew supports one owning account; see README "Several accounts on one Mac") | Brewfile sha256 or profile changes (both embedded in a comment) |
-| `run_onchange_after_10-macos` | `mkdir -p` the projects/screenshot folders, `defaults write`, `killall` | `macos.yaml` or `folders.yaml` changes |
+| `run_onchange_before_10-brew-bundle` | `brew bundle --no-upgrade`, with `HOMEBREW_DOTFILES_PROFILE` and `HOMEBREW_DOTFILES_MOBILE`. In an account that does not own the Homebrew prefix it runs as the owner through `sudo`, Brewfile on stdin (Homebrew supports one owning account; see README "Several accounts on one Mac") | Brewfile sha256, profile or mobile answer changes (all embedded in a comment) |
+| `run_onchange_after_10-macos` | `mkdir -p` the projects/screenshot folders, `defaults write`, `killall`; on mobile development machines, `xcode-select --switch` to Xcode, license, first launch (`sudo`), iOS Simulator download. Fails (so it re-runs) while Xcode is missing or `sudo` has no terminal | `macos.yaml`, `folders.yaml` or the mobile answer changes |
 | `run_onchange_after_20-ssh-and-github` | `ssh-keygen` if missing, `allowed_signers`, `gh auth login` if needed, uploads the key as auth + signing key where GitHub lacks it, adds GitHub's host keys (from `gh api meta`) to `known_hosts`, installs missing gh extensions (`gh-stack`); on S2 machines, `pass-cli login` if needed and copies the S2 key from Proton Pass to `~/.ssh/s2` | key, emails, GitHub user, S2 answer or the gh extension list change. Last on purpose: interactive (browser); a failure doesn't block the others and is retried next apply |
 
 **Keep it at three.** The user wants a lean setup: no script for things done
@@ -85,7 +85,7 @@ script depend on another file, embed its hash in a comment:
 
 ## Template cheatsheet
 
-- Data: `.profile`, `.workEmail`, `.s2` (per machine; read `.s2` with `dig "s2" false .`
+- Data: `.profile`, `.workEmail`, `.s2`, `.mobileDev` (per machine; read `.s2` and `.mobileDev` with `dig "<key>" false .`
   so machines initialised before the question still render), `.devDir` (`Development`), `.identity.*`,
   `.ssh.key`, `.macos.*`, plus built-ins `.chezmoi.homeDir`, `.chezmoi.os`,
   `.chezmoi.arch`, `.chezmoi.workingTree` (repo root) and `.chezmoi.sourceDir`

@@ -6,8 +6,9 @@
 #   brew bundle --file=Brewfile          # uses $HOMEBREW_DOTFILES_PROFILE from .zshenv
 #   HOMEBREW_DOTFILES_PROFILE=work brew bundle --file=Brewfile
 #
-# The variable needs the HOMEBREW_ prefix: brew strips other environment
-# variables before it evaluates this file. Unset means "personal".
+# The variables need the HOMEBREW_ prefix: brew strips other environment
+# variables before it evaluates this file. An unset profile means "personal";
+# HOMEBREW_DOTFILES_MOBILE=true adds the mobile development section.
 #
 # Every profile includes the base section. The mas entries need you to be
 # signed in to the App Store; the npm entries need npm on PATH.
@@ -17,6 +18,8 @@ profile = ENV.fetch("HOMEBREW_DOTFILES_PROFILE", "personal")
 unless PROFILES.include?(profile)
   abort "Brewfile: unknown HOMEBREW_DOTFILES_PROFILE=#{profile.inspect} (expected: #{PROFILES.join(", ")})"
 end
+# The "mobile development" answer from `chezmoi init`. Unset means no.
+mobile = ENV.fetch("HOMEBREW_DOTFILES_MOBILE", "false") == "true"
 
 # Fonts go to /Library/Fonts instead of the default ~/Library/Fonts: on a Mac
 # with several accounts, brew runs as the account that owns Homebrew, so a
@@ -70,7 +73,6 @@ cask "ghostty"       # Fast, feature-rich terminal emulator
 brew "tmux"          # Terminal multiplexer for managing sessions
 
 # ---- Development ----
-mas "Xcode", id: 497799835  # Xcode editor
 # cask "visual-studio-code" # Settings kept in linked/vscode; deployed once installed
 
 # ---- Claude ----
@@ -95,6 +97,12 @@ cask "kap"      # Kap for screen recordings exported as GIF or MP4
 cask "spotify"  # Music streaming service
 
 # ==================== personal ====================
+
+if mobile
+  # ---- Mobile development ----
+  mas "Xcode", id: 497799835  # iOS SDK and Simulator; set up by run_onchange_after_10-macos
+  brew "cocoapods"              # iOS native dependencies for React Native / Expo builds (pod install)
+end
 
 if profile == "personal"
   # ---- Communication ----

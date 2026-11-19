@@ -35,6 +35,7 @@ chezmoi init --source ~/Development/personal/dotfiles --apply santiagotoscanini
 | Machine profile (`personal` / `work`) | Which Brewfile section and configs this machine gets |
 | Work email (work machines only) | git commits under `~/Development/work` |
 | Connect this machine to the S2 home server (personal machines only) | `ssh s2`: the `~/.ssh/config` host, and its key fetched from Proton Pass |
+| Set this machine up for mobile development | Xcode, the developer tools pointed at it, and the iOS Simulator |
 
 Projects always live in `~/Development/personal` and `~/Development/work`
 (`home/.chezmoidata/folders.yaml`). git uses the personal email everywhere
@@ -44,7 +45,7 @@ Then `apply` does everything else, in this order:
 
 1. **Brewfile**: installs the packages for the profile (asks for your password for some casks; sign in to the App Store first for the `mas` apps).
 2. **Files**: writes every config and downloads Oh My Zsh, powerlevel10k, zsh-vi-mode and TPM.
-3. **macOS**: creates `~/Development/{personal,work}` and `~/Documents/Screenshots`, applies the preferences.
+3. **macOS**: creates `~/Development/{personal,work}` and `~/Documents/Screenshots`, applies the preferences. On a mobile development machine it also points the developer tools at Xcode, accepts its license and installs its first-launch components (asks for your password), then downloads the iOS Simulator (several GB). If Xcode isn't installed yet or there's no terminal for `sudo`, the step fails and runs again on the next apply.
 4. **SSH and GitHub**: creates the SSH key, logs in with `gh` (a browser window opens), and uploads the key as both an authentication and a signing key, titled with the Mac's name and the account. If the machine connects to S2, it also logs in to Proton Pass (`pass-cli login` prints a link to open) and copies the S2 key to `~/.ssh/s2`.
 
 Steps 1, 3 and 4 are the only scripts (`home/.chezmoiscripts/`). Open a new
@@ -123,7 +124,7 @@ symlink, `.tmpl` → rendered with machine data, `run_once_` / `run_onchange_`
 
 The profile chosen at `chezmoi init` drives:
 
-- **Brewfile**: base packages plus the `personal` or `work` section (`HOMEBREW_DOTFILES_PROFILE`).
+- **Brewfile**: base packages plus the `personal` or `work` section (`HOMEBREW_DOTFILES_PROFILE`), and the mobile development section when that answer is yes (`HOMEBREW_DOTFILES_MOBILE`).
 - **Configs**: `~/.ssh/config` gets the home server host on personal machines that connect to S2; `~/.config/git/config.work` only exists on work.
 
 ### Machine-only settings (not tracked)

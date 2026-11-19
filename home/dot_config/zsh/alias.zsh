@@ -101,7 +101,8 @@ if [[ -d /opt/homebrew && ! -O /opt/homebrew ]]; then
         command brew "$@" ;;
       *)
         (cd / && sudo -Hu "$(stat -f %Su /opt/homebrew)" \
-          env HOMEBREW_DOTFILES_PROFILE="$HOMEBREW_DOTFILES_PROFILE" /opt/homebrew/bin/brew "$@") ;;
+          env HOMEBREW_DOTFILES_PROFILE="$HOMEBREW_DOTFILES_PROFILE" \
+            HOMEBREW_DOTFILES_MOBILE="$HOMEBREW_DOTFILES_MOBILE" /opt/homebrew/bin/brew "$@") ;;
     esac
   }
 

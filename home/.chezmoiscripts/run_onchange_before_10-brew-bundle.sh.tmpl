@@ -3,11 +3,13 @@
 # Installs everything in the repo's Brewfile for this machine's profile.
 #
 # run_onchange: chezmoi re-runs this only when the rendered script changes.
-# The hash below changes whenever the Brewfile or the profile changes, so
+# The hash below changes whenever the Brewfile, the profile or the mobile
+# answer changes, so
 # editing the Brewfile and running `chezmoi apply` installs the new entries.
 #
 #   Brewfile sha256: {{ include (joinPath .chezmoi.workingTree "Brewfile") | sha256sum }}
 #   Profile:         {{ .profile }}
+#   Mobile:          {{ dig "mobileDev" false . }}
 #
 # --no-upgrade keeps apply predictable: it only installs what is missing.
 # Upgrade on your own schedule with `brew upgrade`. Nothing is ever
@@ -21,6 +23,7 @@ owner="$(stat -f %Su "$prefix")"
 if [ "$owner" = "$(id -un)" ]; then
   log "Installing Brewfile packages for the {{ .profile }} profile"
   HOMEBREW_DOTFILES_PROFILE={{ .profile | quote }} \
+  HOMEBREW_DOTFILES_MOBILE={{ dig "mobileDev" false . | toString | quote }} \
     brew bundle --file="$brewfile" --no-upgrade
 else
   # Homebrew supports one owning account per install. On a Mac with several
@@ -33,6 +36,7 @@ else
   fi
   log "Installing Brewfile packages for the {{ .profile }} profile as $owner, who owns Homebrew"
   (cd / && sudo -Hu "$owner" env HOMEBREW_DOTFILES_PROFILE={{ .profile | quote }} \
+    HOMEBREW_DOTFILES_MOBILE={{ dig "mobileDev" false . | toString | quote }} \
     "$prefix/bin/brew" bundle --file=- --no-upgrade) < "$brewfile"
 fi
 {{ end -}}
