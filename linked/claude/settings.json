@@ -5,33 +5,81 @@
     "pr": ""
   },
   "theme": "auto",
-  "permissions": {
-    "deny": [
-      "mcp__claude_ai_Finance_-_Binance",
-      "mcp__claude_ai_Finance_-_Plutus",
-      "mcp__claude_ai_Finance_-_Wealthfolio",
-      "mcp__claude_ai_Gmail",
-      "mcp__claude_ai_Gmail_0cfa7ff3",
-      "mcp__claude_ai_Google_Calendar",
-      "mcp__claude_ai_Google_Calendar_f233899c",
-      "mcp__claude_ai_Google_Drive_09c0d727",
-      "mcp__claude_ai_Health_-_Anansi",
-      "mcp__claude_ai_Health_-_Grocy",
-      "mcp__claude_ai_Health_-_Hevy",
-      "mcp__claude_ai_Health_-_getbased",
-      "mcp__claude_ai_Homelab_-_Daedalus",
-      "mcp__claude_ai_Media_-_Calibre",
-      "mcp__claude_ai_Media_-_Ryot",
-      "mcp__claude_ai_Media_-_Seerr",
-      "mcp__claude_ai_Media_-_Shelfmark",
-      "mcp__claude_ai_News_-_Hermes_RSS",
-      "mcp__claude_ai_Personal_-_Notion",
-      "mcp__claude_ai_Personal_-_Proton_Mail",
-      "mcp__claude_ai_Personal_-_Wispr_Flow",
-      "mcp__claude_ai_Shop",
-      "mcp__claude_ai_Social_-_LinkedIn",
-      "mcp__claude_ai_Social_-_WhatsApp",
-      "mcp__claude_ai_Spotify"
-    ]
-  }
+  "deniedMcpServers": [
+    {
+      "serverName": "claude.ai Finance - Binance"
+    },
+    {
+      "serverName": "claude.ai Finance - Plutus"
+    },
+    {
+      "serverName": "claude.ai Finance - Wealthfolio"
+    },
+    {
+      "serverName": "claude.ai Gmail"
+    },
+    {
+      "serverName": "claude.ai Gmail 0cfa7ff3"
+    },
+    {
+      "serverName": "claude.ai Google Calendar"
+    },
+    {
+      "serverName": "claude.ai Google Calendar f233899c"
+    },
+    {
+      "serverName": "claude.ai Google Drive 09c0d727"
+    },
+    {
+      "serverName": "claude.ai Health - Anansi"
+    },
+    {
+      "serverName": "claude.ai Health - Grocy"
+    },
+    {
+      "serverName": "claude.ai Health - Hevy"
+    },
+    {
+      "serverName": "claude.ai Health - getbased"
+    },
+    {
+      "serverName": "claude.ai Homelab - Daedalus"
+    },
+    {
+      "serverName": "claude.ai Media - Calibre"
+    },
+    {
+      "serverName": "claude.ai Media - Ryot"
+    },
+    {
+      "serverName": "claude.ai Media - Seerr"
+    },
+    {
+      "serverName": "claude.ai Media - Shelfmark"
+    },
+    {
+      "serverName": "claude.ai News - Hermes RSS"
+    },
+    {
+      "serverName": "claude.ai Personal - Notion"
+    },
+    {
+      "serverName": "claude.ai Personal - Proton Mail"
+    },
+    {
+      "serverName": "claude.ai Personal - Wispr Flow"
+    },
+    {
+      "serverName": "claude.ai Shop"
+    },
+    {
+      "serverName": "claude.ai Social - LinkedIn"
+    },
+    {
+      "serverName": "claude.ai Social - WhatsApp"
+    },
+    {
+      "serverName": "claude.ai Spotify"
+    }
+  ]
 }
