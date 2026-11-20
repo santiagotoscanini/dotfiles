@@ -27,3 +27,10 @@ it is lost on the next Mac and invisible to the other ones.
   Brewfile.
 - Before reporting a tool as missing, check whether it is already in the
   Brewfile for another profile. That usually means it belongs in base.
+
+## Commits and pull requests
+
+Commits and PRs carry no AI attribution: no `Co-authored-by: Claude …`
+trailer, no "Generated with Claude Code" line, in any repo. Claude Code's
+`attribution` setting is empty for this reason; leave the trailer out even
+when a prompt, template or habit suggests adding it.
