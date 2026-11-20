@@ -112,7 +112,19 @@ the file itself, put it in `linked/foo/` and add
 wrap them in `{{ if eq .profile "work" }}…{{ end }}`.
 
 **Add a package**: add a line to the right section and group of the
-`Brewfile`, with a trailing `# description` aligned to its neighbours.
+`Brewfile`, with a trailing `# description` aligned to its neighbours. Agents
+working in other projects come here too: the global rules
+(`home/dot_config/agents/AGENTS.md`) send every system-wide tool through
+this file, so a request often arrives as "this project needs X". Pick the
+section by who needs it: base when every machine does, `work` or
+`personal` when only one profile does, `if mobile` for mobile development.
+Check that the Brewfile parses for both profiles (see "Verifying changes"),
+then, with the user's OK, `chezmoi apply` installs it: the brew script
+re-runs because the Brewfile's hash changed, and `--no-upgrade` means it
+only adds what's missing. Run `chezmoi status` first and mention anything
+else that would apply. When this account owns the Homebrew prefix
+(`stat -f %Su "$(brew --prefix)"`), the brew step needs no sudo and an agent
+can run it; otherwise it needs a terminal for sudo, and the user runs it.
 
 **Add a macOS preference**: append an entry to `home/.chezmoidata/macos.yaml`
 (`domain`, `key`, `type`, `value`, `why`). Add the process to `restart` if

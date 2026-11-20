@@ -94,6 +94,7 @@ cask "notunes"  # Avoid opening iTunes accidentally
 cask "raycast"  # Raycast for command-line productivity
 cask "shottr"   # Shottr for screenshots and annotation
 cask "kap"      # Kap for screen recordings exported as GIF or MP4
+brew "ffmpeg"    # Crop and convert screen recordings (GIF/MP4 for PRs)
 
 # ---- Media ----
 cask "spotify"  # Music streaming service
