@@ -11,6 +11,9 @@
 #   Profile:         {{ .profile }}
 #   Mobile:          {{ dig "mobileDev" false . }}
 #
+# On work machines it then makes sure hydra runs from its checkout (see the
+# end of the script).
+#
 # --no-upgrade keeps apply predictable: it only installs what is missing.
 # Upgrade on your own schedule with `brew upgrade`. Nothing is ever
 # uninstalled; see `brew bundle cleanup` in README.md for that.
@@ -39,4 +42,18 @@ else
     HOMEBREW_DOTFILES_MOBILE={{ dig "mobileDev" false . | toString | quote }} \
     "$prefix/bin/brew" bundle --file=- --no-upgrade) < "$brewfile"
 fi
+{{- if eq .profile "work" }}
+
+# hydra runs from its checkout, so a fix there is live after `make build`.
+# Clone it if missing (never pulled: it may hold work in progress), then let
+# its Makefile build bin/hydra, symlink it as ~/.local/bin/hydra and unlink
+# a Homebrew copy that would shadow it.
+hydra_dir={{ joinPath .chezmoi.homeDir .devDir "personal" "hydra" | quote }}
+if [ ! -d "$hydra_dir/.git" ]; then
+  log "Cloning hydra into $hydra_dir"
+  git clone https://github.com/santiagotoscanini/hydra.git "$hydra_dir"
+fi
+log "Building hydra and linking it into ~/.local/bin"
+PATH="$prefix/bin:$PATH" make -C "$hydra_dir" link
+{{- end }}
 {{ end -}}

@@ -144,6 +144,10 @@ if profile == "work"
   # trusted: true trusts only this formula, not everything in the tap.
   tap "f1bonacc1/tap"
   brew "f1bonacc1/tap/process-compose", trusted: true  # Runs the local dev processes (git-excluded process-compose.yaml)
+  # hydra (process-compose wrapper: each worktree runs only what it changed)
+  # isn't here: this machine runs it from its checkout, cloned, built and
+  # linked into ~/.local/bin by run_onchange_before_10-brew-bundle. Everyone
+  # else installs it with `brew install --HEAD santiagotoscanini/tap/hydra`.
   brew "temporal"        # Temporal dev server for the core worker
   brew "uv"              # Python env and 3.12 runtime for agents/voice
   brew "pkgconf"         # pkg-config for the core worker's cgo audio deps
