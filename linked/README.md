@@ -1,7 +1,7 @@
 # linked/
 
-Files that **apps rewrite themselves**: VS Code and Claude Code settings,
-and Neovim's plugin lockfile.
+Files that **apps rewrite themselves**: VS Code, Claude Code and
+process-compose settings, and Neovim's plugin lockfile.
 
 Everything under `home/` is copied into `$HOME` by `chezmoi apply`, so if an app
 saved a change to its copy, the next apply would overwrite it. The files here
@@ -13,6 +13,7 @@ ready to commit.
 |---|---|---|
 | `nvim/nvim-pack-lock.json` | `~/.config/nvim/nvim-pack-lock.json` | `home/dot_config/nvim/symlink_nvim-pack-lock.json.tmpl` |
 | `claude/settings.json` | `~/.claude/settings.json` | `home/dot_claude/symlink_settings.json.tmpl` |
+| `process-compose/settings.yaml` | `~/.config/process-compose/settings.yaml` | `home/dot_config/process-compose/symlink_settings.yaml.tmpl` |
 | `vscode/settings.json` | `~/Library/Application Support/Code/User/settings.json` | `home/private_Library/Application Support/Code/User/symlink_settings.json.tmpl` |
 | `vscode/keybindings.json` | `…/Code/User/keybindings.json` | `…/symlink_keybindings.json.tmpl` |
 | `vscode/snippets/santi-snippets.code-snippets` | `…/Code/User/snippets/santi-snippets.code-snippets` | `…/snippets/symlink_santi-snippets.code-snippets.tmpl` |
@@ -28,6 +29,12 @@ machine gets the same plugin versions.
 mail, media, chats…) from Claude Code; they stay connected for Claude
 Desktop and the web. A rule naming a whole server (`mcp__claude_ai_<Name>`)
 removes all its tools. New connectors show up until they are added here.
+
+`process-compose/settings.yaml` selects the `Custom Style` theme
+(`home/dot_config/process-compose/theme.yaml`), which uses only the terminal's
+default and ANSI palette colours so the TUI follows Ghostty's light/dark
+switch. process-compose rewrites this file when the theme or sort order is
+changed in the TUI (Ctrl-T, sort keys).
 
 The VS Code links are only created on Macs where VS Code is installed
 (see `home/.chezmoiignore`).

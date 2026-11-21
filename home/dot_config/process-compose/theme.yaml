@@ -1,0 +1,44 @@
+# process-compose "Custom Style" theme (selected in settings.yaml).
+# process-compose has no light/dark switch of its own, so this theme uses no
+# fixed colours: `default` is the terminal's own foreground/background, and the
+# names below are ANSI palette slots (black=0, maroon=1, green=2, olive=3,
+# navy=4, purple=5, teal=6, silver=7, gray=8 … white=15). Ghostty swaps the
+# palette between Catppuccin Latte and Frappe with the system appearance, so
+# the TUI follows it too. Hex values or other colour names would not.
+style:
+  body:
+    fgColor: default
+    bgColor: default
+    secondaryTextColor: navy
+    tertiaryTextColor: teal
+    borderColor: gray
+  stat_table:
+    keyFgColor: navy
+    valueFgColor: default
+    logoColor: purple
+  proc_table:
+    fgColor: default
+    fgWarning: olive
+    fgPending: white
+    fgCompleted: green
+    fgError: maroon
+    headerFgColor: navy
+  help:
+    fgColor: default
+    keyColor: navy
+    hlColor: black
+    categoryFgColor: purple
+    linkDonateColor: olive
+    linkAskColor: teal
+  dialog:
+    fgColor: default
+    bgColor: black
+    contrastBgColor: navy
+    attentionBgColor: maroon
+    buttonFgColor: black
+    buttonBgColor: navy
+    buttonFocusFgColor: black
+    buttonFocusBgColor: teal
+    labelFgColor: purple
+    fieldFgColor: default
+    fieldBgColor: gray

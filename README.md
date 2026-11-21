@@ -123,7 +123,7 @@ home/                  what ends up in $HOME (chezmoi source state)
 ├── .chezmoiscripts/       the 3 setup scripts: Brewfile, macOS, SSH and GitHub
 ├── .chezmoitemplates/     the shared start of every script
 ├── dot_zshenv             → ~/.zshenv (moves zsh config to ~/.config/zsh)
-├── dot_config/            → ~/.config (zsh, nvim, git, gh, ghostty, tmux)
+├── dot_config/            → ~/.config (zsh, nvim, git, gh, ghostty, tmux, process-compose)
 ├── private_dot_ssh/       → ~/.ssh (mode 0700/0600)
 └── private_Library/       → ~/Library, kept 0700 (VS Code, only when installed)
 linked/                apps that rewrite their own settings; $HOME gets symlinks to these
