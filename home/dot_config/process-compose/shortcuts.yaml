@@ -1,0 +1,35 @@
+# process-compose bottom shortcut bar. Only the labels change; keys keep their
+# defaults. process-compose puts a single space between items and has no
+# setting for it, so each label gets a leading space (between key and label)
+# and a trailing one (two spaces between items). The item width is computed
+# from this text, so the padding shows. More padding overflows a ~200-column
+# window and puts "Maximize  / Minimize" gaps in the F1 help.
+# Keys are `description` and `toggledescription`; the docs' `toggle_description`
+# is silently ignored (the struct has no yaml tags).
+shortcuts:
+  help:
+    description: " Shortcuts "
+  log_screen:
+    toggledescription: {true: " Maximize ", false: " Minimize "}
+  log_follow:
+    toggledescription: {true: " Follow ", false: " Unfollow "}
+  log_wrap:
+    toggledescription: {true: " Wrap ", false: " Unwrap "}
+  log_select:
+    toggledescription: {true: " Select On ", false: " Select Off "}
+  find:
+    description: " Find "
+  process_scale:
+    description: " Scale "
+  process_info:
+    description: " Info "
+  process_start:
+    description: " Start "
+  process_screen:
+    toggledescription: {true: " Maximize ", false: " Minimize "}
+  process_stop:
+    description: " Stop "
+  process_restart:
+    description: " Restart "
+  quit:
+    description: " Quit "
