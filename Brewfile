@@ -152,5 +152,6 @@ if profile == "work"
   brew "libsoxr"         # Resampler for the core worker's audio pipeline
   # libpq is keg-only; link: true puts psql and pg_isready on PATH.
   brew "libpq", link: true  # psql for the local Supabase DB (supabase/scripts/load-on-demand.sh)
+  brew "cloudflared"     # Cloudflare tunnel to the local API for Twilio and LiveKit webhooks
   cask "ngrok"           # Tunnel to the local API for webhook testing
 end
