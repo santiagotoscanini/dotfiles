@@ -3,7 +3,10 @@
 # Reload with cmd+shift+, (some options need a new window or a restart).
 
 # ---- Look ----
-# Follows the system appearance. Both themes live in ./themes.
+# Follows the system appearance. Both themes live in ./themes: Catppuccin's
+# palettes, except the grey slots, which mean the same in both modes
+# (0 = background, 7 = text, 8 = dim text, 15 = strongest text) so TUIs that
+# only use ANSI colours, like process-compose's theme, adapt to light and dark.
 theme = light:Catppuccin Latte,dark:Catppuccin Frappe
 
 # A thin titlebar in the terminal's own colour, with the tab bar inside it,

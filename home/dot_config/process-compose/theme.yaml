@@ -1,44 +1,51 @@
 # process-compose "Custom Style" theme (selected in settings.yaml).
+#
 # process-compose has no light/dark switch of its own, so this theme uses no
-# fixed colours: `default` is the terminal's own foreground/background, and the
-# names below are ANSI palette slots (black=0, maroon=1, green=2, olive=3,
-# navy=4, purple=5, teal=6, silver=7, gray=8 … white=15). Ghostty swaps the
-# palette between Catppuccin Latte and Frappe with the system appearance, so
-# the TUI follows it too. Hex values or other colour names would not.
+# fixed colours, only ANSI palette slots: black=0, maroon=1, green=2, olive=3,
+# navy=4, purple=5, teal=6, silver=7, gray=8, white=15. Ghostty swaps its
+# palette between Catppuccin Latte and Frappe (dot_config/ghostty/themes) with
+# the system appearance, so the TUI follows it live. Hex values or other
+# colour names would not.
+#
+# Those two Ghostty themes give the grey slots the same role in both modes:
+# black = the terminal background, silver = text, gray = dim text,
+# white = strongest text. The background must be a slot rather than `default`:
+# a selected table row is drawn inverted (row text colour as background, cell
+# background as text), and `default` on `default` would hide the selection.
 style:
   body:
-    fgColor: default
-    bgColor: default
+    fgColor: silver
+    bgColor: black
     secondaryTextColor: navy
     tertiaryTextColor: teal
     borderColor: gray
   stat_table:
     keyFgColor: navy
-    valueFgColor: default
+    valueFgColor: white
     logoColor: purple
   proc_table:
-    fgColor: default
+    fgColor: silver
     fgWarning: olive
-    fgPending: white
+    fgPending: gray
     fgCompleted: green
     fgError: maroon
     headerFgColor: navy
   help:
-    fgColor: default
+    fgColor: silver
     keyColor: navy
     hlColor: black
     categoryFgColor: purple
     linkDonateColor: olive
     linkAskColor: teal
   dialog:
-    fgColor: default
+    fgColor: silver
     bgColor: black
-    contrastBgColor: navy
+    contrastBgColor: gray
     attentionBgColor: maroon
     buttonFgColor: black
-    buttonBgColor: navy
+    buttonBgColor: silver
     buttonFocusFgColor: black
-    buttonFocusBgColor: teal
-    labelFgColor: purple
-    fieldFgColor: default
-    fieldBgColor: gray
+    buttonFocusBgColor: navy
+    labelFgColor: navy
+    fieldFgColor: black
+    fieldBgColor: silver
