@@ -44,10 +44,11 @@
 # Supabase CLI pinned to the version the Flai monorepo's CI and Cloud image use
 # (.github/workflows/db-generate.yml). Homebrew only ships the latest release,
 # and v3 rejects the repo's supabase/config.toml. Bump the version, URL and
-# checksum together, from the release's supabase_<version>_checksums.txt.
+# checksum together, from the release's checksums.txt. Moving off v2.75 changes
+# the Postgres image: run `pnpm db:refresh-collation` in the monorepo once.
 [".local/bin/supabase"]
     type = "archive-file"
-    url = "https://github.com/supabase/cli/releases/download/v2.75.0/supabase_darwin_arm64.tar.gz"
-    checksum.sha256 = "6618736487287a9f0835c44a7101694deb4ca1192852a070a93014437641cea3"
+    url = "https://github.com/supabase/cli/releases/download/v2.122.1/supabase_2.122.1_darwin_arm64.tar.gz"
+    checksum.sha256 = "e97582f76237d1dd4cb27f5051e8a98587733f98837d43d74d2e3330436d7c79"
     path = "supabase"
     executable = true
