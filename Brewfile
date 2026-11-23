@@ -136,7 +136,8 @@ if profile == "work"
   cask "linear"  # Issue tracking and project planning
 
   # ---- AI assistants ----
-  cask "grok-bot"  # xAI's Grok Bot: AI teammates across apps and tools
+  # In ~/Applications: /Applications is shared with the personal account.
+  cask "grok-bot", args: { appdir: "~/Applications" }  # xAI's Grok Bot: AI teammates across apps and tools
 
   # ---- Flai monorepo ----
   brew "colima"          # Docker-compatible VM; runs Supabase, Redis and LocalStack
