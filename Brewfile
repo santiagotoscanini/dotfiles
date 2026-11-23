@@ -135,6 +135,9 @@ if profile == "work"
   # ---- Project management ----
   cask "linear"  # Issue tracking and project planning
 
+  # ---- AI assistants ----
+  cask "grok-bot"  # xAI's Grok Bot: AI teammates across apps and tools
+
   # ---- Flai monorepo ----
   brew "colima"          # Docker-compatible VM; runs Supabase, Redis and LocalStack
   brew "docker"          # Docker CLI that talks to the Colima VM
