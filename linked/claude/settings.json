@@ -4,7 +4,6 @@
     "commit": "",
     "pr": ""
   },
-  "theme": "auto",
   "deniedMcpServers": [
     {
       "serverName": "claude.ai Finance - Binance"
@@ -81,5 +80,6 @@
     {
       "serverName": "claude.ai Spotify"
     }
-  ]
+  ],
+  "theme": "auto"
 }
