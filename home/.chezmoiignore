@@ -20,10 +20,6 @@ README.md
 # ---- Work-only ----
 {{- if ne .profile "work" }}
 .config/git/config.work
-.config/colima
-.config/colima/**
-.docker
-.docker/**
 .local/bin/supabase
 {{- end }}
 

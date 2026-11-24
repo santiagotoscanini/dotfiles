@@ -140,9 +140,6 @@ if profile == "work"
   cask "grok-bot", args: { appdir: "~/Applications" }  # xAI's Grok Bot: AI teammates across apps and tools
 
   # ---- Flai monorepo ----
-  brew "colima"          # Docker-compatible VM; the local stack runs natively now, kept for Docker work
-  brew "docker"          # Docker CLI that talks to the Colima VM
-  brew "docker-compose"  # `docker compose` plugin (linked from ~/.docker/cli-plugins)
   brew "pnpm"            # Workspace package manager; switches to the repo's pinned version
   brew "redis"           # Redis server for the local stack (run by process-compose, not brew services)
   brew "versitygw"       # Local S3 server (replaces LocalStack; objects are plain files)
