@@ -147,6 +147,7 @@ if profile == "work"
   brew "redis"           # Redis server for the local stack (run by process-compose, not brew services)
   brew "versitygw"       # Local S3 server (replaces LocalStack; objects are plain files)
   brew "awscli"          # AWS CLI, for the local S3 (verify-flai-core's s3.sh)
+  brew "pgbouncer"       # Postgres connection pool hydra runs in main when x-hydra.pool is on
   # process-compose isn't in homebrew-core; it comes from its author's tap.
   # trusted: true trusts only this formula, not everything in the tap.
   tap "f1bonacc1/tap"
