@@ -52,6 +52,10 @@ export XDG_STATE_HOME=$HOME/.local/state
 export GOPATH=$XDG_DATA_HOME/go
 export HOMEBREW_GOPATH=$GOPATH  # brew strips GOPATH; `go` entries in the Brewfile read this one
 path=($GOPATH/bin $path)
+# Builds don't record the checkout's path, so every git worktree of a repo
+# shares one build cache instead of compiling (and storing) everything again.
+# Stack traces show module paths (github.com/org/repo/pkg/x.go), not disk ones.
+export GOFLAGS=-trimpath
 
 # Default applications
 export EDITOR='nvim'
