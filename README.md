@@ -55,6 +55,8 @@ they're rarely needed:
 
 - QMK keyboard: see [`qmk/README.md`](qmk/README.md).
 - Rosetta: macOS offers to install it the first time an Intel-only app opens.
+- hydra's MCP server for Claude Code (work machines): `claude mcp add --scope user hydra -- ~/.local/bin/hydra mcp`.
+  User-scope servers live in `~/.claude.json`, Claude Code's own state file, which chezmoi doesn't manage.
 
 The machine has one SSH key, `~/.ssh/id_ed25519` (the name `gh auth login`
 uses), for both git over SSH and commit signing; GitHub shows the commits as

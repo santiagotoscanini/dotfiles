@@ -4,6 +4,22 @@
     "commit": "",
     "pr": ""
   },
+  "permissions": {
+    "deny": [
+      "Bash(process-compose:*)",
+      "Bash(supabase start:*)",
+      "Bash(supabase stop:*)",
+      "Bash(supabase db reset:*)",
+      "Bash(supabase db wipe:*)",
+      "Bash(pnpm infra:*)",
+      "Bash(docker volume rm:*)"
+    ],
+    "ask": [
+      "Bash(hydra down:*)",
+      "Bash(hydra update:*)",
+      "mcp__hydra__update_main"
+    ]
+  },
   "deniedMcpServers": [
     {
       "serverName": "claude.ai Finance - Binance"
